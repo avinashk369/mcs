@@ -1,5 +1,6 @@
 library home_screen;
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/user/userbloc.dart';
@@ -7,8 +8,11 @@ import 'package:mcs/resources/repository.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/custom_appbar.dart';
 import 'package:mcs/views/bottom_nav/dashboard/components/search_bar.dart';
+import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
 
 part '../../components/search_widget.dart';
+part '../mobile/components/category_list.dart';
+part '../mobile/components/category_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,9 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ],
       child: Scaffold(
-        // appBar: const CustomAppbar(
-        //   title: 'MCS',
-        // ),
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
@@ -63,10 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  Text(
-                    "Home screen",
-                    style: kLabelStyleBold,
-                  ),
+                  const CategoryList(),
+                  const PromotionalBanner(),
                 ],
               ),
             ),

@@ -78,10 +78,10 @@ class _DashboardState extends State<Dashboard> {
               ),
               child: NavigationBarTheme(
                 data: const NavigationBarThemeData(
-                  indicatorColor: secondaryLight,
+                  indicatorColor: primaryLight,
                 ),
                 child: NavigationBar(
-                  backgroundColor: primaryLight,
+                  backgroundColor: Colors.grey[100],
                   height: 60,
                   labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
                   selectedIndex: state, //controller.currentIndex.value,

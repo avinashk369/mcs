@@ -39,7 +39,7 @@ class _PromotionalBannerState extends State<PromotionalBanner> {
     return Column(
       children: [
         SizedBox(
-          height: size.height * .22,
+          height: size.height * .2,
           child: Stack(
             children: [
               PageView.builder(
@@ -142,7 +142,7 @@ class _PromotionalBannerState extends State<PromotionalBanner> {
           ),
         ),
         Container(
-          height: 40,
+          height: 20,
           width: size.width * .8,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.transparent, width: 0),

@@ -21,22 +21,24 @@ class TabNavigationItem {
           page: const HomeScreen(),
           icon: const Icon(
             Icons.home_outlined,
-            color: fadedColor,
+            color: Colors.grey,
           ),
           title: home,
           selectedIcon: const Icon(
             Icons.home,
+            color: secondaryLight,
           ),
         ),
         TabNavigationItem(
           page: const UserSettings(),
           icon: const Icon(
             Icons.settings_outlined,
-            color: fadedColor,
+            color: Colors.grey,
           ),
           title: food,
           selectedIcon: const Icon(
             Icons.settings,
+            color: secondaryLight,
           ),
         ),
       ];
