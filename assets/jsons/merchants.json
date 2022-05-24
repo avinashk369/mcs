@@ -1,0 +1,187 @@
+[
+    {
+        "id":"1",
+        "name":"Retro parking",
+        "address":"Laxmi Nagar metro station, New delhi 110096",
+        "lat":28.63909,
+        "lng":77.2389,
+        "rating":4.3,
+        "hr_rate":5,
+        "spots":1000,
+        "about":" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquet nisi nisl euismod eros. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquet nisi nisl euismod eros.",
+        "reviews":[
+            {
+                "id":"1",
+                "name":"John",
+                "review":"This place is great",
+                "rating":5
+            },
+            {
+                "id":"2",
+                "name":"Jane",
+                "review":"This place is great",
+                "rating":5
+            }
+        ],
+        "facilities":[
+            {
+                "id":"2",
+                "name":"Security",
+                "facility_icon":"https://img.icons8.com/offices/344/valet-parking.png"
+            },
+            {
+                "id":"3",
+                "name":"Shades",
+                "facility_icon":"https://img.icons8.com/external-yogi-aprelliyanto-flat-yogi-aprelliyanto/344/external-warehouse-manufacturing-yogi-aprelliyanto-flat-yogi-aprelliyanto.png"
+            },
+            {
+                "id":"2",
+                "name":"Security camera",
+                "facility_icon":"https://img.icons8.com/external-kmg-design-flat-kmg-design/344/external-cctv-hotel-kmg-design-flat-kmg-design.png"
+
+            }
+        ]
+    },
+    {
+        "id":"2",
+        "name":"jumbo parking",
+        "address":"Noida sec-16 metro station, New delhi 110096",
+        "lat":28.63909,
+        "lng":77.2389,
+        "rating":4.5,
+        "hr_rate":100,
+        "spots":10,
+        "about":" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquet nisi nisl euismod eros. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquet nisi nisl euismod eros.",
+        "reviews":[
+            {
+                "id":"1",
+                "name":"John",
+                "review":"This place is great",
+                "rating":5
+            },
+            {
+                "id":"2",
+                "name":"Jane",
+                "review":"This place is great",
+                "rating":5
+            }
+        ],
+        "facilities":[
+            {
+                "id":"2",
+                "name":"Security",
+                "facility_icon":"https://img.icons8.com/offices/344/valet-parking.png"
+            },
+            {
+                "id":"3",
+                "name":"Shades",
+                "facility_icon":"https://img.icons8.com/external-yogi-aprelliyanto-flat-yogi-aprelliyanto/344/external-warehouse-manufacturing-yogi-aprelliyanto-flat-yogi-aprelliyanto.png"
+            },
+            {
+                "id":"2",
+                "name":"Security camera",
+                "facility_icon":"https://img.icons8.com/external-kmg-design-flat-kmg-design/344/external-cctv-hotel-kmg-design-flat-kmg-design.png"
+
+            }
+        ]
+    },
+    {
+        "id":"3",
+        "name":"Valley parking",
+        "address":"Lajpat Nagar metro station, New delhi 110096",
+        "lat":28.63909,
+        "lng":77.2389,
+        "rating":4.5,
+        "hr_rate":10,
+        "spots":10,
+        "about":" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquet nisi nisl euismod eros. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquet nisi nisl euismod eros.",
+        "reviews":[
+            {
+                "id":"1",
+                "name":"John",
+                "review":"This place is great",
+                "rating":5
+            },
+            {
+                "id":"2",
+                "name":"Jane",
+                "review":"This place is great",
+                "rating":5
+            }
+        ],
+        "facilities":[
+            {
+                "id":"2",
+                "name":"Security",
+                "facility_icon":"https://img.icons8.com/offices/344/valet-parking.png"
+            },
+            {
+                "id":"3",
+                "name":"Shades",
+                "facility_icon":"https://img.icons8.com/external-yogi-aprelliyanto-flat-yogi-aprelliyanto/344/external-warehouse-manufacturing-yogi-aprelliyanto-flat-yogi-aprelliyanto.png"
+            },
+            {
+                "id":"2",
+                "name":"Security camera",
+                "facility_icon":"https://img.icons8.com/external-kmg-design-flat-kmg-design/344/external-cctv-hotel-kmg-design-flat-kmg-design.png"
+
+            }
+        ]
+    },
+    {
+        "id":"4",
+        "name":"Elevated parking",
+        "address":"Ajmenri gate metro station, New delhi 110096",
+        "lat":28.63909,
+        "lng":77.2389,
+        "rating":4.5,
+        "hr_rate":10,
+        "spots":30,
+        "about":" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquet nisi nisl euismod eros. Donec euismod, nisl eget consectetur consectetur, nisi nisl aliquam eros, euismod aliquet nisi nisl euismod eros.",
+        "reviews":[
+            {
+                "id":"1",
+                "name":"John",
+                "review":"This place is great",
+                "rating":5
+            },
+            {
+                "id":"2",
+                "name":"John",
+                "review":"This place is great",
+                "rating":5
+            },
+            {
+                "id":"3",
+                "name":"John",
+                "review":"This place is great",
+                "rating":5
+            },
+            {
+                "id":"4",
+                "name":"Jane",
+                "review":"This place is great",
+                "rating":5
+            }
+        ],
+        "facilities":[
+            
+            {
+                "id":"2",
+                "name":"Security",
+                "facility_icon":"https://img.icons8.com/offices/344/valet-parking.png"
+            },
+            {
+                "id":"3",
+                "name":"Shades",
+                "facility_icon":"https://img.icons8.com/external-yogi-aprelliyanto-flat-yogi-aprelliyanto/344/external-warehouse-manufacturing-yogi-aprelliyanto-flat-yogi-aprelliyanto.png"
+            },
+            {
+                "id":"2",
+                "name":"Security camera",
+                "facility_icon":"https://img.icons8.com/external-kmg-design-flat-kmg-design/344/external-cctv-hotel-kmg-design-flat-kmg-design.png"
+
+            }
+        ]
+    }
+]

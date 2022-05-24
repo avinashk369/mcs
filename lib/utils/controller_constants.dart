@@ -1,0 +1,9 @@
+const String dashboardController = "dashboard";
+const String settingsController = "settings";
+const String foodController = "foodController";
+const String foodDetailController = "foodDetailController";
+const String foodItemController = "foodItemController";
+const String foodAddOnController = "foodAddOnController";
+const String orderController = "orderController";
+const String trainerController = "trainerController";
+const String subscriptionController = "subscriptionController";

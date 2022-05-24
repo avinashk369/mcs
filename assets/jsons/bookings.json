@@ -1,0 +1,2599 @@
+[
+    {
+        "_id": "622cf2246854fcb5b49f8461",
+        "booking_time": "2022-03-12T19:18:39.212Z",
+        "booking_status": "pending",
+        "duration": 5,
+        "price": 106.2,
+        "is_paid": true,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d791eb787d899e038274d",
+        "booking_time": "2022-03-13T04:38:41.952Z",
+        "booking_status": "pending",
+        "duration": 5,
+        "price": 106.2,
+        "is_paid": true,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d7d4753bd894405fbb6ae",
+        "booking_time": "2022-03-13T05:12:36.213Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d7e0153bd894405fbb6bd",
+        "booking_time": "2022-03-13T05:15:43.405Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee68eb8f76269a1fdf01",
+                "v_type": "bike",
+                "img": "https://cdn-icons-png.flaticon.com/512/66/66601.png",
+                "__v": 0
+            },
+            "v_model": "Avenger 220",
+            "v_number": "dl5sbv3725",
+            "_id": "622ceb63eb8f76269a1fdea5"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d7e3c53bd894405fbb6cc",
+        "booking_time": "2022-03-13T05:16:42.266Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee68eb8f76269a1fdf01",
+                "v_type": "bike",
+                "img": "https://cdn-icons-png.flaticon.com/512/66/66601.png",
+                "__v": 0
+            },
+            "v_model": "Avenger 220",
+            "v_number": "dl5sbv3725",
+            "_id": "622ceb63eb8f76269a1fdea5"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d81ae53bd894405fbb6db",
+        "booking_time": "2022-03-13T05:31:24.302Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d8a5353bd894405fbb6ea",
+        "booking_time": "2022-03-13T06:08:14.327Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d8d5e1bc931a153b30508",
+        "booking_time": "2022-03-13T06:08:14.327Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d8f0b1bc931a153b30518",
+        "booking_time": "2022-03-13T06:28:21.101Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d8f511bc931a153b30527",
+        "booking_time": "2022-03-13T06:29:25.044Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d8f9b1bc931a153b30536",
+        "booking_time": "2022-03-13T06:30:39.819Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d8fec1bc931a153b30545",
+        "booking_time": "2022-03-13T06:31:56.046Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d90321bc931a153b30554",
+        "booking_time": "2022-03-13T06:33:06.183Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d91af1bc931a153b30563",
+        "booking_time": "2022-03-13T06:39:28.992Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d939d1bc931a153b30572",
+        "booking_time": "2022-03-13T06:47:46.243Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d93cf1bc931a153b30581",
+        "booking_time": "2022-03-13T06:48:34.578Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d9478c5485cda64c62179",
+        "booking_time": "2022-03-13T06:51:23.920Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d9575c5485cda64c62189",
+        "booking_time": "2022-03-13T06:55:42.380Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": true,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d9607c5485cda64c6219a",
+        "booking_time": "2022-03-13T06:58:12.531Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d96d1c5485cda64c621aa",
+        "booking_time": "2022-03-13T07:01:32.836Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d9795c5485cda64c621ba",
+        "booking_time": "2022-03-13T07:04:49.977Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d97a8c5485cda64c621c3",
+        "booking_time": "2022-03-13T07:04:49.977Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d9848623ff6a5ca1def76",
+        "booking_time": "2022-03-13T07:07:49.938Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d98ab623ff6a5ca1def7f",
+        "booking_time": "2022-03-13T07:07:49.938Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d98cd623ff6a5ca1def8f",
+        "booking_time": "2022-03-13T07:10:03.915Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Kia",
+            "v_number": "HP08TY5628",
+            "_id": "622d7337b787d899e0382731"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622d9925623ff6a5ca1def9f",
+        "booking_time": "2022-03-13T07:11:31.423Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622da2d4623ff6a5ca1defbd",
+        "booking_time": "2022-03-13T07:52:17.908Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Kia",
+            "v_number": "HP08TY5628",
+            "_id": "622d7337b787d899e0382731"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622da50a623ff6a5ca1defcd",
+        "booking_time": "2022-03-13T08:01:49.415Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622da545623ff6a5ca1defdd",
+        "booking_time": "2022-03-13T08:03:14.246Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622da7a6623ff6a5ca1defef",
+        "booking_time": "2022-03-13T08:13:06.482Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622da7ab623ff6a5ca1deff8",
+        "booking_time": "2022-03-13T08:13:06.482Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": true,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622daadb623ff6a5ca1df009",
+        "booking_time": "2022-03-13T08:26:55.153Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dab59623ff6a5ca1df019",
+        "booking_time": "2022-03-13T08:29:03.908Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": true,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dac38623ff6a5ca1df029",
+        "booking_time": "2022-03-13T08:32:53.221Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": true,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dac44623ff6a5ca1df039",
+        "booking_time": "2022-03-13T08:33:06.632Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dac61623ff6a5ca1df049",
+        "booking_time": "2022-03-13T08:33:34.827Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dbee9623ff6a5ca1df059",
+        "booking_time": "2022-03-13T09:52:38.443Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dbf35623ff6a5ca1df062",
+        "booking_time": "2022-03-13T09:52:38.443Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dbf67623ff6a5ca1df06b",
+        "booking_time": "2022-03-13T09:52:38.443Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dc34d623ff6a5ca1df07b",
+        "booking_time": "2022-03-13T10:11:21.223Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dc5a5623ff6a5ca1df08b",
+        "booking_time": "2022-03-13T10:21:08.117Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dc819623ff6a5ca1df0a3",
+        "booking_time": "2022-03-13T10:31:26.869Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 12.74,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dc97e623ff6a5ca1df0bb",
+        "booking_time": "2022-03-13T10:37:11.073Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 50.98,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dc9d0623ff6a5ca1df0cb",
+        "booking_time": "2022-03-13T10:39:01.070Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 50.98,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dcb06623ff6a5ca1df0db",
+        "booking_time": "2022-03-13T10:44:05.002Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 50.98,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dceb9623ff6a5ca1df0f2",
+        "booking_time": "2022-03-13T10:58:26.904Z",
+        "booking_status": "pending",
+        "duration": 3,
+        "price": 63.72,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622dcf59623ff6a5ca1df109",
+        "booking_time": "2022-03-13T11:02:00.493Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 17,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622e1b355028cee6cfd1941a",
+        "booking_time": "2022-03-13T16:25:49.053Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 17.64,
+        "is_paid": false,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    },
+    {
+        "_id": "622e1b645028cee6cfd1942a",
+        "booking_time": "2022-03-13T16:27:14.475Z",
+        "booking_status": "pending",
+        "duration": 1,
+        "price": 21.24,
+        "is_paid": true,
+        "merchant": {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    25.75679373274295,
+                    86.02907103277855
+                ]
+            },
+            "_id": "6223400356a5f3404b57a273",
+            "mobile": 9540621916,
+            "user_type": "merchant",
+            "isVerified": true,
+            "isActive": true,
+            "cpCar": true,
+            "cpBike": true,
+            "__v": 0,
+            "address": {
+                "address": "Ajmeri gate New Delhi 110096",
+                "address_line1": "New Delhi",
+                "address_line2": "Ajmeri Gate",
+                "city": "New Delhi",
+                "state": "New Delhi",
+                "country": "India",
+                "zipcode": "110096",
+                "landmark": "Near metro station",
+                "_id": "622452dfa35957d2197cf586"
+            },
+            "close_time": "08:00 PM",
+            "hr_rate": 18,
+            "name": "Jumbo Parking",
+            "open_time": "11:00 AM",
+            "spots": 100
+        },
+        "vehicle": {
+            "v_type": {
+                "_id": "622cee47eb8f76269a1fdefd",
+                "v_type": "car",
+                "img": "https://cdn-icons-png.flaticon.com/512/48/48688.png",
+                "__v": 0
+            },
+            "v_model": "Mercedez",
+            "v_number": "MH08UY6842",
+            "_id": "622cf1e96854fcb5b49f8456"
+        },
+        "is_cancelled": false
+    }
+]
