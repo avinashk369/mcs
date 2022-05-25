@@ -40,105 +40,42 @@ class _PromotionalBannerState extends State<PromotionalBanner> {
       children: [
         SizedBox(
           height: size.height * .2,
-          child: Stack(
-            children: [
-              PageView.builder(
-                itemCount: 5,
-                controller: _pageController,
-                pageSnapping: true,
-                itemBuilder: (BuildContext context, int index) {
-                  return InkWell(
-                    onTap: () {},
-                    child: Card(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+          child: PageView.builder(
+            itemCount: 5,
+            controller: _pageController,
+            pageSnapping: true,
+            itemBuilder: (BuildContext context, int index) {
+              return InkWell(
+                onTap: () {},
+                child: Card(
+                  elevation: 0,
+                  semanticContainer: true,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  color: Colors.transparent,
+                  child: SizedBox(
+                    width: size.width,
+                    child: CachedNetworkImage(
+                      imageUrl: "https://picsum.photos/seed/picsum/200/300",
+                      fit: BoxFit.cover,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => Center(
+                        child: LoadingUI(),
                       ),
-                      color: Colors.transparent,
-                      child: SizedBox(
-                        width: size.width,
-                        child: Stack(
-                          children: [
-                            CachedNetworkImage(
-                              imageUrl:
-                                  "https://picsum.photos/seed/picsum/200/300",
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
-                                    // colorFilter: ColorFilter.mode(
-                                    //     Colors.purple, BlendMode.colorBurn),
-                                  ),
-                                ),
-                              ),
-                              progressIndicatorBuilder:
-                                  (context, url, downloadProgress) =>
-                                      const Center(
-                                child: CircularProgressIndicator.adaptive(
-                                  backgroundColor: Colors.deepPurple,
-                                ),
-                              ),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                            ),
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.black54,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  const Spacer(
-                                    flex: 4,
-                                  ),
-                                  SizedBox(
-                                    width: size.width * .6,
-                                    child: Text(
-                                      "promotionModel.title!",
-                                      style: kLabelStyleBold.copyWith(
-                                          fontSize: 18, color: Colors.white),
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
-                  );
-                },
-                onPageChanged: (int page) {
-                  setState(() {
-                    _currentPage = page;
-                  });
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10, top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    Icon(
-                      Icons.favorite,
-                      size: 18,
-                      color: Colors.transparent,
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              );
+            },
+            onPageChanged: (int page) {
+              setState(() {
+                _currentPage = page;
+              });
+            },
           ),
         ),
         Container(

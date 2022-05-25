@@ -11,6 +11,7 @@ import 'package:mcs/blocs/navigation/navigation_bloc.dart';
 import 'package:mcs/blocs/user/userbloc.dart';
 import 'package:mcs/resources/user/user_repositoryimpl.dart';
 import 'package:mcs/utils/utils.dart';
+import 'package:mcs/widgets/loading_ui.dart';
 import 'package:share/share.dart';
 
 import '../TabNavigationItem.dart';
@@ -56,10 +57,9 @@ class _DashboardState extends State<Dashboard> {
         ),
       ],
       child: Scaffold(
-        extendBody: true,
+        //extendBody: true,
         body: BlocBuilder<NavigationBloc, int>(
           builder: (context, state) {
-            print("current index $state");
             return IndexedStack(
               index: state, //controller.currentIndex.value,
               children: [
@@ -71,33 +71,27 @@ class _DashboardState extends State<Dashboard> {
         ),
         bottomNavigationBar: BlocBuilder<NavigationBloc, int>(
           builder: (context, state) {
-            return ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(15.0),
-                topRight: Radius.circular(15.0),
+            return NavigationBarTheme(
+              data: const NavigationBarThemeData(
+                indicatorColor: primaryLight,
               ),
-              child: NavigationBarTheme(
-                data: const NavigationBarThemeData(
-                  indicatorColor: primaryLight,
-                ),
-                child: NavigationBar(
-                  backgroundColor: Colors.grey[100],
-                  height: 60,
-                  labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-                  selectedIndex: state, //controller.currentIndex.value,
-                  animationDuration: const Duration(seconds: 1),
-                  onDestinationSelected: (int index) {
-                    checkCredsAndNavigate(index, context);
-                  },
-                  destinations: [
-                    for (final tabItem in TabNavigationItem.items)
-                      NavigationDestination(
-                        icon: tabItem.icon,
-                        label: tabItem.title,
-                        selectedIcon: tabItem.selectedIcon,
-                      ),
-                  ],
-                ),
+              child: NavigationBar(
+                backgroundColor: Colors.grey[100],
+                height: 60,
+                labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+                selectedIndex: state, //controller.currentIndex.value,
+                animationDuration: const Duration(seconds: 1),
+                onDestinationSelected: (int index) {
+                  checkCredsAndNavigate(index, context);
+                },
+                destinations: [
+                  for (final tabItem in TabNavigationItem.items)
+                    NavigationDestination(
+                      icon: tabItem.icon,
+                      label: tabItem.title,
+                      selectedIcon: tabItem.selectedIcon,
+                    ),
+                ],
               ),
             );
           },
