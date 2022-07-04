@@ -1,0 +1,92 @@
+[
+    {
+        "id": "10",
+        "name":"NIVEA Body Wash",
+        "desc":"NIVEA Body Wash",
+        "price":200,
+        "offer_price":185,
+        "size":"5",
+        "unit":"Kg",
+        "currency":"INR",
+        "thumbnail":"https://rukminim1.flixcart.com/image/416/416/kingqkw0pkrrdj-0/personal-care/r/t/s/250-nv720-nivea-men-original-imafyhpbksdv4ztv.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.5
+    },
+    {
+        "id": "11",
+        "name":"DOVE Gentle Exfoliating Nourishing Body Wash",
+        "desc":"DOVE Gentle Exfoliating Nourishing Body Wash",
+        "price":400,
+        "offer_price":360,
+        "size":"200",
+        "unit":"gm",
+        "currency":"INR",
+        "thumbnail":"https://rukminim1.flixcart.com/image/416/416/kz4gh3k0/body-wash/e/7/2/-original-imagb7dagtkkxg6n.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.7
+    },
+    {
+        "id": "12",
+        "name":"Dettol Intense Cool Bathing Soap Bar",
+        "desc":"Dettol Intense Cool Bathing Soap Bar",
+        "price":504,
+        "offer_price":440,
+        "size":"1",
+        "unit":"Kg",
+        "currency":"INR",
+        "thumbnail":"https://rukminim1.flixcart.com/image/416/416/l0pm3680/soap/0/f/n/-original-imagcfpvazkrxbff.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.8
+    },
+    {
+        "id": "13",
+        "name":"Natural Activated Charcoal Bath Soap",
+        "desc":"Natural Activated Charcoal Bath Soap",
+        "price":495,
+        "offer_price":199,
+        "size":"1",
+        "unit":"Ltr",
+        "currency":"INR",
+        "thumbnail":"https://rukminim1.flixcart.com/image/416/416/kskotjk0/soap/k/q/n/1-500-activated-charcoal-natural-hand-made-soap-satroopaa-original-imag64yzf7qftqya.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4
+    },
+    {
+        "id": "14",
+        "name":"Godrej No.1 Lime Aloe Vera Bathing Soap",
+        "desc":"Godrej No.1 Lime Aloe Vera Bathing Soap",
+        "price":159,
+        "offer_price":143,
+        "size":"5",
+        "unit":"Kg",
+        "currency":"INR",
+            "thumbnail":"https://rukminim1.flixcart.com/image/416/416/kyq62kw0/soap/z/i/w/-original-imagaw5wbf9ekvcm.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.9
+    }
+]

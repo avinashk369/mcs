@@ -1,0 +1,110 @@
+[
+    {
+        "id": "15",
+        "name":"Ashirwad Atta",
+        "desc":"Ashirwad atta from ITC",
+        "price":200,
+        "offer_price":185,
+        "size":"5",
+        "unit":"Kg",
+        "currency":"INR",
+        "thumbnail":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb4x2HnIYeYl0axPqgb9Qj00KPPtDODPBX_w&usqp=CAU",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.5
+    },
+    {
+        "id": "16",
+        "name":"Colgate Toothpaste",
+        "desc":"Colgate Toothpaste from palmolive",
+        "price":200,
+        "offer_price":100,
+        "size":"200",
+        "unit":"gm",
+        "currency":"INR",
+        "thumbnail":"https://cdn01.pharmeasy.in/dam/products_otc/A55941/colgate-strong-teeth-dental-cream-tooth-paste-44-gm-1-1654252225.jpg",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.7
+    },
+    {
+        "id": "17",
+        "name":"Tata Salt",
+        "desc":"Tata salt from TATA",
+        "price":20,
+        "offer_price":18,
+        "size":"1",
+        "unit":"Kg",
+        "currency":"INR",
+        "thumbnail":"https://www.wholesalemart.com.sg/wp-content/uploads/groceries/cooking-essentials/TATA-SALT.jpg",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.8
+    },
+    {
+        "id": "18",
+        "name":"Fortune refine",
+        "desc":"Fortune refine from Fortune",
+        "price":200,
+        "offer_price":185,
+        "size":"1",
+        "unit":"Ltr",
+        "currency":"INR",
+        "thumbnail":"https://m.media-amazon.com/images/I/51TH5xE+2sL.jpg",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4
+    },
+    {
+        "id": "19",
+        "name":"Dawat Rice",
+        "desc":"Dawat rice from ITC",
+        "price":500,
+        "offer_price":485,
+        "size":"5",
+        "unit":"Kg",
+        "currency":"INR",
+        "thumbnail":"https://www.jiomart.com/images/product/original/490000003/daawat-super-basmati-rice-1-kg-product-images-o490000003-p490000003-0-202203151745.jpg",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.9
+    },
+    {
+        "id": "20",
+        "name":"Lal Quila Rice",
+        "desc":"Lal Quila from ITC",
+        "price":500,
+        "offer_price":485,
+        "size":"5",
+        "unit":"Kg",
+        "currency":"INR",
+        "thumbnail":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkw5c4UqBb3Pi2AJK67hdPcqfcF3u-JYGebw&usqp=CAU",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.9
+    }
+]

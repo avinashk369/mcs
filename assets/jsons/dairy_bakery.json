@@ -1,0 +1,74 @@
+[
+    {
+        "id": "9",
+        "name":"Sunfeast Dark Fantasy Choco Fills Cream Filled",
+        "desc":"Sunfeast Dark Fantasy Choco Fills Cream Filled",
+        "price":170,
+        "offer_price":114,
+        "size":"5",
+        "unit":"Kg",
+        "currency":"INR",
+        "thumbnail":"https://rukminim1.flixcart.com/image/416/416/l0tweq80/cookie-biscuit/6/d/v/-original-imagcj64ufcuhukb.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.5
+    },
+    {
+        "id": "8",
+        "name":"Dukes Cheese Crackers Salted Biscuit ",
+        "desc":"Dukes Cheese Crackers Salted Biscuit ",
+        "price":55,
+        "offer_price":41,
+        "size":"200",
+        "unit":"gm",
+        "currency":"INR",
+        "thumbnail":"https://rukminim1.flixcart.com/image/416/416/l3929ow0/toothbrush/g/a/7/-original-imageez7kywm8jra.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.7
+    },
+    {
+        "id": "7",
+        "name":"BRITANNIA Premium Sooji Rusk",
+        "desc":"BRITANNIA Premium Sooji Rusk",
+        "price":50,
+        "offer_price":50,
+        "size":"1",
+        "unit":"Kg",
+        "currency":"INR",
+        "thumbnail":"https://rukminim1.flixcart.com/image/416/416/l0sgyvk0/rusk/f/w/a/-original-imagcg5kqvzeeubv.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.8
+    },
+    {
+        "id": "6",
+        "name":"Prabhuji Jhal Chanachur ",
+        "desc":"Prabhuji Jhal Chanachur ",
+        "price":115,
+        "offer_price":98,
+        "size":"1",
+        "unit":"Ltr",
+        "currency":"INR",
+        "thumbnail":"https://rukminim1.flixcart.com/image/416/416/ko8xtow0/snack-savourie/e/f/q/jhal-chanachur-pouch-prabhuji-original-imag2qyrjnn9sxgy.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4
+    } 
+]

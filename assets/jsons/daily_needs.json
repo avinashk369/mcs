@@ -1,0 +1,92 @@
+[
+    {
+        "id": "1",
+        "name":"HEAD & SHOULDERS Silky Black Shampoo  (180 ml)",
+        "desc":"HEAD & SHOULDERS Silky Black Shampoo  (180 ml)",
+        "price":170,
+        "offer_price":153,
+        "size":"5",
+        "unit":"Kg",
+        "currency":"INR",
+        "thumbnail":"https://rukminim1.flixcart.com/image/416/416/jly1wnk0/shampoo/u/q/z/180-silky-black-shampoo-head-shoulders-original-imaf8yzzyafchgjy.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.5
+    },
+    {
+        "id": "2",
+        "name":"Colgate Gentle Sensitive, Ultra Soft Ultra Soft Toothbrush ",
+        "desc":"Colgate Gentle Sensitive, Ultra Soft Ultra Soft Toothbrush ",
+        "price":63,
+        "offer_price":135,
+        "size":"200",
+        "unit":"gm",
+        "currency":"INR",
+        "thumbnail":"https://rukminim1.flixcart.com/image/416/416/l3929ow0/toothbrush/g/a/7/-original-imageez7kywm8jra.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.7
+    },
+    {
+        "id": "3",
+        "name":"BOROPLUS Antiseptic Plus Moisturising Neem",
+        "desc":"BOROPLUS Antiseptic Plus Moisturising Neem",
+        "price":69,
+        "offer_price":99,
+        "size":"1",
+        "unit":"Kg",
+        "currency":"INR",
+        "thumbnail":"https://rukminim1.flixcart.com/image/416/416/khf63680/hand-wash-sanitizer/w/e/g/750-antiseptic-moisturising-hand-wash-neem-green-tea-aloe-vera-original-imafxfzxnehmspkm.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.8
+    },
+    {
+        "id": "4",
+        "name":"CARA MIA Neem and Haldi Face Wash",
+        "desc":"CARA MIA Neem and Haldi Face Wash",
+        "price":170,
+        "offer_price":68,
+        "size":"1",
+        "unit":"Ltr",
+        "currency":"INR",
+        "thumbnail":"https://rukminim1.flixcart.com/image/416/416/krxtrww0/face-wash/e/l/6/neem-and-haldi-cara-mia-original-imag5mbzx8bxztnh.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4
+    },
+    {
+        "id": "5",
+        "name":"NIVEA Purifying Face Wash",
+        "desc":"NIVEA Purifying Face Wash",
+        "price":199,
+        "offer_price":149,
+        "size":"5",
+        "unit":"Kg",
+        "currency":"INR",
+            "thumbnail":"https://rukminim1.flixcart.com/image/416/416/kxf0jgw0/face-wash/4/m/k/-original-imag9vrfgw9j2whr.jpeg?q=70",
+        "images":[
+            "",
+            "",
+            "",
+            ""
+        ],
+        "rating":4.9
+    }
+]
