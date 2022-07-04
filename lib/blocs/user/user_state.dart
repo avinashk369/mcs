@@ -47,24 +47,6 @@ class OtpVerified extends UserState {
   List<Object> get props => [userModel];
 }
 
-class UserVehiclesLoaded extends UserState {
-  final List<UserVehicleModel> vehicles;
-
-  const UserVehiclesLoaded({required this.vehicles});
-
-  @override
-  List<Object> get props => [vehicles];
-}
-
-class UserVehicleAdded extends UserState {
-  final UserVehicleModel vehicle;
-
-  const UserVehicleAdded({required this.vehicle});
-
-  @override
-  List<Object> get props => [vehicle];
-}
-
 class VehicleLoadingFailed extends UserState {
   final String error;
 
@@ -79,15 +61,6 @@ class VehiclesNotAdded extends UserState {
   const VehiclesNotAdded({required this.error});
   @override
   List<Object> get props => [error];
-}
-
-class BookingsLoaded extends UserState {
-  final List<BookingModel> bookings;
-
-  const BookingsLoaded({required this.bookings});
-
-  @override
-  List<Object> get props => [bookings];
 }
 
 class BookingLoadingFailed extends UserState {
@@ -106,15 +79,6 @@ class ReviewSubmitted extends UserState {
 
   @override
   List<Object> get props => [message];
-}
-
-class BookingAdded extends UserState {
-  final BookingModel booking;
-
-  const BookingAdded({required this.booking});
-
-  @override
-  List<Object> get props => [booking];
 }
 
 class BookingNotAdded extends UserState {

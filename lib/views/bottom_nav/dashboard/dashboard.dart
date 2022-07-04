@@ -3,12 +3,16 @@ library dashboard;
 import 'dart:async';
 import 'dart:math';
 
+import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/login/login_bloc.dart';
 import 'package:mcs/blocs/navigation/navigation_bloc.dart';
+import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/blocs/user/userbloc.dart';
+import 'package:mcs/resources/product/product_repositoryImpl.dart';
+import 'package:mcs/resources/user/user_repository.dart';
 import 'package:mcs/resources/user/user_repositoryimpl.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/widgets/loading_ui.dart';
@@ -36,7 +40,7 @@ class _DashboardState extends State<Dashboard> {
     super.initState();
   }
 
-//On Home Page, for food icon pressed
+// navigate to login screen if user taps on index where authentication is required
   Future<void> checkCredsAndNavigate(int index, BuildContext context) async {
     context.read<NavigationBloc>().changeNavigation(index);
   }
@@ -45,15 +49,11 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider<UserBloc>(
+          create: (context) => UserBloc(context.read<UserRepositoryImpl>()),
+        ),
         BlocProvider<NavigationBloc>(
           create: (context) => NavigationBloc(),
-        ),
-        BlocProvider<LoginBloc>(
-          create: (context) => LoginBloc(),
-        ),
-        BlocProvider<UserBloc>(
-          create: (context) => UserBloc(context.read<UserRepositoryImpl>())
-            ..add(LoadUserVehicles(token: token, userId: userId)),
         ),
       ],
       child: Scaffold(
@@ -62,10 +62,12 @@ class _DashboardState extends State<Dashboard> {
           builder: (context, state) {
             return IndexedStack(
               index: state, //controller.currentIndex.value,
-              children: [
-                TabNavigationItem.items[0].page,
-                TabNavigationItem.items[1].page,
-              ],
+              // children: [
+              //   TabNavigationItem.items[0].page,
+              //   TabNavigationItem.items[1].page,
+              // ],
+              children:
+                  TabNavigationItem.items.map((item) => item.page).toList(),
             );
           },
         ),
@@ -84,14 +86,60 @@ class _DashboardState extends State<Dashboard> {
                 onDestinationSelected: (int index) {
                   checkCredsAndNavigate(index, context);
                 },
-                destinations: [
-                  for (final tabItem in TabNavigationItem.items)
-                    NavigationDestination(
-                      icon: tabItem.icon,
-                      label: tabItem.title,
-                      selectedIcon: tabItem.selectedIcon,
-                    ),
-                ],
+
+                destinations: TabNavigationItem.items
+                    .map(
+                      (item) => NavigationDestination(
+                        icon: item.title == cart
+                            ? Builder(builder: (context) {
+                                final state =
+                                    context.watch<ProductBloc>().state;
+
+                                return Badge(
+                                  position:
+                                      BadgePosition.topEnd(end: -5, top: -5),
+                                  // animationDuration:
+                                  //     const Duration(milliseconds: 300),
+                                  // animationType: BadgeAnimationType.slide,
+                                  badgeContent: state.map(
+                                    initial: (_) => const SizedBox.shrink(),
+                                    loading: (_) => const SizedBox.shrink(),
+                                    loaded: (res) => Text(
+                                      res.addedProducts.length.toString(),
+                                      style: kLabelStyle.copyWith(
+                                          color: secondaryLight),
+                                    ),
+                                    error: (_) => const SizedBox.shrink(),
+                                  ),
+                                  child: item.icon,
+                                );
+                              })
+                            : item.icon,
+                        label: item.title,
+                        selectedIcon: item.title == cart
+                            ? Builder(builder: (context) {
+                                final state =
+                                    context.watch<ProductBloc>().state;
+                                return Badge(
+                                  position:
+                                      BadgePosition.topEnd(end: -5, top: -5),
+                                  badgeContent: state.map(
+                                    initial: (_) => const SizedBox.shrink(),
+                                    loading: (_) => const SizedBox.shrink(),
+                                    loaded: (res) => Text(
+                                      res.addedProducts.length.toString(),
+                                      style: kLabelStyle.copyWith(
+                                          color: secondaryLight),
+                                    ),
+                                    error: (_) => const SizedBox.shrink(),
+                                  ),
+                                  child: item.selectedIcon,
+                                );
+                              })
+                            : item.selectedIcon,
+                      ),
+                    )
+                    .toList(),
               ),
             );
           },

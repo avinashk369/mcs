@@ -1,18 +1,20 @@
 part of home_screen;
 
-class VegCard extends StatelessWidget {
-  const VegCard(
+class PersonalCareCard extends StatelessWidget {
+  const PersonalCareCard(
       {Key? key,
       required this.height,
       required this.width,
       this.hasOffer = false,
       required this.offer,
-      required this.addToCart})
+      required this.addToCart,
+      required this.productModel})
       : super(key: key);
   final double height;
   final double width;
   final bool? hasOffer;
   final String offer;
+  final ProductModel productModel;
   final Function(String message) addToCart;
 
   @override
@@ -39,12 +41,12 @@ class VegCard extends StatelessWidget {
                     height: height,
                     width: 120,
                     child: CachedNetworkImage(
-                      imageUrl: "https://picsum.photos/250?image=9",
+                      imageUrl: productModel.thumbnail!,
                       placeholder: (context, url) =>
                           Image.asset("assets/images/photo.jpg"),
                       errorWidget: (context, url, error) =>
                           Image.asset("assets/images/photo.jpg"),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fitHeight,
                     ),
                   ),
                 ),
@@ -56,7 +58,7 @@ class VegCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Random text",
+                        productModel.name!,
                         style: kLabelStyleBold,
                       ),
                       Text(
@@ -70,12 +72,12 @@ class VegCard extends StatelessWidget {
                           RichText(
                               text: TextSpan(children: [
                             TextSpan(
-                                text: "₹250",
+                                text: "₹${productModel.offerPrice.toString()}",
                                 style: kLabelStyleBold.copyWith(
                                   fontSize: 12,
                                 )),
                             TextSpan(
-                                text: "₹300",
+                                text: "₹${productModel.price!.toString()}",
                                 style: kLabelStyleBold.copyWith(
                                     fontSize: 10,
                                     color: greyColor,

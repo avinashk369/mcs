@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/auth/verification/screens/user_verification.dart';
 import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
+import 'package:mcs/views/bottom_nav/product/product_detail.dart';
+import 'package:mcs/views/bottom_nav/product/product_list.dart';
 import 'package:mcs/views/welcome.dart';
 
 import 'route_constants.dart';
@@ -17,7 +19,17 @@ class RouteGenerator {
       // case loginRoute:
       //   return SlideRightRoute(page: LoginView());
       case dashboardRoute:
-        return SlideRightRoute(page: const Dashboard());
+        return SlideRightRoute(
+          page: const Dashboard(),
+        );
+      case products:
+        return SlideRightRoute(
+          page: const ProductList(),
+        );
+      case productDetail:
+        return SlideRightRoute(
+          page: const ProductDetail(),
+        );
 
       case otpRoute:
         Map<String, dynamic> data = args as Map<String, dynamic>;

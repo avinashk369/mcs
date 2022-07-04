@@ -1,13 +1,23 @@
 part of home_screen;
 
 class ItemCard extends StatelessWidget {
-  const ItemCard({Key? key, required this.height}) : super(key: key);
+  const ItemCard(
+      {Key? key,
+      required this.height,
+      required this.product,
+      required this.addToCart,
+      required this.removeFromCart})
+      : super(key: key);
   final double height;
+  final ProductModel product;
+  final Function(ProductModel product) addToCart;
+  final Function(ProductModel product) removeFromCart;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
+      width: 200,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
         child: Stack(
@@ -30,17 +40,17 @@ class ItemCard extends StatelessWidget {
                       height: 150,
                       width: double.infinity,
                       child: CachedNetworkImage(
-                        imageUrl: "https://picsum.photos/250?image=9",
+                        imageUrl: product.thumbnail!,
                         placeholder: (context, url) =>
                             Image.asset("assets/images/photo.jpg"),
                         errorWidget: (context, url, error) =>
                             Image.asset("assets/images/photo.jpg"),
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fitWidth,
                       ),
                     ),
                   ),
                   Text(
-                    "Random text",
+                    product.name!,
                     style: kLabelStyleBold,
                   ),
                   Text(
@@ -50,21 +60,61 @@ class ItemCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      RichText(
-                          text: TextSpan(children: [
-                        TextSpan(
-                            text: "₹250",
-                            style: kLabelStyleBold.copyWith(
-                              fontSize: 12,
-                            )),
-                        TextSpan(
-                            text: "₹300",
-                            style: kLabelStyleBold.copyWith(
-                                fontSize: 10,
-                                color: greyColor,
-                                decoration: TextDecoration.lineThrough)),
-                      ])),
+                      Expanded(
+                        child: RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                              text: "₹250",
+                              style: kLabelStyleBold.copyWith(
+                                fontSize: 12,
+                              )),
+                          TextSpan(
+                              text: "₹300",
+                              style: kLabelStyleBold.copyWith(
+                                  fontSize: 10,
+                                  color: greyColor,
+                                  decoration: TextDecoration.lineThrough)),
+                        ])),
+                      ),
                       const SizedBox(),
+                      Expanded(
+                        child: BlocBuilder<ProductBloc, ProductState>(
+                          builder: ((context, state) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Flexible(
+                                  child: IconButton(
+                                    onPressed: () {
+                                      removeFromCart(product.copyWith(
+                                          count: product.count > 1
+                                              ? product.count - 1
+                                              : 0));
+                                    },
+                                    icon:
+                                        const Icon(Icons.remove_circle_outline),
+                                  ),
+                                ),
+                                Flexible(
+                                  child: Text(
+                                    product.count.toString(),
+                                    style: kLabelStyleBold.copyWith(
+                                      fontSize: 22,
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  child: IconButton(
+                                    onPressed: () => addToCart(product.copyWith(
+                                        count: product.count + 1)),
+                                    icon: const Icon(Icons.add_circle_outline),
+                                  ),
+                                ),
+                              ],
+                            );
+                          }),
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(

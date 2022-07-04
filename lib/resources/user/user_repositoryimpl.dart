@@ -1,25 +1,14 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import 'package:mcs/models/models.dart';
 import 'package:mcs/models/payment/order.model.dart';
 import 'package:mcs/resources/user/user_repository.dart';
 import 'package:mcs/services/ApiClient.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  late Dio dio;
-  late ApiClient apiClient;
-  UserRepositoryImpl() {
-    dio = Dio();
-    //dio.options.headers["Content-Type"] = "application/json";
-    //dio.interceptors.add(PrettyDioLogger());
-    dio.interceptors.add(LogInterceptor(
-      responseBody: true,
-      request: true,
-      requestBody: true,
-    ));
-    apiClient = ApiClient(dio);
-  }
+  final ApiClient apiClient;
+
+  UserRepositoryImpl({required this.apiClient});
 
   Future<BaseModel<UserModel>> getHomeData(UserModel userMaster) async {
     UserModel userMasters;
@@ -76,32 +65,6 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<List<UserVehicleModel>> userVehicles(
-      String token, String userId) async {
-    List<UserVehicleModel> userVehicles = [];
-    try {
-      UserVehicleModel userVehicle =
-          await apiClient.getUserVehicle("Bearer " + token, userId);
-      userVehicles = userVehicle.vehicles!;
-    } catch (error) {
-      throw ServerError.withError(error: error);
-    }
-    return userVehicles;
-  }
-
-  @override
-  Future<List<BookingModel>> loadBookings(String token, String userId) async {
-    List<BookingModel>? bookings;
-    try {
-      bookings = await apiClient.getAllBookings("Bearer $token", userId);
-    } catch (error, stacktrace) {
-      print(stacktrace.toString());
-      throw ServerError.withError(error: error);
-    }
-    return [...bookings];
-  }
-
-  @override
   Future<ReviewModel> submitReview(
       String token, Map<String, dynamic> data) async {
     ReviewModel reviewModel;
@@ -115,55 +78,6 @@ class UserRepositoryImpl implements UserRepository {
       throw ServerError.withError(error: error);
     }
     return reviewModel;
-  }
-
-  @override
-  Future<BaseModel<List<UserVehicleModel>>> saveUserVehicle(
-      String token, UserVehicleModel data) async {
-    late List<UserVehicleModel> userVehicleModel;
-    try {
-      Map<String, dynamic> vData = {
-        "v_type": data.vType!.id!,
-        "v_model": data.vModel,
-        "v_number": data.vNumber
-      };
-
-      UserVehicleModel userVModel =
-          await apiClient.saveUserVehicle("Bearer " + token, data.uId!, vData);
-      userVehicleModel = userVModel.vehicles!;
-    } catch (error, stacktrace) {
-      throw ServerError.withError(error: error);
-    }
-    return BaseModel()..data = userVehicleModel;
-  }
-
-  @override
-  Future<BaseModel<BookingModel>> addBooking(
-      String token, Map<String, dynamic> data) async {
-    late BookingModel bookingModel;
-    try {
-      bookingModel =
-          await apiClient.saveUserBookingData("Bearer " + token, data);
-    } catch (error, stacktrace) {
-      throw ServerError.withError(error: error);
-    }
-    return BaseModel()..data = bookingModel;
-  }
-
-  @override
-  Future<BookingModel> updateBooking(
-      {required String token,
-      required String bookingId,
-      required BookingModel bookingModel}) async {
-    BookingModel? booking;
-    try {
-      booking = await apiClient.updateBooking(
-          "Bearer $token", bookingId, bookingModel);
-    } catch (error, stacktrace) {
-      print(stacktrace);
-      throw ServerError.withError(error: error);
-    }
-    return booking;
   }
 
   @override

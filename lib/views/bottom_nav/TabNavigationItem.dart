@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mcs/utils/utils.dart';
+import 'package:mcs/views/bottom_nav/cart/shopping_cart.dart';
 import 'package:mcs/views/bottom_nav/dashboard/pages/mobile/home_screen.dart';
 import 'package:mcs/views/user/user_settings.dart';
 
@@ -32,12 +33,24 @@ class TabNavigationItem {
         TabNavigationItem(
           page: const UserSettings(),
           icon: const Icon(
-            Icons.settings_outlined,
+            Icons.person_outline,
             color: Colors.grey,
           ),
-          title: food,
+          title: settings,
           selectedIcon: const Icon(
-            Icons.settings,
+            Icons.person,
+            color: secondaryLight,
+          ),
+        ),
+        TabNavigationItem(
+          page: const ShoppingCart(),
+          icon: const Icon(
+            Icons.shopping_cart_outlined,
+            color: Colors.grey,
+          ),
+          title: cart,
+          selectedIcon: const Icon(
+            Icons.shopping_cart,
             color: secondaryLight,
           ),
         ),

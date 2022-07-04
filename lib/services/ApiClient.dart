@@ -27,26 +27,6 @@ abstract class ApiClient {
     @Body() Map<String, dynamic> data,
   );
 
-  // get all the merchants based on lat lng and radius
-  @GET("merchant/")
-  Future<List<MerchantModel>> getAllMerchants(
-    @Header("Authorization") String token,
-    @Queries() Map<String, dynamic> query,
-  );
-  // save user booking data
-  @POST("booking/")
-  Future<BookingModel> saveUserBookingData(
-    @Header("Authorization") String token,
-    @Body() Map<String, dynamic> data,
-  );
-
-  /// get all the bookings by user id
-  @GET("user/{id}/bookings")
-  Future<List<BookingModel>> getAllBookings(
-    @Header("Authorization") String token,
-    @Path("id") String userId,
-  );
-
   /// get location suggestion
   //Future<SuggestionDetail> getLocationSuggestion();
 
@@ -57,31 +37,6 @@ abstract class ApiClient {
     @Field("token") String token,
     @Field("registerData") String registerData,
   );
-
-  // get user vehicles list
-  @GET("user/{id}/vehicle")
-  Future<UserVehicleModel> getUserVehicle(
-    @Header("Authorization") String token,
-    @Path("id") String userId,
-  );
-
-  @POST("user/{id}/vehicle")
-  Future<UserVehicleModel> saveUserVehicle(
-    @Header("Authorization") String token,
-    @Path("id") String userId,
-    @Body() Map<String, dynamic> data,
-  );
-
-  @GET("vehicle")
-  Future<List<VehicleType>> getVtype(
-    @Header("Authorization") String token,
-  );
-
-  /// update order status if payment failed
-  @PATCH("booking/{id}")
-  @FormUrlEncoded()
-  Future<BookingModel> updateBooking(@Header("Authorization") String token,
-      @Path("id") String bookingId, @Body() BookingModel bookingModel);
 
   /// create order api
   @POST("https://api.razorpay.com/v1/orders")
