@@ -1,0 +1,3 @@
+git config --global --replace-all user.email "avinash.mobilefirst@gmail.com";  
+git config --global --replace-all user.name "Avinash-mobilefirst"    
+git config user.name
