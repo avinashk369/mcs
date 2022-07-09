@@ -26,12 +26,12 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       List<ProductModel> cartProducts = [];
       if (state is ProductLoaded) {
         if (event.isCart) {
-          cartProducts = state.addedProducts
+          cartProducts = state.addedProducts!
               .map(
                   (e) => e.id == event.productModel.id ? event.productModel : e)
               .toList();
         } else {
-          cartProducts = state.addedProducts
+          cartProducts = state.addedProducts!
               .where((element) => element.id != event.productModel.id)
               .toList();
           cartProducts.add(event.productModel);
@@ -40,13 +40,13 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
 
-        List<ProductModel> personalCare = state.personalCare
+        List<ProductModel> personalCare = state.personalCare!
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
-        List<ProductModel> dailyNeeds = state.dailyNeeds
+        List<ProductModel> dailyNeeds = state.dailyNeeds!
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
-        List<ProductModel> dairyProducts = state.dairyProducts
+        List<ProductModel> dairyProducts = state.dairyProducts!
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
         emit(ProductState.loaded(
@@ -70,16 +70,16 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         List<ProductModel> products = state.products
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
-        List<ProductModel> personalCare = state.personalCare
+        List<ProductModel> personalCare = state.personalCare!
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
-        List<ProductModel> dailyNeeds = state.dailyNeeds
+        List<ProductModel> dailyNeeds = state.dailyNeeds!
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
-        List<ProductModel> dairyProducts = state.dairyProducts
+        List<ProductModel> dairyProducts = state.dairyProducts!
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
-        List<ProductModel> cartProducts = state.addedProducts
+        List<ProductModel> cartProducts = state.addedProducts!
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
         if (event.productModel.count == 0) {
@@ -104,7 +104,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     try {
       final state = this.state;
       if (state is ProductLoaded) {
-        List<ProductModel> cartProducts = state.addedProducts
+        List<ProductModel> cartProducts = state.addedProducts!
             .where((element) => element.id != event.productModel.id)
             .toList();
 
@@ -123,7 +123,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
   Future _loadProducts(LoadPrdoucts event, Emitter<ProductState> emit) async {
     try {
-      print("Loading products");
+      await Future.delayed(const Duration(seconds: 3), () {});
       List<ProductModel> productList =
           await _productRepositoryImpl.loadProducts();
       List<ProductModel> personalCare =

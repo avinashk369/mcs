@@ -1,0 +1,22 @@
+[
+    {
+        "id:": "1",
+        "cat_id": "1",
+        "name": "Rice"        
+    },
+    {
+        "id:": "2",
+        "cat_id": "1",
+        "name": "Pulse"        
+    },
+    {
+        "id:": "3",
+        "cat_id": "2",
+        "name": "Edible Oil"        
+    },
+    {
+        "id:": "4",
+        "cat_id": "2",
+        "name": "Spices"        
+    }
+]

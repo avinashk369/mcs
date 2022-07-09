@@ -15,6 +15,7 @@ class ProductModel with _$ProductModel {
   const factory ProductModel({
     String? id,
     String? name,
+    String? brand,
     String? desc,
     String? thumbnail,
     double? price,

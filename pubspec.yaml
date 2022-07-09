@@ -46,6 +46,9 @@ dependencies:
   permission_handler: ^9.2.0
   badges: ^2.0.2
   freezed_annotation: ^2.0.3
+  shimmer: ^2.0.0
+  animate_do: ^2.1.0
+
   
 
 

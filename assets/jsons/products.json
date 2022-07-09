@@ -1,6 +1,7 @@
 [
     {
         "id": "15",
+        "brand":"ITC",
         "name":"Ashirwad Atta",
         "desc":"Ashirwad atta from ITC",
         "price":200,
@@ -19,6 +20,7 @@
     },
     {
         "id": "16",
+        "brand":"ITC",
         "name":"Colgate Toothpaste",
         "desc":"Colgate Toothpaste from palmolive",
         "price":200,
@@ -37,6 +39,7 @@
     },
     {
         "id": "17",
+        "brand":"TATA",
         "name":"Tata Salt",
         "desc":"Tata salt from TATA",
         "price":20,
@@ -55,6 +58,7 @@
     },
     {
         "id": "18",
+        "brand":"ADANI", 
         "name":"Fortune refine",
         "desc":"Fortune refine from Fortune",
         "price":200,
@@ -73,6 +77,7 @@
     },
     {
         "id": "19",
+        "brand":"ADANI",
         "name":"Dawat Rice",
         "desc":"Dawat rice from ITC",
         "price":500,
@@ -91,6 +96,7 @@
     },
     {
         "id": "20",
+        "brand":"LAL QUILA",
         "name":"Lal Quila Rice",
         "desc":"Lal Quila from ITC",
         "price":500,

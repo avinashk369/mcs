@@ -10,29 +10,44 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        children: [
-          Card(
-            semanticContainer: true,
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            elevation: 0,
-            color: Colors.grey[300],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: SizedBox(
-              height: 50,
-              width: 50,
-              child: child,
-            ),
+    return SizedBox(
+      width: 150,
+      child: InkWell(
+        onTap: onTap,
+        child: Card(
+          semanticContainer: true,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          elevation: 0,
+          color: Colors.grey[300],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
           ),
-          Text(
-            title,
-            style: kLabelStyle.copyWith(fontSize: 11),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              child,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: kLabelStyleBold.copyWith(
+                        //color: secondaryLight,
+                        fontSize: 20,
+                        letterSpacing: 2,
+                        height: 1.5,
+                        fontFamily: GoogleFonts.archivoBlack().fontFamily,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                  ],
+                ),
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

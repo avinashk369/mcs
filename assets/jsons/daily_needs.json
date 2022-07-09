@@ -1,6 +1,7 @@
 [
     {
         "id": "1",
+        "brand": "Apple",
         "name":"HEAD & SHOULDERS Silky Black Shampoo  (180 ml)",
         "desc":"HEAD & SHOULDERS Silky Black Shampoo  (180 ml)",
         "price":170,
@@ -19,6 +20,7 @@
     },
     {
         "id": "2",
+        "brand": "Apple",
         "name":"Colgate Gentle Sensitive, Ultra Soft Ultra Soft Toothbrush ",
         "desc":"Colgate Gentle Sensitive, Ultra Soft Ultra Soft Toothbrush ",
         "price":63,
@@ -37,6 +39,7 @@
     },
     {
         "id": "3",
+        "brand": "Apple",
         "name":"BOROPLUS Antiseptic Plus Moisturising Neem",
         "desc":"BOROPLUS Antiseptic Plus Moisturising Neem",
         "price":69,
@@ -55,6 +58,7 @@
     },
     {
         "id": "4",
+        "brand": "Apple",
         "name":"CARA MIA Neem and Haldi Face Wash",
         "desc":"CARA MIA Neem and Haldi Face Wash",
         "price":170,
@@ -73,6 +77,7 @@
     },
     {
         "id": "5",
+        "brand": "NIVEA",
         "name":"NIVEA Purifying Face Wash",
         "desc":"NIVEA Purifying Face Wash",
         "price":199,

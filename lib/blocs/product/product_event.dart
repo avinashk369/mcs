@@ -9,4 +9,6 @@ class ProductEvent with _$ProductEvent {
       RemoveProduct;
   const factory ProductEvent.deleteProduct(ProductModel productModel) =
       DeleteProduct;
+  const factory ProductEvent.loadProductByCatId({required String catId}) =
+      LoadProductByCatId;
 }

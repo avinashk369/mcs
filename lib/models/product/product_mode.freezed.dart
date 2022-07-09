@@ -22,6 +22,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 mixin _$ProductModel {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get brand => throw _privateConstructorUsedError;
   String? get desc => throw _privateConstructorUsedError;
   String? get thumbnail => throw _privateConstructorUsedError;
   double? get price => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $ProductModelCopyWith<$Res> {
   $Res call(
       {String? id,
       String? name,
+      String? brand,
       String? desc,
       String? thumbnail,
       double? price,
@@ -64,6 +66,7 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? brand = freezed,
     Object? desc = freezed,
     Object? thumbnail = freezed,
     Object? price = freezed,
@@ -79,6 +82,10 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      brand: brand == freezed
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
               as String?,
       desc: desc == freezed
           ? _value.desc
@@ -118,6 +125,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
   $Res call(
       {String? id,
       String? name,
+      String? brand,
       String? desc,
       String? thumbnail,
       double? price,
@@ -141,6 +149,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? brand = freezed,
     Object? desc = freezed,
     Object? thumbnail = freezed,
     Object? price = freezed,
@@ -156,6 +165,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      brand: brand == freezed
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
               as String?,
       desc: desc == freezed
           ? _value.desc
@@ -193,6 +206,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
   const _$_ProductModel(
       {this.id,
       this.name,
+      this.brand,
       this.desc,
       this.thumbnail,
       this.price,
@@ -207,6 +221,8 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
   final String? id;
   @override
   final String? name;
+  @override
+  final String? brand;
   @override
   final String? desc;
   @override
@@ -223,7 +239,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProductModel(id: $id, name: $name, desc: $desc, thumbnail: $thumbnail, price: $price, offerPrice: $offerPrice, count: $count, rating: $rating)';
+    return 'ProductModel(id: $id, name: $name, brand: $brand, desc: $desc, thumbnail: $thumbnail, price: $price, offerPrice: $offerPrice, count: $count, rating: $rating)';
   }
 
   @override
@@ -233,6 +249,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       ..add(DiagnosticsProperty('type', 'ProductModel'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('brand', brand))
       ..add(DiagnosticsProperty('desc', desc))
       ..add(DiagnosticsProperty('thumbnail', thumbnail))
       ..add(DiagnosticsProperty('price', price))
@@ -248,6 +265,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
             other is _$_ProductModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.brand, brand) &&
             const DeepCollectionEquality().equals(other.desc, desc) &&
             const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
             const DeepCollectionEquality().equals(other.price, price) &&
@@ -263,6 +281,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(brand),
       const DeepCollectionEquality().hash(desc),
       const DeepCollectionEquality().hash(thumbnail),
       const DeepCollectionEquality().hash(price),
@@ -285,6 +304,7 @@ abstract class _ProductModel implements ProductModel {
   const factory _ProductModel(
       {final String? id,
       final String? name,
+      final String? brand,
       final String? desc,
       final String? thumbnail,
       final double? price,
@@ -299,6 +319,8 @@ abstract class _ProductModel implements ProductModel {
   String? get id => throw _privateConstructorUsedError;
   @override
   String? get name => throw _privateConstructorUsedError;
+  @override
+  String? get brand => throw _privateConstructorUsedError;
   @override
   String? get desc => throw _privateConstructorUsedError;
   @override

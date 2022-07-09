@@ -1,21 +1,24 @@
 library home_screen;
 
+import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mcs/blocs/category/category_bloc.dart';
 import 'package:mcs/blocs/navigation/navigationbloc.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
-import 'package:mcs/blocs/user/userbloc.dart';
+import 'package:mcs/models/category/category_model.dart';
 import 'package:mcs/models/product/product_mode.dart';
-import 'package:mcs/resources/product/product_repositoryImpl.dart';
-import 'package:mcs/resources/user/user_repository.dart';
 import 'package:mcs/routes/route_constants.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/custom_appbar.dart';
 import 'package:mcs/views/bottom_nav/dashboard/components/search_bar.dart';
 import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
+import 'package:mcs/widgets/circular_image.dart';
 import 'package:mcs/widgets/loading_ui.dart';
+import 'package:mcs/widgets/placeholders/product_holder.dart';
 
 part '../../components/search_widget.dart';
 part '../mobile/components/category_list.dart';
@@ -38,8 +41,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late String authToken;
-  final PageController _pageController =
-      PageController(initialPage: 0, viewportFraction: .5);
 
   @override
   void initState() {
@@ -76,8 +77,18 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
+                BlocBuilder<CategoryBloc, CategoryState>(
+                  builder: (context, state) {
+                    return state.maybeMap(
+                      initial: (_) => const ProductHolder(),
+                      loaded: (res) => CategoryList(categories: res.categories),
+                      error: (err) => Text(err.message),
+                      orElse: () => const SizedBox.shrink(),
+                    );
+                  },
+                ),
+                const SizedBox(height: 10),
                 const PromotionalBanner(),
-                const CategoryList(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Row(
@@ -100,16 +111,69 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 8),
                 BlocBuilder<ProductBloc, ProductState>(
                   builder: (context, state) {
-                    return state.map(
-                      initial: (_) => LoadingUI(),
-                      loading: (_) => LoadingUI(),
+                    return state.maybeMap(
+                      initial: (_) => const ProductHolder(),
                       loaded: (res) => BestSelling(
                         products: res.products,
                       ),
                       error: (err) => Text(err.message),
+                      orElse: () => const SizedBox.shrink(),
                     );
                   },
                 ),
+                const SizedBox(height: 8),
+                Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    height: size.height * 0.15,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 192, 242, 194),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Suggest new items",
+                                  style: kLabelStyleBold.copyWith(
+                                      fontSize: 18,
+                                      fontFamily:
+                                          GoogleFonts.nunitoSans().fontFamily)),
+                              // Pulse(
+                              //   infinite: true,
+                              //   delay: const Duration(milliseconds: 800),
+                              //   child: CircleAvatar(
+                              //     backgroundColor: Colors.amber[400],
+                              //     child: const Icon(
+                              //       Icons.keyboard_arrow_right,
+                              //       color: darkColor,
+                              //     ),
+                              //   ),
+                              // ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: CircleAvatar(
+                                  backgroundColor: Colors.amber[400],
+                                  child: const Icon(
+                                    Icons.keyboard_arrow_right,
+                                    color: darkColor,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                              "Let us know your favourite products that you currently don't see in th app. We will do out best to bring them to you.",
+                              style: kLabelStyleBold.copyWith(
+                                fontSize: 10,
+                                color: Colors.grey,
+                              )),
+                        ],
+                      ),
+                    )),
+                const SizedBox(height: 8),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Row(
@@ -132,13 +196,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 8),
                 BlocBuilder<ProductBloc, ProductState>(
                   builder: (context, state) {
-                    return state.map(
+                    return state.maybeMap(
                       initial: (_) => LoadingUI(),
-                      loading: (_) => LoadingUI(),
                       loaded: (res) => PersonalCare(
-                        products: res.personalCare,
+                        products: res.personalCare!,
                       ),
                       error: (err) => Text(err.message),
+                      orElse: () => const SizedBox.shrink(),
                     );
                   },
                 ),
@@ -171,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       initial: (_) => LoadingUI(),
                       loading: (_) => LoadingUI(),
                       loaded: (res) => DailyNeed(
-                        products: res.dailyNeeds,
+                        products: res.dailyNeeds!,
                         height: 250,
                       ),
                       error: (err) => Text(err.message),
@@ -204,15 +268,69 @@ class _HomeScreenState extends State<HomeScreen> {
                 BlocBuilder<ProductBloc, ProductState>(
                   builder: (context, state) {
                     return state.map(
-                      initial: (_) => LoadingUI(),
+                      initial: (_) => const ProductHolder(),
                       loading: (_) => LoadingUI(),
                       loaded: (res) => DairyBakery(
-                        products: res.dairyProducts,
+                        products: res.dairyProducts!,
                         height: 250,
                       ),
                       error: (err) => Text(err.message),
                     );
                   },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Simple".toUpperCase(),
+                        style: kLabelStyleBold.copyWith(
+                          fontSize: 35,
+                          color: Colors.blueGrey[100],
+                          letterSpacing: 2,
+                          height: 1.5,
+                          fontFamily: GoogleFonts.archivoBlack().fontFamily,
+                        ),
+                      ),
+                      Text(
+                        "Better".toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Colors.blueGrey[100],
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2,
+                          fontFamily: GoogleFonts.archivoBlack().fontFamily,
+                        ),
+                      ),
+                      Text(
+                        "Shopping".toUpperCase(),
+                        style: kLabelStyleBold.copyWith(
+                          fontSize: 35,
+                          color: Colors.blueGrey[100],
+                          letterSpacing: 2,
+                          fontFamily: GoogleFonts.archivoBlack().fontFamily,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * .7,
+                        child: Text(
+                          "We make refined product selection based on quality and we assure it..."
+                              .toUpperCase(),
+                          style: kLabelStyle.copyWith(color: Colors.grey[400]),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -222,43 +340,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  Widget grid() => SliverGrid(
-        delegate: SliverChildBuilderDelegate(
-          (context, index) {
-            return Container(
-              alignment: Alignment.center,
-              color: Colors.teal[100 * (index % 9)],
-              child: Text('grid item $index'),
-            );
-          },
-          childCount: 10,
-        ),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          mainAxisSpacing: 15,
-          crossAxisSpacing: 15,
-          childAspectRatio: 2.0,
-        ),
-      );
-
-  Widget list() => SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (BuildContext context, int index) {
-            return Card(
-              margin: const EdgeInsets.all(15),
-              child: Container(
-                color: Colors.orange[100 * (index % 12 + 1)],
-                height: 60,
-                alignment: Alignment.center,
-                child: Text(
-                  "List Item $index",
-                  style: const TextStyle(fontSize: 30),
-                ),
-              ),
-            );
-          },
-          childCount: 10,
-        ),
-      );
 }

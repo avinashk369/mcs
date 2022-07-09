@@ -17,7 +17,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
-      width: 200,
+      width: MediaQuery.of(context).size.height * .3,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
         child: Stack(

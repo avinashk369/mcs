@@ -101,15 +101,13 @@ class _DashboardState extends State<Dashboard> {
                                   // animationDuration:
                                   //     const Duration(milliseconds: 300),
                                   // animationType: BadgeAnimationType.slide,
-                                  badgeContent: state.map(
-                                    initial: (_) => const SizedBox.shrink(),
-                                    loading: (_) => const SizedBox.shrink(),
+                                  badgeContent: state.maybeMap(
                                     loaded: (res) => Text(
-                                      res.addedProducts.length.toString(),
+                                      res.addedProducts!.length.toString(),
                                       style: kLabelStyle.copyWith(
                                           color: secondaryLight),
                                     ),
-                                    error: (_) => const SizedBox.shrink(),
+                                    orElse: () => const SizedBox.shrink(),
                                   ),
                                   child: item.icon,
                                 );
@@ -123,15 +121,13 @@ class _DashboardState extends State<Dashboard> {
                                 return Badge(
                                   position:
                                       BadgePosition.topEnd(end: -5, top: -5),
-                                  badgeContent: state.map(
-                                    initial: (_) => const SizedBox.shrink(),
-                                    loading: (_) => const SizedBox.shrink(),
+                                  badgeContent: state.maybeMap(
                                     loaded: (res) => Text(
-                                      res.addedProducts.length.toString(),
+                                      res.addedProducts!.length.toString(),
                                       style: kLabelStyle.copyWith(
                                           color: secondaryLight),
                                     ),
-                                    error: (_) => const SizedBox.shrink(),
+                                    orElse: () => const SizedBox.shrink(),
                                   ),
                                   child: item.selectedIcon,
                                 );

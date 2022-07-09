@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mcs/models/category/category_model.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/auth/verification/screens/user_verification.dart';
 import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
@@ -23,8 +24,15 @@ class RouteGenerator {
           page: const Dashboard(),
         );
       case products:
+        Map<String, dynamic> data = args as Map<String, dynamic>;
+        CategoryModel categoryModel = data['category'];
+        int index = data['index'];
+
         return SlideRightRoute(
-          page: const ProductList(),
+          page: ProductList(
+            category: categoryModel,
+            index: index,
+          ),
         );
       case productDetail:
         return SlideRightRoute(

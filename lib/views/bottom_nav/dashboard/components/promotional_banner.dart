@@ -39,7 +39,7 @@ class _PromotionalBannerState extends State<PromotionalBanner> {
     return Column(
       children: [
         SizedBox(
-          height: size.height * .2,
+          height: size.height * .25,
           child: PageView.builder(
             itemCount: 5,
             controller: _pageController,
@@ -49,16 +49,18 @@ class _PromotionalBannerState extends State<PromotionalBanner> {
                 onTap: () {},
                 child: Card(
                   elevation: 0,
+                  margin: EdgeInsets.zero,
                   semanticContainer: true,
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(0),
                   ),
                   color: Colors.transparent,
                   child: SizedBox(
                     width: size.width,
                     child: CachedNetworkImage(
-                      imageUrl: "https://picsum.photos/seed/picsum/200/300",
+                      imageUrl:
+                          "https://cdn.static-zoutons.com/images/originals/blog/3Amazon_1643625939.png",
                       fit: BoxFit.cover,
                       progressIndicatorBuilder:
                           (context, url, downloadProgress) => Center(

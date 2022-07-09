@@ -15,7 +15,7 @@ class ProductCard extends StatelessWidget {
   final bool? hasOffer;
   final String offer;
   final ProductModel productModel;
-  final Function(String message) addToCart;
+  final Function(ProductModel product) addToCart;
 
   @override
   Widget build(BuildContext context) {
@@ -58,70 +58,70 @@ class ProductCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                       horizontal: 5,
                     ),
-                    child: Text(
-                      productModel.name!,
-                      maxLines: 2,
-                      style: kLabelStyleBold,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: Text(
-                      "size - 1Kg",
-                      style: kLabelStyleBold,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        RichText(
-                            text: TextSpan(children: [
-                          TextSpan(
-                              text: "₹${productModel.offerPrice.toString()}",
-                              style: kLabelStyleBold.copyWith(
-                                fontSize: 12,
-                              )),
-                          TextSpan(
-                              text: " ",
-                              style: kLabelStyleBold.copyWith(
-                                fontSize: 12,
-                              )),
-                          TextSpan(
-                              text: "₹${productModel.price.toString()}",
-                              style: kLabelStyleBold.copyWith(
-                                  fontSize: 10,
-                                  color: greyColor,
-                                  decoration: TextDecoration.lineThrough)),
-                        ])),
-                        InkWell(
-                          onTap: () => addToCart("avinash"),
-                          child: const Icon(
-                            Icons.shopping_cart,
-                          ),
-                        )
+                        Text(productModel.brand!,
+                            style: kLabelStyle.copyWith(
+                                fontSize: 11, color: Colors.grey[400])),
+                        Text(
+                          productModel.name!,
+                          maxLines: 2,
+                          style: kLabelStyleBold,
+                        ),
+                        Text(
+                          "size - 1Kg",
+                          style: kLabelStyleBold,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                  text:
+                                      "₹${productModel.offerPrice.toString()}",
+                                  style: kLabelStyleBold.copyWith(
+                                    fontSize: 12,
+                                  )),
+                              TextSpan(
+                                  text: " ",
+                                  style: kLabelStyleBold.copyWith(
+                                    fontSize: 12,
+                                  )),
+                              TextSpan(
+                                  text: "₹${productModel.price.toString()}",
+                                  style: kLabelStyleBold.copyWith(
+                                      fontSize: 10,
+                                      color: greyColor,
+                                      decoration: TextDecoration.lineThrough)),
+                            ])),
+                            InkWell(
+                              onTap: () => addToCart(productModel),
+                              child: const Icon(
+                                Icons.shopping_cart,
+                              ),
+                            )
+                          ],
+                        ),
+                        // RichText(
+                        //   text: TextSpan(
+                        //     children: [
+                        //       TextSpan(
+                        //         text: productModel.rating.toString(),
+                        //         style: kLabelStyleBold,
+                        //       ),
+                        //       const WidgetSpan(
+                        //         child: Icon(
+                        //           Icons.star,
+                        //           color: Colors.amber,
+                        //           size: 10,
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: productModel.rating.toString(),
-                            style: kLabelStyleBold,
-                          ),
-                          const WidgetSpan(
-                            child: Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                              size: 10,
-                            ),
-                          ),
-                        ],
-                      ),
                     ),
                   ),
                 ],

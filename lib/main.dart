@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mcs/blocs/category/categorybloc.dart';
 import 'package:mcs/resources/product/product_repositoryImpl.dart';
 import 'package:mcs/resources/repository.dart';
 import 'package:mcs/routes/routes_generator.dart';
@@ -10,6 +11,7 @@ import 'package:mcs/utils/utils.dart';
 
 import 'blocs/bloc_delegate.dart';
 import 'blocs/product/productbloc.dart';
+import 'resources/category/category_repositoryImpl.dart';
 import 'routes/route_constants.dart';
 import 'services/ApiClient.dart';
 import 'widgets/themes/custom_theme.dart';
@@ -68,6 +70,11 @@ class MyApp extends StatelessWidget {
             apiClient: apiClient,
           ),
         ),
+        RepositoryProvider(
+          create: (_) => CategoryRepositoryImpl(
+            apiClient: apiClient,
+          ),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -77,7 +84,14 @@ class MyApp extends StatelessWidget {
                   ..add(
                     const ProductEvent.loadProduct(),
                   )),
-          )
+          ),
+          BlocProvider(
+            create: (context) => CategoryBloc(
+              context.read<CategoryRepositoryImpl>(),
+            )..add(
+                const CategoryEvent.loadCategory(),
+              ),
+          ),
         ],
         child: MaterialApp(
           title: appName,

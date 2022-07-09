@@ -2,31 +2,46 @@ library subcat_list;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:mcs/utils/styles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mcs/blocs/toggle/index_toggled.dart';
+import 'package:mcs/blocs/toggle/toggle_index_bloc.dart';
+import 'package:mcs/models/subcat/subcat_model.dart';
+import 'package:mcs/utils/utils.dart';
 part 'subcat_card.dart';
 
 class SubCatList extends StatelessWidget {
-  const SubCatList({Key? key}) : super(key: key);
+  const SubCatList({Key? key, required this.subCategories}) : super(key: key);
+  final List<SubcatModel> subCategories;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 80,
-      child: ListView.separated(
-          separatorBuilder: (_, __) => const SizedBox(
-                width: 5,
-              ),
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemBuilder: (_, index) => SubCatCard(
-                title: 'Sub Cat $index',
-                onTap: () => null,
-                child: CachedNetworkImage(
-                  imageUrl: "https://picsum.photos/id/1/200/200",
-                  fit: BoxFit.cover,
-                ),
-              ),
-          itemCount: 5),
+    return BlocProvider(
+      create: (context) => ToggleIndexBloc(
+        const IndexToggled(index: 0, isSelected: true),
+      ),
+      child: Builder(builder: (context) {
+        return SizedBox(
+          height: 40,
+          child: ListView.separated(
+              separatorBuilder: (_, __) => const SizedBox(width: 5),
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemBuilder: (_, index) => SubCatCard(
+                    subcatModel: index == 0
+                        ? const SubcatModel(name: "All", id: "0")
+                        : subCategories[index - 1],
+                    onTap: (subcat) => context
+                        .read<ToggleIndexBloc>()
+                        .toggleState(index, false),
+                    index: index,
+                    child: CachedNetworkImage(
+                      imageUrl: "https://picsum.photos/id/1/200/200",
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+              itemCount: subCategories.length + 1),
+        );
+      }),
     );
   }
 }

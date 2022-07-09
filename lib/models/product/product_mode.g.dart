@@ -10,6 +10,7 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
     _$_ProductModel(
       id: json['id'] as String?,
       name: json['name'] as String?,
+      brand: json['brand'] as String?,
       desc: json['desc'] as String?,
       thumbnail: json['thumbnail'] as String?,
       price: (json['price'] as num?)?.toDouble(),
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) {
 
   writeNotNull('id', instance.id);
   writeNotNull('name', instance.name);
+  writeNotNull('brand', instance.brand);
   writeNotNull('desc', instance.desc);
   writeNotNull('thumbnail', instance.thumbnail);
   writeNotNull('price', instance.price);

@@ -28,26 +28,27 @@ class ShoppingItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(5.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.zero,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: 70,
-              width: 70,
+              width: 100,
               child: Card(
                 elevation: 0,
+                margin: EdgeInsets.zero,
                 semanticContainer: true,
+                color: secondaryLight,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.horizontal(
+                        left: Radius.circular(5), right: Radius.circular(0))),
                 child: CachedNetworkImage(
                   imageUrl: productModel.thumbnail ??
                       ' https://picsum.photos/250?image=9 ',
                   errorWidget: (context, url, error) =>
                       Image.asset('assets/images/logo.png'),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fitWidth,
                 ),
               ),
             ),
