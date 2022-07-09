@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mcs/blocs/category/categorybloc.dart';
+import 'package:mcs/blocs/navigation/navigationbloc.dart';
 import 'package:mcs/resources/product/product_repositoryImpl.dart';
 import 'package:mcs/resources/repository.dart';
 import 'package:mcs/routes/routes_generator.dart';
@@ -91,6 +92,9 @@ class MyApp extends StatelessWidget {
             )..add(
                 const CategoryEvent.loadCategory(),
               ),
+          ),
+          BlocProvider<NavigationBloc>(
+            create: (context) => NavigationBloc(),
           ),
         ],
         child: MaterialApp(

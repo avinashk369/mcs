@@ -21,6 +21,36 @@ class ShoppingCart extends StatelessWidget {
         ),
       ],
       child: Scaffold(
+        persistentFooterButtons: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text("Total: "),
+              ElevatedButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        context: context,
+                        builder: (context) {
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Total: "),
+                              Text("Payment: "),
+                              Text("Delivery: "),
+                            ],
+                          );
+                        });
+                  },
+                  child: const Text("Checkout")),
+            ],
+          ),
+        ],
         body: CustomScrollView(
           slivers: [
             SliverAppBar(

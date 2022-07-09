@@ -2,12 +2,18 @@ library product_detail;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mcs/blocs/navigation/navigationbloc.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/dashboard/pages/mobile/home_screen.dart';
+import 'package:mcs/widgets/loading_ui.dart';
+
+import '../../../blocs/product/productbloc.dart';
 
 class ProductDetail extends StatefulWidget {
-  const ProductDetail({Key? key}) : super(key: key);
+  const ProductDetail({Key? key, required this.productModel}) : super(key: key);
+  final ProductModel productModel;
 
   @override
   State<ProductDetail> createState() => _ProductDetailState();
@@ -33,7 +39,7 @@ class _ProductDetailState extends State<ProductDetail> {
         if (!silverCollapsed) {
           // do what ever you want when silver is collapsing !
 
-          myTitle = "Fitness";
+          myTitle = "Product Detail";
           silverCollapsed = true;
           setState(() {});
         }
@@ -78,51 +84,193 @@ class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: kDark,
-      body: NestedScrollView(
-        controller: _controller,
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            SliverAppBar(
-              expandedHeight: MediaQuery.of(context).size.height * .40,
-              floating: false,
-              pinned: true,
-              elevation: 0,
-              flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  title: Text(myTitle, style: kLabelStyle.apply()),
-                  background: Stack(
-                    children: <Widget>[
-                      _buildPageView(context),
-                      builIndicator(5),
-                    ],
-                  )),
-            ),
-          ];
-        },
-        body: CustomScrollView(
-          physics: const BouncingScrollPhysics(),
-          slivers: <Widget>[
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (_, index) => ItemCard(
-                      height: 220,
-                      product: ProductModel(),
-                      addToCart: (p) {},
-                      removeFromCart: (p) {},
+      bottomNavigationBar: SizedBox(
+        height: 45,
+        child: BottomAppBar(
+          elevation: 3,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Builder(builder: (context) {
+                final state = context.watch<ProductBloc>().state;
+                if ((state is ProductLoaded)) {
+                  print(state.addedProducts);
+
+                  print(" product detail");
+                  print(widget.productModel);
+                  print(state.addedProducts!.contains(widget.productModel));
+                }
+                print((state is ProductLoaded) &&
+                    state.addedProducts!.contains(widget.productModel));
+                return Expanded(
+                  child: ElevatedButton.icon(
+                    icon: const Icon(Icons.shopping_cart),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                      fixedSize: const Size.fromHeight(45),
+                      primary: secondaryLight,
+                      onPrimary: darkColor,
                     ),
-                    itemCount: 50,
-                  )
+                    onPressed: (state is ProductLoaded) &&
+                            state.addedProducts!.contains(widget.productModel)
+                        ? null
+                        : () => context.read<ProductBloc>().add(AddProduct(
+                            productModel:
+                                widget.productModel.copyWith(count: 1),
+                            isCart: false)),
+                    label: Text(
+                      "Add to cart".toUpperCase(),
+                      style: kLabelStyleBold.copyWith(fontSize: 14),
+                    ),
+                  ),
+                );
+              }),
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    fixedSize: const Size.fromHeight(45),
+                    primary: Colors.orange,
+                  ),
+                  onPressed: () {
+                    // make sure the product has been added to the cart
+                    context.read<ProductBloc>().add(AddProduct(
+                        productModel: widget.productModel.copyWith(count: 1),
+                        isCart: false));
+                    // change the navigation to the cart page on home screen. index 2 is cart index, it can be changed
+                    context.read<NavigationBloc>().changeNavigation(2);
+                    // pop all the navigation stack to the home screen
+                    Navigator.of(context).popUntil((route) => route.isFirst);
+                  },
+                  child: Text(
+                    "Buy now".toUpperCase(),
+                    style: kLabelStyleBold.copyWith(
+                        fontSize: 14, color: secondaryLight),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: CustomScrollView(
+        controller: _controller,
+        slivers: [
+          SliverAppBar(
+            expandedHeight: MediaQuery.of(context).size.height * .40,
+            floating: false,
+            title: Text(myTitle),
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              collapseMode: CollapseMode.pin,
+              background: Stack(
+                children: [
+                  _buildPageView(context),
+                  builIndicator(5),
                 ],
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 10),
+                        Text(widget.productModel.brand!,
+                            style: kLabelStyle.copyWith(
+                                fontSize: 11, color: Colors.grey[400])),
+                        Text(widget.productModel.name!),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Text(widget.productModel.desc!),
+                        const SizedBox(height: 8),
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                              text:
+                                  "₹${widget.productModel.offerPrice.toString()}",
+                              style: kLabelStyleBold.copyWith(
+                                fontSize: 14,
+                              )),
+                          TextSpan(
+                              text: " ",
+                              style: kLabelStyleBold.copyWith(
+                                fontSize: 12,
+                              )),
+                          TextSpan(
+                              text: "₹${widget.productModel.price.toString()}",
+                              style: kLabelStyleBold.copyWith(
+                                  fontSize: 10,
+                                  color: greyColor,
+                                  decoration: TextDecoration.lineThrough)),
+                        ])),
+                        const SizedBox(height: 8),
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          decoration: BoxDecoration(
+                            color: primaryLight,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Center(
+                            child: RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                  text: "Note: ",
+                                  style: kLabelStyleBold.copyWith(
+                                    fontSize: 12,
+                                    color: secondaryLight,
+                                  )),
+                              TextSpan(
+                                  text:
+                                      "We endeavour to deliver the best quality products at the best prices. However, we cannot guarantee that all products are available in all areas.",
+                                  style: kLabelStyle.copyWith(
+                                    fontSize: 10,
+                                    color: secondaryLight,
+                                  )),
+                            ])),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          "Similar Products",
+                          style: kLabelStyleBold.copyWith(
+                            fontSize: 14,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        BlocBuilder<ProductBloc, ProductState>(
+                          builder: (context, state) {
+                            return state.map(
+                              initial: (_) => LoadingUI(),
+                              loading: (_) => LoadingUI(),
+                              loaded: (res) => DailyNeed(
+                                products: res.dailyNeeds!,
+                                height: 250,
+                              ),
+                              error: (err) => Text(err.message),
+                            );
+                          },
+                        ),
+                      ]),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -145,8 +293,8 @@ class _ProductDetailState extends State<ProductDetail> {
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * .40,
                     child: CachedNetworkImage(
-                      imageUrl: "https://picsum.photos/id/1/200/300",
-                      fit: BoxFit.cover,
+                      imageUrl: widget.productModel.thumbnail!,
+                      fit: BoxFit.fitHeight,
                     ),
                   ),
                 ),
@@ -182,25 +330,17 @@ class _ProductDetailState extends State<ProductDetail> {
  * this will render indicator using blocbuilder course loaded state
  */
   builIndicator(int counter) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 50),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: _buildPageIndicator(counter),
-              ),
-            ],
-          )
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: _buildPageIndicator(counter),
+        )
+      ],
     );
   }
 }

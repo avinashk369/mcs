@@ -52,9 +52,6 @@ class _DashboardState extends State<Dashboard> {
         BlocProvider<UserBloc>(
           create: (context) => UserBloc(context.read<UserRepositoryImpl>()),
         ),
-        BlocProvider<NavigationBloc>(
-          create: (context) => NavigationBloc(),
-        ),
       ],
       child: Scaffold(
         //extendBody: true,

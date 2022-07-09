@@ -1,23 +1,18 @@
 library product_list;
 
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mcs/blocs/navigation/navigationbloc.dart';
 import 'package:mcs/blocs/product/productbloc.dart';
 import 'package:mcs/blocs/toggle/index_toggled.dart';
 import 'package:mcs/blocs/toggle/toggle_index_bloc.dart';
 import 'package:mcs/models/category/category_model.dart';
-import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/resources/category/category_repositoryImpl.dart';
 import 'package:mcs/utils/utils.dart';
-import 'package:mcs/views/bottom_nav/dashboard/pages/mobile/home_screen.dart';
-import 'package:mcs/views/bottom_nav/food/food_screen.dart';
-import 'package:mcs/views/bottom_nav/product/components/cat_list.dart';
 import 'package:mcs/views/bottom_nav/product/components/product_filter.dart';
 import 'package:mcs/views/bottom_nav/product/components/product_grid.dart';
-import 'package:mcs/views/bottom_nav/subcategory/subcat_list.dart';
 import 'package:mcs/widgets/loading_ui.dart';
-import 'package:mcs/widgets/placeholders/product_holder.dart';
 
 import '../../../blocs/category/categorybloc.dart';
 
@@ -55,6 +50,34 @@ class ProductList extends StatelessWidget {
               pinned: true,
               snap: false,
               elevation: 0,
+              actions: [
+                Builder(builder: (context) {
+                  final state = context.watch<ProductBloc>().state;
+
+                  return Badge(
+                    position: BadgePosition.topEnd(top: 5, end: 10),
+                    // animationDuration:
+                    //     const Duration(milliseconds: 300),
+                    // animationType: BadgeAnimationType.slide,
+                    badgeContent: state.maybeMap(
+                      loaded: (res) => Text(
+                        res.addedProducts!.length.toString(),
+                        style: kLabelStyle.copyWith(color: secondaryLight),
+                      ),
+                      orElse: () => const SizedBox.shrink(),
+                    ),
+                    child: IconButton(
+                      icon: const Icon(Icons.shopping_cart),
+                      onPressed: () {
+                        // change the navigation to the cart page on home screen. index 2 is cart index, it can be changed
+                        context.read<NavigationBloc>().changeNavigation(2);
+                        // pop the navigation stack to the home screen
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  );
+                }),
+              ],
               bottom: ProductFilter(
                 categoryBloc: context.read<CategoryBloc>(),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mcs/models/category/category_model.dart';
+import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/auth/verification/screens/user_verification.dart';
 import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
@@ -36,7 +37,7 @@ class RouteGenerator {
         );
       case productDetail:
         return SlideRightRoute(
-          page: const ProductDetail(),
+          page: ProductDetail(productModel: args as ProductModel),
         );
 
       case otpRoute:

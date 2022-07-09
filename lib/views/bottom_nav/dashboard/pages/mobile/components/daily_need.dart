@@ -26,6 +26,9 @@ class DailyNeed extends StatelessWidget {
                 addToCart: (msg) {
                   print(msg);
                 },
+                deleteFromCart: (product) {
+                  context.read<ProductBloc>().add(RemoveProduct(product));
+                },
               ),
           itemCount: products.length),
     );

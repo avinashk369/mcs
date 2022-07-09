@@ -17,9 +17,11 @@ class ProductGrid extends StatelessWidget {
             productModel: products[index],
             height: 220,
             addToCart: (product) {
-              context
-                  .read<ProductBloc>()
-                  .add(AddProduct(productModel: product, isCart: false));
+              context.read<ProductBloc>().add(AddProduct(
+                  productModel: product.copyWith(count: 1), isCart: false));
+            },
+            deleteFromCart: (product) {
+              context.read<ProductBloc>().add(DeleteProduct(product));
             },
             offer: "",
             width: double.infinity,
