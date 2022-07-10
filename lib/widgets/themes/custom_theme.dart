@@ -112,7 +112,7 @@ class CustomTheme with ChangeNotifier {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
           textStyle: kLabelStyleBold.copyWith(
-            fontSize: 16,
+            fontSize: 14,
           ),
           onPrimary: secondaryLight,
           primary: primaryLight,

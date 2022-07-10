@@ -109,13 +109,23 @@ class _ProductDetailState extends State<ProductDetail> {
                     onPressed: (state is ProductLoaded) &&
                             state.addedProducts!.contains(
                                 widget.productModel.copyWith(count: 1))
-                        ? null
+                        ? () {
+                            // change the navigation to the cart page on home screen. index 2 is cart index, it can be changed
+                            context.read<NavigationBloc>().changeNavigation(2);
+                            // pop all the navigation stack to the home screen
+                            Navigator.of(context)
+                                .popUntil((route) => route.isFirst);
+                          }
                         : () => context.read<ProductBloc>().add(AddProduct(
                             productModel:
                                 widget.productModel.copyWith(count: 1),
                             isCart: false)),
                     label: Text(
-                      "Add to cart".toUpperCase(),
+                      (state is ProductLoaded) &&
+                              state.addedProducts!.contains(
+                                  widget.productModel.copyWith(count: 1))
+                          ? "Go to cart".toUpperCase()
+                          : "Add to cart".toUpperCase(),
                       style: kLabelStyleBold.copyWith(fontSize: 14),
                     ),
                   ),

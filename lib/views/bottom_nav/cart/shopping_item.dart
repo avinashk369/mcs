@@ -21,106 +21,145 @@ class ShoppingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.grey[50],
-      elevation: 1,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5.0),
-      ),
-      child: Padding(
-        padding: EdgeInsets.zero,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 100,
-              child: Card(
-                elevation: 0,
-                margin: EdgeInsets.zero,
-                semanticContainer: true,
-                color: secondaryLight,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.horizontal(
-                        left: Radius.circular(5), right: Radius.circular(0))),
-                child: CachedNetworkImage(
-                  imageUrl: productModel.thumbnail ??
-                      ' https://picsum.photos/250?image=9 ',
-                  errorWidget: (context, url, error) =>
-                      Image.asset('assets/images/logo.png'),
-                  fit: BoxFit.fitWidth,
-                ),
+    return Padding(
+      padding: EdgeInsets.zero,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 50,
+            child: Card(
+              elevation: 0,
+              margin: EdgeInsets.zero,
+              semanticContainer: true,
+              color: secondaryLight,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.horizontal(
+                      left: Radius.circular(5), right: Radius.circular(0))),
+              child: CachedNetworkImage(
+                imageUrl: productModel.thumbnail ??
+                    ' https://picsum.photos/250?image=9 ',
+                errorWidget: (context, url, error) =>
+                    Image.asset('assets/images/logo.png'),
+                fit: BoxFit.fitWidth,
               ),
             ),
-            const SizedBox(
-              width: 5,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    productModel.name!,
-                    style: kLabelStyleBold,
-                  ),
-                  Text(productModel.price!.toString()),
-                  BlocBuilder<ProductBloc, ProductState>(
-                    builder: ((context, state) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  productModel.name!,
+                  style: kLabelStyleBold,
+                ),
+                Text(
+                  "5Kg",
+                  style: kLabelStyleBold.copyWith(color: greyColor),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: Row(
                         children: [
-                          Flexible(
-                            child: productModel.count < 2
-                                ? IconButton(
-                                    onPressed: () {
-                                      removeFromCart(
-                                          productModel.copyWith(count: 0));
-                                      deleteFromCart(productModel);
-                                    },
-                                    icon: const Icon(
-                                      Icons.delete,
-                                      color: redColor,
-                                    ),
-                                  )
-                                : IconButton(
-                                    onPressed: () {
-                                      removeFromCart(productModel.copyWith(
-                                          count: productModel.count > 1
-                                              ? productModel.count - 1
-                                              : 0));
-                                    },
-                                    icon:
-                                        const Icon(Icons.remove_circle_outline),
-                                  ),
+                          Text(
+                            "₹${productModel.offerPrice.toString()}",
+                            style: kLabelStyleBold.copyWith(fontSize: 16),
                           ),
-                          Flexible(
-                            child: Text(
-                              productModel.count.toString(),
-                              style: kLabelStyleBold.copyWith(
-                                fontSize: 22,
-                              ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "₹${productModel.price.toString()}",
+                            style: kLabelStyleBold.copyWith(
+                              decoration: TextDecoration.lineThrough,
+                              fontSize: 10,
+                              color: greyColor,
                             ),
                           ),
-                          Flexible(
-                            child: IconButton(
-                              onPressed: () => addToCart(productModel.copyWith(
-                                  count: productModel.count + 1)),
-                              icon: const Icon(Icons.add_circle_outline),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "₹${(productModel.price! - productModel.offerPrice!).toString()} Off",
+                            style: kLabelStyleBold.copyWith(
+                              fontSize: 12,
+                              color: greenColor,
                             ),
                           ),
                         ],
-                      );
-                    }),
-                  ),
-                ],
-              ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: BlocBuilder<ProductBloc, ProductState>(
+                        builder: ((context, state) {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: productModel.count < 2
+                                    ? IconButton(
+                                        onPressed: () {
+                                          removeFromCart(
+                                              productModel.copyWith(count: 0));
+                                          deleteFromCart(productModel);
+                                        },
+                                        icon: const Icon(
+                                          Icons.delete,
+                                          color: redColor,
+                                        ),
+                                      )
+                                    : IconButton(
+                                        onPressed: () {
+                                          removeFromCart(productModel.copyWith(
+                                              count: productModel.count > 1
+                                                  ? productModel.count - 1
+                                                  : 0));
+                                        },
+                                        icon: const Icon(
+                                            Icons.remove_circle_outline),
+                                      ),
+                              ),
+                              SizedBox(
+                                width: 30,
+                                child: Text(
+                                  productModel.count.toString(),
+                                  textAlign: TextAlign.center,
+                                  style: kLabelStyleBold.copyWith(
+                                    fontSize: 22,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: IconButton(
+                                  onPressed: () => addToCart(productModel
+                                      .copyWith(count: productModel.count + 1)),
+                                  icon: const Icon(Icons.add_circle_outline),
+                                ),
+                              ),
+                            ],
+                          );
+                        }),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
