@@ -93,15 +93,7 @@ class _ProductDetailState extends State<ProductDetail> {
             children: [
               Builder(builder: (context) {
                 final state = context.watch<ProductBloc>().state;
-                if ((state is ProductLoaded)) {
-                  print(state.addedProducts);
 
-                  print(" product detail");
-                  print(widget.productModel);
-                  print(state.addedProducts!.contains(widget.productModel));
-                }
-                print((state is ProductLoaded) &&
-                    state.addedProducts!.contains(widget.productModel));
                 return Expanded(
                   child: ElevatedButton.icon(
                     icon: const Icon(Icons.shopping_cart),
@@ -115,7 +107,8 @@ class _ProductDetailState extends State<ProductDetail> {
                       onPrimary: darkColor,
                     ),
                     onPressed: (state is ProductLoaded) &&
-                            state.addedProducts!.contains(widget.productModel)
+                            state.addedProducts!.contains(
+                                widget.productModel.copyWith(count: 1))
                         ? null
                         : () => context.read<ProductBloc>().add(AddProduct(
                             productModel:
