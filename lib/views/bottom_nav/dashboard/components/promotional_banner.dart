@@ -49,18 +49,18 @@ class _PromotionalBannerState extends State<PromotionalBanner> {
                 onTap: () {},
                 child: Card(
                   elevation: 0,
-                  margin: EdgeInsets.zero,
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
                   semanticContainer: true,
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                   color: Colors.transparent,
                   child: SizedBox(
                     width: size.width,
                     child: CachedNetworkImage(
                       imageUrl:
-                          "https://cdn.static-zoutons.com/images/originals/blog/3Amazon_1643625939.png",
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOfRqfyUEqLOyKZdjPeMfFrHHDLQgYFxH_9g&usqp=CAU",
                       fit: BoxFit.cover,
                       progressIndicatorBuilder:
                           (context, url, downloadProgress) => Center(

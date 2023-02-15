@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'product_mode.dart';
 
@@ -41,7 +41,8 @@ mixin _$ProductModel {
 abstract class $ProductModelCopyWith<$Res> {
   factory $ProductModelCopyWith(
           ProductModel value, $Res Function(ProductModel) then) =
-      _$ProductModelCopyWithImpl<$Res>;
+      _$ProductModelCopyWithImpl<$Res, ProductModel>;
+  @useResult
   $Res call(
       {String? id,
       String? name,
@@ -55,13 +56,16 @@ abstract class $ProductModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
+class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
+    implements $ProductModelCopyWith<$Res> {
   _$ProductModelCopyWithImpl(this._value, this._then);
 
-  final ProductModel _value;
   // ignore: unused_field
-  final $Res Function(ProductModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -71,47 +75,47 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
     Object? thumbnail = freezed,
     Object? price = freezed,
     Object? offerPrice = freezed,
-    Object? count = freezed,
+    Object? count = null,
     Object? rating = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      brand: brand == freezed
+      brand: freezed == brand
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as String?,
-      desc: desc == freezed
+      desc: freezed == desc
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
               as String?,
-      thumbnail: thumbnail == freezed
+      thumbnail: freezed == thumbnail
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
               as String?,
-      price: price == freezed
+      price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double?,
-      offerPrice: offerPrice == freezed
+      offerPrice: freezed == offerPrice
           ? _value.offerPrice
           : offerPrice // ignore: cast_nullable_to_non_nullable
               as double?,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
-      rating: rating == freezed
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -122,6 +126,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
           _$_ProductModel value, $Res Function(_$_ProductModel) then) =
       __$$_ProductModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String? id,
       String? name,
@@ -136,15 +141,13 @@ abstract class _$$_ProductModelCopyWith<$Res>
 
 /// @nodoc
 class __$$_ProductModelCopyWithImpl<$Res>
-    extends _$ProductModelCopyWithImpl<$Res>
+    extends _$ProductModelCopyWithImpl<$Res, _$_ProductModel>
     implements _$$_ProductModelCopyWith<$Res> {
   __$$_ProductModelCopyWithImpl(
       _$_ProductModel _value, $Res Function(_$_ProductModel) _then)
-      : super(_value, (v) => _then(v as _$_ProductModel));
+      : super(_value, _then);
 
-  @override
-  _$_ProductModel get _value => super._value as _$_ProductModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -154,43 +157,43 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? thumbnail = freezed,
     Object? price = freezed,
     Object? offerPrice = freezed,
-    Object? count = freezed,
+    Object? count = null,
     Object? rating = freezed,
   }) {
     return _then(_$_ProductModel(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      brand: brand == freezed
+      brand: freezed == brand
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as String?,
-      desc: desc == freezed
+      desc: freezed == desc
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
               as String?,
-      thumbnail: thumbnail == freezed
+      thumbnail: freezed == thumbnail
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
               as String?,
-      price: price == freezed
+      price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double?,
-      offerPrice: offerPrice == freezed
+      offerPrice: freezed == offerPrice
           ? _value.offerPrice
           : offerPrice // ignore: cast_nullable_to_non_nullable
               as double?,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
-      rating: rating == freezed
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
@@ -263,40 +266,35 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductModel &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.brand, brand) &&
-            const DeepCollectionEquality().equals(other.desc, desc) &&
-            const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
-            const DeepCollectionEquality().equals(other.price, price) &&
-            const DeepCollectionEquality()
-                .equals(other.offerPrice, offerPrice) &&
-            const DeepCollectionEquality().equals(other.count, count) &&
-            const DeepCollectionEquality().equals(other.rating, rating));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.brand, brand) || other.brand == brand) &&
+            (identical(other.desc, desc) || other.desc == desc) &&
+            (identical(other.thumbnail, thumbnail) ||
+                other.thumbnail == thumbnail) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.offerPrice, offerPrice) ||
+                other.offerPrice == offerPrice) &&
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.rating, rating) || other.rating == rating));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(brand),
-      const DeepCollectionEquality().hash(desc),
-      const DeepCollectionEquality().hash(thumbnail),
-      const DeepCollectionEquality().hash(price),
-      const DeepCollectionEquality().hash(offerPrice),
-      const DeepCollectionEquality().hash(count),
-      const DeepCollectionEquality().hash(rating));
+  int get hashCode => Object.hash(runtimeType, id, name, brand, desc, thumbnail,
+      price, offerPrice, count, rating);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>
       __$$_ProductModelCopyWithImpl<_$_ProductModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProductModelToJson(this);
+    return _$$_ProductModelToJson(
+      this,
+    );
   }
 }
 
@@ -316,24 +314,24 @@ abstract class _ProductModel implements ProductModel {
       _$_ProductModel.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get brand => throw _privateConstructorUsedError;
+  String? get brand;
   @override
-  String? get desc => throw _privateConstructorUsedError;
+  String? get desc;
   @override
-  String? get thumbnail => throw _privateConstructorUsedError;
+  String? get thumbnail;
   @override
-  double? get price => throw _privateConstructorUsedError;
+  double? get price;
   @override
-  double? get offerPrice => throw _privateConstructorUsedError;
+  double? get offerPrice;
   @override
   @JsonKey(ignore: true)
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  double? get rating => throw _privateConstructorUsedError;
+  double? get rating;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>

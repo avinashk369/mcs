@@ -1,4 +1,4 @@
-import 'ServerError.dart';
+import 'server_error.dart';
 
 class BaseModel<T> {
   ServerError? _error;

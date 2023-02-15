@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_address.dart';
 
@@ -43,7 +43,8 @@ mixin _$UserAddress {
 abstract class $UserAddressCopyWith<$Res> {
   factory $UserAddressCopyWith(
           UserAddress value, $Res Function(UserAddress) then) =
-      _$UserAddressCopyWithImpl<$Res>;
+      _$UserAddressCopyWithImpl<$Res, UserAddress>;
+  @useResult
   $Res call(
       {String? id,
       String? userId,
@@ -59,13 +60,16 @@ abstract class $UserAddressCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserAddressCopyWithImpl<$Res> implements $UserAddressCopyWith<$Res> {
+class _$UserAddressCopyWithImpl<$Res, $Val extends UserAddress>
+    implements $UserAddressCopyWith<$Res> {
   _$UserAddressCopyWithImpl(this._value, this._then);
 
-  final UserAddress _value;
   // ignore: unused_field
-  final $Res Function(UserAddress) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -77,55 +81,55 @@ class _$UserAddressCopyWithImpl<$Res> implements $UserAddressCopyWith<$Res> {
     Object? address = freezed,
     Object? pincode = freezed,
     Object? landmark = freezed,
-    Object? count = freezed,
+    Object? count = null,
     Object? rating = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      userId: userId == freezed
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      number: number == freezed
+      number: freezed == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
               as String?,
-      state: state == freezed
+      state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as String?,
-      city: city == freezed
+      city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String?,
-      address: address == freezed
+      address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
-      pincode: pincode == freezed
+      pincode: freezed == pincode
           ? _value.pincode
           : pincode // ignore: cast_nullable_to_non_nullable
               as String?,
-      landmark: landmark == freezed
+      landmark: freezed == landmark
           ? _value.landmark
           : landmark // ignore: cast_nullable_to_non_nullable
               as String?,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
-      rating: rating == freezed
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -136,6 +140,7 @@ abstract class _$$_UserAddressCopyWith<$Res>
           _$_UserAddress value, $Res Function(_$_UserAddress) then) =
       __$$_UserAddressCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String? id,
       String? userId,
@@ -151,15 +156,14 @@ abstract class _$$_UserAddressCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UserAddressCopyWithImpl<$Res> extends _$UserAddressCopyWithImpl<$Res>
+class __$$_UserAddressCopyWithImpl<$Res>
+    extends _$UserAddressCopyWithImpl<$Res, _$_UserAddress>
     implements _$$_UserAddressCopyWith<$Res> {
   __$$_UserAddressCopyWithImpl(
       _$_UserAddress _value, $Res Function(_$_UserAddress) _then)
-      : super(_value, (v) => _then(v as _$_UserAddress));
+      : super(_value, _then);
 
-  @override
-  _$_UserAddress get _value => super._value as _$_UserAddress;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -171,51 +175,51 @@ class __$$_UserAddressCopyWithImpl<$Res> extends _$UserAddressCopyWithImpl<$Res>
     Object? address = freezed,
     Object? pincode = freezed,
     Object? landmark = freezed,
-    Object? count = freezed,
+    Object? count = null,
     Object? rating = freezed,
   }) {
     return _then(_$_UserAddress(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      userId: userId == freezed
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      number: number == freezed
+      number: freezed == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
               as String?,
-      state: state == freezed
+      state: freezed == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
               as String?,
-      city: city == freezed
+      city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String?,
-      address: address == freezed
+      address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
-      pincode: pincode == freezed
+      pincode: freezed == pincode
           ? _value.pincode
           : pincode // ignore: cast_nullable_to_non_nullable
               as String?,
-      landmark: landmark == freezed
+      landmark: freezed == landmark
           ? _value.landmark
           : landmark // ignore: cast_nullable_to_non_nullable
               as String?,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
-      rating: rating == freezed
+      rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
@@ -278,43 +282,36 @@ class _$_UserAddress implements _UserAddress {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserAddress &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.userId, userId) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.number, number) &&
-            const DeepCollectionEquality().equals(other.state, state) &&
-            const DeepCollectionEquality().equals(other.city, city) &&
-            const DeepCollectionEquality().equals(other.address, address) &&
-            const DeepCollectionEquality().equals(other.pincode, pincode) &&
-            const DeepCollectionEquality().equals(other.landmark, landmark) &&
-            const DeepCollectionEquality().equals(other.count, count) &&
-            const DeepCollectionEquality().equals(other.rating, rating));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.number, number) || other.number == number) &&
+            (identical(other.state, state) || other.state == state) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.pincode, pincode) || other.pincode == pincode) &&
+            (identical(other.landmark, landmark) ||
+                other.landmark == landmark) &&
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.rating, rating) || other.rating == rating));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(userId),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(number),
-      const DeepCollectionEquality().hash(state),
-      const DeepCollectionEquality().hash(city),
-      const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(pincode),
-      const DeepCollectionEquality().hash(landmark),
-      const DeepCollectionEquality().hash(count),
-      const DeepCollectionEquality().hash(rating));
+  int get hashCode => Object.hash(runtimeType, id, userId, name, number, state,
+      city, address, pincode, landmark, count, rating);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UserAddressCopyWith<_$_UserAddress> get copyWith =>
       __$$_UserAddressCopyWithImpl<_$_UserAddress>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserAddressToJson(this);
+    return _$$_UserAddressToJson(
+      this,
+    );
   }
 }
 
@@ -336,28 +333,28 @@ abstract class _UserAddress implements UserAddress {
       _$_UserAddress.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String? get userId => throw _privateConstructorUsedError;
+  String? get userId;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get number => throw _privateConstructorUsedError;
+  String? get number;
   @override
-  String? get state => throw _privateConstructorUsedError;
+  String? get state;
   @override
-  String? get city => throw _privateConstructorUsedError;
+  String? get city;
   @override
-  String? get address => throw _privateConstructorUsedError;
+  String? get address;
   @override
-  String? get pincode => throw _privateConstructorUsedError;
+  String? get pincode;
   @override
-  String? get landmark => throw _privateConstructorUsedError;
+  String? get landmark;
   @override
   @JsonKey(ignore: true)
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
-  double? get rating => throw _privateConstructorUsedError;
+  double? get rating;
   @override
   @JsonKey(ignore: true)
   _$$_UserAddressCopyWith<_$_UserAddress> get copyWith =>

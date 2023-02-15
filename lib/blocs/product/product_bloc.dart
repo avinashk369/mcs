@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mcs/models/ServerError.dart';
+import 'package:mcs/models/server_error.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/resources/product/product_repository.dart';
 part 'product_bloc.freezed.dart';
@@ -140,7 +140,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           dailyNeeds: dailyNeeds,
           dairyProducts: dairyProducts));
     } on ServerError catch (e) {
-      emit(ProductError(message: e.getErrorMessage()));
+      emit(ProductError(message: e.errorMessage));
     } catch (e) {
       emit(ProductError(message: e.toString()));
     }

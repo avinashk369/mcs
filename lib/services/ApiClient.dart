@@ -1,14 +1,20 @@
 import 'package:dio/dio.dart';
-import 'package:mcs/models/models.dart';
+import 'package:mcs/models/models.dart'
+    show CityModel, UserModel, PaymentModel, BaseResponse;
 import 'package:mcs/models/payment/order.model.dart';
 import 'package:mcs/models/payment/transfer.model.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:mcs/utils/utils.dart';
+
 part 'ApiClient.g.dart';
 
 @RestApi(baseUrl: apiUrl)
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
+
+  /// get all city
+  @GET('Api_controller/GetCity')
+  Future<BaseResponse<List<CityModel>>> getCityList();
 
   @GET("Home/HomeFeaturesData")
   Future<UserModel> getHomeFeatureData(
@@ -81,5 +87,4 @@ abstract class ApiClient {
   //   @Field("order_id") String orderid,
   //   @Field("payment_data") String paymentData,
   // );
-
 }

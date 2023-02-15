@@ -4,7 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mcs/blocs/category/categorybloc.dart';
+import 'package:mcs/blocs/data/data_bloc.dart';
 import 'package:mcs/blocs/navigation/navigationbloc.dart';
+import 'package:mcs/resources/data/data_repositoryImpl.dart';
 import 'package:mcs/resources/product/product_repositoryImpl.dart';
 import 'package:mcs/resources/repository.dart';
 import 'package:mcs/routes/routes_generator.dart';
@@ -40,17 +42,13 @@ void main() async {
   // initialize api client
   Dio dio = Dio();
   dio.interceptors.add(LogInterceptor(
-      // responseBody: true,
-      // request: true,
-      // requestBody: true,
-      ));
+    responseBody: true,
+    request: true,
+    requestBody: true,
+  ));
   ApiClient apiClient = ApiClient(dio);
-  BlocOverrides.runZoned(
-    () => runApp(MyApp(
-      apiClient: apiClient,
-    )),
-    blocObserver: SimpleBlocDelegate(),
-  );
+  Bloc.observer = SimpleBlocDelegate();
+  runApp(MyApp(apiClient: apiClient));
 }
 
 class MyApp extends StatelessWidget {
@@ -61,6 +59,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
+        RepositoryProvider(
+            create: (context) => DataRepositoryImpl(apiClient: apiClient)),
         RepositoryProvider(
           create: (context) => UserRepositoryImpl(
             apiClient: apiClient,
@@ -79,6 +79,11 @@ class MyApp extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
+          BlocProvider(
+            create: (context) =>
+                DataBloc(dataRepositoryImpl: context.read<DataRepositoryImpl>())
+                  ..add(const LoadCities()),
+          ),
           BlocProvider(
             create: ((context) =>
                 ProductBloc(context.read<ProductRepositoryImpl>())

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'category_bloc.dart';
 
@@ -24,8 +24,8 @@ mixin _$CategoryEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadCategory,
-    TResult Function(String catId)? loadSubcategory,
+    TResult? Function()? loadCategory,
+    TResult? Function(String catId)? loadSubcategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$CategoryEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadCategory value)? loadCategory,
-    TResult Function(LoadSubcategory value)? loadSubcategory,
+    TResult? Function(LoadCategory value)? loadCategory,
+    TResult? Function(LoadSubcategory value)? loadSubcategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,17 +60,18 @@ mixin _$CategoryEvent {
 abstract class $CategoryEventCopyWith<$Res> {
   factory $CategoryEventCopyWith(
           CategoryEvent value, $Res Function(CategoryEvent) then) =
-      _$CategoryEventCopyWithImpl<$Res>;
+      _$CategoryEventCopyWithImpl<$Res, CategoryEvent>;
 }
 
 /// @nodoc
-class _$CategoryEventCopyWithImpl<$Res>
+class _$CategoryEventCopyWithImpl<$Res, $Val extends CategoryEvent>
     implements $CategoryEventCopyWith<$Res> {
   _$CategoryEventCopyWithImpl(this._value, this._then);
 
-  final CategoryEvent _value;
   // ignore: unused_field
-  final $Res Function(CategoryEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -82,14 +83,11 @@ abstract class _$$LoadCategoryCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadCategoryCopyWithImpl<$Res>
-    extends _$CategoryEventCopyWithImpl<$Res>
+    extends _$CategoryEventCopyWithImpl<$Res, _$LoadCategory>
     implements _$$LoadCategoryCopyWith<$Res> {
   __$$LoadCategoryCopyWithImpl(
       _$LoadCategory _value, $Res Function(_$LoadCategory) _then)
-      : super(_value, (v) => _then(v as _$LoadCategory));
-
-  @override
-  _$LoadCategory get _value => super._value as _$LoadCategory;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -129,8 +127,8 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadCategory,
-    TResult Function(String catId)? loadSubcategory,
+    TResult? Function()? loadCategory,
+    TResult? Function(String catId)? loadSubcategory,
   }) {
     return loadCategory?.call();
   }
@@ -160,8 +158,8 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadCategory value)? loadCategory,
-    TResult Function(LoadSubcategory value)? loadSubcategory,
+    TResult? Function(LoadCategory value)? loadCategory,
+    TResult? Function(LoadSubcategory value)? loadSubcategory,
   }) {
     return loadCategory?.call(this);
   }
@@ -189,26 +187,25 @@ abstract class _$$LoadSubcategoryCopyWith<$Res> {
   factory _$$LoadSubcategoryCopyWith(
           _$LoadSubcategory value, $Res Function(_$LoadSubcategory) then) =
       __$$LoadSubcategoryCopyWithImpl<$Res>;
+  @useResult
   $Res call({String catId});
 }
 
 /// @nodoc
 class __$$LoadSubcategoryCopyWithImpl<$Res>
-    extends _$CategoryEventCopyWithImpl<$Res>
+    extends _$CategoryEventCopyWithImpl<$Res, _$LoadSubcategory>
     implements _$$LoadSubcategoryCopyWith<$Res> {
   __$$LoadSubcategoryCopyWithImpl(
       _$LoadSubcategory _value, $Res Function(_$LoadSubcategory) _then)
-      : super(_value, (v) => _then(v as _$LoadSubcategory));
+      : super(_value, _then);
 
-  @override
-  _$LoadSubcategory get _value => super._value as _$LoadSubcategory;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? catId = freezed,
+    Object? catId = null,
   }) {
     return _then(_$LoadSubcategory(
-      catId: catId == freezed
+      catId: null == catId
           ? _value.catId
           : catId // ignore: cast_nullable_to_non_nullable
               as String,
@@ -244,15 +241,15 @@ class _$LoadSubcategory
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadSubcategory &&
-            const DeepCollectionEquality().equals(other.catId, catId));
+            (identical(other.catId, catId) || other.catId == catId));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(catId));
+  int get hashCode => Object.hash(runtimeType, catId);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$LoadSubcategoryCopyWith<_$LoadSubcategory> get copyWith =>
       __$$LoadSubcategoryCopyWithImpl<_$LoadSubcategory>(this, _$identity);
 
@@ -268,8 +265,8 @@ class _$LoadSubcategory
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadCategory,
-    TResult Function(String catId)? loadSubcategory,
+    TResult? Function()? loadCategory,
+    TResult? Function(String catId)? loadSubcategory,
   }) {
     return loadSubcategory?.call(catId);
   }
@@ -299,8 +296,8 @@ class _$LoadSubcategory
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadCategory value)? loadCategory,
-    TResult Function(LoadSubcategory value)? loadSubcategory,
+    TResult? Function(LoadCategory value)? loadCategory,
+    TResult? Function(LoadSubcategory value)? loadSubcategory,
   }) {
     return loadSubcategory?.call(this);
   }
@@ -323,7 +320,7 @@ abstract class LoadSubcategory implements CategoryEvent {
   const factory LoadSubcategory({required final String catId}) =
       _$LoadSubcategory;
 
-  String get catId => throw _privateConstructorUsedError;
+  String get catId;
   @JsonKey(ignore: true)
   _$$LoadSubcategoryCopyWith<_$LoadSubcategory> get copyWith =>
       throw _privateConstructorUsedError;
@@ -341,10 +338,10 @@ mixin _$CategoryState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<CategoryModel> categories)? loaded,
-    TResult Function(String message)? error,
-    TResult Function(List<SubcatModel> subcats)? subCatLoaded,
+    TResult? Function()? initial,
+    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<SubcatModel> subcats)? subCatLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -366,10 +363,10 @@ mixin _$CategoryState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CategoryInitial value)? initial,
-    TResult Function(CategoryLoaded value)? loaded,
-    TResult Function(CategoryError value)? error,
-    TResult Function(SubcatLoaded value)? subCatLoaded,
+    TResult? Function(CategoryInitial value)? initial,
+    TResult? Function(CategoryLoaded value)? loaded,
+    TResult? Function(CategoryError value)? error,
+    TResult? Function(SubcatLoaded value)? subCatLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -387,17 +384,18 @@ mixin _$CategoryState {
 abstract class $CategoryStateCopyWith<$Res> {
   factory $CategoryStateCopyWith(
           CategoryState value, $Res Function(CategoryState) then) =
-      _$CategoryStateCopyWithImpl<$Res>;
+      _$CategoryStateCopyWithImpl<$Res, CategoryState>;
 }
 
 /// @nodoc
-class _$CategoryStateCopyWithImpl<$Res>
+class _$CategoryStateCopyWithImpl<$Res, $Val extends CategoryState>
     implements $CategoryStateCopyWith<$Res> {
   _$CategoryStateCopyWithImpl(this._value, this._then);
 
-  final CategoryState _value;
   // ignore: unused_field
-  final $Res Function(CategoryState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -409,14 +407,11 @@ abstract class _$$CategoryInitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$CategoryInitialCopyWithImpl<$Res>
-    extends _$CategoryStateCopyWithImpl<$Res>
+    extends _$CategoryStateCopyWithImpl<$Res, _$CategoryInitial>
     implements _$$CategoryInitialCopyWith<$Res> {
   __$$CategoryInitialCopyWithImpl(
       _$CategoryInitial _value, $Res Function(_$CategoryInitial) _then)
-      : super(_value, (v) => _then(v as _$CategoryInitial));
-
-  @override
-  _$CategoryInitial get _value => super._value as _$CategoryInitial;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -460,10 +455,10 @@ class _$CategoryInitial
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<CategoryModel> categories)? loaded,
-    TResult Function(String message)? error,
-    TResult Function(List<SubcatModel> subcats)? subCatLoaded,
+    TResult? Function()? initial,
+    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<SubcatModel> subcats)? subCatLoaded,
   }) {
     return initial?.call();
   }
@@ -497,10 +492,10 @@ class _$CategoryInitial
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CategoryInitial value)? initial,
-    TResult Function(CategoryLoaded value)? loaded,
-    TResult Function(CategoryError value)? error,
-    TResult Function(SubcatLoaded value)? subCatLoaded,
+    TResult? Function(CategoryInitial value)? initial,
+    TResult? Function(CategoryLoaded value)? loaded,
+    TResult? Function(CategoryError value)? error,
+    TResult? Function(SubcatLoaded value)? subCatLoaded,
   }) {
     return initial?.call(this);
   }
@@ -530,26 +525,25 @@ abstract class _$$CategoryLoadedCopyWith<$Res> {
   factory _$$CategoryLoadedCopyWith(
           _$CategoryLoaded value, $Res Function(_$CategoryLoaded) then) =
       __$$CategoryLoadedCopyWithImpl<$Res>;
+  @useResult
   $Res call({List<CategoryModel> categories});
 }
 
 /// @nodoc
 class __$$CategoryLoadedCopyWithImpl<$Res>
-    extends _$CategoryStateCopyWithImpl<$Res>
+    extends _$CategoryStateCopyWithImpl<$Res, _$CategoryLoaded>
     implements _$$CategoryLoadedCopyWith<$Res> {
   __$$CategoryLoadedCopyWithImpl(
       _$CategoryLoaded _value, $Res Function(_$CategoryLoaded) _then)
-      : super(_value, (v) => _then(v as _$CategoryLoaded));
+      : super(_value, _then);
 
-  @override
-  _$CategoryLoaded get _value => super._value as _$CategoryLoaded;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? categories = freezed,
+    Object? categories = null,
   }) {
     return _then(_$CategoryLoaded(
-      categories: categories == freezed
+      categories: null == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>,
@@ -566,6 +560,7 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
   final List<CategoryModel> _categories;
   @override
   List<CategoryModel> get categories {
+    if (_categories is EqualUnmodifiableListView) return _categories;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_categories);
   }
@@ -598,6 +593,7 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$CategoryLoadedCopyWith<_$CategoryLoaded> get copyWith =>
       __$$CategoryLoadedCopyWithImpl<_$CategoryLoaded>(this, _$identity);
 
@@ -615,10 +611,10 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<CategoryModel> categories)? loaded,
-    TResult Function(String message)? error,
-    TResult Function(List<SubcatModel> subcats)? subCatLoaded,
+    TResult? Function()? initial,
+    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<SubcatModel> subcats)? subCatLoaded,
   }) {
     return loaded?.call(categories);
   }
@@ -652,10 +648,10 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CategoryInitial value)? initial,
-    TResult Function(CategoryLoaded value)? loaded,
-    TResult Function(CategoryError value)? error,
-    TResult Function(SubcatLoaded value)? subCatLoaded,
+    TResult? Function(CategoryInitial value)? initial,
+    TResult? Function(CategoryLoaded value)? loaded,
+    TResult? Function(CategoryError value)? error,
+    TResult? Function(SubcatLoaded value)? subCatLoaded,
   }) {
     return loaded?.call(this);
   }
@@ -680,7 +676,7 @@ abstract class CategoryLoaded implements CategoryState {
   const factory CategoryLoaded(
       {required final List<CategoryModel> categories}) = _$CategoryLoaded;
 
-  List<CategoryModel> get categories => throw _privateConstructorUsedError;
+  List<CategoryModel> get categories;
   @JsonKey(ignore: true)
   _$$CategoryLoadedCopyWith<_$CategoryLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -691,26 +687,25 @@ abstract class _$$CategoryErrorCopyWith<$Res> {
   factory _$$CategoryErrorCopyWith(
           _$CategoryError value, $Res Function(_$CategoryError) then) =
       __$$CategoryErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
 class __$$CategoryErrorCopyWithImpl<$Res>
-    extends _$CategoryStateCopyWithImpl<$Res>
+    extends _$CategoryStateCopyWithImpl<$Res, _$CategoryError>
     implements _$$CategoryErrorCopyWith<$Res> {
   __$$CategoryErrorCopyWithImpl(
       _$CategoryError _value, $Res Function(_$CategoryError) _then)
-      : super(_value, (v) => _then(v as _$CategoryError));
+      : super(_value, _then);
 
-  @override
-  _$CategoryError get _value => super._value as _$CategoryError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
     return _then(_$CategoryError(
-      message: message == freezed
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -744,15 +739,15 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CategoryError &&
-            const DeepCollectionEquality().equals(other.message, message));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$CategoryErrorCopyWith<_$CategoryError> get copyWith =>
       __$$CategoryErrorCopyWithImpl<_$CategoryError>(this, _$identity);
 
@@ -770,10 +765,10 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<CategoryModel> categories)? loaded,
-    TResult Function(String message)? error,
-    TResult Function(List<SubcatModel> subcats)? subCatLoaded,
+    TResult? Function()? initial,
+    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<SubcatModel> subcats)? subCatLoaded,
   }) {
     return error?.call(message);
   }
@@ -807,10 +802,10 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CategoryInitial value)? initial,
-    TResult Function(CategoryLoaded value)? loaded,
-    TResult Function(CategoryError value)? error,
-    TResult Function(SubcatLoaded value)? subCatLoaded,
+    TResult? Function(CategoryInitial value)? initial,
+    TResult? Function(CategoryLoaded value)? loaded,
+    TResult? Function(CategoryError value)? error,
+    TResult? Function(SubcatLoaded value)? subCatLoaded,
   }) {
     return error?.call(this);
   }
@@ -835,7 +830,7 @@ abstract class CategoryError implements CategoryState {
   const factory CategoryError({required final String message}) =
       _$CategoryError;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
   _$$CategoryErrorCopyWith<_$CategoryError> get copyWith =>
       throw _privateConstructorUsedError;
@@ -846,26 +841,25 @@ abstract class _$$SubcatLoadedCopyWith<$Res> {
   factory _$$SubcatLoadedCopyWith(
           _$SubcatLoaded value, $Res Function(_$SubcatLoaded) then) =
       __$$SubcatLoadedCopyWithImpl<$Res>;
+  @useResult
   $Res call({List<SubcatModel> subcats});
 }
 
 /// @nodoc
 class __$$SubcatLoadedCopyWithImpl<$Res>
-    extends _$CategoryStateCopyWithImpl<$Res>
+    extends _$CategoryStateCopyWithImpl<$Res, _$SubcatLoaded>
     implements _$$SubcatLoadedCopyWith<$Res> {
   __$$SubcatLoadedCopyWithImpl(
       _$SubcatLoaded _value, $Res Function(_$SubcatLoaded) _then)
-      : super(_value, (v) => _then(v as _$SubcatLoaded));
+      : super(_value, _then);
 
-  @override
-  _$SubcatLoaded get _value => super._value as _$SubcatLoaded;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? subcats = freezed,
+    Object? subcats = null,
   }) {
     return _then(_$SubcatLoaded(
-      subcats: subcats == freezed
+      subcats: null == subcats
           ? _value._subcats
           : subcats // ignore: cast_nullable_to_non_nullable
               as List<SubcatModel>,
@@ -882,6 +876,7 @@ class _$SubcatLoaded with DiagnosticableTreeMixin implements SubcatLoaded {
   final List<SubcatModel> _subcats;
   @override
   List<SubcatModel> get subcats {
+    if (_subcats is EqualUnmodifiableListView) return _subcats;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_subcats);
   }
@@ -913,6 +908,7 @@ class _$SubcatLoaded with DiagnosticableTreeMixin implements SubcatLoaded {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$SubcatLoadedCopyWith<_$SubcatLoaded> get copyWith =>
       __$$SubcatLoadedCopyWithImpl<_$SubcatLoaded>(this, _$identity);
 
@@ -930,10 +926,10 @@ class _$SubcatLoaded with DiagnosticableTreeMixin implements SubcatLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<CategoryModel> categories)? loaded,
-    TResult Function(String message)? error,
-    TResult Function(List<SubcatModel> subcats)? subCatLoaded,
+    TResult? Function()? initial,
+    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<SubcatModel> subcats)? subCatLoaded,
   }) {
     return subCatLoaded?.call(subcats);
   }
@@ -967,10 +963,10 @@ class _$SubcatLoaded with DiagnosticableTreeMixin implements SubcatLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CategoryInitial value)? initial,
-    TResult Function(CategoryLoaded value)? loaded,
-    TResult Function(CategoryError value)? error,
-    TResult Function(SubcatLoaded value)? subCatLoaded,
+    TResult? Function(CategoryInitial value)? initial,
+    TResult? Function(CategoryLoaded value)? loaded,
+    TResult? Function(CategoryError value)? error,
+    TResult? Function(SubcatLoaded value)? subCatLoaded,
   }) {
     return subCatLoaded?.call(this);
   }
@@ -995,7 +991,7 @@ abstract class SubcatLoaded implements CategoryState {
   const factory SubcatLoaded({required final List<SubcatModel> subcats}) =
       _$SubcatLoaded;
 
-  List<SubcatModel> get subcats => throw _privateConstructorUsedError;
+  List<SubcatModel> get subcats;
   @JsonKey(ignore: true)
   _$$SubcatLoadedCopyWith<_$SubcatLoaded> get copyWith =>
       throw _privateConstructorUsedError;

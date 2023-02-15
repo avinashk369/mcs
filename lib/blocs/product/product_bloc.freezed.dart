@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'product_bloc.dart';
 
@@ -28,11 +28,11 @@ mixin _$ProductEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadProduct,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
-    TResult Function(ProductModel productModel)? removeProduct,
-    TResult Function(ProductModel productModel)? deleteProduct,
-    TResult Function(String catId)? loadProductByCatId,
+    TResult? Function()? loadProduct,
+    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel)? removeProduct,
+    TResult? Function(ProductModel productModel)? deleteProduct,
+    TResult? Function(String catId)? loadProductByCatId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,11 +56,11 @@ mixin _$ProductEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadPrdoucts value)? loadProduct,
-    TResult Function(AddProduct value)? addProduct,
-    TResult Function(RemoveProduct value)? removeProduct,
-    TResult Function(DeleteProduct value)? deleteProduct,
-    TResult Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(AddProduct value)? addProduct,
+    TResult? Function(RemoveProduct value)? removeProduct,
+    TResult? Function(DeleteProduct value)? deleteProduct,
+    TResult? Function(LoadProductByCatId value)? loadProductByCatId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,16 +79,18 @@ mixin _$ProductEvent {
 abstract class $ProductEventCopyWith<$Res> {
   factory $ProductEventCopyWith(
           ProductEvent value, $Res Function(ProductEvent) then) =
-      _$ProductEventCopyWithImpl<$Res>;
+      _$ProductEventCopyWithImpl<$Res, ProductEvent>;
 }
 
 /// @nodoc
-class _$ProductEventCopyWithImpl<$Res> implements $ProductEventCopyWith<$Res> {
+class _$ProductEventCopyWithImpl<$Res, $Val extends ProductEvent>
+    implements $ProductEventCopyWith<$Res> {
   _$ProductEventCopyWithImpl(this._value, this._then);
 
-  final ProductEvent _value;
   // ignore: unused_field
-  final $Res Function(ProductEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -100,14 +102,11 @@ abstract class _$$LoadPrdouctsCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadPrdouctsCopyWithImpl<$Res>
-    extends _$ProductEventCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$LoadPrdoucts>
     implements _$$LoadPrdouctsCopyWith<$Res> {
   __$$LoadPrdouctsCopyWithImpl(
       _$LoadPrdoucts _value, $Res Function(_$LoadPrdoucts) _then)
-      : super(_value, (v) => _then(v as _$LoadPrdoucts));
-
-  @override
-  _$LoadPrdoucts get _value => super._value as _$LoadPrdoucts;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -151,11 +150,11 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadProduct,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
-    TResult Function(ProductModel productModel)? removeProduct,
-    TResult Function(ProductModel productModel)? deleteProduct,
-    TResult Function(String catId)? loadProductByCatId,
+    TResult? Function()? loadProduct,
+    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel)? removeProduct,
+    TResult? Function(ProductModel productModel)? deleteProduct,
+    TResult? Function(String catId)? loadProductByCatId,
   }) {
     return loadProduct?.call();
   }
@@ -191,11 +190,11 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadPrdoucts value)? loadProduct,
-    TResult Function(AddProduct value)? addProduct,
-    TResult Function(RemoveProduct value)? removeProduct,
-    TResult Function(DeleteProduct value)? deleteProduct,
-    TResult Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(AddProduct value)? addProduct,
+    TResult? Function(RemoveProduct value)? removeProduct,
+    TResult? Function(DeleteProduct value)? deleteProduct,
+    TResult? Function(LoadProductByCatId value)? loadProductByCatId,
   }) {
     return loadProduct?.call(this);
   }
@@ -226,32 +225,32 @@ abstract class _$$AddProductCopyWith<$Res> {
   factory _$$AddProductCopyWith(
           _$AddProduct value, $Res Function(_$AddProduct) then) =
       __$$AddProductCopyWithImpl<$Res>;
+  @useResult
   $Res call({ProductModel productModel, bool isCart});
 
   $ProductModelCopyWith<$Res> get productModel;
 }
 
 /// @nodoc
-class __$$AddProductCopyWithImpl<$Res> extends _$ProductEventCopyWithImpl<$Res>
+class __$$AddProductCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$AddProduct>
     implements _$$AddProductCopyWith<$Res> {
   __$$AddProductCopyWithImpl(
       _$AddProduct _value, $Res Function(_$AddProduct) _then)
-      : super(_value, (v) => _then(v as _$AddProduct));
+      : super(_value, _then);
 
-  @override
-  _$AddProduct get _value => super._value as _$AddProduct;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productModel = freezed,
-    Object? isCart = freezed,
+    Object? productModel = null,
+    Object? isCart = null,
   }) {
     return _then(_$AddProduct(
-      productModel: productModel == freezed
+      productModel: null == productModel
           ? _value.productModel
           : productModel // ignore: cast_nullable_to_non_nullable
               as ProductModel,
-      isCart: isCart == freezed
+      isCart: null == isCart
           ? _value.isCart
           : isCart // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -259,6 +258,7 @@ class __$$AddProductCopyWithImpl<$Res> extends _$ProductEventCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ProductModelCopyWith<$Res> get productModel {
     return $ProductModelCopyWith<$Res>(_value.productModel, (value) {
       return _then(_value.copyWith(productModel: value));
@@ -295,19 +295,17 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddProduct &&
-            const DeepCollectionEquality()
-                .equals(other.productModel, productModel) &&
-            const DeepCollectionEquality().equals(other.isCart, isCart));
+            (identical(other.productModel, productModel) ||
+                other.productModel == productModel) &&
+            (identical(other.isCart, isCart) || other.isCart == isCart));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(productModel),
-      const DeepCollectionEquality().hash(isCart));
+  int get hashCode => Object.hash(runtimeType, productModel, isCart);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$AddProductCopyWith<_$AddProduct> get copyWith =>
       __$$AddProductCopyWithImpl<_$AddProduct>(this, _$identity);
 
@@ -327,11 +325,11 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadProduct,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
-    TResult Function(ProductModel productModel)? removeProduct,
-    TResult Function(ProductModel productModel)? deleteProduct,
-    TResult Function(String catId)? loadProductByCatId,
+    TResult? Function()? loadProduct,
+    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel)? removeProduct,
+    TResult? Function(ProductModel productModel)? deleteProduct,
+    TResult? Function(String catId)? loadProductByCatId,
   }) {
     return addProduct?.call(productModel, isCart);
   }
@@ -367,11 +365,11 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadPrdoucts value)? loadProduct,
-    TResult Function(AddProduct value)? addProduct,
-    TResult Function(RemoveProduct value)? removeProduct,
-    TResult Function(DeleteProduct value)? deleteProduct,
-    TResult Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(AddProduct value)? addProduct,
+    TResult? Function(RemoveProduct value)? removeProduct,
+    TResult? Function(DeleteProduct value)? deleteProduct,
+    TResult? Function(LoadProductByCatId value)? loadProductByCatId,
   }) {
     return addProduct?.call(this);
   }
@@ -398,8 +396,8 @@ abstract class AddProduct implements ProductEvent {
       {required final ProductModel productModel,
       required final bool isCart}) = _$AddProduct;
 
-  ProductModel get productModel => throw _privateConstructorUsedError;
-  bool get isCart => throw _privateConstructorUsedError;
+  ProductModel get productModel;
+  bool get isCart;
   @JsonKey(ignore: true)
   _$$AddProductCopyWith<_$AddProduct> get copyWith =>
       throw _privateConstructorUsedError;
@@ -410,6 +408,7 @@ abstract class _$$RemoveProductCopyWith<$Res> {
   factory _$$RemoveProductCopyWith(
           _$RemoveProduct value, $Res Function(_$RemoveProduct) then) =
       __$$RemoveProductCopyWithImpl<$Res>;
+  @useResult
   $Res call({ProductModel productModel});
 
   $ProductModelCopyWith<$Res> get productModel;
@@ -417,21 +416,19 @@ abstract class _$$RemoveProductCopyWith<$Res> {
 
 /// @nodoc
 class __$$RemoveProductCopyWithImpl<$Res>
-    extends _$ProductEventCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$RemoveProduct>
     implements _$$RemoveProductCopyWith<$Res> {
   __$$RemoveProductCopyWithImpl(
       _$RemoveProduct _value, $Res Function(_$RemoveProduct) _then)
-      : super(_value, (v) => _then(v as _$RemoveProduct));
+      : super(_value, _then);
 
-  @override
-  _$RemoveProduct get _value => super._value as _$RemoveProduct;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productModel = freezed,
+    Object? productModel = null,
   }) {
     return _then(_$RemoveProduct(
-      productModel == freezed
+      null == productModel
           ? _value.productModel
           : productModel // ignore: cast_nullable_to_non_nullable
               as ProductModel,
@@ -439,6 +436,7 @@ class __$$RemoveProductCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ProductModelCopyWith<$Res> get productModel {
     return $ProductModelCopyWith<$Res>(_value.productModel, (value) {
       return _then(_value.copyWith(productModel: value));
@@ -472,16 +470,16 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RemoveProduct &&
-            const DeepCollectionEquality()
-                .equals(other.productModel, productModel));
+            (identical(other.productModel, productModel) ||
+                other.productModel == productModel));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(productModel));
+  int get hashCode => Object.hash(runtimeType, productModel);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$RemoveProductCopyWith<_$RemoveProduct> get copyWith =>
       __$$RemoveProductCopyWithImpl<_$RemoveProduct>(this, _$identity);
 
@@ -501,11 +499,11 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadProduct,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
-    TResult Function(ProductModel productModel)? removeProduct,
-    TResult Function(ProductModel productModel)? deleteProduct,
-    TResult Function(String catId)? loadProductByCatId,
+    TResult? Function()? loadProduct,
+    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel)? removeProduct,
+    TResult? Function(ProductModel productModel)? deleteProduct,
+    TResult? Function(String catId)? loadProductByCatId,
   }) {
     return removeProduct?.call(productModel);
   }
@@ -541,11 +539,11 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadPrdoucts value)? loadProduct,
-    TResult Function(AddProduct value)? addProduct,
-    TResult Function(RemoveProduct value)? removeProduct,
-    TResult Function(DeleteProduct value)? deleteProduct,
-    TResult Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(AddProduct value)? addProduct,
+    TResult? Function(RemoveProduct value)? removeProduct,
+    TResult? Function(DeleteProduct value)? deleteProduct,
+    TResult? Function(LoadProductByCatId value)? loadProductByCatId,
   }) {
     return removeProduct?.call(this);
   }
@@ -571,7 +569,7 @@ abstract class RemoveProduct implements ProductEvent {
   const factory RemoveProduct(final ProductModel productModel) =
       _$RemoveProduct;
 
-  ProductModel get productModel => throw _privateConstructorUsedError;
+  ProductModel get productModel;
   @JsonKey(ignore: true)
   _$$RemoveProductCopyWith<_$RemoveProduct> get copyWith =>
       throw _privateConstructorUsedError;
@@ -582,6 +580,7 @@ abstract class _$$DeleteProductCopyWith<$Res> {
   factory _$$DeleteProductCopyWith(
           _$DeleteProduct value, $Res Function(_$DeleteProduct) then) =
       __$$DeleteProductCopyWithImpl<$Res>;
+  @useResult
   $Res call({ProductModel productModel});
 
   $ProductModelCopyWith<$Res> get productModel;
@@ -589,21 +588,19 @@ abstract class _$$DeleteProductCopyWith<$Res> {
 
 /// @nodoc
 class __$$DeleteProductCopyWithImpl<$Res>
-    extends _$ProductEventCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$DeleteProduct>
     implements _$$DeleteProductCopyWith<$Res> {
   __$$DeleteProductCopyWithImpl(
       _$DeleteProduct _value, $Res Function(_$DeleteProduct) _then)
-      : super(_value, (v) => _then(v as _$DeleteProduct));
+      : super(_value, _then);
 
-  @override
-  _$DeleteProduct get _value => super._value as _$DeleteProduct;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productModel = freezed,
+    Object? productModel = null,
   }) {
     return _then(_$DeleteProduct(
-      productModel == freezed
+      null == productModel
           ? _value.productModel
           : productModel // ignore: cast_nullable_to_non_nullable
               as ProductModel,
@@ -611,6 +608,7 @@ class __$$DeleteProductCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ProductModelCopyWith<$Res> get productModel {
     return $ProductModelCopyWith<$Res>(_value.productModel, (value) {
       return _then(_value.copyWith(productModel: value));
@@ -644,16 +642,16 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DeleteProduct &&
-            const DeepCollectionEquality()
-                .equals(other.productModel, productModel));
+            (identical(other.productModel, productModel) ||
+                other.productModel == productModel));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(productModel));
+  int get hashCode => Object.hash(runtimeType, productModel);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$DeleteProductCopyWith<_$DeleteProduct> get copyWith =>
       __$$DeleteProductCopyWithImpl<_$DeleteProduct>(this, _$identity);
 
@@ -673,11 +671,11 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadProduct,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
-    TResult Function(ProductModel productModel)? removeProduct,
-    TResult Function(ProductModel productModel)? deleteProduct,
-    TResult Function(String catId)? loadProductByCatId,
+    TResult? Function()? loadProduct,
+    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel)? removeProduct,
+    TResult? Function(ProductModel productModel)? deleteProduct,
+    TResult? Function(String catId)? loadProductByCatId,
   }) {
     return deleteProduct?.call(productModel);
   }
@@ -713,11 +711,11 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadPrdoucts value)? loadProduct,
-    TResult Function(AddProduct value)? addProduct,
-    TResult Function(RemoveProduct value)? removeProduct,
-    TResult Function(DeleteProduct value)? deleteProduct,
-    TResult Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(AddProduct value)? addProduct,
+    TResult? Function(RemoveProduct value)? removeProduct,
+    TResult? Function(DeleteProduct value)? deleteProduct,
+    TResult? Function(LoadProductByCatId value)? loadProductByCatId,
   }) {
     return deleteProduct?.call(this);
   }
@@ -743,7 +741,7 @@ abstract class DeleteProduct implements ProductEvent {
   const factory DeleteProduct(final ProductModel productModel) =
       _$DeleteProduct;
 
-  ProductModel get productModel => throw _privateConstructorUsedError;
+  ProductModel get productModel;
   @JsonKey(ignore: true)
   _$$DeleteProductCopyWith<_$DeleteProduct> get copyWith =>
       throw _privateConstructorUsedError;
@@ -754,26 +752,25 @@ abstract class _$$LoadProductByCatIdCopyWith<$Res> {
   factory _$$LoadProductByCatIdCopyWith(_$LoadProductByCatId value,
           $Res Function(_$LoadProductByCatId) then) =
       __$$LoadProductByCatIdCopyWithImpl<$Res>;
+  @useResult
   $Res call({String catId});
 }
 
 /// @nodoc
 class __$$LoadProductByCatIdCopyWithImpl<$Res>
-    extends _$ProductEventCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$LoadProductByCatId>
     implements _$$LoadProductByCatIdCopyWith<$Res> {
   __$$LoadProductByCatIdCopyWithImpl(
       _$LoadProductByCatId _value, $Res Function(_$LoadProductByCatId) _then)
-      : super(_value, (v) => _then(v as _$LoadProductByCatId));
+      : super(_value, _then);
 
-  @override
-  _$LoadProductByCatId get _value => super._value as _$LoadProductByCatId;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? catId = freezed,
+    Object? catId = null,
   }) {
     return _then(_$LoadProductByCatId(
-      catId: catId == freezed
+      catId: null == catId
           ? _value.catId
           : catId // ignore: cast_nullable_to_non_nullable
               as String,
@@ -809,15 +806,15 @@ class _$LoadProductByCatId
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadProductByCatId &&
-            const DeepCollectionEquality().equals(other.catId, catId));
+            (identical(other.catId, catId) || other.catId == catId));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(catId));
+  int get hashCode => Object.hash(runtimeType, catId);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$LoadProductByCatIdCopyWith<_$LoadProductByCatId> get copyWith =>
       __$$LoadProductByCatIdCopyWithImpl<_$LoadProductByCatId>(
           this, _$identity);
@@ -838,11 +835,11 @@ class _$LoadProductByCatId
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loadProduct,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
-    TResult Function(ProductModel productModel)? removeProduct,
-    TResult Function(ProductModel productModel)? deleteProduct,
-    TResult Function(String catId)? loadProductByCatId,
+    TResult? Function()? loadProduct,
+    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel)? removeProduct,
+    TResult? Function(ProductModel productModel)? deleteProduct,
+    TResult? Function(String catId)? loadProductByCatId,
   }) {
     return loadProductByCatId?.call(catId);
   }
@@ -878,11 +875,11 @@ class _$LoadProductByCatId
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoadPrdoucts value)? loadProduct,
-    TResult Function(AddProduct value)? addProduct,
-    TResult Function(RemoveProduct value)? removeProduct,
-    TResult Function(DeleteProduct value)? deleteProduct,
-    TResult Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(AddProduct value)? addProduct,
+    TResult? Function(RemoveProduct value)? removeProduct,
+    TResult? Function(DeleteProduct value)? deleteProduct,
+    TResult? Function(LoadProductByCatId value)? loadProductByCatId,
   }) {
     return loadProductByCatId?.call(this);
   }
@@ -908,7 +905,7 @@ abstract class LoadProductByCatId implements ProductEvent {
   const factory LoadProductByCatId({required final String catId}) =
       _$LoadProductByCatId;
 
-  String get catId => throw _privateConstructorUsedError;
+  String get catId;
   @JsonKey(ignore: true)
   _$$LoadProductByCatIdCopyWith<_$LoadProductByCatId> get copyWith =>
       throw _privateConstructorUsedError;
@@ -932,16 +929,16 @@ mixin _$ProductState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(
             List<ProductModel> products,
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
             List<ProductModel>? dairyProducts)?
         loaded,
-    TResult Function(String message)? error,
+    TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -969,10 +966,10 @@ mixin _$ProductState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ProductInitial value)? initial,
-    TResult Function(ProductLoading value)? loading,
-    TResult Function(ProductLoaded value)? loaded,
-    TResult Function(ProductError value)? error,
+    TResult? Function(ProductInitial value)? initial,
+    TResult? Function(ProductLoading value)? loading,
+    TResult? Function(ProductLoaded value)? loaded,
+    TResult? Function(ProductError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -990,16 +987,18 @@ mixin _$ProductState {
 abstract class $ProductStateCopyWith<$Res> {
   factory $ProductStateCopyWith(
           ProductState value, $Res Function(ProductState) then) =
-      _$ProductStateCopyWithImpl<$Res>;
+      _$ProductStateCopyWithImpl<$Res, ProductState>;
 }
 
 /// @nodoc
-class _$ProductStateCopyWithImpl<$Res> implements $ProductStateCopyWith<$Res> {
+class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
+    implements $ProductStateCopyWith<$Res> {
   _$ProductStateCopyWithImpl(this._value, this._then);
 
-  final ProductState _value;
   // ignore: unused_field
-  final $Res Function(ProductState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -1011,14 +1010,11 @@ abstract class _$$ProductInitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$ProductInitialCopyWithImpl<$Res>
-    extends _$ProductStateCopyWithImpl<$Res>
+    extends _$ProductStateCopyWithImpl<$Res, _$ProductInitial>
     implements _$$ProductInitialCopyWith<$Res> {
   __$$ProductInitialCopyWithImpl(
       _$ProductInitial _value, $Res Function(_$ProductInitial) _then)
-      : super(_value, (v) => _then(v as _$ProductInitial));
-
-  @override
-  _$ProductInitial get _value => super._value as _$ProductInitial;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1066,16 +1062,16 @@ class _$ProductInitial with DiagnosticableTreeMixin implements ProductInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(
             List<ProductModel> products,
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
             List<ProductModel>? dairyProducts)?
         loaded,
-    TResult Function(String message)? error,
+    TResult? Function(String message)? error,
   }) {
     return initial?.call();
   }
@@ -1115,10 +1111,10 @@ class _$ProductInitial with DiagnosticableTreeMixin implements ProductInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ProductInitial value)? initial,
-    TResult Function(ProductLoading value)? loading,
-    TResult Function(ProductLoaded value)? loaded,
-    TResult Function(ProductError value)? error,
+    TResult? Function(ProductInitial value)? initial,
+    TResult? Function(ProductLoading value)? loading,
+    TResult? Function(ProductLoaded value)? loaded,
+    TResult? Function(ProductError value)? error,
   }) {
     return initial?.call(this);
   }
@@ -1152,14 +1148,11 @@ abstract class _$$ProductLoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$ProductLoadingCopyWithImpl<$Res>
-    extends _$ProductStateCopyWithImpl<$Res>
+    extends _$ProductStateCopyWithImpl<$Res, _$ProductLoading>
     implements _$$ProductLoadingCopyWith<$Res> {
   __$$ProductLoadingCopyWithImpl(
       _$ProductLoading _value, $Res Function(_$ProductLoading) _then)
-      : super(_value, (v) => _then(v as _$ProductLoading));
-
-  @override
-  _$ProductLoading get _value => super._value as _$ProductLoading;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1207,16 +1200,16 @@ class _$ProductLoading with DiagnosticableTreeMixin implements ProductLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(
             List<ProductModel> products,
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
             List<ProductModel>? dairyProducts)?
         loaded,
-    TResult Function(String message)? error,
+    TResult? Function(String message)? error,
   }) {
     return loading?.call();
   }
@@ -1256,10 +1249,10 @@ class _$ProductLoading with DiagnosticableTreeMixin implements ProductLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ProductInitial value)? initial,
-    TResult Function(ProductLoading value)? loading,
-    TResult Function(ProductLoaded value)? loaded,
-    TResult Function(ProductError value)? error,
+    TResult? Function(ProductInitial value)? initial,
+    TResult? Function(ProductLoading value)? loading,
+    TResult? Function(ProductLoaded value)? loaded,
+    TResult? Function(ProductError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -1289,6 +1282,7 @@ abstract class _$$ProductLoadedCopyWith<$Res> {
   factory _$$ProductLoadedCopyWith(
           _$ProductLoaded value, $Res Function(_$ProductLoaded) then) =
       __$$ProductLoadedCopyWithImpl<$Res>;
+  @useResult
   $Res call(
       {List<ProductModel> products,
       List<ProductModel>? addedProducts,
@@ -1299,41 +1293,39 @@ abstract class _$$ProductLoadedCopyWith<$Res> {
 
 /// @nodoc
 class __$$ProductLoadedCopyWithImpl<$Res>
-    extends _$ProductStateCopyWithImpl<$Res>
+    extends _$ProductStateCopyWithImpl<$Res, _$ProductLoaded>
     implements _$$ProductLoadedCopyWith<$Res> {
   __$$ProductLoadedCopyWithImpl(
       _$ProductLoaded _value, $Res Function(_$ProductLoaded) _then)
-      : super(_value, (v) => _then(v as _$ProductLoaded));
+      : super(_value, _then);
 
-  @override
-  _$ProductLoaded get _value => super._value as _$ProductLoaded;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? products = freezed,
+    Object? products = null,
     Object? addedProducts = freezed,
     Object? personalCare = freezed,
     Object? dailyNeeds = freezed,
     Object? dairyProducts = freezed,
   }) {
     return _then(_$ProductLoaded(
-      products: products == freezed
+      products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>,
-      addedProducts: addedProducts == freezed
+      addedProducts: freezed == addedProducts
           ? _value._addedProducts
           : addedProducts // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>?,
-      personalCare: personalCare == freezed
+      personalCare: freezed == personalCare
           ? _value._personalCare
           : personalCare // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>?,
-      dailyNeeds: dailyNeeds == freezed
+      dailyNeeds: freezed == dailyNeeds
           ? _value._dailyNeeds
           : dailyNeeds // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>?,
-      dairyProducts: dairyProducts == freezed
+      dairyProducts: freezed == dairyProducts
           ? _value._dairyProducts
           : dairyProducts // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>?,
@@ -1359,6 +1351,7 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
   final List<ProductModel> _products;
   @override
   List<ProductModel> get products {
+    if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_products);
   }
@@ -1368,6 +1361,7 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
   List<ProductModel>? get addedProducts {
     final value = _addedProducts;
     if (value == null) return null;
+    if (_addedProducts is EqualUnmodifiableListView) return _addedProducts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -1377,6 +1371,7 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
   List<ProductModel>? get personalCare {
     final value = _personalCare;
     if (value == null) return null;
+    if (_personalCare is EqualUnmodifiableListView) return _personalCare;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -1386,6 +1381,7 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
   List<ProductModel>? get dailyNeeds {
     final value = _dailyNeeds;
     if (value == null) return null;
+    if (_dailyNeeds is EqualUnmodifiableListView) return _dailyNeeds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -1395,6 +1391,7 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
   List<ProductModel>? get dairyProducts {
     final value = _dairyProducts;
     if (value == null) return null;
+    if (_dairyProducts is EqualUnmodifiableListView) return _dairyProducts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -1443,6 +1440,7 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ProductLoadedCopyWith<_$ProductLoaded> get copyWith =>
       __$$ProductLoadedCopyWithImpl<_$ProductLoaded>(this, _$identity);
 
@@ -1467,16 +1465,16 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(
             List<ProductModel> products,
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
             List<ProductModel>? dairyProducts)?
         loaded,
-    TResult Function(String message)? error,
+    TResult? Function(String message)? error,
   }) {
     return loaded?.call(
         products, addedProducts, personalCare, dailyNeeds, dairyProducts);
@@ -1518,10 +1516,10 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ProductInitial value)? initial,
-    TResult Function(ProductLoading value)? loading,
-    TResult Function(ProductLoaded value)? loaded,
-    TResult Function(ProductError value)? error,
+    TResult? Function(ProductInitial value)? initial,
+    TResult? Function(ProductLoading value)? loading,
+    TResult? Function(ProductLoaded value)? loaded,
+    TResult? Function(ProductError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -1550,11 +1548,11 @@ abstract class ProductLoaded implements ProductState {
       final List<ProductModel>? dailyNeeds,
       final List<ProductModel>? dairyProducts}) = _$ProductLoaded;
 
-  List<ProductModel> get products => throw _privateConstructorUsedError;
-  List<ProductModel>? get addedProducts => throw _privateConstructorUsedError;
-  List<ProductModel>? get personalCare => throw _privateConstructorUsedError;
-  List<ProductModel>? get dailyNeeds => throw _privateConstructorUsedError;
-  List<ProductModel>? get dairyProducts => throw _privateConstructorUsedError;
+  List<ProductModel> get products;
+  List<ProductModel>? get addedProducts;
+  List<ProductModel>? get personalCare;
+  List<ProductModel>? get dailyNeeds;
+  List<ProductModel>? get dairyProducts;
   @JsonKey(ignore: true)
   _$$ProductLoadedCopyWith<_$ProductLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1565,26 +1563,25 @@ abstract class _$$ProductErrorCopyWith<$Res> {
   factory _$$ProductErrorCopyWith(
           _$ProductError value, $Res Function(_$ProductError) then) =
       __$$ProductErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
 class __$$ProductErrorCopyWithImpl<$Res>
-    extends _$ProductStateCopyWithImpl<$Res>
+    extends _$ProductStateCopyWithImpl<$Res, _$ProductError>
     implements _$$ProductErrorCopyWith<$Res> {
   __$$ProductErrorCopyWithImpl(
       _$ProductError _value, $Res Function(_$ProductError) _then)
-      : super(_value, (v) => _then(v as _$ProductError));
+      : super(_value, _then);
 
-  @override
-  _$ProductError get _value => super._value as _$ProductError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
     return _then(_$ProductError(
-      message: message == freezed
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -1618,15 +1615,15 @@ class _$ProductError with DiagnosticableTreeMixin implements ProductError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductError &&
-            const DeepCollectionEquality().equals(other.message, message));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$ProductErrorCopyWith<_$ProductError> get copyWith =>
       __$$ProductErrorCopyWithImpl<_$ProductError>(this, _$identity);
 
@@ -1650,16 +1647,16 @@ class _$ProductError with DiagnosticableTreeMixin implements ProductError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(
             List<ProductModel> products,
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
             List<ProductModel>? dairyProducts)?
         loaded,
-    TResult Function(String message)? error,
+    TResult? Function(String message)? error,
   }) {
     return error?.call(message);
   }
@@ -1699,10 +1696,10 @@ class _$ProductError with DiagnosticableTreeMixin implements ProductError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ProductInitial value)? initial,
-    TResult Function(ProductLoading value)? loading,
-    TResult Function(ProductLoaded value)? loaded,
-    TResult Function(ProductError value)? error,
+    TResult? Function(ProductInitial value)? initial,
+    TResult? Function(ProductLoading value)? loading,
+    TResult? Function(ProductLoaded value)? loaded,
+    TResult? Function(ProductError value)? error,
   }) {
     return error?.call(this);
   }
@@ -1726,7 +1723,7 @@ class _$ProductError with DiagnosticableTreeMixin implements ProductError {
 abstract class ProductError implements ProductState {
   const factory ProductError({required final String message}) = _$ProductError;
 
-  String get message => throw _privateConstructorUsedError;
+  String get message;
   @JsonKey(ignore: true)
   _$$ProductErrorCopyWith<_$ProductError> get copyWith =>
       throw _privateConstructorUsedError;

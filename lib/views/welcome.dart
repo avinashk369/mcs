@@ -39,7 +39,9 @@ class _WelcomeState extends State<Welcome> {
     return Scaffold(
       body: (hasSeen)
           ? (userId!.isNotEmpty)
-              ? const Dashboard() //FireCrud() //Dashboard()
+              ? const Dashboard(
+                  message: "",
+                )
               : const UserAuthScreen() //UserAuthScreen() //EmailSingIn()
           : const OnboardScreen(),
     );

@@ -23,7 +23,9 @@ class RouteGenerator {
       //   return SlideRightRoute(page: LoginView());
       case dashboardRoute:
         return SlideRightRoute(
-          page: const Dashboard(),
+          page: Dashboard(
+            message: args as String,
+          ),
         );
       case products:
         Map<String, dynamic> data = args as Map<String, dynamic>;

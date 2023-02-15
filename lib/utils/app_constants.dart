@@ -9,7 +9,9 @@ const String userLng = "user_lng";
 const String defValSf = "NA";
 //"http://192.168.43.170:3000/";
 //"https://mcs-rest-api.herokuapp.com/";
-const String apiUrl = "https://locus-rest-api.herokuapp.com/";
+/// online canteen api base url
+/// https://onlinecanteen.in/canteen_api/Api_controller/GetCity
+const String apiUrl = "https://onlinecanteen.in/canteen_api/";
 const String defImg = "assets/images/app_logo.png";
 
 //app constants

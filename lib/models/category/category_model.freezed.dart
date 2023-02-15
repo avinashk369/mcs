@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'category_model.dart';
 
@@ -34,19 +34,22 @@ mixin _$CategoryModel {
 abstract class $CategoryModelCopyWith<$Res> {
   factory $CategoryModelCopyWith(
           CategoryModel value, $Res Function(CategoryModel) then) =
-      _$CategoryModelCopyWithImpl<$Res>;
+      _$CategoryModelCopyWithImpl<$Res, CategoryModel>;
+  @useResult
   $Res call({String? id, String? name, String? thumb});
 }
 
 /// @nodoc
-class _$CategoryModelCopyWithImpl<$Res>
+class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     implements $CategoryModelCopyWith<$Res> {
   _$CategoryModelCopyWithImpl(this._value, this._then);
 
-  final CategoryModel _value;
   // ignore: unused_field
-  final $Res Function(CategoryModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -54,19 +57,19 @@ class _$CategoryModelCopyWithImpl<$Res>
     Object? thumb = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      thumb: thumb == freezed
+      thumb: freezed == thumb
           ? _value.thumb
           : thumb // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -77,20 +80,19 @@ abstract class _$$_CategoryModelCopyWith<$Res>
           _$_CategoryModel value, $Res Function(_$_CategoryModel) then) =
       __$$_CategoryModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String? id, String? name, String? thumb});
 }
 
 /// @nodoc
 class __$$_CategoryModelCopyWithImpl<$Res>
-    extends _$CategoryModelCopyWithImpl<$Res>
+    extends _$CategoryModelCopyWithImpl<$Res, _$_CategoryModel>
     implements _$$_CategoryModelCopyWith<$Res> {
   __$$_CategoryModelCopyWithImpl(
       _$_CategoryModel _value, $Res Function(_$_CategoryModel) _then)
-      : super(_value, (v) => _then(v as _$_CategoryModel));
+      : super(_value, _then);
 
-  @override
-  _$_CategoryModel get _value => super._value as _$_CategoryModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -98,15 +100,15 @@ class __$$_CategoryModelCopyWithImpl<$Res>
     Object? thumb = freezed,
   }) {
     return _then(_$_CategoryModel(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      thumb: thumb == freezed
+      thumb: freezed == thumb
           ? _value.thumb
           : thumb // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -141,27 +143,26 @@ class _$_CategoryModel implements _CategoryModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CategoryModel &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.thumb, thumb));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.thumb, thumb) || other.thumb == thumb));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(thumb));
+  int get hashCode => Object.hash(runtimeType, id, name, thumb);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CategoryModelCopyWith<_$_CategoryModel> get copyWith =>
       __$$_CategoryModelCopyWithImpl<_$_CategoryModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CategoryModelToJson(this);
+    return _$$_CategoryModelToJson(
+      this,
+    );
   }
 }
 
@@ -175,11 +176,11 @@ abstract class _CategoryModel implements CategoryModel {
       _$_CategoryModel.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get thumb => throw _privateConstructorUsedError;
+  String? get thumb;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryModelCopyWith<_$_CategoryModel> get copyWith =>

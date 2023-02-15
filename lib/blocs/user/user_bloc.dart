@@ -31,7 +31,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(ReviewSubmitted(message: reviewModel.review!));
     } on ServerError catch (e) {
       print("object server error ${e.toString()}");
-      emit(BookingLoadingFailed(error: e.getErrorMessage()));
+      emit(BookingLoadingFailed(error: e.errorMessage));
     } catch (e) {
       print("object error ${e.toString()}");
       emit(BookingLoadingFailed(error: e.toString()));
@@ -50,7 +50,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(UserLoaded(userModel: userModel.data!));
     } on ServerError catch (e) {
       print("object server error ${e.toString()}");
-      emit(UserError(message: e.getErrorMessage()));
+      emit(UserError(message: e.errorMessage));
     } catch (e) {
       print("app error ${e.toString()}");
       emit(UserError(message: e.toString()));
@@ -68,7 +68,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(OtpVerified(userModel: userModel.data!));
     } on ServerError catch (e) {
       print("object server error ${e.toString()}");
-      emit(UserError(message: e.getErrorMessage()));
+      emit(UserError(message: e.errorMessage));
     } catch (e) {
       emit(UserError(message: e.toString()));
     }

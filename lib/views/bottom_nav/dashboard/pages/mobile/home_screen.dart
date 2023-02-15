@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mcs/blocs/category/category_bloc.dart';
+import 'package:mcs/blocs/data/data_bloc.dart';
 import 'package:mcs/blocs/navigation/navigationbloc.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/models/category/category_model.dart';
@@ -88,7 +89,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
                 const SizedBox(height: 10),
-                const PromotionalBanner(),
+                BlocBuilder<DataBloc, DataState>(builder: (context, state) {
+                  if (state is CityLoaded) {
+                    print(state.cities[0].cityName);
+                  }
+                  return const PromotionalBanner();
+                }),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Row(

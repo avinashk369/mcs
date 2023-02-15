@@ -1,6 +1,6 @@
 library product_list;
 
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badge;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/navigation/navigationbloc.dart';
@@ -54,8 +54,8 @@ class ProductList extends StatelessWidget {
                 Builder(builder: (context) {
                   final state = context.watch<ProductBloc>().state;
 
-                  return Badge(
-                    position: BadgePosition.topEnd(top: 5, end: 10),
+                  return badge.Badge(
+                    position: badge.BadgePosition.topEnd(top: 5, end: 10),
                     // animationDuration:
                     //     const Duration(milliseconds: 300),
                     // animationType: BadgeAnimationType.slide,

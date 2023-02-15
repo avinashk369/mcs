@@ -3,16 +3,13 @@ library dashboard;
 import 'dart:async';
 import 'dart:math';
 
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badge;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mcs/blocs/login/login_bloc.dart';
 import 'package:mcs/blocs/navigation/navigation_bloc.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/blocs/user/userbloc.dart';
-import 'package:mcs/resources/product/product_repositoryImpl.dart';
-import 'package:mcs/resources/user/user_repository.dart';
 import 'package:mcs/resources/user/user_repositoryimpl.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/widgets/loading_ui.dart';
@@ -23,7 +20,8 @@ part 'components/promotional_banner.dart';
 part 'components/subjects_list.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+  const Dashboard({Key? key, required this.message}) : super(key: key);
+  final String message;
 
   @override
   _DashboardState createState() => _DashboardState();
@@ -35,6 +33,7 @@ class _DashboardState extends State<Dashboard> {
   late String token;
   @override
   void initState() {
+    print("message from web ${widget.message}");
     userId = PreferenceUtils.getString(user_id);
     token = PreferenceUtils.getString(accessToken);
     super.initState();
@@ -42,7 +41,8 @@ class _DashboardState extends State<Dashboard> {
 
 // navigate to login screen if user taps on index where authentication is required
   Future<void> checkCredsAndNavigate(int index, BuildContext context) async {
-    context.read<NavigationBloc>().changeNavigation(index);
+    //context.read<NavigationBloc>().changeNavigation(index);
+    Navigator.of(context).pop("poped");
   }
 
   @override
@@ -92,9 +92,9 @@ class _DashboardState extends State<Dashboard> {
                                 final state =
                                     context.watch<ProductBloc>().state;
 
-                                return Badge(
-                                  position:
-                                      BadgePosition.topEnd(end: -5, top: -5),
+                                return badge.Badge(
+                                  position: badge.BadgePosition.topEnd(
+                                      end: -5, top: -5),
                                   // animationDuration:
                                   //     const Duration(milliseconds: 300),
                                   // animationType: BadgeAnimationType.slide,
@@ -115,9 +115,9 @@ class _DashboardState extends State<Dashboard> {
                             ? Builder(builder: (context) {
                                 final state =
                                     context.watch<ProductBloc>().state;
-                                return Badge(
-                                  position:
-                                      BadgePosition.topEnd(end: -5, top: -5),
+                                return badge.Badge(
+                                  position: badge.BadgePosition.topEnd(
+                                      end: -5, top: -5),
                                   badgeContent: state.maybeMap(
                                     loaded: (res) => Text(
                                       res.addedProducts!.length.toString(),

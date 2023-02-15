@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mcs/models/ServerError.dart';
+import 'package:mcs/models/server_error.dart';
 import 'package:mcs/models/category/category_model.dart';
 import 'package:mcs/models/subcat/subcat_model.dart';
 import 'package:mcs/resources/category/category_repository.dart';
@@ -27,7 +27,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
 
       emit(CategoryLoaded(categories: categories));
     } on ServerError catch (e) {
-      emit(CategoryError(message: e.getErrorMessage()));
+      emit(CategoryError(message: e.errorMessage));
     } catch (e) {
       emit(CategoryError(message: e.toString()));
     }
@@ -42,7 +42,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
 
       emit(SubcatLoaded(subcats: subcats));
     } on ServerError catch (e) {
-      emit(CategoryError(message: e.getErrorMessage()));
+      emit(CategoryError(message: e.errorMessage));
     } catch (e) {
       emit(CategoryError(message: e.toString()));
     }

@@ -10,30 +10,27 @@ class ServerError implements Exception {
     _handleError(error);
   }
 
-  getErrorCode() {
-    return _errorCode;
-  }
-
-  getErrorMessage() {
-    return _errorMessage;
-  }
+  String get errorMessage => _errorMessage;
+  int get errorCode => _errorCode;
 
   _handleError(Object error) {
     if (error is DioError) {
+      _errorCode = error.response!.statusCode!;
+
       switch (error.type) {
         case DioErrorType.cancel:
           _errorMessage = "Request was cancelled";
           break;
-        case DioErrorType.connectTimeout:
+        case DioErrorType.connectionTimeout:
           _errorMessage = "Connection timeout";
           break;
-        case DioErrorType.other:
+        case DioErrorType.unknown:
           _errorMessage = "Unexpected value returned from API";
           break;
         case DioErrorType.receiveTimeout:
           _errorMessage = "Receive timeout in connection";
           break;
-        case DioErrorType.response:
+        case DioErrorType.badResponse:
           final body = json.decode(error.response.toString());
           print("error response $body");
           //_errorMessage = body.message ?? "Something went wrong";
@@ -49,8 +46,14 @@ class ServerError implements Exception {
         case DioErrorType.sendTimeout:
           _errorMessage = "Receive timeout in send request";
           break;
+        case DioErrorType.badCertificate:
+          _errorMessage = 'Invalid certificate';
+          break;
+        case DioErrorType.connectionError:
+          _errorMessage = 'Unable to connect';
+          break;
       }
-      return _errorMessage;
     }
+    return _errorMessage;
   }
 }

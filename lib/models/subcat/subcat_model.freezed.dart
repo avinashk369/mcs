@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'subcat_model.dart';
 
@@ -34,18 +34,22 @@ mixin _$SubcatModel {
 abstract class $SubcatModelCopyWith<$Res> {
   factory $SubcatModelCopyWith(
           SubcatModel value, $Res Function(SubcatModel) then) =
-      _$SubcatModelCopyWithImpl<$Res>;
+      _$SubcatModelCopyWithImpl<$Res, SubcatModel>;
+  @useResult
   $Res call({String? id, String? name, String? catId});
 }
 
 /// @nodoc
-class _$SubcatModelCopyWithImpl<$Res> implements $SubcatModelCopyWith<$Res> {
+class _$SubcatModelCopyWithImpl<$Res, $Val extends SubcatModel>
+    implements $SubcatModelCopyWith<$Res> {
   _$SubcatModelCopyWithImpl(this._value, this._then);
 
-  final SubcatModel _value;
   // ignore: unused_field
-  final $Res Function(SubcatModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -53,19 +57,19 @@ class _$SubcatModelCopyWithImpl<$Res> implements $SubcatModelCopyWith<$Res> {
     Object? catId = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      catId: catId == freezed
+      catId: freezed == catId
           ? _value.catId
           : catId // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -76,19 +80,19 @@ abstract class _$$_SubcatModelCopyWith<$Res>
           _$_SubcatModel value, $Res Function(_$_SubcatModel) then) =
       __$$_SubcatModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String? id, String? name, String? catId});
 }
 
 /// @nodoc
-class __$$_SubcatModelCopyWithImpl<$Res> extends _$SubcatModelCopyWithImpl<$Res>
+class __$$_SubcatModelCopyWithImpl<$Res>
+    extends _$SubcatModelCopyWithImpl<$Res, _$_SubcatModel>
     implements _$$_SubcatModelCopyWith<$Res> {
   __$$_SubcatModelCopyWithImpl(
       _$_SubcatModel _value, $Res Function(_$_SubcatModel) _then)
-      : super(_value, (v) => _then(v as _$_SubcatModel));
+      : super(_value, _then);
 
-  @override
-  _$_SubcatModel get _value => super._value as _$_SubcatModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
@@ -96,15 +100,15 @@ class __$$_SubcatModelCopyWithImpl<$Res> extends _$SubcatModelCopyWithImpl<$Res>
     Object? catId = freezed,
   }) {
     return _then(_$_SubcatModel(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: name == freezed
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      catId: catId == freezed
+      catId: freezed == catId
           ? _value.catId
           : catId // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -139,27 +143,26 @@ class _$_SubcatModel implements _SubcatModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SubcatModel &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.catId, catId));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.catId, catId) || other.catId == catId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(catId));
+  int get hashCode => Object.hash(runtimeType, id, name, catId);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SubcatModelCopyWith<_$_SubcatModel> get copyWith =>
       __$$_SubcatModelCopyWithImpl<_$_SubcatModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SubcatModelToJson(this);
+    return _$$_SubcatModelToJson(
+      this,
+    );
   }
 }
 
@@ -173,11 +176,11 @@ abstract class _SubcatModel implements SubcatModel {
       _$_SubcatModel.fromJson;
 
   @override
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get catId => throw _privateConstructorUsedError;
+  String? get catId;
   @override
   @JsonKey(ignore: true)
   _$$_SubcatModelCopyWith<_$_SubcatModel> get copyWith =>

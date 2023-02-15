@@ -10,6 +10,7 @@ import 'package:mcs/views/appbar/cusotm_appbar.dart';
 import 'package:mcs/views/bottom_nav/custom_appbar.dart';
 
 import '../../blocs/user/userbloc.dart';
+import '../../widgets/themes/config.dart';
 
 class UserSettings extends StatelessWidget {
   const UserSettings({Key? key}) : super(key: key);
@@ -23,9 +24,6 @@ class UserSettings extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        // appBar: const CustomAppbar(
-        //   title: 'Settings',
-        // ),
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
@@ -51,6 +49,7 @@ class UserSettings extends StatelessWidget {
                   listTileCard(
                     'My Vehicles',
                     () {
+                      currentTheme.toggleTheme();
                       print("On tapped");
                     },
                     CachedNetworkImage(imageUrl: carImage),
@@ -72,8 +71,10 @@ class UserSettings extends StatelessWidget {
                   listTileCard(
                     'Log out',
                     () async {
+                      final navigator = Navigator.of(context);
                       await PreferenceUtils.clear();
-                      Navigator.of(context).pushNamedAndRemoveUntil(
+
+                      navigator.pushNamedAndRemoveUntil(
                           homeRoute, (Route<dynamic> route) => false);
                     },
                     const Icon(

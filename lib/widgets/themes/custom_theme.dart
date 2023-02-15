@@ -13,6 +13,7 @@ class CustomTheme with ChangeNotifier {
     notifyListeners();
   }
 
+  /// this theme will be used for online canteen
   static ThemeData get lightTheme {
     //1
     return ThemeData(
