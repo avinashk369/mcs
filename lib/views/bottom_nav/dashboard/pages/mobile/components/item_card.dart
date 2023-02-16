@@ -17,7 +17,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
-      width: MediaQuery.of(context).size.height * .3,
+      width: MediaQuery.of(context).size.height * .23,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
         child: Stack(
@@ -37,7 +37,7 @@ class ItemCard extends StatelessWidget {
                         topLeft: Radius.circular(3),
                         topRight: Radius.circular(3)),
                     child: SizedBox(
-                      height: 150,
+                      height: MediaQuery.of(context).size.height * .18,
                       width: double.infinity,
                       child: CachedNetworkImage(
                         imageUrl: product.thumbnail!,
@@ -52,15 +52,16 @@ class ItemCard extends StatelessWidget {
                   Text(
                     product.name!,
                     style: kLabelStyleBold,
-                  ),
+                  ).horizontalPadding(5),
                   Text(
                     "size - 1Kg",
                     style: kLabelStyleBold,
-                  ),
+                  ).horizontalPadding(5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
+                        flex: 1,
                         child: RichText(
                             text: TextSpan(children: [
                           TextSpan(
@@ -76,15 +77,21 @@ class ItemCard extends StatelessWidget {
                                   decoration: TextDecoration.lineThrough)),
                         ])),
                       ),
-                      const SizedBox(),
-                      Expanded(
-                        child: BlocBuilder<ProductBloc, ProductState>(
-                          builder: ((context, state) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Flexible(
-                                  child: IconButton(
+                      Chip(
+                        backgroundColor: redColor.withOpacity(.1),
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        visualDensity: VisualDensity.compact,
+                        label: SizedBox(
+                          width: 70,
+                          child: BlocBuilder<ProductBloc, ProductState>(
+                            builder: ((context, state) {
+                              return Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconButton(
+                                    padding: EdgeInsets.zero,
+                                    constraints: const BoxConstraints(),
                                     onPressed: () {
                                       removeFromCart(product.copyWith(
                                           count: product.count > 1
@@ -94,29 +101,34 @@ class ItemCard extends StatelessWidget {
                                     icon:
                                         const Icon(Icons.remove_circle_outline),
                                   ),
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    product.count.toString(),
-                                    style: kLabelStyleBold.copyWith(
-                                      fontSize: 22,
+                                  SizedBox(
+                                    width: 20,
+                                    child: FittedBox(
+                                      child: Text(
+                                        product.count.toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineSmall,
+                                      ).horizontalPadding(3),
                                     ),
                                   ),
-                                ),
-                                Flexible(
-                                  child: IconButton(
+                                  IconButton(
+                                    padding: EdgeInsets.zero,
+                                    constraints: const BoxConstraints(),
                                     onPressed: () => addToCart(product.copyWith(
                                         count: product.count + 1)),
-                                    icon: const Icon(Icons.add_circle_outline),
+                                    icon: const Icon(
+                                      Icons.add_circle_outline,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            );
-                          }),
+                                ],
+                              );
+                            }),
+                          ),
                         ),
                       ),
                     ],
-                  ),
+                  ).horizontalPadding(5),
                   const SizedBox(
                     height: 3,
                   ),

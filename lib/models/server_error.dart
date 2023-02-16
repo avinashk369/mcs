@@ -4,7 +4,7 @@ import 'package:dio/dio.dart' hide Headers;
 
 class ServerError implements Exception {
   late int _errorCode;
-  String _errorMessage = "";
+  late String _errorMessage;
 
   ServerError.withError({required Object error}) {
     _handleError(error);
@@ -31,6 +31,10 @@ class ServerError implements Exception {
           _errorMessage = "Receive timeout in connection";
           break;
         case DioErrorType.badResponse:
+          // _errorMessage = _handleMessage(
+          //   error.response!.statusCode!,
+          //   error.response!.data!,
+          // );
           final body = json.decode(error.response.toString());
           print("error response $body");
           //_errorMessage = body.message ?? "Something went wrong";
@@ -52,8 +56,32 @@ class ServerError implements Exception {
         case DioErrorType.connectionError:
           _errorMessage = 'Unable to connect';
           break;
+        default:
+          _errorMessage = 'Something went wrong';
       }
     }
     return _errorMessage;
   }
+
+  String _handleMessage(int? statusCode, dynamic error) {
+    switch (statusCode) {
+      case 400:
+        return 'Bad request';
+      case 401:
+        return 'Unauthorized';
+      case 403:
+        return 'Forbidden';
+      case 404:
+        return error['message'];
+      case 500:
+        return 'Internal server error';
+      case 502:
+        return 'Bad gateway';
+      default:
+        return 'Oops something went wrong';
+    }
+  }
+
+  @override
+  String toString() => _errorMessage;
 }

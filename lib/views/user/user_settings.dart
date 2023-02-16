@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/resources/user/user_repositoryimpl.dart';
 import 'package:mcs/routes/route_constants.dart';
 import 'package:mcs/utils/utils.dart';
-import 'package:mcs/views/appbar/cusotm_appbar.dart';
 import 'package:mcs/views/bottom_nav/custom_appbar.dart';
 
 import '../../blocs/user/userbloc.dart';
@@ -53,6 +52,7 @@ class UserSettings extends StatelessWidget {
                       print("On tapped");
                     },
                     CachedNetworkImage(imageUrl: carImage),
+                    context,
                   ),
                   listTileCard(
                     'My Wallet',
@@ -60,6 +60,7 @@ class UserSettings extends StatelessWidget {
                     const Icon(
                       Icons.wallet_membership,
                     ),
+                    context,
                   ),
                   listTileCard(
                     'Help',
@@ -67,6 +68,7 @@ class UserSettings extends StatelessWidget {
                     const Icon(
                       Icons.help,
                     ),
+                    context,
                   ),
                   listTileCard(
                     'Log out',
@@ -81,6 +83,7 @@ class UserSettings extends StatelessWidget {
                       Icons.exit_to_app,
                       color: redColor,
                     ),
+                    context,
                   ),
                 ],
               ),
@@ -91,7 +94,9 @@ class UserSettings extends StatelessWidget {
     );
   }
 
-  Widget listTileCard(String title, Function() onTap, Widget child) => InkWell(
+  Widget listTileCard(
+          String title, Function() onTap, Widget child, BuildContext context) =>
+      InkWell(
         onTap: onTap,
         child: Card(
           elevation: 0,
@@ -118,7 +123,8 @@ class UserSettings extends StatelessWidget {
                 ),
                 Text(
                   title,
-                  style: kLabelStyleBold.copyWith(fontSize: 12),
+                  style: kLabelStyleBold.copyWith(
+                      fontSize: 12, color: Theme.of(context).primaryColor),
                 ),
               ],
             ),

@@ -1,6 +1,5 @@
 library home_screen;
 
-import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/custom_appbar.dart';
 import 'package:mcs/views/bottom_nav/dashboard/components/search_bar.dart';
 import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
-import 'package:mcs/widgets/circular_image.dart';
+import 'package:mcs/widgets/extensions/widget_modifier.dart';
 import 'package:mcs/widgets/loading_ui.dart';
 import 'package:mcs/widgets/placeholders/product_holder.dart';
 

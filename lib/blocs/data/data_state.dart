@@ -7,4 +7,6 @@ class DataState with _$DataState {
   const factory DataState.cityLoaded({required List<CityModel> cities}) =
       CityLoaded;
   const factory DataState.error({required String message}) = DataError;
+  const factory DataState.themeUpdated({required bool isUpdated}) =
+      ThemeUpdated;
 }

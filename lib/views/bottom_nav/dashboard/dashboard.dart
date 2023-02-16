@@ -41,8 +41,7 @@ class _DashboardState extends State<Dashboard> {
 
 // navigate to login screen if user taps on index where authentication is required
   Future<void> checkCredsAndNavigate(int index, BuildContext context) async {
-    //context.read<NavigationBloc>().changeNavigation(index);
-    Navigator.of(context).pop("poped");
+    context.read<NavigationBloc>().changeNavigation(index);
   }
 
   @override

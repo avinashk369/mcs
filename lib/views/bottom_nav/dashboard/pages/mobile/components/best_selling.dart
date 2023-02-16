@@ -14,7 +14,7 @@ class BestSelling extends StatelessWidget {
 
     return BlocBuilder<NavigationBloc, int>(builder: (context, state) {
       return SizedBox(
-        height: MediaQuery.of(context).size.height * .75,
+        height: MediaQuery.of(context).size.height * .62,
         child: ListView.separated(
           separatorBuilder: (_, __) => const SizedBox(width: 0),
           scrollDirection: Axis.horizontal,
@@ -26,7 +26,7 @@ class BestSelling extends StatelessWidget {
               children: [
                 ItemCard(
                   product: products[(listSize ~/ itemCount) * 0 + index],
-                  height: MediaQuery.of(context).size.height * .37,
+                  height: MediaQuery.of(context).size.height * .3,
                   addToCart: (product) {
                     context
                         .read<ProductBloc>()
@@ -38,7 +38,7 @@ class BestSelling extends StatelessWidget {
                 ),
                 ItemCard(
                   product: products[(listSize ~/ itemCount) * 1 + index],
-                  height: MediaQuery.of(context).size.height * .37,
+                  height: MediaQuery.of(context).size.height * .3,
                   addToCart: (product) {
                     context
                         .read<ProductBloc>()

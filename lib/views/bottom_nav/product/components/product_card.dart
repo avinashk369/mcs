@@ -46,7 +46,7 @@ class ProductCard extends StatelessWidget {
                           topLeft: Radius.circular(3),
                           topRight: Radius.circular(3)),
                       child: SizedBox(
-                        height: height * .7,
+                        height: height * .8,
                         width: double.infinity,
                         child: CachedNetworkImage(
                           imageUrl: productModel.thumbnail!,
@@ -59,89 +59,86 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 5),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 5,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(productModel.brand!,
-                              style: kLabelStyle.copyWith(
-                                  fontSize: 11, color: Colors.grey[400])),
-                          Text(
-                            productModel.name!,
-                            maxLines: 2,
-                            style: kLabelStyleBold,
-                          ),
-                          Text(
-                            "size - 1Kg",
-                            style: kLabelStyleBold,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              RichText(
-                                  text: TextSpan(children: [
-                                TextSpan(
-                                    text:
-                                        "₹${productModel.offerPrice.toString()}",
-                                    style: kLabelStyleBold.copyWith(
-                                      fontSize: 12,
-                                    )),
-                                TextSpan(
-                                    text: " ",
-                                    style: kLabelStyleBold.copyWith(
-                                      fontSize: 12,
-                                    )),
-                                TextSpan(
-                                    text: "₹${productModel.price.toString()}",
-                                    style: kLabelStyleBold.copyWith(
-                                        fontSize: 10,
-                                        color: greyColor,
-                                        decoration:
-                                            TextDecoration.lineThrough)),
-                              ])),
-                              InkWell(
-                                onTap: () => (state is ProductLoaded) &&
-                                        state.addedProducts!
-                                            .contains(productModel)
-                                    ? deleteFromCart(productModel)
-                                    : addToCart(productModel),
-                                child: (state is ProductLoaded) &&
-                                        state.addedProducts!
-                                            .contains(productModel)
-                                    ? const Icon(
-                                        Icons.delete,
-                                        color: redColor,
-                                      )
-                                    : const Icon(
-                                        Icons.shopping_cart,
-                                        color: greenColor,
-                                      ),
-                              )
-                            ],
-                          ),
-                          // RichText(
-                          //   text: TextSpan(
-                          //     children: [
-                          //       TextSpan(
-                          //         text: productModel.rating.toString(),
-                          //         style: kLabelStyleBold,
-                          //       ),
-                          //       const WidgetSpan(
-                          //         child: Icon(
-                          //           Icons.star,
-                          //           color: Colors.amber,
-                          //           size: 10,
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
-                        ],
-                      ),
-                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(productModel.brand!,
+                            style: kLabelStyle.copyWith(
+                                fontSize: 11, color: Colors.grey[400])),
+                        Text(
+                          productModel.name!,
+                          maxLines: 2,
+                          style: kLabelStyleBold,
+                        ),
+                        Text(
+                          "size - 1Kg",
+                          style: kLabelStyleBold,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                  text:
+                                      "₹${productModel.offerPrice.toString()}",
+                                  style: kLabelStyleBold.copyWith(
+                                    fontSize: 12,
+                                  )),
+                              TextSpan(
+                                  text: " ",
+                                  style: kLabelStyleBold.copyWith(
+                                    fontSize: 12,
+                                  )),
+                              TextSpan(
+                                  text: "₹${productModel.price.toString()}",
+                                  style: kLabelStyleBold.copyWith(
+                                      fontSize: 10,
+                                      color: greyColor,
+                                      decoration: TextDecoration.lineThrough)),
+                            ])),
+                            InkWell(
+                              onTap: () => (state is ProductLoaded) &&
+                                      state.addedProducts!
+                                          .contains(productModel)
+                                  ? deleteFromCart(productModel)
+                                  : addToCart(productModel),
+                              child: (state is ProductLoaded) &&
+                                      state.addedProducts!
+                                          .contains(productModel)
+                                  ? const Icon(
+                                      Icons.delete,
+                                      color: redColor,
+                                    )
+                                  : const Icon(
+                                      Icons.shopping_cart,
+                                      color: greenColor,
+                                    ),
+                            )
+                          ],
+                        ),
+                        // RichText(
+                        //   text: TextSpan(
+                        //     children: [
+                        //       TextSpan(
+                        //         text: productModel.rating.toString(),
+                        //         style: kLabelStyleBold,
+                        //       ),
+                        //       const WidgetSpan(
+                        //         child: Icon(
+                        //           Icons.star,
+                        //           color: Colors.amber,
+                        //           size: 10,
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                      ],
+                    ).horizontalPadding(5),
                   ],
                 ),
               ),

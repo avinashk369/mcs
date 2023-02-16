@@ -17,6 +17,7 @@ import 'blocs/product/productbloc.dart';
 import 'resources/category/category_repositoryImpl.dart';
 import 'routes/route_constants.dart';
 import 'services/ApiClient.dart';
+import 'widgets/themes/config.dart';
 import 'widgets/themes/custom_theme.dart';
 
 void main() async {
@@ -51,29 +52,50 @@ void main() async {
   runApp(MyApp(apiClient: apiClient));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key, required this.apiClient}) : super(key: key);
   final ApiClient apiClient;
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    currentTheme.addListener(() {
+      print("ok i am listening");
+
+      /// if dynamic theming is required
+      /// can be also used to check separate theme for different client
+
+      // setState(() {
+      //   print("what do you want me to do");
+      // });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
-            create: (context) => DataRepositoryImpl(apiClient: apiClient)),
+            create: (context) =>
+                DataRepositoryImpl(apiClient: widget.apiClient)),
         RepositoryProvider(
           create: (context) => UserRepositoryImpl(
-            apiClient: apiClient,
+            apiClient: widget.apiClient,
           ),
         ),
         RepositoryProvider(
           create: (_) => ProductRepositoryImpl(
-            apiClient: apiClient,
+            apiClient: widget.apiClient,
           ),
         ),
         RepositoryProvider(
           create: (_) => CategoryRepositoryImpl(
-            apiClient: apiClient,
+            apiClient: widget.apiClient,
           ),
         ),
       ],
@@ -107,7 +129,9 @@ class MyApp extends StatelessWidget {
           initialRoute: homeRoute,
           onGenerateRoute: RouteGenerator.generateRoute,
           debugShowCheckedModeBanner: false,
-          theme: CustomTheme.lightTheme,
+          theme: CustomTheme.lightTheme, //3
+          darkTheme: CustomTheme.lightTheme, //4
+          themeMode: currentTheme.currentTheme,
         ),
       ),
     );
