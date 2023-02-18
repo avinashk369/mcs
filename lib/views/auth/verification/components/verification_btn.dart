@@ -18,10 +18,10 @@ class VerificationBtn extends StatelessWidget {
     return BlocListener<UserBloc, UserState>(
       listener: (context, state) {
         if (state is OtpVerified) {
-          PreferenceUtils.putString(accessToken, state.userModel.token!);
-          PreferenceUtils.putInt(mobileNumber, state.userModel.mobile!);
-          PreferenceUtils.putString(user_type, state.userModel.userType!);
-          PreferenceUtils.putString(user_id, state.userModel.id!);
+          // PreferenceUtils.putString(accessToken, state.userModel.token!);
+          // PreferenceUtils.putInt(mobileNumber, state.userModel.mobile!);
+          // PreferenceUtils.putString(user_type, state.userModel.userType!);
+          // PreferenceUtils.putString(user_id, state.userModel.id!);
 
           Navigator.of(context).popAndPushNamed(dashboardRoute,
               arguments: state.userModel.token!);

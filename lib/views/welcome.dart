@@ -30,7 +30,7 @@ class _WelcomeState extends State<Welcome> {
     creationTime = PreferenceUtils.getString(creation_time);
     lastSignInTime = PreferenceUtils.getString(sign_in_time);
     print(
-        "user metadata ${userId} userId \n ${creationTime}  creation time \n ${lastSignInTime}  last sign in time");
+        "user metadata $userId userId \n $creationTime  creation time \n $lastSignInTime  last sign in time");
     super.initState();
   }
 

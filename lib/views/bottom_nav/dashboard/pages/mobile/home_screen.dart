@@ -55,7 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: kToolbarHeight * 2,
+            expandedHeight: kToolbarHeight * 2.3,
+
+            /// change the value to add padding between appbar and searchbar
             automaticallyImplyLeading: false,
             floating: true,
             pinned: true,
@@ -69,7 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 background: Column(
                   children: const [
                     CustomAppBar(
-                      title: 'Home',
+                      title: 'Village doohri',
+                      isSubtitle: true,
+                      subtitle: 'Village doohri, Pilkuhwa UP',
                     ),
                   ],
                 )),
@@ -89,10 +93,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 10),
                 BlocBuilder<DataBloc, DataState>(builder: (context, state) {
-                  if (state is CityLoaded) {
-                    print(state.cities[0].cityName);
-                  }
-                  return const PromotionalBanner();
+                  return state.maybeMap(
+                    // cityLoaded: (res) =>
+                    //     print('city loaded ${res.cities.length}'),
+                    // bannersLoaded: (res) =>
+                    //     print('banner list ${res.banners.length}'),
+                    // error: (value) => print(value.message),
+                    orElse: () => const PromotionalBanner(),
+                  );
                 }),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -241,7 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       loading: (_) => LoadingUI(),
                       loaded: (res) => DailyNeed(
                         products: res.dailyNeeds!,
-                        height: 250,
+                        height: 280,
                       ),
                       error: (err) => Text(err.message),
                     );
@@ -277,7 +285,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       loading: (_) => LoadingUI(),
                       loaded: (res) => DairyBakery(
                         products: res.dairyProducts!,
-                        height: 250,
+                        height: 280,
                       ),
                       error: (err) => Text(err.message),
                     );
