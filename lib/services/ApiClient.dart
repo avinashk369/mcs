@@ -1,20 +1,27 @@
 import 'package:dio/dio.dart';
 import 'package:mcs/models/models.dart'
-    show CityModel, UserModel, PaymentModel, BaseResponse;
+    show CityModel, UserModel, PaymentModel, BaseResponse, BannerModel;
 import 'package:mcs/models/payment/order.model.dart';
 import 'package:mcs/models/payment/transfer.model.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:mcs/utils/utils.dart';
+
+import 'api_const.dart';
 
 part 'ApiClient.g.dart';
 
-@RestApi(baseUrl: apiUrl)
+@RestApi(baseUrl: ApiConst.apiUrl)
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
   /// get all city
-  @GET('Api_controller/GetCity')
+  @GET(ApiConst.cityList)
   Future<BaseResponse<List<CityModel>>> getCityList();
+
+  /// get all the banners by city id
+  @POST(ApiConst.banners)
+  @FormUrlEncoded()
+  Future<BaseResponse<List<BannerModel>>> getBanners(
+      @Body() Map<String, dynamic> data);
 
   @GET("Home/HomeFeaturesData")
   Future<UserModel> getHomeFeatureData(

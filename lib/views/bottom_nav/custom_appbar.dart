@@ -6,12 +6,14 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
     Key? key,
     required this.title,
     this.actions,
-    this.subtitle = false,
+    this.subtitle,
+    this.isSubtitle = false,
     this.preferredSize = const Size.fromHeight(50.0),
   }) : super(key: key);
   final String title;
   final List<Widget>? actions;
-  final bool subtitle;
+  final String? subtitle;
+  final bool isSubtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +23,9 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(title),
-          subtitle
+          isSubtitle
               ? Text(
-                  appName,
+                  subtitle ?? '',
                   style: kLabelStyleBold.copyWith(color: greyColor),
                 )
               : const SizedBox.shrink(),

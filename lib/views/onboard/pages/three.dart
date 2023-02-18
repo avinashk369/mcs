@@ -131,9 +131,10 @@ class _ThreeState extends State<Three> with TickerProviderStateMixin {
   }
 
   Future<void> _nextPage() async {
+    var navigator = Navigator.of(context);
     await _rippleAnimationController.forward();
-    PreferenceUtils.putBool(has_seen, true);
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
+    //PreferenceUtils.putBool(has_seen, true);
+    navigator.pushReplacement(MaterialPageRoute(
         builder: (BuildContext context) =>
             const UserAuthScreen())); //EmailSignin()
   }

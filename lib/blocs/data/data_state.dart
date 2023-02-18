@@ -9,4 +9,6 @@ class DataState with _$DataState {
   const factory DataState.error({required String message}) = DataError;
   const factory DataState.themeUpdated({required bool isUpdated}) =
       ThemeUpdated;
+  const factory DataState.bannersLoaded({required List<BannerModel> banners}) =
+      BannersLoaded;
 }

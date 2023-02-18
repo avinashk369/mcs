@@ -4,7 +4,7 @@ import 'package:dio/dio.dart' hide Headers;
 
 class ServerError implements Exception {
   late int _errorCode;
-  late String _errorMessage;
+  String _errorMessage = '';
 
   ServerError.withError({required Object error}) {
     _handleError(error);

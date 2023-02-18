@@ -49,7 +49,7 @@ class PersonalCareCard extends StatelessWidget {
                       fit: BoxFit.fitHeight,
                     ),
                   ),
-                ),
+                ).verticalPadding(5).horizontalPadding(5),
                 const SizedBox(
                   width: 10,
                 ),
@@ -57,6 +57,9 @@ class PersonalCareCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(
+                        height: 5,
+                      ),
                       Text(
                         productModel.name!,
                         style: kLabelStyleBold,

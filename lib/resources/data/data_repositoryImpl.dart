@@ -13,9 +13,20 @@ class DataRepositoryImpl extends DataRepository {
     try {
       /// get all the cities
       cities = (await apiClient.getCityList()).data!;
-    } catch (error, stackTrace) {
+    } catch (error) {
       throw ServerError.withError(error: error);
     }
     return cities;
+  }
+
+  @override
+  Future<List<BannerModel>> getBanners(String cityId) async {
+    late List<BannerModel> banners;
+    try {
+      banners = (await apiClient.getBanners({'city_id': cityId})).data!;
+    } catch (error) {
+      throw ServerError.withError(error: error);
+    }
+    return banners;
   }
 }

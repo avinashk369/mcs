@@ -13,9 +13,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository _userRepositoryImpl;
 
   UserBloc(this._userRepositoryImpl) : super(UserInitializing()) {
-    on<UserLoginEvent>((event, emit) => _mapUserLoginEvent(event, emit));
-    on<VerifyOtp>((event, emit) => verifyOtpEvent(event, emit));
-    on<SubmitReview>((event, emit) => submitReviewEvent(event, emit));
+    on<UserLoginEvent>(_userLogin);
+    on<VerifyOtp>(verifyOtpEvent);
+    on<SubmitReview>(submitReviewEvent);
   }
 
   //submit review
@@ -39,15 +39,19 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   /// user login event handeling
-  Future<void> _mapUserLoginEvent(
-      UserLoginEvent event, Emitter<UserState> emit) async {
+  Future<void> _userLogin(UserLoginEvent event, Emitter<UserState> emit) async {
     BaseModel<UserModel>? userModel;
     emit(UserLoading());
 
     try {
-      userModel = await _userRepositoryImpl.userLogin(event.mobileNumber);
+      //userModel = await _userRepositoryImpl.userLogin(event.mobileNumber);
 
-      emit(UserLoaded(userModel: userModel.data!));
+      emit(
+        UserLoaded(
+            userModel: UserModel()
+              ..mobile = int.parse(event.mobileNumber)
+              ..token = ''),
+      );
     } on ServerError catch (e) {
       print("object server error ${e.toString()}");
       emit(UserError(message: e.errorMessage));
@@ -63,9 +67,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     emit(UserLoading());
 
     try {
-      userModel = await _userRepositoryImpl.verifyOtp(
-          event.token, event.mobile, event.otp);
-      emit(OtpVerified(userModel: userModel.data!));
+      // userModel = await _userRepositoryImpl.verifyOtp(
+      //     event.token, event.mobile, event.otp);
+      emit(OtpVerified(userModel: UserModel()..token = ''));
     } on ServerError catch (e) {
       print("object server error ${e.toString()}");
       emit(UserError(message: e.errorMessage));

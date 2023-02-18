@@ -90,21 +90,14 @@ class OtpContr extends StatelessWidget {
                       width: size.width,
                       child: BlocBuilder<LoginBloc, LoginState>(
                         builder: (context, state) {
-                          if (state is ValidOtp) {
-                            return VerificationBtn(
-                              isValid: state.isValid,
-                              otp: state.otp,
-                              token: token,
-                              mobileNumber: mobile,
-                            );
-                          } else {
-                            return VerificationBtn(
-                              isValid: false,
-                              otp: "",
-                              token: token,
-                              mobileNumber: mobile,
-                            );
-                          }
+                          return VerificationBtn(
+                            isValid: (state is ValidOtp) && state.isValid,
+                            otp: (state is ValidOtp) && state.isValid
+                                ? state.otp
+                                : '',
+                            token: token,
+                            mobileNumber: mobile,
+                          );
                         },
                       ),
                     ),

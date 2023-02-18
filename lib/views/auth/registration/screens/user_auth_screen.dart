@@ -38,7 +38,7 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
           // gradient: LinearGradient(
           //   begin: Alignment.topCenter,
           //   end: Alignment.bottomCenter,
-          //   colors: [black, purple],
+          //   colors: [Colors.black, Colors.purple],
           // ),
         ),
         child: AnnotatedRegion<SystemUiOverlayStyle>(

@@ -20,7 +20,6 @@ class CustomTheme with ChangeNotifier {
       //2
       primaryColor: primaryLight,
       scaffoldBackgroundColor: Colors.white,
-      backgroundColor: Colors.white,
       secondaryHeaderColor: secondaryLight,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       cardColor: greyColor,
@@ -86,37 +85,37 @@ class CustomTheme with ChangeNotifier {
       brightness: Brightness.light,
       fontFamily: GoogleFonts.lato().fontFamily,
       textTheme: TextTheme(
-        headline1: kTitleStyle.copyWith(color: darkColor),
-        headline2: kTitleStyleSmall.copyWith(color: darkColor),
-        headline3: kQuoteStyle.copyWith(color: darkColor),
-        caption: kLabelStyle.copyWith(color: darkColor),
-        bodyText1: const TextStyle(
+        displayLarge: kTitleStyle.copyWith(color: darkColor),
+        displayMedium: kTitleStyleSmall.copyWith(color: darkColor),
+        displaySmall: kQuoteStyle.copyWith(color: darkColor),
+        bodySmall: kLabelStyle.copyWith(color: darkColor),
+        bodyLarge: const TextStyle(
           color: darkColor,
           fontSize: 18,
         ),
-        subtitle1: const TextStyle(
+        titleMedium: const TextStyle(
           color: darkColor,
           fontSize: 14,
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
+        foregroundColor: secondaryLight,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3.0)),
         //minimumSize: Size(Get.height * .2, Get.height * .07),
         //elevation: 1,
         textStyle: const TextStyle(fontSize: 18),
-        primary: secondaryLight,
         side: const BorderSide(color: secondaryLight, width: 1),
       )),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          foregroundColor: secondaryLight,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+          backgroundColor: primaryLight,
           textStyle: kLabelStyleBold.copyWith(
             fontSize: 14,
           ),
-          onPrimary: secondaryLight,
-          primary: primaryLight,
         ),
       ),
       buttonTheme: ButtonThemeData(
@@ -125,10 +124,12 @@ class CustomTheme with ChangeNotifier {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
         buttonColor: secondaryLight,
       ),
-      colorScheme: ColorScheme.fromSwatch().copyWith(
-        secondary: secondaryLight,
-        brightness: Brightness.light,
-      ),
+      colorScheme: ColorScheme.fromSwatch()
+          .copyWith(
+            secondary: secondaryLight,
+            brightness: Brightness.light,
+          )
+          .copyWith(background: Colors.white),
     );
   }
 

@@ -39,6 +39,11 @@ class LoginButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(3.0),
           ),
         ),
+        onPressed: isValid
+            ? () => context
+                .read<UserBloc>()
+                .add(UserLoginEvent(mobileNumber: mobileNumber))
+            : null,
         child: isLoading
             ? const CircularProgressIndicator.adaptive(
                 backgroundColor: secondaryLight,
@@ -49,12 +54,5 @@ class LoginButton extends StatelessWidget {
                 Icons.arrow_forward_ios,
                 size: 25,
               ),
-        onPressed: isValid
-            ? () {
-                context
-                    .read<UserBloc>()
-                    .add(UserLoginEvent(mobileNumber: mobileNumber));
-              }
-            : null,
       );
 }

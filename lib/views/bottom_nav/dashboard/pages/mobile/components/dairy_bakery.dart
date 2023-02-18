@@ -20,7 +20,7 @@ class DairyBakery extends StatelessWidget {
           itemBuilder: (_, index) => ProductCard(
                 productModel: products[index],
                 height: 220,
-                width: 150,
+                width: 180,
                 hasOffer: true,
                 offer: "5% Off",
                 addToCart: (msg) {

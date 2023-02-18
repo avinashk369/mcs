@@ -1,5 +1,4 @@
-import 'package:mcs/models/models.dart'
-    show UserModel, UserVehicleModel, BaseModel, BookingModel, ReviewModel;
+import 'package:mcs/models/models.dart' show UserModel, BaseModel, ReviewModel;
 import 'package:mcs/models/payment/order.model.dart';
 
 abstract class UserRepository {

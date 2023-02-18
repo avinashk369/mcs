@@ -39,7 +39,7 @@ class _PromotionalBannerState extends State<PromotionalBanner> {
     return Column(
       children: [
         SizedBox(
-          height: size.height * .25,
+          height: size.height * .22,
           child: PageView.builder(
             itemCount: 5,
             controller: _pageController,

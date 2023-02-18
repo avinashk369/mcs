@@ -37,7 +37,7 @@ class ItemCard extends StatelessWidget {
                         topLeft: Radius.circular(3),
                         topRight: Radius.circular(3)),
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height * .18,
+                      height: MediaQuery.of(context).size.height * .2,
                       width: double.infinity,
                       child: CachedNetworkImage(
                         imageUrl: product.thumbnail!,
@@ -98,8 +98,10 @@ class ItemCard extends StatelessWidget {
                                               ? product.count - 1
                                               : 0));
                                     },
-                                    icon:
-                                        const Icon(Icons.remove_circle_outline),
+                                    icon: const Icon(
+                                      Icons.remove_circle_outline,
+                                      size: 20,
+                                    ),
                                   ),
                                   SizedBox(
                                     width: 20,
@@ -119,6 +121,7 @@ class ItemCard extends StatelessWidget {
                                         count: product.count + 1)),
                                     icon: const Icon(
                                       Icons.add_circle_outline,
+                                      size: 20,
                                     ),
                                   ),
                                 ],

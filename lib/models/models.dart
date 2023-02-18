@@ -8,3 +8,4 @@ export 'review/review_model.dart';
 export 'coupon/coupon_model.dart';
 export 'city/city_model.dart';
 export 'base_response.dart';
+export 'banner/banner_model.dart';

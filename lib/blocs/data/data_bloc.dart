@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mcs/models/server_error.dart';
 
+import '../../models/banner/banner_model.dart';
 import '../../models/models.dart' show CityModel;
 import '../../resources/data/data_repository.dart';
 part 'data_bloc.freezed.dart';
@@ -18,12 +19,25 @@ class DataBloc extends Bloc<DataEvent, DataState> {
       : super(const DataState.initial()) {
     on<LoadCities>(_loadCities);
     on<ChangeTheme>(_changeTheme);
+    on<LoadBanners>(_loadBanners);
   }
   Future _changeTheme(ChangeTheme event, Emitter<DataState> emit) async {
     emit(ThemeUpdated(isUpdated: event.status));
   }
 
-  Future _loadCities(DataEvent event, Emitter<DataState> emit) async {
+  Future _loadBanners(LoadBanners event, Emitter<DataState> emit) async {
+    try {
+      emit(const DataLoading());
+      emit(BannersLoaded(
+          banners: await dataRepositoryImpl.getBanners(event.cityId)));
+    } on ServerError catch (error) {
+      emit(DataError(message: error.errorMessage));
+    } catch (e) {
+      emit(DataError(message: e.toString()));
+    }
+  }
+
+  Future _loadCities(LoadCities event, Emitter<DataState> emit) async {
     try {
       emit(const DataLoading());
       emit(CityLoaded(cities: await dataRepositoryImpl.getCities()));
