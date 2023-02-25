@@ -5,13 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/toggle/index_toggled.dart';
 import 'package:mcs/blocs/toggle/toggle_index_bloc.dart';
-import 'package:mcs/models/subcat/subcat_model.dart';
 import 'package:mcs/utils/utils.dart';
+
+import '../../../models/category/subcat_model.dart';
 part 'subcat_card.dart';
 
 class SubCatList extends StatelessWidget {
   const SubCatList({Key? key, required this.subCategories}) : super(key: key);
-  final List<SubcatModel> subCategories;
+  final List<SubCateModel> subCategories;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class SubCatList extends StatelessWidget {
               shrinkWrap: true,
               itemBuilder: (_, index) => SubCatCard(
                     subcatModel: index == 0
-                        ? const SubcatModel(name: "All", id: "0")
+                        ? const SubCateModel(categoryName: "All", id: "0")
                         : subCategories[index - 1],
                     onTap: (subcat) => context
                         .read<ToggleIndexBloc>()

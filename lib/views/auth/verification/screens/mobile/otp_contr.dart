@@ -12,7 +12,6 @@ class OtpContr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    print("$token login bloc in otp ${context.read<LoginBloc>().hashCode}  ");
     return Column(
       children: [
         const ImageHeader(),
@@ -70,13 +69,12 @@ class OtpContr extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     BlocBuilder<TimerBloc, TimerState>(
-                      builder: (context, state) {
-                        if (state is CountDownstarted) {
-                          return const BuildTimer();
-                        }
-                        return const SizedBox.shrink();
-                      },
-                    ),
+                        builder: (context, state) => state.maybeWhen(
+                            countDownStrated: (countDown, canResend) =>
+                                BuildTimer(
+                                  mobile: mobile,
+                                ),
+                            orElse: () => const SizedBox.shrink())),
                     //BuildTimer(),
                   ],
                 ),
@@ -94,8 +92,7 @@ class OtpContr extends StatelessWidget {
                             isValid: (state is ValidOtp) && state.isValid,
                             otp: (state is ValidOtp) && state.isValid
                                 ? state.otp
-                                : '',
-                            token: token,
+                                : 0,
                             mobileNumber: mobile,
                           );
                         },

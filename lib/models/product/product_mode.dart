@@ -14,12 +14,17 @@ class ProductModel with _$ProductModel {
   )
   const factory ProductModel({
     String? id,
+    String? productId,
     String? name,
-    String? brand,
-    String? desc,
-    String? thumbnail,
-    double? price,
-    double? offerPrice,
+    String? description,
+    String? productImage,
+    String? stockStatus,
+    String? categoryId,
+    String? cityId,
+    String? couponCode,
+    String? createdAt,
+    String? updatedAt,
+    String? productGroup,
     @JsonKey(ignore: true) @Default(0) int count,
     double? rating,
   }) = _ProductModel;

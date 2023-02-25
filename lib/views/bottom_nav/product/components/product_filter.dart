@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mcs/blocs/category/category_bloc.dart';
 import 'package:mcs/blocs/product/productbloc.dart';
+import 'package:mcs/models/category/category_model.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/product/components/product_grid.dart';
 import 'package:mcs/views/bottom_nav/subcategory/subcat_list.dart';
@@ -15,9 +16,11 @@ class ProductFilter extends StatelessWidget implements PreferredSizeWidget {
   const ProductFilter({
     Key? key,
     required this.categoryBloc,
+    required this.onTap,
   })  : preferredSize = const Size.fromHeight(kAppBarHeight),
         super(key: key);
   final CategoryBloc categoryBloc;
+  final Function(CategoryModel categoryModel) onTap;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -30,7 +33,10 @@ class ProductFilter extends StatelessWidget implements PreferredSizeWidget {
             builder: (context, state) {
               return state.maybeMap(
                 initial: (_) => const ProductHolder(),
-                loaded: (res) => CatList(categories: res.categories),
+                loaded: (res) => CatList(
+                  categories: res.categories,
+                  onTap: (category) => onTap(category),
+                ),
                 error: (err) => Text(err.message),
                 orElse: () => const SizedBox.shrink(),
               );

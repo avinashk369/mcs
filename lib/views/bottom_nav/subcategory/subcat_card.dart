@@ -8,8 +8,8 @@ class SubCatCard extends StatelessWidget {
       required this.child,
       required this.index})
       : super(key: key);
-  final SubcatModel subcatModel;
-  final Function(SubcatModel subcatModel) onTap;
+  final SubCateModel subcatModel;
+  final Function(SubCateModel subcatModel) onTap;
   final Widget child;
   final int index;
 
@@ -33,7 +33,7 @@ class SubCatCard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Center(
               child: Text(
-                subcatModel.name!,
+                subcatModel.categoryName!,
                 style: kLabelStyleBold.copyWith(
                     color: state.isSelected && state.index == index
                         ? secondaryLight

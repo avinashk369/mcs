@@ -1,78 +1,59 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'dart:async';
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:mcs/models/models.dart'
-    show UserModel, BaseModel, ServerError, ReviewModel;
-import 'package:mcs/resources/user/user_repository.dart';
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mcs/models/user/user_model.dart';
+
+import '../../models/server_error.dart';
+import '../../resources/user/user_repository.dart';
+part 'user_bloc.freezed.dart';
 part 'user_event.dart';
 part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository _userRepositoryImpl;
-
-  UserBloc(this._userRepositoryImpl) : super(UserInitializing()) {
+  UserBloc(this._userRepositoryImpl) : super(const UserState.initial()) {
     on<UserLoginEvent>(_userLogin);
-    on<VerifyOtp>(verifyOtpEvent);
-    on<SubmitReview>(submitReviewEvent);
-  }
-
-  //submit review
-  Future submitReviewEvent(SubmitReview event, Emitter<UserState> emit) async {
-    emit(UserLoading());
-    try {
-      await Future.delayed(
-        const Duration(seconds: 3),
-      );
-      ReviewModel reviewModel =
-          await _userRepositoryImpl.submitReview(event.token, event.data);
-
-      emit(ReviewSubmitted(message: reviewModel.review!));
-    } on ServerError catch (e) {
-      print("object server error ${e.toString()}");
-      emit(BookingLoadingFailed(error: e.errorMessage));
-    } catch (e) {
-      print("object error ${e.toString()}");
-      emit(BookingLoadingFailed(error: e.toString()));
-    }
+    on<VerifyOtp>(_verifyOtpEvent);
+    on<ResendOtp>(_resendOtp);
   }
 
   /// user login event handeling
   Future<void> _userLogin(UserLoginEvent event, Emitter<UserState> emit) async {
-    BaseModel<UserModel>? userModel;
-    emit(UserLoading());
+    emit(const UserLoading());
 
     try {
-      //userModel = await _userRepositoryImpl.userLogin(event.mobileNumber);
-
-      emit(
-        UserLoaded(
-            userModel: UserModel()
-              ..mobile = int.parse(event.mobileNumber)
-              ..token = ''),
-      );
+      UserModel userModel =
+          await _userRepositoryImpl.userLogin(event.mobileNumber);
+      emit(UserLoaded(userModel: userModel));
     } on ServerError catch (e) {
-      print("object server error ${e.toString()}");
       emit(UserError(message: e.errorMessage));
     } catch (e) {
-      print("app error ${e.toString()}");
       emit(UserError(message: e.toString()));
     }
   }
 
   /// user otp verification event handeling
-  Future<void> verifyOtpEvent(VerifyOtp event, Emitter<UserState> emit) async {
-    BaseModel<UserModel>? userModel;
-    emit(UserLoading());
-
+  Future<void> _verifyOtpEvent(VerifyOtp event, Emitter<UserState> emit) async {
+    emit(const UserLoading());
     try {
-      // userModel = await _userRepositoryImpl.verifyOtp(
-      //     event.token, event.mobile, event.otp);
-      emit(OtpVerified(userModel: UserModel()..token = ''));
+      UserModel userModel =
+          await _userRepositoryImpl.verifyOtp(event.mobileNumber, event.otp);
+      emit(userModel.status!
+          ? UserLoaded(userModel: userModel)
+          : UserError(message: userModel.message!));
     } on ServerError catch (e) {
-      print("object server error ${e.toString()}");
       emit(UserError(message: e.errorMessage));
+    } catch (e) {
+      emit(UserError(message: e.toString()));
+    }
+  }
+
+  /// resend otp event handeling
+  Future<void> _resendOtp(ResendOtp event, Emitter<UserState> emit) async {
+    try {
+      UserModel userModel = await _userRepositoryImpl.resendOtp(event.mobile);
+      emit(UserLoaded(userModel: userModel));
+    } on ServerError catch (error) {
+      emit(UserError(message: error.errorMessage));
     } catch (e) {
       emit(UserError(message: e.toString()));
     }

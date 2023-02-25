@@ -17,9 +17,14 @@ import 'package:mcs/widgets/loading_ui.dart';
 import '../../../blocs/category/categorybloc.dart';
 
 class ProductList extends StatelessWidget {
-  const ProductList({Key? key, required this.category, required this.index})
+  const ProductList(
+      {Key? key,
+      required this.category,
+      required this.index,
+      required this.cityId})
       : super(key: key);
   final CategoryModel category;
+  final String cityId;
   final int index;
 
   @override
@@ -29,7 +34,8 @@ class ProductList extends StatelessWidget {
         BlocProvider<CategoryBloc>(
           create: (context) => CategoryBloc(
             context.read<CategoryRepositoryImpl>(),
-          )..add(const CategoryEvent.loadSubcategory(catId: "1")),
+          )..add(CategoryEvent.loadSubcategory(
+              catId: category.id!, cityId: cityId)),
         ),
 
         // this is for category toggle
@@ -46,7 +52,7 @@ class ProductList extends StatelessWidget {
               expandedHeight: kToolbarHeight * 3,
               automaticallyImplyLeading: true,
               floating: false,
-              title: const Text("Products"),
+              title: Text(category.categoryName!),
               pinned: true,
               snap: false,
               elevation: 0,
@@ -80,6 +86,12 @@ class ProductList extends StatelessWidget {
               ],
               bottom: ProductFilter(
                 categoryBloc: context.read<CategoryBloc>(),
+                onTap: (categoryModel) {
+                  context.read<CategoryBloc>().add(
+                      CategoryEvent.loadSubcategory(
+                          catId: category.id!, cityId: cityId));
+                  context.read<ToggleIndexBloc>().toggleState(index, false);
+                },
               ),
             ),
             BlocBuilder<ProductBloc, ProductState>(

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:mcs/models/models.dart';
-import 'package:mcs/models/payment/order.model.dart';
 import 'package:mcs/resources/user/user_repository.dart';
 import 'package:mcs/services/ApiClient.dart';
 
@@ -10,49 +9,32 @@ class UserRepositoryImpl implements UserRepository {
 
   UserRepositoryImpl({required this.apiClient});
 
-  Future<BaseModel<UserModel>> getHomeData(UserModel userMaster) async {
-    UserModel userMasters;
-    try {
-      userMasters = await apiClient.getHomeFeatureData("accetoken");
-    } catch (error, stacktrace) {
-      print("Exception occured: $error stackTrace: $stacktrace");
-      /**
-       * either api run or failed this method will always return basemodel class
-       * if api fails we set exception in the base model class
-       * if api works then we set api response into basemodel data variable
-       */
-      return BaseModel()..setException(ServerError.withError(error: error));
-    }
-    return BaseModel()..data = userMasters;
-  }
-
   @override
-  Future<BaseModel<UserModel>> userLogin(String mobileNumber) async {
+  Future<UserModel> userLogin(String mobileNumber) async {
     late UserModel userMasters;
     try {
-      Map<String, dynamic> body = {"mobile": mobileNumber, "user_type": "user"};
-      userMasters = await apiClient.userLogin(body);
-    } catch (error, stacktrace) {
+      Map<String, dynamic> body = {"mobile": mobileNumber};
+      userMasters = (await apiClient.userLogin(body));
+    } catch (error, _) {
       throw ServerError.withError(error: error);
     }
-    return BaseModel()..data = userMasters;
+    return userMasters;
   }
 
   @override
-  Future<BaseModel<UserModel>> verifyOtp(
-      String token, String mobile, String otp) async {
-    UserModel userMasters = UserModel();
+  Future<UserModel> verifyOtp(String mobile, int otp) async {
+    late UserModel userModel;
     try {
-      Map<String, dynamic> body = {"otp": otp, "mobile": mobile};
-      userMasters = await apiClient.otpVerificaiotn("Bearer " + token, body);
+      Map<String, dynamic> body = {"otp": otp, "mobile_number": mobile};
+      userModel = await apiClient.otpVerificaiotn(body);
     } catch (error, stacktrace) {
       throw ServerError.withError(error: error);
     }
-    return BaseModel()..data = userMasters;
+    return userModel;
   }
 
   @override
-  Future<BaseModel<UserModel>> register(
+  Future<UserModel> register(
       Map<String, dynamic> registerData, String token) async {
     UserModel userMasters = UserModel();
     try {
@@ -61,33 +43,18 @@ class UserRepositoryImpl implements UserRepository {
     } catch (error, stacktrace) {
       throw ServerError.withError(error: error);
     }
-    return BaseModel()..data = userMasters;
+    return userMasters;
   }
 
   @override
-  Future<ReviewModel> submitReview(
-      String token, Map<String, dynamic> data) async {
-    ReviewModel reviewModel;
+  Future<UserModel> resendOtp(String mobileNumber) async {
+    late UserModel userMasters;
     try {
-      Map<String, dynamic> reviewdata = {
-        "id": "1",
-        "review": "Brilliant service"
-      };
-      reviewModel = ReviewModel.fromJson(reviewdata);
-    } catch (error) {
+      Map<String, dynamic> body = {"mobile": mobileNumber};
+      userMasters = (await apiClient.resendOtp(body));
+    } catch (error, _) {
       throw ServerError.withError(error: error);
     }
-    return reviewModel;
-  }
-
-  @override
-  Future<OrderModel> createOrderApi(String token, OrderModel data) async {
-    late OrderModel orderModel;
-    try {
-      orderModel = await apiClient.createOrderApi("Basic $token", data);
-    } catch (error) {
-      throw ServerError.withError(error: error);
-    }
-    return orderModel;
+    return userMasters;
   }
 }

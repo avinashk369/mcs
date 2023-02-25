@@ -1,10 +1,8 @@
-import 'dart:convert';
-
-import 'package:flutter/services.dart';
 import 'package:mcs/models/category/category_model.dart';
-import 'package:mcs/models/subcat/subcat_model.dart';
 import 'package:mcs/services/ApiClient.dart';
 
+import '../../models/category/subcat_model.dart';
+import '../../models/server_error.dart';
 import 'category_repository.dart';
 
 class CategoryRepositoryImpl extends CategoryRepository {
@@ -13,34 +11,27 @@ class CategoryRepositoryImpl extends CategoryRepository {
   CategoryRepositoryImpl({required this.apiClient});
 
   @override
-  Future<List<CategoryModel>> getCategories() async {
+  Future<List<CategoryModel>> getCategories(String cityId) async {
     late List<CategoryModel> categories;
     try {
-      var response = await rootBundle.loadString('assets/jsons/category.json');
-      categories = (json.decode(response) as List)
-          .map((data) => CategoryModel.fromJson(data))
-          .toList();
-
-      categories;
+      categories = (await apiClient.getCategories({'city_id': cityId})).data!;
     } catch (error) {
-      throw Exception("Something went wrong");
+      throw ServerError.withError(error: error);
     }
     return categories;
   }
 
   @override
-  Future<List<SubcatModel>> getSubCategories(String catId) async {
-    late List<SubcatModel> subcats;
+  Future<List<SubCateModel>> getSubCategories(
+      String cityId, String catId) async {
+    late List<SubCateModel> subCategories;
     try {
-      var response = await rootBundle.loadString('assets/jsons/subcat.json');
-      subcats = (json.decode(response) as List)
-          .map((data) => SubcatModel.fromJson(data))
-          .toList();
-
-      subcats;
+      subCategories = (await apiClient
+              .getSubCategories({'city_id': cityId, 'category_id': catId}))
+          .data!;
     } catch (error) {
-      throw Exception("Something went wrong");
+      throw ServerError.withError(error: error);
     }
-    return subcats;
+    return subCategories;
   }
 }

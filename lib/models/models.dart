@@ -9,3 +9,5 @@ export 'coupon/coupon_model.dart';
 export 'city/city_model.dart';
 export 'base_response.dart';
 export 'banner/banner_model.dart';
+export 'category/subcat_model.dart';
+export 'category/category_model.dart';

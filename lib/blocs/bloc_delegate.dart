@@ -10,7 +10,7 @@ class SimpleBlocDelegate extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    //print(event);
+    print(event);
   }
 
   @override
@@ -22,7 +22,7 @@ class SimpleBlocDelegate extends BlocObserver {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    //print('${bloc.runtimeType} $transition');
+    print('${bloc.runtimeType} $transition');
   }
 
   @override

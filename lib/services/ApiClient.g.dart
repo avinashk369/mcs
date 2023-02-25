@@ -80,6 +80,37 @@ class _ApiClient implements ApiClient {
   }
 
   @override
+  Future<BaseResponse<List<ProductModel>>> getProducts(data) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(data);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BaseResponse<List<ProductModel>>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'application/x-www-form-urlencoded',
+    )
+            .compose(
+              _dio.options,
+              'Api_controller/GetProducts',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<List<ProductModel>>.fromJson(
+      _result.data!,
+      (json) => (json as List<dynamic>)
+          .map<ProductModel>(
+              (i) => ProductModel.fromJson(i as Map<String, dynamic>))
+          .toList(),
+    );
+    return value;
+  }
+
+  @override
   Future<UserModel> getHomeFeatureData(accetoken) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -119,7 +150,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              'auth',
+              'Api_controller/EnterMobile',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -129,14 +160,10 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<UserModel> otpVerificaiotn(
-    accetoken,
-    data,
-  ) async {
+  Future<UserModel> otpVerificaiotn(data) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'Authorization': accetoken};
-    _headers.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
     final _result = await _dio
@@ -148,12 +175,99 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              'auth/verifyOtp',
+              'Api_controller/VarifyOtp',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = UserModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<UserModel> resendOtp(data) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(data);
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<UserModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'application/x-www-form-urlencoded',
+    )
+            .compose(
+              _dio.options,
+              'Api_controller/ResendOtp',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = UserModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<BaseResponse<List<CategoryModel>>> getCategories(data) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(data);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BaseResponse<List<CategoryModel>>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'application/x-www-form-urlencoded',
+    )
+            .compose(
+              _dio.options,
+              'Api_controller/GetCategory',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<List<CategoryModel>>.fromJson(
+      _result.data!,
+      (json) => (json as List<dynamic>)
+          .map<CategoryModel>(
+              (i) => CategoryModel.fromJson(i as Map<String, dynamic>))
+          .toList(),
+    );
+    return value;
+  }
+
+  @override
+  Future<BaseResponse<List<SubCateModel>>> getSubCategories(data) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(data);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BaseResponse<List<SubCateModel>>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+      contentType: 'application/x-www-form-urlencoded',
+    )
+            .compose(
+              _dio.options,
+              'Api_controller/GetSubCategory',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BaseResponse<List<SubCateModel>>.fromJson(
+      _result.data!,
+      (json) => (json as List<dynamic>)
+          .map<SubCateModel>(
+              (i) => SubCateModel.fromJson(i as Map<String, dynamic>))
+          .toList(),
+    );
     return value;
   }
 

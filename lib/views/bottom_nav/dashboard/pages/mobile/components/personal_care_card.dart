@@ -41,7 +41,7 @@ class PersonalCareCard extends StatelessWidget {
                     height: height,
                     width: 120,
                     child: CachedNetworkImage(
-                      imageUrl: productModel.thumbnail!,
+                      imageUrl: productModel.productImage ?? '',
                       placeholder: (context, url) =>
                           Image.asset("assets/images/photo.jpg"),
                       errorWidget: (context, url, error) =>
@@ -74,17 +74,17 @@ class PersonalCareCard extends StatelessWidget {
                         children: [
                           RichText(
                               text: TextSpan(children: [
-                            TextSpan(
-                                text: "₹${productModel.offerPrice.toString()}",
-                                style: kLabelStyleBold.copyWith(
-                                  fontSize: 12,
-                                )),
-                            TextSpan(
-                                text: "₹${productModel.price!.toString()}",
-                                style: kLabelStyleBold.copyWith(
-                                    fontSize: 10,
-                                    color: greyColor,
-                                    decoration: TextDecoration.lineThrough)),
+                            // TextSpan(
+                            //     text: "₹${productModel.offerPrice.toString()}",
+                            //     style: kLabelStyleBold.copyWith(
+                            //       fontSize: 12,
+                            //     )),
+                            // TextSpan(
+                            //     text: "₹${productModel.price!.toString()}",
+                            //     style: kLabelStyleBold.copyWith(
+                            //         fontSize: 10,
+                            //         color: greyColor,
+                            //         decoration: TextDecoration.lineThrough)),
                           ])),
                           IconButton(
                             padding: EdgeInsets.zero,

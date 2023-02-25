@@ -9,15 +9,15 @@ class PriceDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double total = 0;
-    total = products.fold(0, (sum, product) {
-      return sum + product.offerPrice! * product.count;
-    });
-    double totalPrice = 0;
-    totalPrice = products.fold(0, (sum, product) {
-      return sum + product.price! * product.count;
-    });
+    // total = products.fold(0, (sum, product) {
+    //   return sum + product.offerPrice! * product.count;
+    // });
+    // double totalPrice = 0;
+    // totalPrice = products.fold(0, (sum, product) {
+    //   return sum + product.price! * product.count;
+    // });
 
-    double saved = totalPrice - total;
+    // double saved = totalPrice - total;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -41,7 +41,7 @@ class PriceDetail extends StatelessWidget {
                 "MRP(${products.length} items)",
                 style: kLabelStyle,
               ),
-              Text("₹$totalPrice", style: kLabelStyle),
+              //Text("₹$totalPrice", style: kLabelStyle),
             ],
           ),
           const SizedBox(
@@ -54,10 +54,10 @@ class PriceDetail extends StatelessWidget {
                 "Product discount",
                 style: kLabelStyle,
               ),
-              Text(
-                "-₹$saved",
-                style: kLabelStyle.copyWith(color: greenColor),
-              ),
+              // Text(
+              //   "-₹$saved",
+              //   style: kLabelStyle.copyWith(color: greenColor),
+              // ),
             ],
           ),
           const SizedBox(
@@ -100,10 +100,10 @@ class PriceDetail extends StatelessWidget {
             height: 10,
           ),
           const Divider(),
-          Text(
-            "You will save ₹$saved on this order",
-            style: kLabelStyleBold.copyWith(color: greenColor),
-          ),
+          // Text(
+          //   "You will save ₹$saved on this order",
+          //   style: kLabelStyleBold.copyWith(color: greenColor),
+          // ),
         ],
       ),
     );

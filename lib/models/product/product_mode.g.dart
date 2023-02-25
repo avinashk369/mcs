@@ -9,12 +9,17 @@ part of 'product_mode.dart';
 _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
     _$_ProductModel(
       id: json['id'] as String?,
+      productId: json['product_id'] as String?,
       name: json['name'] as String?,
-      brand: json['brand'] as String?,
-      desc: json['desc'] as String?,
-      thumbnail: json['thumbnail'] as String?,
-      price: (json['price'] as num?)?.toDouble(),
-      offerPrice: (json['offer_price'] as num?)?.toDouble(),
+      description: json['description'] as String?,
+      productImage: json['product_image'] as String?,
+      stockStatus: json['stock_status'] as String?,
+      categoryId: json['category_id'] as String?,
+      cityId: json['city_id'] as String?,
+      couponCode: json['coupon_code'] as String?,
+      createdAt: json['created_at'] as String?,
+      updatedAt: json['updated_at'] as String?,
+      productGroup: json['product_group'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
     );
 
@@ -28,12 +33,17 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) {
   }
 
   writeNotNull('id', instance.id);
+  writeNotNull('product_id', instance.productId);
   writeNotNull('name', instance.name);
-  writeNotNull('brand', instance.brand);
-  writeNotNull('desc', instance.desc);
-  writeNotNull('thumbnail', instance.thumbnail);
-  writeNotNull('price', instance.price);
-  writeNotNull('offer_price', instance.offerPrice);
+  writeNotNull('description', instance.description);
+  writeNotNull('product_image', instance.productImage);
+  writeNotNull('stock_status', instance.stockStatus);
+  writeNotNull('category_id', instance.categoryId);
+  writeNotNull('city_id', instance.cityId);
+  writeNotNull('coupon_code', instance.couponCode);
+  writeNotNull('created_at', instance.createdAt);
+  writeNotNull('updated_at', instance.updatedAt);
+  writeNotNull('product_group', instance.productGroup);
   writeNotNull('rating', instance.rating);
   return val;
 }

@@ -23,19 +23,19 @@ class RouteGenerator {
       //   return SlideRightRoute(page: LoginView());
       case dashboardRoute:
         return SlideRightRoute(
-          page: Dashboard(
-            message: args as String,
-          ),
+          page: const Dashboard(),
         );
       case products:
         Map<String, dynamic> data = args as Map<String, dynamic>;
         CategoryModel categoryModel = data['category'];
-        int index = data['index'];
+        //int index = data['index'];
+        String cityId = data['city_id'];
 
         return SlideRightRoute(
           page: ProductList(
             category: categoryModel,
-            index: index,
+            index: 0,
+            cityId: cityId,
           ),
         );
       case productDetail:
@@ -48,11 +48,11 @@ class RouteGenerator {
         );
       case otpRoute:
         Map<String, dynamic> data = args as Map<String, dynamic>;
-        String token = data['token'];
+        int token = data['token'];
         String mobile = data['mobile'];
         return SlideRightRoute(
           page: UserVerification(
-            token: token,
+            token: token.toString(),
             mobile: mobile,
           ),
         );

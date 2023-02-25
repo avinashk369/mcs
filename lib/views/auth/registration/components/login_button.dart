@@ -15,8 +15,8 @@ class LoginButton extends StatelessWidget {
       listener: (context, state) {
         if (state is UserLoaded) {
           Map<String, dynamic> userData = {
-            "mobile": mobileNumber,
-            "token": state.userModel.token!,
+            'mobile': mobileNumber.substring(3, mobileNumber.length),
+            'token': state.userModel.otp
           };
           Navigator.of(context)
               .pushReplacementNamed(otpRoute, arguments: userData);

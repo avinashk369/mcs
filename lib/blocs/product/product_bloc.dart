@@ -124,8 +124,12 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   Future _loadProducts(LoadPrdoucts event, Emitter<ProductState> emit) async {
     try {
       await Future.delayed(const Duration(seconds: 3), () {});
+      Map<String, dynamic> data = {
+        "city_id": event.cityId,
+        "category_id": event.categoryId
+      };
       List<ProductModel> productList =
-          await _productRepositoryImpl.loadProducts();
+          await _productRepositoryImpl.loadProducts(data);
       List<ProductModel> personalCare =
           await _productRepositoryImpl.loadPersonalCare();
       List<ProductModel> dailyNeeds =

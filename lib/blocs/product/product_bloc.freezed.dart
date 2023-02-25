@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProductEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadProduct,
+    required TResult Function(String? categoryId, String cityId) loadProduct,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -28,7 +28,7 @@ mixin _$ProductEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadProduct,
+    TResult? Function(String? categoryId, String cityId)? loadProduct,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -37,7 +37,7 @@ mixin _$ProductEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadProduct,
+    TResult Function(String? categoryId, String cityId)? loadProduct,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -98,6 +98,8 @@ abstract class _$$LoadPrdouctsCopyWith<$Res> {
   factory _$$LoadPrdouctsCopyWith(
           _$LoadPrdoucts value, $Res Function(_$LoadPrdoucts) then) =
       __$$LoadPrdouctsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? categoryId, String cityId});
 }
 
 /// @nodoc
@@ -107,62 +109,98 @@ class __$$LoadPrdouctsCopyWithImpl<$Res>
   __$$LoadPrdouctsCopyWithImpl(
       _$LoadPrdoucts _value, $Res Function(_$LoadPrdoucts) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? categoryId = freezed,
+    Object? cityId = null,
+  }) {
+    return _then(_$LoadPrdoucts(
+      categoryId: freezed == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cityId: null == cityId
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
-  const _$LoadPrdoucts();
+  const _$LoadPrdoucts({this.categoryId, required this.cityId});
+
+  @override
+  final String? categoryId;
+  @override
+  final String cityId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProductEvent.loadProduct()';
+    return 'ProductEvent.loadProduct(categoryId: $categoryId, cityId: $cityId)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'ProductEvent.loadProduct'));
+    properties
+      ..add(DiagnosticsProperty('type', 'ProductEvent.loadProduct'))
+      ..add(DiagnosticsProperty('categoryId', categoryId))
+      ..add(DiagnosticsProperty('cityId', cityId));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadPrdoucts);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadPrdoucts &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
+            (identical(other.cityId, cityId) || other.cityId == cityId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, categoryId, cityId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadPrdouctsCopyWith<_$LoadPrdoucts> get copyWith =>
+      __$$LoadPrdouctsCopyWithImpl<_$LoadPrdoucts>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadProduct,
+    required TResult Function(String? categoryId, String cityId) loadProduct,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
     required TResult Function(String catId) loadProductByCatId,
   }) {
-    return loadProduct();
+    return loadProduct(categoryId, cityId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadProduct,
+    TResult? Function(String? categoryId, String cityId)? loadProduct,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
   }) {
-    return loadProduct?.call();
+    return loadProduct?.call(categoryId, cityId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadProduct,
+    TResult Function(String? categoryId, String cityId)? loadProduct,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -170,7 +208,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     required TResult orElse(),
   }) {
     if (loadProduct != null) {
-      return loadProduct();
+      return loadProduct(categoryId, cityId);
     }
     return orElse();
   }
@@ -217,7 +255,15 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
 }
 
 abstract class LoadPrdoucts implements ProductEvent {
-  const factory LoadPrdoucts() = _$LoadPrdoucts;
+  const factory LoadPrdoucts(
+      {final String? categoryId,
+      required final String cityId}) = _$LoadPrdoucts;
+
+  String? get categoryId;
+  String get cityId;
+  @JsonKey(ignore: true)
+  _$$LoadPrdouctsCopyWith<_$LoadPrdoucts> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -312,7 +358,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadProduct,
+    required TResult Function(String? categoryId, String cityId) loadProduct,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -325,7 +371,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadProduct,
+    TResult? Function(String? categoryId, String cityId)? loadProduct,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -337,7 +383,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadProduct,
+    TResult Function(String? categoryId, String cityId)? loadProduct,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -486,7 +532,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadProduct,
+    required TResult Function(String? categoryId, String cityId) loadProduct,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -499,7 +545,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadProduct,
+    TResult? Function(String? categoryId, String cityId)? loadProduct,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -511,7 +557,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadProduct,
+    TResult Function(String? categoryId, String cityId)? loadProduct,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -658,7 +704,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadProduct,
+    required TResult Function(String? categoryId, String cityId) loadProduct,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -671,7 +717,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadProduct,
+    TResult? Function(String? categoryId, String cityId)? loadProduct,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -683,7 +729,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadProduct,
+    TResult Function(String? categoryId, String cityId)? loadProduct,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -822,7 +868,7 @@ class _$LoadProductByCatId
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadProduct,
+    required TResult Function(String? categoryId, String cityId) loadProduct,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -835,7 +881,7 @@ class _$LoadProductByCatId
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadProduct,
+    TResult? Function(String? categoryId, String cityId)? loadProduct,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -847,7 +893,7 @@ class _$LoadProductByCatId
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadProduct,
+    TResult Function(String? categoryId, String cityId)? loadProduct,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,

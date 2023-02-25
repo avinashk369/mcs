@@ -9,31 +9,30 @@ class CategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 180,
-      child: ListView.separated(
-          addAutomaticKeepAlives: true,
-          separatorBuilder: (_, __) => const SizedBox(
-                width: 5,
-              ),
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemBuilder: (_, index) => CategoryCard(
-                title: categories[index].name!,
-                onTap: () {
-                  Map<String, dynamic> data = {
-                    "category": categories[index],
-                    "index": index
-                  };
-                  // load products based on cat id
-                  Navigator.of(context).pushNamed(products, arguments: data);
-                },
-                child: CachedNetworkImage(
-                  imageUrl: categories[index].thumb!,
-                  fit: BoxFit.fill,
-                ),
-              ),
-          itemCount: categories.length),
-    );
+    return GridView.builder(
+      itemCount: categories.length,
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        CategoryModel category = categories[index];
+        return CategoryCard(
+          title: category.categoryName!,
+          onTap: () {
+            Map<String, dynamic> data = {"category": category, "city_id": "4"};
+            Navigator.of(context).pushNamed(products, arguments: data);
+          },
+          child: CachedNetworkImage(
+            imageUrl: category.categoryImg ?? '',
+            fit: BoxFit.fill,
+          ),
+        );
+      },
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,
+        mainAxisSpacing: 5,
+        crossAxisSpacing: 1,
+        childAspectRatio: .9,
+      ),
+    ).horizontalPadding(5);
   }
 }

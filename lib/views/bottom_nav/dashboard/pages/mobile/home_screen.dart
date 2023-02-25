@@ -51,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    print("into build");
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -81,7 +82,17 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
+                BlocBuilder<DataBloc, DataState>(builder: (context, state) {
+                  return state.maybeMap(
+                    loading: (value) => LoadingUI(),
+                    bannersLoaded: (value) =>
+                        PromotionalBanner(banners: value.banners),
+                    orElse: () => const SizedBox.shrink(),
+                  );
+                }),
                 BlocBuilder<CategoryBloc, CategoryState>(
+                  buildWhen: (previous, current) =>
+                      previous != current && current is CategoryLoaded,
                   builder: (context, state) {
                     return state.maybeMap(
                       initial: (_) => const ProductHolder(),
@@ -92,16 +103,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
                 const SizedBox(height: 10),
-                BlocBuilder<DataBloc, DataState>(builder: (context, state) {
-                  return state.maybeMap(
-                    // cityLoaded: (res) =>
-                    //     print('city loaded ${res.cities.length}'),
-                    // bannersLoaded: (res) =>
-                    //     print('banner list ${res.banners.length}'),
-                    // error: (value) => print(value.message),
-                    orElse: () => const PromotionalBanner(),
-                  );
-                }),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Row(

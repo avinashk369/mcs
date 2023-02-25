@@ -40,11 +40,11 @@ class _ShoppingCartState extends State<ShoppingCart> {
           Builder(builder: (context) {
             final state = context.watch<ProductBloc>().state;
             double total = 0;
-            if (state is ProductLoaded) {
-              total = state.addedProducts!.fold(0, (sum, product) {
-                return sum + product.offerPrice! * product.count;
-              });
-            }
+            // if (state is ProductLoaded) {
+            //   total = state.addedProducts!.fold(0, (sum, product) {
+            //     return sum + product.offerPrice! * product.count;
+            //   });
+            // }
 
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -165,17 +165,17 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   Builder(builder: (context) {
                     final state = context.watch<ProductBloc>().state;
                     double total = 0;
-                    if (state is ProductLoaded) {
-                      total = state.addedProducts!.fold(0, (sum, product) {
-                        return sum + product.offerPrice! * product.count;
-                      });
-                    }
+                    // if (state is ProductLoaded) {
+                    //   total = state.addedProducts!.fold(0, (sum, product) {
+                    //     return sum + product.offerPrice! * product.count;
+                    //   });
+                    // }
                     double totalPrice = 0;
-                    if (state is ProductLoaded) {
-                      totalPrice = state.addedProducts!.fold(0, (sum, product) {
-                        return sum + product.price! * product.count;
-                      });
-                    }
+                    // if (state is ProductLoaded) {
+                    //   totalPrice = state.addedProducts!.fold(0, (sum, product) {
+                    //     return sum + product.price! * product.count;
+                    //   });
+                    // }
 
                     double saved = totalPrice - total;
                     return Container(

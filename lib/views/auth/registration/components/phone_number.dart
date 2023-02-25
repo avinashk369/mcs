@@ -3,7 +3,9 @@ part of user_auth;
 class PhoneNumber extends StatelessWidget {
   const PhoneNumber({
     Key? key,
+    required this.mobileNumberController,
   }) : super(key: key);
+  final TextEditingController mobileNumberController;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class PhoneNumber extends StatelessWidget {
                 child: CustomInput(
                   focusNode: FocusNode(),
                   hintText: phoneNumber,
-                  textController: TextEditingController(text: "9540621919"),
+                  textController: mobileNumberController,
                   textInputType: TextInputType.phone,
                   onChanged: (value) => loginBloc.checkNumber(value),
                   validator: (value) =>
@@ -74,7 +76,7 @@ class PhoneNumber extends StatelessWidget {
                 builder: (context, state) {
                   return LoginButton(
                       isValid: (state is ValidNumber) ? state.isValid : false,
-                      mobileNumber: (state is ValidNumber) ? state.number : "");
+                      mobileNumber: (state is ValidNumber) ? state.number : '');
                 },
               ),
             ],
@@ -83,7 +85,7 @@ class PhoneNumber extends StatelessWidget {
             height: 8,
           ),
           BlocBuilder<UserBloc, UserState>(builder: (context, state) {
-            return Text((state is UserError) ? state.message : "",
+            return Text((state is UserError) ? state.message : '',
                 style: kLabelStyleBold.copyWith(
                   color: Colors.red,
                 ));

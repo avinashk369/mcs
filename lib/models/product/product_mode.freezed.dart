@@ -21,12 +21,17 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ProductModel {
   String? get id => throw _privateConstructorUsedError;
+  String? get productId => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get brand => throw _privateConstructorUsedError;
-  String? get desc => throw _privateConstructorUsedError;
-  String? get thumbnail => throw _privateConstructorUsedError;
-  double? get price => throw _privateConstructorUsedError;
-  double? get offerPrice => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get productImage => throw _privateConstructorUsedError;
+  String? get stockStatus => throw _privateConstructorUsedError;
+  String? get categoryId => throw _privateConstructorUsedError;
+  String? get cityId => throw _privateConstructorUsedError;
+  String? get couponCode => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
+  String? get productGroup => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   int get count => throw _privateConstructorUsedError;
   double? get rating => throw _privateConstructorUsedError;
@@ -45,12 +50,17 @@ abstract class $ProductModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
+      String? productId,
       String? name,
-      String? brand,
-      String? desc,
-      String? thumbnail,
-      double? price,
-      double? offerPrice,
+      String? description,
+      String? productImage,
+      String? stockStatus,
+      String? categoryId,
+      String? cityId,
+      String? couponCode,
+      String? createdAt,
+      String? updatedAt,
+      String? productGroup,
       @JsonKey(ignore: true) int count,
       double? rating});
 }
@@ -69,12 +79,17 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   @override
   $Res call({
     Object? id = freezed,
+    Object? productId = freezed,
     Object? name = freezed,
-    Object? brand = freezed,
-    Object? desc = freezed,
-    Object? thumbnail = freezed,
-    Object? price = freezed,
-    Object? offerPrice = freezed,
+    Object? description = freezed,
+    Object? productImage = freezed,
+    Object? stockStatus = freezed,
+    Object? categoryId = freezed,
+    Object? cityId = freezed,
+    Object? couponCode = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? productGroup = freezed,
     Object? count = null,
     Object? rating = freezed,
   }) {
@@ -83,30 +98,50 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      productId: freezed == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      brand: freezed == brand
-          ? _value.brand
-          : brand // ignore: cast_nullable_to_non_nullable
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      desc: freezed == desc
-          ? _value.desc
-          : desc // ignore: cast_nullable_to_non_nullable
+      productImage: freezed == productImage
+          ? _value.productImage
+          : productImage // ignore: cast_nullable_to_non_nullable
               as String?,
-      thumbnail: freezed == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
+      stockStatus: freezed == stockStatus
+          ? _value.stockStatus
+          : stockStatus // ignore: cast_nullable_to_non_nullable
               as String?,
-      price: freezed == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double?,
-      offerPrice: freezed == offerPrice
-          ? _value.offerPrice
-          : offerPrice // ignore: cast_nullable_to_non_nullable
-              as double?,
+      categoryId: freezed == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cityId: freezed == cityId
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      couponCode: freezed == couponCode
+          ? _value.couponCode
+          : couponCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productGroup: freezed == productGroup
+          ? _value.productGroup
+          : productGroup // ignore: cast_nullable_to_non_nullable
+              as String?,
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -129,12 +164,17 @@ abstract class _$$_ProductModelCopyWith<$Res>
   @useResult
   $Res call(
       {String? id,
+      String? productId,
       String? name,
-      String? brand,
-      String? desc,
-      String? thumbnail,
-      double? price,
-      double? offerPrice,
+      String? description,
+      String? productImage,
+      String? stockStatus,
+      String? categoryId,
+      String? cityId,
+      String? couponCode,
+      String? createdAt,
+      String? updatedAt,
+      String? productGroup,
       @JsonKey(ignore: true) int count,
       double? rating});
 }
@@ -151,12 +191,17 @@ class __$$_ProductModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? productId = freezed,
     Object? name = freezed,
-    Object? brand = freezed,
-    Object? desc = freezed,
-    Object? thumbnail = freezed,
-    Object? price = freezed,
-    Object? offerPrice = freezed,
+    Object? description = freezed,
+    Object? productImage = freezed,
+    Object? stockStatus = freezed,
+    Object? categoryId = freezed,
+    Object? cityId = freezed,
+    Object? couponCode = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? productGroup = freezed,
     Object? count = null,
     Object? rating = freezed,
   }) {
@@ -165,30 +210,50 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      productId: freezed == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      brand: freezed == brand
-          ? _value.brand
-          : brand // ignore: cast_nullable_to_non_nullable
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      desc: freezed == desc
-          ? _value.desc
-          : desc // ignore: cast_nullable_to_non_nullable
+      productImage: freezed == productImage
+          ? _value.productImage
+          : productImage // ignore: cast_nullable_to_non_nullable
               as String?,
-      thumbnail: freezed == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
+      stockStatus: freezed == stockStatus
+          ? _value.stockStatus
+          : stockStatus // ignore: cast_nullable_to_non_nullable
               as String?,
-      price: freezed == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double?,
-      offerPrice: freezed == offerPrice
-          ? _value.offerPrice
-          : offerPrice // ignore: cast_nullable_to_non_nullable
-              as double?,
+      categoryId: freezed == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cityId: freezed == cityId
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      couponCode: freezed == couponCode
+          ? _value.couponCode
+          : couponCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productGroup: freezed == productGroup
+          ? _value.productGroup
+          : productGroup // ignore: cast_nullable_to_non_nullable
+              as String?,
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -208,12 +273,17 @@ class __$$_ProductModelCopyWithImpl<$Res>
 class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
   const _$_ProductModel(
       {this.id,
+      this.productId,
       this.name,
-      this.brand,
-      this.desc,
-      this.thumbnail,
-      this.price,
-      this.offerPrice,
+      this.description,
+      this.productImage,
+      this.stockStatus,
+      this.categoryId,
+      this.cityId,
+      this.couponCode,
+      this.createdAt,
+      this.updatedAt,
+      this.productGroup,
       @JsonKey(ignore: true) this.count = 0,
       this.rating});
 
@@ -223,17 +293,27 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
   @override
   final String? id;
   @override
+  final String? productId;
+  @override
   final String? name;
   @override
-  final String? brand;
+  final String? description;
   @override
-  final String? desc;
+  final String? productImage;
   @override
-  final String? thumbnail;
+  final String? stockStatus;
   @override
-  final double? price;
+  final String? categoryId;
   @override
-  final double? offerPrice;
+  final String? cityId;
+  @override
+  final String? couponCode;
+  @override
+  final String? createdAt;
+  @override
+  final String? updatedAt;
+  @override
+  final String? productGroup;
   @override
   @JsonKey(ignore: true)
   final int count;
@@ -242,7 +322,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProductModel(id: $id, name: $name, brand: $brand, desc: $desc, thumbnail: $thumbnail, price: $price, offerPrice: $offerPrice, count: $count, rating: $rating)';
+    return 'ProductModel(id: $id, productId: $productId, name: $name, description: $description, productImage: $productImage, stockStatus: $stockStatus, categoryId: $categoryId, cityId: $cityId, couponCode: $couponCode, createdAt: $createdAt, updatedAt: $updatedAt, productGroup: $productGroup, count: $count, rating: $rating)';
   }
 
   @override
@@ -251,12 +331,17 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
     properties
       ..add(DiagnosticsProperty('type', 'ProductModel'))
       ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('productId', productId))
       ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('brand', brand))
-      ..add(DiagnosticsProperty('desc', desc))
-      ..add(DiagnosticsProperty('thumbnail', thumbnail))
-      ..add(DiagnosticsProperty('price', price))
-      ..add(DiagnosticsProperty('offerPrice', offerPrice))
+      ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('productImage', productImage))
+      ..add(DiagnosticsProperty('stockStatus', stockStatus))
+      ..add(DiagnosticsProperty('categoryId', categoryId))
+      ..add(DiagnosticsProperty('cityId', cityId))
+      ..add(DiagnosticsProperty('couponCode', couponCode))
+      ..add(DiagnosticsProperty('createdAt', createdAt))
+      ..add(DiagnosticsProperty('updatedAt', updatedAt))
+      ..add(DiagnosticsProperty('productGroup', productGroup))
       ..add(DiagnosticsProperty('count', count))
       ..add(DiagnosticsProperty('rating', rating));
   }
@@ -267,22 +352,48 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
         (other.runtimeType == runtimeType &&
             other is _$_ProductModel &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.productId, productId) ||
+                other.productId == productId) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.brand, brand) || other.brand == brand) &&
-            (identical(other.desc, desc) || other.desc == desc) &&
-            (identical(other.thumbnail, thumbnail) ||
-                other.thumbnail == thumbnail) &&
-            (identical(other.price, price) || other.price == price) &&
-            (identical(other.offerPrice, offerPrice) ||
-                other.offerPrice == offerPrice) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.productImage, productImage) ||
+                other.productImage == productImage) &&
+            (identical(other.stockStatus, stockStatus) ||
+                other.stockStatus == stockStatus) &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
+            (identical(other.cityId, cityId) || other.cityId == cityId) &&
+            (identical(other.couponCode, couponCode) ||
+                other.couponCode == couponCode) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.productGroup, productGroup) ||
+                other.productGroup == productGroup) &&
             (identical(other.count, count) || other.count == count) &&
             (identical(other.rating, rating) || other.rating == rating));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, brand, desc, thumbnail,
-      price, offerPrice, count, rating);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      productId,
+      name,
+      description,
+      productImage,
+      stockStatus,
+      categoryId,
+      cityId,
+      couponCode,
+      createdAt,
+      updatedAt,
+      productGroup,
+      count,
+      rating);
 
   @JsonKey(ignore: true)
   @override
@@ -301,12 +412,17 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
 abstract class _ProductModel implements ProductModel {
   const factory _ProductModel(
       {final String? id,
+      final String? productId,
       final String? name,
-      final String? brand,
-      final String? desc,
-      final String? thumbnail,
-      final double? price,
-      final double? offerPrice,
+      final String? description,
+      final String? productImage,
+      final String? stockStatus,
+      final String? categoryId,
+      final String? cityId,
+      final String? couponCode,
+      final String? createdAt,
+      final String? updatedAt,
+      final String? productGroup,
       @JsonKey(ignore: true) final int count,
       final double? rating}) = _$_ProductModel;
 
@@ -316,17 +432,27 @@ abstract class _ProductModel implements ProductModel {
   @override
   String? get id;
   @override
+  String? get productId;
+  @override
   String? get name;
   @override
-  String? get brand;
+  String? get description;
   @override
-  String? get desc;
+  String? get productImage;
   @override
-  String? get thumbnail;
+  String? get stockStatus;
   @override
-  double? get price;
+  String? get categoryId;
   @override
-  double? get offerPrice;
+  String? get cityId;
+  @override
+  String? get couponCode;
+  @override
+  String? get createdAt;
+  @override
+  String? get updatedAt;
+  @override
+  String? get productGroup;
   @override
   @JsonKey(ignore: true)
   int get count;

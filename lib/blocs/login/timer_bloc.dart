@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'timer_bloc.freezed.dart';
 part 'timer_state.dart';
 
 class TimerBloc extends Cubit<TimerState> {
-  TimerBloc() : super(TimerInitializing());
+  TimerBloc() : super(const TimerInitializing());
 
   ///timer variable
   final _durationTimeOut = const Duration(seconds: 10);
@@ -29,17 +29,18 @@ class TimerBloc extends Cubit<TimerState> {
         if (maxDurationInSecond - currentDurationSecond >= 0) {
           durationCountdown = maxDurationInSecond - currentDurationSecond;
           emit(CountDownstarted(
-              countdown: durationCountdown, canResend: isCanResendCode));
+              countDown: durationCountdown, canResend: isCanResendCode));
         } else {
           isCanResendCode = true;
           timer.cancel();
-          emit(CountDownstarted(countdown: 0, canResend: isCanResendCode));
+          emit(CountDownstarted(countDown: 0, canResend: isCanResendCode));
         }
       });
     } catch (_) {}
   }
 
   void cancelTimer() {
+    emit(const CountDownstarted(countDown: 0, canResend: false));
     _timer.cancel();
   }
 }

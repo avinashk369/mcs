@@ -7,10 +7,9 @@ class RegistrationHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 2,
-      child: CachedNetworkImage(
-        imageUrl:
-            "https://static.vecteezy.com/system/resources/previews/002/836/450/non_2x/app-secure-login-vector.jpg",
-        fit: BoxFit.cover,
+      child: Image.asset(
+        'assets/images/logo.png',
+        fit: BoxFit.contain,
       ),
     );
     ;

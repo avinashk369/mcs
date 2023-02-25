@@ -8,7 +8,7 @@ import 'package:mcs/routes/route_constants.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/custom_appbar.dart';
 
-import '../../blocs/user/userbloc.dart';
+import '../../blocs/user/user_bloc.dart';
 import '../../widgets/themes/config.dart';
 
 class UserSettings extends StatelessWidget {

@@ -1,11 +1,13 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
+part 'login_bloc.freezed.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Cubit<LoginState> {
-  LoginBloc() : super(LoginInitializing());
+  LoginBloc() : super(const LoginInitializing());
 
   Future<void> checkNumber(String mobileNumber) async {
     try {
@@ -14,10 +16,9 @@ class LoginBloc extends Cubit<LoginState> {
     } catch (_) {}
   }
 
-  Future<void> checkOtp(String otp) async {
+  Future<void> checkOtp(int otp) async {
     try {
-      bool isValid = otp.length > 5;
-      emit(ValidOtp(isValid: isValid, otp: otp));
+      emit(ValidOtp(isValid: otp.toString().length > 3, otp: otp));
     } catch (_) {}
   }
 }

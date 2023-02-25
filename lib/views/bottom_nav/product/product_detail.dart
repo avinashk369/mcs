@@ -190,34 +190,34 @@ class _ProductDetailState extends State<ProductDetail> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 10),
-                        Text(widget.productModel.brand!,
-                            style: kLabelStyle.copyWith(
-                                fontSize: 11, color: Colors.grey[400])),
+                        // Text(widget.productModel.brand!,
+                        //     style: kLabelStyle.copyWith(
+                        //         fontSize: 11, color: Colors.grey[400])),
                         Text(widget.productModel.name!),
                         const SizedBox(
                           height: 4,
                         ),
-                        Text(widget.productModel.desc!),
+                        Text(widget.productModel.description!),
                         const SizedBox(height: 8),
                         RichText(
                             text: TextSpan(children: [
-                          TextSpan(
-                              text:
-                                  "₹${widget.productModel.offerPrice.toString()}",
-                              style: kLabelStyleBold.copyWith(
-                                fontSize: 14,
-                              )),
-                          TextSpan(
-                              text: " ",
-                              style: kLabelStyleBold.copyWith(
-                                fontSize: 12,
-                              )),
-                          TextSpan(
-                              text: "₹${widget.productModel.price.toString()}",
-                              style: kLabelStyleBold.copyWith(
-                                  fontSize: 10,
-                                  color: greyColor,
-                                  decoration: TextDecoration.lineThrough)),
+                          // // TextSpan(
+                          // //     text:
+                          // //         "₹${widget.productModel.offerPrice.toString()}",
+                          // //     style: kLabelStyleBold.copyWith(
+                          // //       fontSize: 14,
+                          // //     )),
+                          // TextSpan(
+                          //     text: " ",
+                          //     style: kLabelStyleBold.copyWith(
+                          //       fontSize: 12,
+                          //     )),
+                          // TextSpan(
+                          //     text: "₹${widget.productModel.price.toString()}",
+                          //     style: kLabelStyleBold.copyWith(
+                          //         fontSize: 10,
+                          //         color: greyColor,
+                          //         decoration: TextDecoration.lineThrough)),
                         ])),
                         const SizedBox(height: 8),
                         Container(
@@ -296,7 +296,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * .40,
                     child: CachedNetworkImage(
-                      imageUrl: widget.productModel.thumbnail!,
+                      imageUrl: widget.productModel.productImage!,
                       fit: BoxFit.fitHeight,
                     ),
                   ),

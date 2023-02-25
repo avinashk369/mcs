@@ -1,7 +1,8 @@
 part of dashboard;
 
 class PromotionalBanner extends StatefulWidget {
-  const PromotionalBanner({Key? key}) : super(key: key);
+  const PromotionalBanner({Key? key, required this.banners}) : super(key: key);
+  final List<BannerModel> banners;
 
   @override
   _PromotionalBannerState createState() => _PromotionalBannerState();
@@ -41,10 +42,11 @@ class _PromotionalBannerState extends State<PromotionalBanner> {
         SizedBox(
           height: size.height * .22,
           child: PageView.builder(
-            itemCount: 5,
+            itemCount: widget.banners.length,
             controller: _pageController,
             pageSnapping: true,
             itemBuilder: (BuildContext context, int index) {
+              BannerModel bannerModel = widget.banners[index];
               return InkWell(
                 onTap: () {},
                 child: Card(
@@ -59,8 +61,7 @@ class _PromotionalBannerState extends State<PromotionalBanner> {
                   child: SizedBox(
                     width: size.width,
                     child: CachedNetworkImage(
-                      imageUrl:
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOfRqfyUEqLOyKZdjPeMfFrHHDLQgYFxH_9g&usqp=CAU",
+                      imageUrl: bannerModel.bannerImg!,
                       fit: BoxFit.cover,
                       progressIndicatorBuilder:
                           (context, url, downloadProgress) => Center(
@@ -90,7 +91,7 @@ class _PromotionalBannerState extends State<PromotionalBanner> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
-            children: _buildPageIndicator(5),
+            children: _buildPageIndicator(widget.banners.length),
           ),
         ),
       ],

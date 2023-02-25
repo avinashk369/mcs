@@ -9,19 +9,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/navigation/navigation_bloc.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
-import 'package:mcs/blocs/user/userbloc.dart';
 import 'package:mcs/resources/user/user_repositoryimpl.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/widgets/loading_ui.dart';
-import 'package:share/share.dart';
 
+import '../../../blocs/user/user_bloc.dart';
+import '../../../models/banner/banner_model.dart';
 import '../TabNavigationItem.dart';
 part 'components/promotional_banner.dart';
 part 'components/subjects_list.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key, required this.message}) : super(key: key);
-  final String message;
+  const Dashboard({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _DashboardState createState() => _DashboardState();
@@ -33,7 +34,6 @@ class _DashboardState extends State<Dashboard> {
   late String token;
   @override
   void initState() {
-    print("message from web ${widget.message}");
     userId = PreferenceUtils.getString(user_id);
     token = PreferenceUtils.getString(accessToken);
     super.initState();
@@ -55,17 +55,10 @@ class _DashboardState extends State<Dashboard> {
       child: Scaffold(
         //extendBody: true,
         body: BlocBuilder<NavigationBloc, int>(
-          builder: (context, state) {
-            return IndexedStack(
-              index: state, //controller.currentIndex.value,
-              // children: [
-              //   TabNavigationItem.items[0].page,
-              //   TabNavigationItem.items[1].page,
-              // ],
-              children:
-                  TabNavigationItem.items.map((item) => item.page).toList(),
-            );
-          },
+          builder: (context, state) => IndexedStack(
+            index: state,
+            children: TabNavigationItem.items.map((item) => item.page).toList(),
+          ),
         ),
         bottomNavigationBar: BlocBuilder<NavigationBloc, int>(
           builder: (context, state) {
@@ -138,9 +131,5 @@ class _DashboardState extends State<Dashboard> {
         ),
       ),
     );
-  }
-
-  _onShareWithEmptyOrigin(BuildContext context, String url) async {
-    await Share.share(url);
   }
 }

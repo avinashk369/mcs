@@ -23,13 +23,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     // TODO: implement initState
     super.initState();
     _scrollController = ScrollController();
-    total = widget.products.fold(0, (sum, product) {
-      return sum + product.offerPrice! * product.count;
-    });
-    totalPrice = widget.products.fold(0, (sum, product) {
-      return sum + product.price! * product.count;
-    });
-    saved = totalPrice - total;
+    // total = widget.products.fold(0, (sum, product) {
+    //   return sum + product.offerPrice! * product.count;
+    // });
+    // totalPrice = widget.products.fold(0, (sum, product) {
+    //   return sum + product.price! * product.count;
+    // });
+    // saved = totalPrice - total;
   }
 
   @override
@@ -146,7 +146,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             height: MediaQuery.of(context).size.height * .15,
                             width: MediaQuery.of(context).size.height * .15,
                             child: CachedNetworkImage(
-                              imageUrl: product.thumbnail!,
+                              imageUrl: product.productImage!,
                               placeholder: (context, url) =>
                                   Image.asset("assets/images/photo.jpg"),
                               errorWidget: (context, url, error) =>

@@ -9,7 +9,7 @@ class BestSelling extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int listSize = products.length;
+    int listSize = 10;
     int itemCount = 2;
 
     return BlocBuilder<NavigationBloc, int>(builder: (context, state) {

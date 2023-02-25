@@ -29,6 +29,7 @@ class UserAuthScreen extends StatefulWidget {
 }
 
 class _UserAuthScreenState extends State<UserAuthScreen> {
+  TextEditingController mobileNumberController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,15 +47,19 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
               ? SystemUiOverlayStyle.dark
               : SystemUiOverlayStyle.light,
           child: ResponsiveWidgets(
-            mobileLayout: MultiBlocProvider(providers: [
-              BlocProvider<LoginBloc>(
-                create: (context) => LoginBloc(),
-              ),
-              BlocProvider<UserBloc>(
-                create: (context) =>
-                    UserBloc(context.read<UserRepositoryImpl>()),
-              ),
-            ], child: const UserAuth()),
+            mobileLayout: MultiBlocProvider(
+                providers: [
+                  BlocProvider<LoginBloc>(
+                    create: (context) => LoginBloc(),
+                  ),
+                  BlocProvider<UserBloc>(
+                    create: (context) =>
+                        UserBloc(context.read<UserRepositoryImpl>()),
+                  ),
+                ],
+                child: UserAuth(
+                  mobileNumberController: mobileNumberController,
+                )),
           ),
         ),
       ),

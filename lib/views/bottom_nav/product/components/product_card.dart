@@ -49,11 +49,11 @@ class ProductCard extends StatelessWidget {
                         height: height * .8,
                         width: double.infinity,
                         child: CachedNetworkImage(
-                          imageUrl: productModel.thumbnail!,
+                          imageUrl: productModel.productImage ?? '',
                           placeholder: (context, url) =>
-                              Image.asset("assets/images/photo.jpg"),
+                              Image.asset("assets/images/logo.png"),
                           errorWidget: (context, url, error) =>
-                              Image.asset("assets/images/photo.jpg"),
+                              Image.asset("assets/images/logo.png"),
                           fit: BoxFit.fitHeight,
                         ),
                       ),
@@ -62,9 +62,9 @@ class ProductCard extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(productModel.brand!,
-                            style: kLabelStyle.copyWith(
-                                fontSize: 11, color: Colors.grey[400])),
+                        // Text(productModel.brand!,
+                        //     style: kLabelStyle.copyWith(
+                        //         fontSize: 11, color: Colors.grey[400])),
                         Text(
                           productModel.name!,
                           maxLines: 2,
@@ -82,23 +82,23 @@ class ProductCard extends StatelessWidget {
                           children: [
                             RichText(
                                 text: TextSpan(children: [
-                              TextSpan(
-                                  text:
-                                      "₹${productModel.offerPrice.toString()}",
-                                  style: kLabelStyleBold.copyWith(
-                                    fontSize: 12,
-                                  )),
+                              // TextSpan(
+                              //     text:
+                              //         "₹${productModel.offerPrice.toString()}",
+                              //     style: kLabelStyleBold.copyWith(
+                              //       fontSize: 12,
+                              //     )),
                               TextSpan(
                                   text: " ",
                                   style: kLabelStyleBold.copyWith(
                                     fontSize: 12,
                                   )),
-                              TextSpan(
-                                  text: "₹${productModel.price.toString()}",
-                                  style: kLabelStyleBold.copyWith(
-                                      fontSize: 10,
-                                      color: greyColor,
-                                      decoration: TextDecoration.lineThrough)),
+                              // TextSpan(
+                              //     text: "₹${productModel.price.toString()}",
+                              //     style: kLabelStyleBold.copyWith(
+                              //         fontSize: 10,
+                              //         color: greyColor,
+                              //         decoration: TextDecoration.lineThrough)),
                             ])),
                             InkWell(
                               onTap: () => (state is ProductLoaded) &&

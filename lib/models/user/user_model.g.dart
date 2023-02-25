@@ -6,18 +6,13 @@ part of 'user_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel()
-  ..status = json['status'] as int?
-  ..message = json['message'] as String?
-  ..data = json['data'] == null
-      ? null
-      : UserModel.fromJson(json['data'] as Map<String, dynamic>)
-  ..token = json['token'] as String?
-  ..mobile = json['mobile'] as int?
-  ..userType = json['user_type'] as String?
-  ..id = json['_id'] as String?;
+_$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
+      message: json['message'] as String?,
+      otp: json['otp'] as int?,
+      status: json['status'] as bool?,
+    );
 
-Map<String, dynamic> _$UserModelToJson(UserModel instance) {
+Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -26,12 +21,8 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) {
     }
   }
 
-  writeNotNull('status', instance.status);
   writeNotNull('message', instance.message);
-  writeNotNull('data', instance.data);
-  writeNotNull('token', instance.token);
-  writeNotNull('mobile', instance.mobile);
-  writeNotNull('user_type', instance.userType);
-  writeNotNull('_id', instance.id);
+  writeNotNull('otp', instance.otp);
+  writeNotNull('status', instance.status);
   return val;
 }

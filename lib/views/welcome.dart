@@ -37,13 +37,10 @@ class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: (hasSeen)
-          ? (userId!.isNotEmpty)
-              ? const Dashboard(
-                  message: "",
-                )
-              : const UserAuthScreen() //UserAuthScreen() //EmailSingIn()
-          : const OnboardScreen(),
-    );
+        body: userId!.isNotEmpty
+            ? const Dashboard()
+            : const Dashboard() //UserAuthScreen()
+
+        );
   }
 }

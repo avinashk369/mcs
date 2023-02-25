@@ -20,7 +20,7 @@ const Duration kLoginAnimationDuration = Duration(milliseconds: 1500);
 const String kGoogleLogoPath = 'assets/images/google_logo.png';
 
 ///light theme colors
-const primaryLight = Colors.deepPurple;
+const primaryLight = Colors.green;
 const secondaryLight = Colors.white;
 const darkColor = Color(0xFF22232E);
 const redColor = Color(0xffe71d36);

@@ -8,4 +8,10 @@ class ApiConst {
   static const String cityList = 'Api_controller/GetCity';
 
   static const String banners = 'Api_controller/GetBanner';
+  static const String products = 'Api_controller/GetProducts';
+  static const String login = 'Api_controller/EnterMobile';
+  static const String otpVerify = 'Api_controller/VarifyOtp';
+  static const String resendOtp = 'Api_controller/ResendOtp';
+  static const String getCategory = 'Api_controller/GetCategory';
+  static const String getSubCategory = 'Api_controller/GetSubCategory';
 }

@@ -38,7 +38,7 @@ class ShoppingItem extends StatelessWidget {
                   borderRadius: BorderRadius.horizontal(
                       left: Radius.circular(5), right: Radius.circular(0))),
               child: CachedNetworkImage(
-                imageUrl: productModel.thumbnail ??
+                imageUrl: productModel.productImage ??
                     ' https://picsum.photos/250?image=9 ',
                 errorWidget: (context, url, error) =>
                     Image.asset('assets/images/logo.png'),
@@ -71,31 +71,31 @@ class ShoppingItem extends StatelessWidget {
                       flex: 5,
                       child: Row(
                         children: [
-                          Text(
-                            "₹${productModel.offerPrice.toString()}",
-                            style: kLabelStyleBold.copyWith(fontSize: 16),
-                          ),
+                          // Text(
+                          //   "₹${productModel.offerPrice.toString()}",
+                          //   style: kLabelStyleBold.copyWith(fontSize: 16),
+                          // ),
                           const SizedBox(
                             width: 5,
                           ),
-                          Text(
-                            "₹${productModel.price.toString()}",
-                            style: kLabelStyleBold.copyWith(
-                              decoration: TextDecoration.lineThrough,
-                              fontSize: 10,
-                              color: greyColor,
-                            ),
-                          ),
+                          // Text(
+                          //   "₹${productModel.price.toString()}",
+                          //   style: kLabelStyleBold.copyWith(
+                          //     decoration: TextDecoration.lineThrough,
+                          //     fontSize: 10,
+                          //     color: greyColor,
+                          //   ),
+                          // ),
                           const SizedBox(
                             width: 5,
                           ),
-                          Text(
-                            "₹${(productModel.price! - productModel.offerPrice!).toString()} Off",
-                            style: kLabelStyleBold.copyWith(
-                              fontSize: 12,
-                              color: greenColor,
-                            ),
-                          ),
+                          // Text(
+                          //   "₹${(productModel.price! - productModel.offerPrice!).toString()} Off",
+                          //   style: kLabelStyleBold.copyWith(
+                          //     fontSize: 12,
+                          //     color: greenColor,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

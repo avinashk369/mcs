@@ -37,10 +37,10 @@ class ItemCard extends StatelessWidget {
                         topLeft: Radius.circular(3),
                         topRight: Radius.circular(3)),
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height * .2,
+                      height: MediaQuery.of(context).size.height * .18,
                       width: double.infinity,
                       child: CachedNetworkImage(
-                        imageUrl: product.thumbnail!,
+                        imageUrl: product.productImage!,
                         placeholder: (context, url) =>
                             Image.asset("assets/images/photo.jpg"),
                         errorWidget: (context, url, error) =>

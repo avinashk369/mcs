@@ -1,8 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:mcs/models/models.dart'
-    show CityModel, UserModel, PaymentModel, BaseResponse, BannerModel;
+    show
+        CityModel,
+        UserModel,
+        PaymentModel,
+        BaseResponse,
+        BannerModel,
+        SubCateModel,
+        CategoryModel;
 import 'package:mcs/models/payment/order.model.dart';
 import 'package:mcs/models/payment/transfer.model.dart';
+import 'package:mcs/models/product/product_mode.dart';
 import 'package:retrofit/retrofit.dart';
 
 import 'api_const.dart';
@@ -23,20 +31,42 @@ abstract class ApiClient {
   Future<BaseResponse<List<BannerModel>>> getBanners(
       @Body() Map<String, dynamic> data);
 
+  /// get products based on city id and category id
+  @POST(ApiConst.products)
+  @FormUrlEncoded()
+  Future<BaseResponse<List<ProductModel>>> getProducts(
+      @Body() Map<String, dynamic> data);
+
   @GET("Home/HomeFeaturesData")
   Future<UserModel> getHomeFeatureData(
       @Header("Authorization") String accetoken);
 
-  @POST("auth")
+  @POST(ApiConst.login)
   @FormUrlEncoded()
   Future<UserModel> userLogin(
     @Body() Map<String, dynamic> data,
   );
 
-  @POST("auth/verifyOtp")
+  @POST(ApiConst.otpVerify)
   @FormUrlEncoded()
   Future<UserModel> otpVerificaiotn(
-    @Header("Authorization") String accetoken,
+    @Body() Map<String, dynamic> data,
+  );
+
+  @POST(ApiConst.resendOtp)
+  @FormUrlEncoded()
+  Future<UserModel> resendOtp(
+    @Body() Map<String, dynamic> data,
+  );
+  @POST(ApiConst.getCategory)
+  @FormUrlEncoded()
+  Future<BaseResponse<List<CategoryModel>>> getCategories(
+    @Body() Map<String, dynamic> data,
+  );
+
+  @POST(ApiConst.getSubCategory)
+  @FormUrlEncoded()
+  Future<BaseResponse<List<SubCateModel>>> getSubCategories(
     @Body() Map<String, dynamic> data,
   );
 

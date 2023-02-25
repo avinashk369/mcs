@@ -104,21 +104,20 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
             create: (context) =>
                 DataBloc(dataRepositoryImpl: context.read<DataRepositoryImpl>())
-                  ..add(const LoadCities()),
+                  ..add(const LoadCities())
+                  ..add(const LoadBanners(cityId: "4")),
           ),
           BlocProvider(
             create: ((context) =>
                 ProductBloc(context.read<ProductRepositoryImpl>())
                   ..add(
-                    const ProductEvent.loadProduct(),
+                    const ProductEvent.loadProduct(cityId: '4'),
                   )),
           ),
           BlocProvider(
             create: (context) => CategoryBloc(
               context.read<CategoryRepositoryImpl>(),
-            )..add(
-                const CategoryEvent.loadCategory(),
-              ),
+            )..add(const CategoryEvent.loadCategory(cityId: "4")),
           ),
           BlocProvider<NavigationBloc>(
             create: (context) => NavigationBloc(),

@@ -10,10 +10,12 @@ class CatList extends StatelessWidget implements PreferredSizeWidget {
   const CatList({
     Key? key,
     required this.categories,
+    required this.onTap,
   })  : preferredSize = const Size.fromHeight(kAppBarHeight),
         super(key: key);
 
   final List<CategoryModel> categories;
+  final Function(CategoryModel category) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +31,9 @@ class CatList extends StatelessWidget implements PreferredSizeWidget {
           itemBuilder: (_, index) => CatCard(
                 categoryModel: categories[index],
                 index: index,
-                onTap: (cat) {
-                  context.read<ToggleIndexBloc>().toggleState(index, false);
-
-                  // load products based on cat id
-                },
+                onTap: (cat) => onTap(cat),
                 child: CachedNetworkImage(
-                  imageUrl: categories[index].thumb!,
+                  imageUrl: categories[index].categoryImg!,
                   fit: BoxFit.fill,
                 ),
               ),

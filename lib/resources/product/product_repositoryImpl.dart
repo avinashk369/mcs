@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:mcs/models/product/product_mode.dart';
+import 'package:mcs/models/server_error.dart';
 import 'package:mcs/services/ApiClient.dart';
 
 import 'product_repository.dart';
@@ -12,17 +13,12 @@ class ProductRepositoryImpl implements ProductRepository {
   ProductRepositoryImpl({required this.apiClient});
 
   @override
-  Future<List<ProductModel>> loadProducts() async {
+  Future<List<ProductModel>> loadProducts(Map<String, dynamic> data) async {
     late List<ProductModel> products;
     try {
-      var response = await rootBundle.loadString('assets/jsons/products.json');
-      products = (json.decode(response) as List)
-          .map((data) => ProductModel.fromJson(data))
-          .toList();
-
-      products;
+      products = (await apiClient.getProducts(data)).data!;
     } catch (error) {
-      throw Exception("Something went wrong");
+      throw ServerError.withError(error: error);
     }
     return products;
   }

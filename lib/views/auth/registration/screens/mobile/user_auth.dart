@@ -1,7 +1,9 @@
 part of user_auth;
 
 class UserAuth extends StatefulWidget {
-  const UserAuth({Key? key}) : super(key: key);
+  const UserAuth({Key? key, required this.mobileNumberController})
+      : super(key: key);
+  final TextEditingController mobileNumberController;
 
   @override
   _UserAuthState createState() => _UserAuthState();
@@ -15,13 +17,12 @@ class _UserAuthState extends State<UserAuth> {
     /// here we are getting the phone number value from the dialog
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await _autoFill.hint.then((value) {
-        // authCon.phoneNumberController.text =
-        //     value != null ? value.substring(3, value.length) : "";
-        // value != null ? authCon.isValid(true) : authCon.isValid(false);
+        context.read<LoginBloc>().checkNumber(value ?? '');
+        widget.mobileNumberController.text =
+            value != null ? value.substring(3, value.length) : '';
       });
     });
-    print("bloc code init ${context.read<LoginBloc>().hashCode}");
-    // TODO: implement initState
+
     super.initState();
   }
 
@@ -63,7 +64,8 @@ class _UserAuthState extends State<UserAuth> {
                 const SizedBox(
                   height: 35,
                 ),
-                const PhoneNumber(),
+                PhoneNumber(
+                    mobileNumberController: widget.mobileNumberController),
                 // Checkbox(
                 //   value: true,
                 //   onChanged: (value) {},

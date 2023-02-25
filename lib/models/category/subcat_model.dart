@@ -1,14 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'category_model.freezed.dart';
-part 'category_model.g.dart';
+part 'subcat_model.freezed.dart';
+part 'subcat_model.g.dart';
 
 @freezed
-class CategoryModel with _$CategoryModel {
+class SubCateModel with _$SubCateModel {
   @JsonSerializable(
       includeIfNull: false,
       explicitToJson: true,
       fieldRename: FieldRename.snake)
-  const factory CategoryModel({
+  const factory SubCateModel({
     String? id,
     String? categoryName,
     String? isActive,
@@ -19,7 +19,7 @@ class CategoryModel with _$CategoryModel {
     String? parent,
     String? cityId,
     String? showOnInvoice,
-  }) = _CategoryModel;
-  factory CategoryModel.fromJson(Map<String, dynamic> json) =>
-      _$CategoryModelFromJson(json);
+  }) = _SubCateModel;
+  factory SubCateModel.fromJson(Map<String, dynamic> json) =>
+      _$SubCateModelFromJson(json);
 }

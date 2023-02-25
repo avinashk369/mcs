@@ -55,7 +55,7 @@ class CatCard extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    categoryModel.name!,
+                    categoryModel.categoryName!,
                     style: kLabelStyleBold.copyWith(
                         color: state.isSelected && state.index == index
                             ? secondaryLight
