@@ -28,13 +28,13 @@ class RouteGenerator {
       case products:
         Map<String, dynamic> data = args as Map<String, dynamic>;
         CategoryModel categoryModel = data['category'];
-        //int index = data['index'];
+        int index = data['index'];
         String cityId = data['city_id'];
 
         return SlideRightRoute(
           page: ProductList(
             category: categoryModel,
-            index: 0,
+            index: index,
             cityId: cityId,
           ),
         );

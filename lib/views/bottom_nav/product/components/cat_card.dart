@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mcs/blocs/toggle/index_toggled.dart';
 import 'package:mcs/blocs/toggle/toggle_index_bloc.dart';
 import 'package:mcs/models/category/category_model.dart';
@@ -11,21 +12,28 @@ class CatCard extends StatelessWidget {
       required this.child,
       required this.categoryModel,
       required this.index,
-      required this.onTap})
+      required this.onTap,
+      required this.isSeleted})
       : super(key: key);
   final Widget child;
   final CategoryModel categoryModel;
   final int index;
+  final bool isSeleted;
   final Function(CategoryModel categoryModel) onTap;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ToggleIndexBloc, IndexToggled>(
         builder: (context, state) {
+      print('${state.index} cat index ${state.isSelected} $index');
       return SizedBox(
         width: 150,
         child: InkWell(
-          onTap: () => onTap(categoryModel),
+          onTap: () {
+            Fluttertoast.showToast(msg: 'index $index');
+            context.read<ToggleIndexBloc>().toggleState(index, false);
+            onTap(categoryModel);
+          },
           child: Card(
             semanticContainer: true,
             clipBehavior: Clip.antiAliasWithSaveLayer,

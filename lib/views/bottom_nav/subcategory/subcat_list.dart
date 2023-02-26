@@ -23,24 +23,27 @@ class SubCatList extends StatelessWidget {
       child: Builder(builder: (context) {
         return SizedBox(
           height: 40,
-          child: ListView.separated(
-              separatorBuilder: (_, __) => const SizedBox(width: 5),
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemBuilder: (_, index) => SubCatCard(
-                    subcatModel: index == 0
-                        ? const SubCateModel(categoryName: "All", id: "0")
-                        : subCategories[index - 1],
-                    onTap: (subcat) => context
-                        .read<ToggleIndexBloc>()
-                        .toggleState(index, false),
-                    index: index,
-                    child: CachedNetworkImage(
-                      imageUrl: "https://picsum.photos/id/1/200/200",
-                      fit: BoxFit.cover,
+          child: Container(
+            alignment: Alignment.centerLeft,
+            child: ListView.separated(
+                separatorBuilder: (_, __) => const SizedBox(width: 5),
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemBuilder: (_, index) => SubCatCard(
+                      subcatModel: index == 0
+                          ? const SubCateModel(categoryName: "All", id: "0")
+                          : subCategories[index - 1],
+                      onTap: (subcat) => context
+                          .read<ToggleIndexBloc>()
+                          .toggleState(index, false),
+                      index: index,
+                      child: CachedNetworkImage(
+                        imageUrl: "https://picsum.photos/id/1/200/200",
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-              itemCount: subCategories.length + 1),
+                itemCount: subCategories.length + 1),
+          ),
         );
       }),
     );

@@ -20,38 +20,32 @@ mixin _$CategoryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String cityId) loadCategory,
-    required TResult Function(String cityId, String catId) loadSubcategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String cityId)? loadCategory,
-    TResult? Function(String cityId, String catId)? loadSubcategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String cityId)? loadCategory,
-    TResult Function(String cityId, String catId)? loadSubcategory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadCategory value) loadCategory,
-    required TResult Function(LoadSubcategory value) loadSubcategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadCategory value)? loadCategory,
-    TResult? Function(LoadSubcategory value)? loadSubcategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadCategory value)? loadCategory,
-    TResult Function(LoadSubcategory value)? loadSubcategory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -169,7 +163,6 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String cityId) loadCategory,
-    required TResult Function(String cityId, String catId) loadSubcategory,
   }) {
     return loadCategory(cityId);
   }
@@ -178,7 +171,6 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String cityId)? loadCategory,
-    TResult? Function(String cityId, String catId)? loadSubcategory,
   }) {
     return loadCategory?.call(cityId);
   }
@@ -187,7 +179,6 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String cityId)? loadCategory,
-    TResult Function(String cityId, String catId)? loadSubcategory,
     required TResult orElse(),
   }) {
     if (loadCategory != null) {
@@ -200,7 +191,6 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadCategory value) loadCategory,
-    required TResult Function(LoadSubcategory value) loadSubcategory,
   }) {
     return loadCategory(this);
   }
@@ -209,7 +199,6 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadCategory value)? loadCategory,
-    TResult? Function(LoadSubcategory value)? loadSubcategory,
   }) {
     return loadCategory?.call(this);
   }
@@ -218,7 +207,6 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadCategory value)? loadCategory,
-    TResult Function(LoadSubcategory value)? loadSubcategory,
     required TResult orElse(),
   }) {
     if (loadCategory != null) {
@@ -240,213 +228,54 @@ abstract class LoadCategory implements CategoryEvent {
 }
 
 /// @nodoc
-abstract class _$$LoadSubcategoryCopyWith<$Res>
-    implements $CategoryEventCopyWith<$Res> {
-  factory _$$LoadSubcategoryCopyWith(
-          _$LoadSubcategory value, $Res Function(_$LoadSubcategory) then) =
-      __$$LoadSubcategoryCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String cityId, String catId});
-}
-
-/// @nodoc
-class __$$LoadSubcategoryCopyWithImpl<$Res>
-    extends _$CategoryEventCopyWithImpl<$Res, _$LoadSubcategory>
-    implements _$$LoadSubcategoryCopyWith<$Res> {
-  __$$LoadSubcategoryCopyWithImpl(
-      _$LoadSubcategory _value, $Res Function(_$LoadSubcategory) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? cityId = null,
-    Object? catId = null,
-  }) {
-    return _then(_$LoadSubcategory(
-      cityId: null == cityId
-          ? _value.cityId
-          : cityId // ignore: cast_nullable_to_non_nullable
-              as String,
-      catId: null == catId
-          ? _value.catId
-          : catId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$LoadSubcategory
-    with DiagnosticableTreeMixin
-    implements LoadSubcategory {
-  const _$LoadSubcategory({required this.cityId, required this.catId});
-
-  @override
-  final String cityId;
-  @override
-  final String catId;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CategoryEvent.loadSubcategory(cityId: $cityId, catId: $catId)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'CategoryEvent.loadSubcategory'))
-      ..add(DiagnosticsProperty('cityId', cityId))
-      ..add(DiagnosticsProperty('catId', catId));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadSubcategory &&
-            (identical(other.cityId, cityId) || other.cityId == cityId) &&
-            (identical(other.catId, catId) || other.catId == catId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, cityId, catId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadSubcategoryCopyWith<_$LoadSubcategory> get copyWith =>
-      __$$LoadSubcategoryCopyWithImpl<_$LoadSubcategory>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String cityId) loadCategory,
-    required TResult Function(String cityId, String catId) loadSubcategory,
-  }) {
-    return loadSubcategory(cityId, catId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String cityId)? loadCategory,
-    TResult? Function(String cityId, String catId)? loadSubcategory,
-  }) {
-    return loadSubcategory?.call(cityId, catId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String cityId)? loadCategory,
-    TResult Function(String cityId, String catId)? loadSubcategory,
-    required TResult orElse(),
-  }) {
-    if (loadSubcategory != null) {
-      return loadSubcategory(cityId, catId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LoadCategory value) loadCategory,
-    required TResult Function(LoadSubcategory value) loadSubcategory,
-  }) {
-    return loadSubcategory(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadCategory value)? loadCategory,
-    TResult? Function(LoadSubcategory value)? loadSubcategory,
-  }) {
-    return loadSubcategory?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadCategory value)? loadCategory,
-    TResult Function(LoadSubcategory value)? loadSubcategory,
-    required TResult orElse(),
-  }) {
-    if (loadSubcategory != null) {
-      return loadSubcategory(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoadSubcategory implements CategoryEvent {
-  const factory LoadSubcategory(
-      {required final String cityId,
-      required final String catId}) = _$LoadSubcategory;
-
-  @override
-  String get cityId;
-  String get catId;
-  @override
-  @JsonKey(ignore: true)
-  _$$LoadSubcategoryCopyWith<_$LoadSubcategory> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 mixin _$CategoryState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(List<CategoryModel> categories) loaded,
     required TResult Function(String message) error,
-    required TResult Function(List<SubCateModel> subcats) subCatLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
     TResult? Function(List<CategoryModel> categories)? loaded,
     TResult? Function(String message)? error,
-    TResult? Function(List<SubCateModel> subcats)? subCatLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(List<CategoryModel> categories)? loaded,
     TResult Function(String message)? error,
-    TResult Function(List<SubCateModel> subcats)? subCatLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CategoryInitial value) initial,
+    required TResult Function(CategoryLoading value) loading,
     required TResult Function(CategoryLoaded value) loaded,
     required TResult Function(CategoryError value) error,
-    required TResult Function(SubcatLoaded value) subCatLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CategoryInitial value)? initial,
+    TResult? Function(CategoryLoading value)? loading,
     TResult? Function(CategoryLoaded value)? loaded,
     TResult? Function(CategoryError value)? error,
-    TResult? Function(SubcatLoaded value)? subCatLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CategoryInitial value)? initial,
+    TResult Function(CategoryLoading value)? loading,
     TResult Function(CategoryLoaded value)? loaded,
     TResult Function(CategoryError value)? error,
-    TResult Function(SubcatLoaded value)? subCatLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -517,9 +346,9 @@ class _$CategoryInitial
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(List<CategoryModel> categories) loaded,
     required TResult Function(String message) error,
-    required TResult Function(List<SubCateModel> subcats) subCatLoaded,
   }) {
     return initial();
   }
@@ -528,9 +357,9 @@ class _$CategoryInitial
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
     TResult? Function(List<CategoryModel> categories)? loaded,
     TResult? Function(String message)? error,
-    TResult? Function(List<SubCateModel> subcats)? subCatLoaded,
   }) {
     return initial?.call();
   }
@@ -539,9 +368,9 @@ class _$CategoryInitial
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(List<CategoryModel> categories)? loaded,
     TResult Function(String message)? error,
-    TResult Function(List<SubCateModel> subcats)? subCatLoaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -554,9 +383,9 @@ class _$CategoryInitial
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CategoryInitial value) initial,
+    required TResult Function(CategoryLoading value) loading,
     required TResult Function(CategoryLoaded value) loaded,
     required TResult Function(CategoryError value) error,
-    required TResult Function(SubcatLoaded value) subCatLoaded,
   }) {
     return initial(this);
   }
@@ -565,9 +394,9 @@ class _$CategoryInitial
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CategoryInitial value)? initial,
+    TResult? Function(CategoryLoading value)? loading,
     TResult? Function(CategoryLoaded value)? loaded,
     TResult? Function(CategoryError value)? error,
-    TResult? Function(SubcatLoaded value)? subCatLoaded,
   }) {
     return initial?.call(this);
   }
@@ -576,9 +405,9 @@ class _$CategoryInitial
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CategoryInitial value)? initial,
+    TResult Function(CategoryLoading value)? loading,
     TResult Function(CategoryLoaded value)? loaded,
     TResult Function(CategoryError value)? error,
-    TResult Function(SubcatLoaded value)? subCatLoaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -590,6 +419,128 @@ class _$CategoryInitial
 
 abstract class CategoryInitial implements CategoryState {
   const factory CategoryInitial() = _$CategoryInitial;
+}
+
+/// @nodoc
+abstract class _$$CategoryLoadingCopyWith<$Res> {
+  factory _$$CategoryLoadingCopyWith(
+          _$CategoryLoading value, $Res Function(_$CategoryLoading) then) =
+      __$$CategoryLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CategoryLoadingCopyWithImpl<$Res>
+    extends _$CategoryStateCopyWithImpl<$Res, _$CategoryLoading>
+    implements _$$CategoryLoadingCopyWith<$Res> {
+  __$$CategoryLoadingCopyWithImpl(
+      _$CategoryLoading _value, $Res Function(_$CategoryLoading) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CategoryLoading
+    with DiagnosticableTreeMixin
+    implements CategoryLoading {
+  const _$CategoryLoading();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CategoryState.loading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'CategoryState.loading'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CategoryLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<CategoryModel> categories) loaded,
+    required TResult Function(String message) error,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(String message)? error,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<CategoryModel> categories)? loaded,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CategoryInitial value) initial,
+    required TResult Function(CategoryLoading value) loading,
+    required TResult Function(CategoryLoaded value) loaded,
+    required TResult Function(CategoryError value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CategoryInitial value)? initial,
+    TResult? Function(CategoryLoading value)? loading,
+    TResult? Function(CategoryLoaded value)? loaded,
+    TResult? Function(CategoryError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CategoryInitial value)? initial,
+    TResult Function(CategoryLoading value)? loading,
+    TResult Function(CategoryLoaded value)? loaded,
+    TResult Function(CategoryError value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CategoryLoading implements CategoryState {
+  const factory CategoryLoading() = _$CategoryLoading;
 }
 
 /// @nodoc
@@ -673,9 +624,9 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(List<CategoryModel> categories) loaded,
     required TResult Function(String message) error,
-    required TResult Function(List<SubCateModel> subcats) subCatLoaded,
   }) {
     return loaded(categories);
   }
@@ -684,9 +635,9 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
     TResult? Function(List<CategoryModel> categories)? loaded,
     TResult? Function(String message)? error,
-    TResult? Function(List<SubCateModel> subcats)? subCatLoaded,
   }) {
     return loaded?.call(categories);
   }
@@ -695,9 +646,9 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(List<CategoryModel> categories)? loaded,
     TResult Function(String message)? error,
-    TResult Function(List<SubCateModel> subcats)? subCatLoaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -710,9 +661,9 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CategoryInitial value) initial,
+    required TResult Function(CategoryLoading value) loading,
     required TResult Function(CategoryLoaded value) loaded,
     required TResult Function(CategoryError value) error,
-    required TResult Function(SubcatLoaded value) subCatLoaded,
   }) {
     return loaded(this);
   }
@@ -721,9 +672,9 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CategoryInitial value)? initial,
+    TResult? Function(CategoryLoading value)? loading,
     TResult? Function(CategoryLoaded value)? loaded,
     TResult? Function(CategoryError value)? error,
-    TResult? Function(SubcatLoaded value)? subCatLoaded,
   }) {
     return loaded?.call(this);
   }
@@ -732,9 +683,9 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CategoryInitial value)? initial,
+    TResult Function(CategoryLoading value)? loading,
     TResult Function(CategoryLoaded value)? loaded,
     TResult Function(CategoryError value)? error,
-    TResult Function(SubcatLoaded value)? subCatLoaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -827,9 +778,9 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(List<CategoryModel> categories) loaded,
     required TResult Function(String message) error,
-    required TResult Function(List<SubCateModel> subcats) subCatLoaded,
   }) {
     return error(message);
   }
@@ -838,9 +789,9 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
     TResult? Function(List<CategoryModel> categories)? loaded,
     TResult? Function(String message)? error,
-    TResult? Function(List<SubCateModel> subcats)? subCatLoaded,
   }) {
     return error?.call(message);
   }
@@ -849,9 +800,9 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(List<CategoryModel> categories)? loaded,
     TResult Function(String message)? error,
-    TResult Function(List<SubCateModel> subcats)? subCatLoaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -864,9 +815,9 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CategoryInitial value) initial,
+    required TResult Function(CategoryLoading value) loading,
     required TResult Function(CategoryLoaded value) loaded,
     required TResult Function(CategoryError value) error,
-    required TResult Function(SubcatLoaded value) subCatLoaded,
   }) {
     return error(this);
   }
@@ -875,9 +826,9 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CategoryInitial value)? initial,
+    TResult? Function(CategoryLoading value)? loading,
     TResult? Function(CategoryLoaded value)? loaded,
     TResult? Function(CategoryError value)? error,
-    TResult? Function(SubcatLoaded value)? subCatLoaded,
   }) {
     return error?.call(this);
   }
@@ -886,9 +837,9 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CategoryInitial value)? initial,
+    TResult Function(CategoryLoading value)? loading,
     TResult Function(CategoryLoaded value)? loaded,
     TResult Function(CategoryError value)? error,
-    TResult Function(SubcatLoaded value)? subCatLoaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -905,166 +856,5 @@ abstract class CategoryError implements CategoryState {
   String get message;
   @JsonKey(ignore: true)
   _$$CategoryErrorCopyWith<_$CategoryError> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SubcatLoadedCopyWith<$Res> {
-  factory _$$SubcatLoadedCopyWith(
-          _$SubcatLoaded value, $Res Function(_$SubcatLoaded) then) =
-      __$$SubcatLoadedCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<SubCateModel> subcats});
-}
-
-/// @nodoc
-class __$$SubcatLoadedCopyWithImpl<$Res>
-    extends _$CategoryStateCopyWithImpl<$Res, _$SubcatLoaded>
-    implements _$$SubcatLoadedCopyWith<$Res> {
-  __$$SubcatLoadedCopyWithImpl(
-      _$SubcatLoaded _value, $Res Function(_$SubcatLoaded) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? subcats = null,
-  }) {
-    return _then(_$SubcatLoaded(
-      subcats: null == subcats
-          ? _value._subcats
-          : subcats // ignore: cast_nullable_to_non_nullable
-              as List<SubCateModel>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SubcatLoaded with DiagnosticableTreeMixin implements SubcatLoaded {
-  const _$SubcatLoaded({required final List<SubCateModel> subcats})
-      : _subcats = subcats;
-
-  final List<SubCateModel> _subcats;
-  @override
-  List<SubCateModel> get subcats {
-    if (_subcats is EqualUnmodifiableListView) return _subcats;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_subcats);
-  }
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CategoryState.subCatLoaded(subcats: $subcats)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'CategoryState.subCatLoaded'))
-      ..add(DiagnosticsProperty('subcats', subcats));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SubcatLoaded &&
-            const DeepCollectionEquality().equals(other._subcats, _subcats));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_subcats));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SubcatLoadedCopyWith<_$SubcatLoaded> get copyWith =>
-      __$$SubcatLoadedCopyWithImpl<_$SubcatLoaded>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(List<CategoryModel> categories) loaded,
-    required TResult Function(String message) error,
-    required TResult Function(List<SubCateModel> subcats) subCatLoaded,
-  }) {
-    return subCatLoaded(subcats);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(List<CategoryModel> categories)? loaded,
-    TResult? Function(String message)? error,
-    TResult? Function(List<SubCateModel> subcats)? subCatLoaded,
-  }) {
-    return subCatLoaded?.call(subcats);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(List<CategoryModel> categories)? loaded,
-    TResult Function(String message)? error,
-    TResult Function(List<SubCateModel> subcats)? subCatLoaded,
-    required TResult orElse(),
-  }) {
-    if (subCatLoaded != null) {
-      return subCatLoaded(subcats);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CategoryInitial value) initial,
-    required TResult Function(CategoryLoaded value) loaded,
-    required TResult Function(CategoryError value) error,
-    required TResult Function(SubcatLoaded value) subCatLoaded,
-  }) {
-    return subCatLoaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CategoryInitial value)? initial,
-    TResult? Function(CategoryLoaded value)? loaded,
-    TResult? Function(CategoryError value)? error,
-    TResult? Function(SubcatLoaded value)? subCatLoaded,
-  }) {
-    return subCatLoaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CategoryInitial value)? initial,
-    TResult Function(CategoryLoaded value)? loaded,
-    TResult Function(CategoryError value)? error,
-    TResult Function(SubcatLoaded value)? subCatLoaded,
-    required TResult orElse(),
-  }) {
-    if (subCatLoaded != null) {
-      return subCatLoaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SubcatLoaded implements CategoryState {
-  const factory SubcatLoaded({required final List<SubCateModel> subcats}) =
-      _$SubcatLoaded;
-
-  List<SubCateModel> get subcats;
-  @JsonKey(ignore: true)
-  _$$SubcatLoadedCopyWith<_$SubcatLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }

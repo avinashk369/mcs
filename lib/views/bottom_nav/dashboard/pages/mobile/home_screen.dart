@@ -20,6 +20,8 @@ import 'package:mcs/widgets/extensions/widget_modifier.dart';
 import 'package:mcs/widgets/loading_ui.dart';
 import 'package:mcs/widgets/placeholders/product_holder.dart';
 
+import '../../../../../blocs/subcat/subcat_bloc.dart';
+
 part '../../components/search_widget.dart';
 part '../mobile/components/category_list.dart';
 part '../mobile/components/category_card.dart';
@@ -92,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 }),
                 BlocBuilder<CategoryBloc, CategoryState>(
                   buildWhen: (previous, current) =>
-                      previous != current && current is CategoryLoaded,
+                      (current != previous && current is CategoryLoaded),
                   builder: (context, state) {
                     return state.maybeMap(
                       initial: (_) => const ProductHolder(),

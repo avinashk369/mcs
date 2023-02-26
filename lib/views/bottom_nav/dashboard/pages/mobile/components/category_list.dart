@@ -18,7 +18,14 @@ class CategoryList extends StatelessWidget {
         return CategoryCard(
           title: category.categoryName!,
           onTap: () {
-            Map<String, dynamic> data = {"category": category, "city_id": "4"};
+            Map<String, dynamic> data = {
+              "category": category,
+              "city_id": "4",
+              'index': index
+            };
+            context
+                .read<SubcatBloc>()
+                .add(SubcatEvent.loadsubcat(catId: category.id!, cityId: "4"));
             Navigator.of(context).pushNamed(products, arguments: data);
           },
           child: CachedNetworkImage(

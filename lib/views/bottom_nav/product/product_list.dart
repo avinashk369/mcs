@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/navigation/navigationbloc.dart';
 import 'package:mcs/blocs/product/productbloc.dart';
+import 'package:mcs/blocs/subcat/subcat_bloc.dart';
 import 'package:mcs/blocs/toggle/index_toggled.dart';
 import 'package:mcs/blocs/toggle/toggle_index_bloc.dart';
 import 'package:mcs/models/category/category_model.dart';
@@ -31,13 +32,6 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<CategoryBloc>(
-          create: (context) => CategoryBloc(
-            context.read<CategoryRepositoryImpl>(),
-          )..add(CategoryEvent.loadSubcategory(
-              catId: category.id!, cityId: cityId)),
-        ),
-
         // this is for category toggle
         BlocProvider<ToggleIndexBloc>(
           create: (context) => ToggleIndexBloc(
@@ -52,7 +46,13 @@ class ProductList extends StatelessWidget {
               expandedHeight: kToolbarHeight * 3,
               automaticallyImplyLeading: true,
               floating: false,
-              title: Text(category.categoryName!),
+              title: BlocBuilder<SubcatBloc, SubcatState>(
+                builder: (context, state) => state.maybeWhen(
+                  loaded: (subcats, catName) =>
+                      Text(catName ?? category.categoryName!),
+                  orElse: () => Text(category.categoryName!),
+                ),
+              ),
               pinned: true,
               snap: false,
               elevation: 0,
@@ -86,21 +86,25 @@ class ProductList extends StatelessWidget {
               ],
               bottom: ProductFilter(
                 categoryBloc: context.read<CategoryBloc>(),
+                categoryModel: category,
                 onTap: (categoryModel) {
-                  context.read<CategoryBloc>().add(
-                      CategoryEvent.loadSubcategory(
-                          catId: category.id!, cityId: cityId));
-                  context.read<ToggleIndexBloc>().toggleState(index, false);
+                  context.read<SubcatBloc>().add(SubcatEvent.loadsubcat(
+                      catId: categoryModel.id!,
+                      cityId: cityId,
+                      catName: categoryModel.categoryName));
                 },
               ),
             ),
+
+            /// will open after logic is implemented
             BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {
                 return state.maybeMap(
-                  initial: (_) => LoadingUI(),
+                  initial: (_) => SliverToBoxAdapter(child: LoadingUI()),
                   loaded: (res) => ProductGrid(products: res.products),
-                  error: (err) => Text(err.message),
-                  orElse: () => const SizedBox.shrink(),
+                  error: (err) => SliverToBoxAdapter(child: Text(err.message)),
+                  orElse: () =>
+                      const SliverToBoxAdapter(child: SizedBox.shrink()),
                 );
               },
             ),

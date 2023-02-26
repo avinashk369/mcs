@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mcs/blocs/category/category_bloc.dart';
 import 'package:mcs/blocs/product/productbloc.dart';
+import 'package:mcs/blocs/subcat/subcat_bloc.dart';
 import 'package:mcs/models/category/category_model.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/product/components/product_grid.dart';
@@ -17,9 +18,13 @@ class ProductFilter extends StatelessWidget implements PreferredSizeWidget {
     Key? key,
     required this.categoryBloc,
     required this.onTap,
+    required this.categoryModel,
   })  : preferredSize = const Size.fromHeight(kAppBarHeight),
         super(key: key);
   final CategoryBloc categoryBloc;
+  final CategoryModel categoryModel;
+
+  /// to find the selected category
   final Function(CategoryModel categoryModel) onTap;
   @override
   Widget build(BuildContext context) {
@@ -30,10 +35,12 @@ class ProductFilter extends StatelessWidget implements PreferredSizeWidget {
         children: [
           BlocBuilder<CategoryBloc, CategoryState>(
             bloc: categoryBloc,
+            buildWhen: (previous, current) => (current is CategoryLoaded),
             builder: (context, state) {
               return state.maybeMap(
                 initial: (_) => const ProductHolder(),
                 loaded: (res) => CatList(
+                  categoryModel: categoryModel,
                   categories: res.categories,
                   onTap: (category) => onTap(category),
                 ),
@@ -42,11 +49,11 @@ class ProductFilter extends StatelessWidget implements PreferredSizeWidget {
               );
             },
           ),
-          BlocBuilder<CategoryBloc, CategoryState>(
+          BlocBuilder<SubcatBloc, SubcatState>(
             builder: (context, state) {
               return state.maybeMap(
                 initial: (_) => const ProductHolder(),
-                subCatLoaded: (res) => SubCatList(subCategories: res.subcats),
+                loaded: (res) => SubCatList(subCategories: res.subcats),
                 error: (err) => Text(err.message),
                 orElse: () => const SizedBox.shrink(),
               );
