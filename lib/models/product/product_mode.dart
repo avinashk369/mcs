@@ -2,6 +2,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'variant.dart';
+
 part 'product_mode.g.dart';
 part 'product_mode.freezed.dart';
 
@@ -25,6 +27,7 @@ class ProductModel with _$ProductModel {
     String? createdAt,
     String? updatedAt,
     String? productGroup,
+    List<Variant>? variant,
     @JsonKey(ignore: true) @Default(0) int count,
     double? rating,
   }) = _ProductModel;

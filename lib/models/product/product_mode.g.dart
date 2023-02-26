@@ -20,6 +20,9 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       createdAt: json['created_at'] as String?,
       updatedAt: json['updated_at'] as String?,
       productGroup: json['product_group'] as String?,
+      variant: (json['variant'] as List<dynamic>?)
+          ?.map((e) => Variant.fromJson(e as Map<String, dynamic>))
+          .toList(),
       rating: (json['rating'] as num?)?.toDouble(),
     );
 
@@ -44,6 +47,7 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) {
   writeNotNull('created_at', instance.createdAt);
   writeNotNull('updated_at', instance.updatedAt);
   writeNotNull('product_group', instance.productGroup);
+  writeNotNull('variant', instance.variant?.map((e) => e.toJson()).toList());
   writeNotNull('rating', instance.rating);
   return val;
 }

@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:mcs/models/product/product_mode.dart';
-import 'package:mcs/models/server_error.dart';
+import 'package:mcs/models/models.dart'
+    show ServerError, BaseResponse, ProductModel;
+
 import 'package:mcs/services/ApiClient.dart';
 
 import 'product_repository.dart';
@@ -16,8 +17,15 @@ class ProductRepositoryImpl implements ProductRepository {
   Future<List<ProductModel>> loadProducts(Map<String, dynamic> data) async {
     late List<ProductModel> products;
     try {
-      products = (await apiClient.getProducts(data)).data!;
-    } catch (error) {
+      BaseResponse<List<ProductModel>> productList =
+          await apiClient.getProducts(data);
+      if (productList.status!) {
+        products = productList.data!;
+      } else {
+        throw Exception(productList.message);
+      }
+    } catch (error, stackTrace) {
+      print(stackTrace.toString());
       throw ServerError.withError(error: error);
     }
     return products;

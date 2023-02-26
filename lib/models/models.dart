@@ -11,3 +11,4 @@ export 'base_response.dart';
 export 'banner/banner_model.dart';
 export 'category/subcat_model.dart';
 export 'category/category_model.dart';
+export 'product/product_mode.dart';

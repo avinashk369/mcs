@@ -28,7 +28,7 @@ class CategoryCard extends StatelessWidget {
           ),
           Text(
             title,
-            maxLines: 1,
+            maxLines: 2,
             textAlign: TextAlign.center,
             style: kLabelStyle.copyWith(fontWeight: FontWeight.bold),
           ),

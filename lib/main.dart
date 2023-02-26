@@ -44,10 +44,10 @@ void main() async {
   // initialize api client
   Dio dio = Dio();
   dio.interceptors.add(LogInterceptor(
-    responseBody: true,
-    request: true,
-    requestBody: true,
-  ));
+      // responseBody: true,
+      // request: true,
+      // requestBody: true,
+      ));
   ApiClient apiClient = ApiClient(dio);
   Bloc.observer = SimpleBlocDelegate();
   runApp(MyApp(apiClient: apiClient));
@@ -110,10 +110,7 @@ class _MyAppState extends State<MyApp> {
           ),
           BlocProvider(
             create: ((context) =>
-                ProductBloc(context.read<ProductRepositoryImpl>())
-                  ..add(
-                    const ProductEvent.loadProduct(cityId: '4'),
-                  )),
+                ProductBloc(context.read<ProductRepositoryImpl>())),
           ),
           BlocProvider(
             create: (context) => CategoryBloc(

@@ -26,6 +26,8 @@ class CategoryList extends StatelessWidget {
             context
                 .read<SubcatBloc>()
                 .add(SubcatEvent.loadsubcat(catId: category.id!, cityId: "4"));
+            context.read<ProductBloc>().add(
+                ProductEvent.loadProduct(cityId: '4', categoryId: category.id));
             Navigator.of(context).pushNamed(products, arguments: data);
           },
           child: CachedNetworkImage(
@@ -38,7 +40,7 @@ class CategoryList extends StatelessWidget {
         crossAxisCount: 4,
         mainAxisSpacing: 5,
         crossAxisSpacing: 1,
-        childAspectRatio: .9,
+        childAspectRatio: .8,
       ),
     ).horizontalPadding(5);
   }

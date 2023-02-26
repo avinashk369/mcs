@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       (current != previous && current is CategoryLoaded),
                   builder: (context, state) {
                     return state.maybeMap(
-                      initial: (_) => const ProductHolder(),
+                      loading: (_) => const ProductHolder(),
                       loaded: (res) => CategoryList(categories: res.categories),
                       error: (err) => Text(err.message),
                       orElse: () => const SizedBox.shrink(),
@@ -105,195 +105,195 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
                 const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Best selling",
-                        style: kLabelStyleBold.copyWith(fontSize: 18),
-                      ),
-                      RawChip(
-                        onPressed: () {},
-                        backgroundColor: primaryLight,
-                        visualDensity: VisualDensity.compact,
-                        label: Text("View all",
-                            style: kLabelStyle.copyWith(color: secondaryLight)),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 8),
-                BlocBuilder<ProductBloc, ProductState>(
-                  builder: (context, state) {
-                    return state.maybeMap(
-                      initial: (_) => const ProductHolder(),
-                      loaded: (res) => BestSelling(
-                        products: res.products,
-                      ),
-                      error: (err) => Text(err.message),
-                      orElse: () => const SizedBox.shrink(),
-                    );
-                  },
-                ),
-                const SizedBox(height: 8),
-                Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    height: size.height * 0.15,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 192, 242, 194),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Suggest new items",
-                                  style: kLabelStyleBold.copyWith(
-                                      fontSize: 18,
-                                      fontFamily:
-                                          GoogleFonts.nunitoSans().fontFamily)),
-                              // Pulse(
-                              //   infinite: true,
-                              //   delay: const Duration(milliseconds: 800),
-                              //   child: CircleAvatar(
-                              //     backgroundColor: Colors.amber[400],
-                              //     child: const Icon(
-                              //       Icons.keyboard_arrow_right,
-                              //       color: darkColor,
-                              //     ),
-                              //   ),
-                              // ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: CircleAvatar(
-                                  backgroundColor: Colors.amber[400],
-                                  child: const Icon(
-                                    Icons.keyboard_arrow_right,
-                                    color: darkColor,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Text(
-                              "Let us know your favourite products that you currently don't see in th app. We will do out best to bring them to you.",
-                              style: kLabelStyleBold.copyWith(
-                                fontSize: 10,
-                                color: Colors.grey,
-                              )),
-                        ],
-                      ),
-                    )),
-                const SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Personal care",
-                        style: kLabelStyleBold.copyWith(fontSize: 18),
-                      ),
-                      RawChip(
-                        onPressed: () {},
-                        backgroundColor: primaryLight,
-                        visualDensity: VisualDensity.compact,
-                        label: Text("View all",
-                            style: kLabelStyle.copyWith(color: secondaryLight)),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 8),
-                BlocBuilder<ProductBloc, ProductState>(
-                  builder: (context, state) {
-                    return state.maybeMap(
-                      initial: (_) => LoadingUI(),
-                      loaded: (res) => PersonalCare(
-                        products: res.personalCare!,
-                      ),
-                      error: (err) => Text(err.message),
-                      orElse: () => const SizedBox.shrink(),
-                    );
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Daily Needs",
-                        style: kLabelStyleBold.copyWith(fontSize: 18),
-                      ),
-                      RawChip(
-                        onPressed: () {},
-                        backgroundColor: primaryLight,
-                        visualDensity: VisualDensity.compact,
-                        label: Text("View all",
-                            style: kLabelStyle.copyWith(color: secondaryLight)),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 8),
-                BlocBuilder<ProductBloc, ProductState>(
-                  builder: (context, state) {
-                    return state.map(
-                      initial: (_) => LoadingUI(),
-                      loading: (_) => LoadingUI(),
-                      loaded: (res) => DailyNeed(
-                        products: res.dailyNeeds!,
-                        height: 280,
-                      ),
-                      error: (err) => Text(err.message),
-                    );
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Dairy & Bakery",
-                        style: kLabelStyleBold.copyWith(fontSize: 18),
-                      ),
-                      RawChip(
-                        onPressed: () {},
-                        backgroundColor: primaryLight,
-                        visualDensity: VisualDensity.compact,
-                        label: Text("View all",
-                            style: kLabelStyle.copyWith(color: secondaryLight)),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 8),
-                BlocBuilder<ProductBloc, ProductState>(
-                  builder: (context, state) {
-                    return state.map(
-                      initial: (_) => const ProductHolder(),
-                      loading: (_) => LoadingUI(),
-                      loaded: (res) => DairyBakery(
-                        products: res.dairyProducts!,
-                        height: 280,
-                      ),
-                      error: (err) => Text(err.message),
-                    );
-                  },
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 8),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Text(
+                //         "Best selling",
+                //         style: kLabelStyleBold.copyWith(fontSize: 18),
+                //       ),
+                //       RawChip(
+                //         onPressed: () {},
+                //         backgroundColor: primaryLight,
+                //         visualDensity: VisualDensity.compact,
+                //         label: Text("View all",
+                //             style: kLabelStyle.copyWith(color: secondaryLight)),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // const SizedBox(height: 8),
+                // BlocBuilder<ProductBloc, ProductState>(
+                //   builder: (context, state) {
+                //     return state.maybeMap(
+                //       initial: (_) => const ProductHolder(),
+                //       loaded: (res) => BestSelling(
+                //         products: res.products,
+                //       ),
+                //       error: (err) => Text(err.message),
+                //       orElse: () => const SizedBox.shrink(),
+                //     );
+                //   },
+                // ),
+                // const SizedBox(height: 8),
+                // Container(
+                //     margin: const EdgeInsets.symmetric(horizontal: 8),
+                //     height: size.height * 0.15,
+                //     decoration: BoxDecoration(
+                //       color: const Color.fromARGB(255, 192, 242, 194),
+                //       borderRadius: BorderRadius.circular(5),
+                //     ),
+                //     child: Padding(
+                //       padding: const EdgeInsets.symmetric(horizontal: 8),
+                //       child: Column(
+                //         children: [
+                //           Row(
+                //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //             children: [
+                //               Text("Suggest new items",
+                //                   style: kLabelStyleBold.copyWith(
+                //                       fontSize: 18,
+                //                       fontFamily:
+                //                           GoogleFonts.nunitoSans().fontFamily)),
+                //               // Pulse(
+                //               //   infinite: true,
+                //               //   delay: const Duration(milliseconds: 800),
+                //               //   child: CircleAvatar(
+                //               //     backgroundColor: Colors.amber[400],
+                //               //     child: const Icon(
+                //               //       Icons.keyboard_arrow_right,
+                //               //       color: darkColor,
+                //               //     ),
+                //               //   ),
+                //               // ),
+                //               IconButton(
+                //                 onPressed: () {},
+                //                 icon: CircleAvatar(
+                //                   backgroundColor: Colors.amber[400],
+                //                   child: const Icon(
+                //                     Icons.keyboard_arrow_right,
+                //                     color: darkColor,
+                //                   ),
+                //                 ),
+                //               ),
+                //             ],
+                //           ),
+                //           Text(
+                //               "Let us know your favourite products that you currently don't see in th app. We will do out best to bring them to you.",
+                //               style: kLabelStyleBold.copyWith(
+                //                 fontSize: 10,
+                //                 color: Colors.grey,
+                //               )),
+                //         ],
+                //       ),
+                //     )),
+                // const SizedBox(height: 8),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 8),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Text(
+                //         "Personal care",
+                //         style: kLabelStyleBold.copyWith(fontSize: 18),
+                //       ),
+                //       RawChip(
+                //         onPressed: () {},
+                //         backgroundColor: primaryLight,
+                //         visualDensity: VisualDensity.compact,
+                //         label: Text("View all",
+                //             style: kLabelStyle.copyWith(color: secondaryLight)),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // const SizedBox(height: 8),
+                // BlocBuilder<ProductBloc, ProductState>(
+                //   builder: (context, state) {
+                //     return state.maybeMap(
+                //       initial: (_) => LoadingUI(),
+                //       loaded: (res) => PersonalCare(
+                //         products: res.personalCare!,
+                //       ),
+                //       error: (err) => Text(err.message),
+                //       orElse: () => const SizedBox.shrink(),
+                //     );
+                //   },
+                // ),
+                // const SizedBox(
+                //   height: 12,
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 8),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Text(
+                //         "Daily Needs",
+                //         style: kLabelStyleBold.copyWith(fontSize: 18),
+                //       ),
+                //       RawChip(
+                //         onPressed: () {},
+                //         backgroundColor: primaryLight,
+                //         visualDensity: VisualDensity.compact,
+                //         label: Text("View all",
+                //             style: kLabelStyle.copyWith(color: secondaryLight)),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // const SizedBox(height: 8),
+                // BlocBuilder<ProductBloc, ProductState>(
+                //   builder: (context, state) {
+                //     return state.map(
+                //       initial: (_) => LoadingUI(),
+                //       loading: (_) => LoadingUI(),
+                //       loaded: (res) => DailyNeed(
+                //         products: res.dailyNeeds!,
+                //         height: 280,
+                //       ),
+                //       error: (err) => Text(err.message),
+                //     );
+                //   },
+                // ),
+                // const SizedBox(
+                //   height: 12,
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 8),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Text(
+                //         "Dairy & Bakery",
+                //         style: kLabelStyleBold.copyWith(fontSize: 18),
+                //       ),
+                //       RawChip(
+                //         onPressed: () {},
+                //         backgroundColor: primaryLight,
+                //         visualDensity: VisualDensity.compact,
+                //         label: Text("View all",
+                //             style: kLabelStyle.copyWith(color: secondaryLight)),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // const SizedBox(height: 8),
+                // BlocBuilder<ProductBloc, ProductState>(
+                //   builder: (context, state) {
+                //     return state.map(
+                //       initial: (_) => const ProductHolder(),
+                //       loading: (_) => LoadingUI(),
+                //       loaded: (res) => DairyBakery(
+                //         products: res.dairyProducts!,
+                //         height: 280,
+                //       ),
+                //       error: (err) => Text(err.message),
+                //     );
+                //   },
+                // ),
                 const SizedBox(
                   height: 10,
                 ),

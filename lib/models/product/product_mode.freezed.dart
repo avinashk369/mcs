@@ -32,6 +32,7 @@ mixin _$ProductModel {
   String? get createdAt => throw _privateConstructorUsedError;
   String? get updatedAt => throw _privateConstructorUsedError;
   String? get productGroup => throw _privateConstructorUsedError;
+  List<Variant>? get variant => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   int get count => throw _privateConstructorUsedError;
   double? get rating => throw _privateConstructorUsedError;
@@ -61,6 +62,7 @@ abstract class $ProductModelCopyWith<$Res> {
       String? createdAt,
       String? updatedAt,
       String? productGroup,
+      List<Variant>? variant,
       @JsonKey(ignore: true) int count,
       double? rating});
 }
@@ -90,6 +92,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? productGroup = freezed,
+    Object? variant = freezed,
     Object? count = null,
     Object? rating = freezed,
   }) {
@@ -142,6 +145,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.productGroup
           : productGroup // ignore: cast_nullable_to_non_nullable
               as String?,
+      variant: freezed == variant
+          ? _value.variant
+          : variant // ignore: cast_nullable_to_non_nullable
+              as List<Variant>?,
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -175,6 +182,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
       String? createdAt,
       String? updatedAt,
       String? productGroup,
+      List<Variant>? variant,
       @JsonKey(ignore: true) int count,
       double? rating});
 }
@@ -202,6 +210,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? productGroup = freezed,
+    Object? variant = freezed,
     Object? count = null,
     Object? rating = freezed,
   }) {
@@ -254,6 +263,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.productGroup
           : productGroup // ignore: cast_nullable_to_non_nullable
               as String?,
+      variant: freezed == variant
+          ? _value._variant
+          : variant // ignore: cast_nullable_to_non_nullable
+              as List<Variant>?,
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -284,8 +297,10 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       this.createdAt,
       this.updatedAt,
       this.productGroup,
+      final List<Variant>? variant,
       @JsonKey(ignore: true) this.count = 0,
-      this.rating});
+      this.rating})
+      : _variant = variant;
 
   factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
       _$$_ProductModelFromJson(json);
@@ -314,6 +329,16 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
   final String? updatedAt;
   @override
   final String? productGroup;
+  final List<Variant>? _variant;
+  @override
+  List<Variant>? get variant {
+    final value = _variant;
+    if (value == null) return null;
+    if (_variant is EqualUnmodifiableListView) return _variant;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(ignore: true)
   final int count;
@@ -322,7 +347,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProductModel(id: $id, productId: $productId, name: $name, description: $description, productImage: $productImage, stockStatus: $stockStatus, categoryId: $categoryId, cityId: $cityId, couponCode: $couponCode, createdAt: $createdAt, updatedAt: $updatedAt, productGroup: $productGroup, count: $count, rating: $rating)';
+    return 'ProductModel(id: $id, productId: $productId, name: $name, description: $description, productImage: $productImage, stockStatus: $stockStatus, categoryId: $categoryId, cityId: $cityId, couponCode: $couponCode, createdAt: $createdAt, updatedAt: $updatedAt, productGroup: $productGroup, variant: $variant, count: $count, rating: $rating)';
   }
 
   @override
@@ -342,6 +367,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('updatedAt', updatedAt))
       ..add(DiagnosticsProperty('productGroup', productGroup))
+      ..add(DiagnosticsProperty('variant', variant))
       ..add(DiagnosticsProperty('count', count))
       ..add(DiagnosticsProperty('rating', rating));
   }
@@ -372,6 +398,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
                 other.updatedAt == updatedAt) &&
             (identical(other.productGroup, productGroup) ||
                 other.productGroup == productGroup) &&
+            const DeepCollectionEquality().equals(other._variant, _variant) &&
             (identical(other.count, count) || other.count == count) &&
             (identical(other.rating, rating) || other.rating == rating));
   }
@@ -392,6 +419,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       createdAt,
       updatedAt,
       productGroup,
+      const DeepCollectionEquality().hash(_variant),
       count,
       rating);
 
@@ -423,6 +451,7 @@ abstract class _ProductModel implements ProductModel {
       final String? createdAt,
       final String? updatedAt,
       final String? productGroup,
+      final List<Variant>? variant,
       @JsonKey(ignore: true) final int count,
       final double? rating}) = _$_ProductModel;
 
@@ -453,6 +482,8 @@ abstract class _ProductModel implements ProductModel {
   String? get updatedAt;
   @override
   String? get productGroup;
+  @override
+  List<Variant>? get variant;
   @override
   @JsonKey(ignore: true)
   int get count;

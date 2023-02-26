@@ -9,10 +9,10 @@ import 'package:mcs/blocs/subcat/subcat_bloc.dart';
 import 'package:mcs/blocs/toggle/index_toggled.dart';
 import 'package:mcs/blocs/toggle/toggle_index_bloc.dart';
 import 'package:mcs/models/category/category_model.dart';
-import 'package:mcs/resources/category/category_repositoryImpl.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/product/components/product_filter.dart';
 import 'package:mcs/views/bottom_nav/product/components/product_grid.dart';
+import 'package:mcs/widgets/extensions/widget_modifier.dart';
 import 'package:mcs/widgets/loading_ui.dart';
 
 import '../../../blocs/category/categorybloc.dart';
@@ -100,9 +100,15 @@ class ProductList extends StatelessWidget {
             BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {
                 return state.maybeMap(
-                  initial: (_) => SliverToBoxAdapter(child: LoadingUI()),
+                  loading: (_) => SliverToBoxAdapter(
+                      child: LoadingUI().verticalPadding(10)),
                   loaded: (res) => ProductGrid(products: res.products),
-                  error: (err) => SliverToBoxAdapter(child: Text(err.message)),
+                  error: (err) => SliverToBoxAdapter(
+                      child: Center(
+                          child: Text(
+                    err.message,
+                    style: kLabelStyleBold.copyWith(color: redColor),
+                  ))),
                   orElse: () =>
                       const SliverToBoxAdapter(child: SizedBox.shrink()),
                 );

@@ -59,6 +59,8 @@ class ServerError implements Exception {
         default:
           _errorMessage = 'Something went wrong';
       }
+    } else if (error is Exception) {
+      _errorMessage = error.toString();
     }
     return _errorMessage;
   }
