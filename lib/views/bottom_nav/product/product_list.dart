@@ -35,7 +35,7 @@ class ProductList extends StatelessWidget {
         // this is for category toggle
         BlocProvider<ToggleIndexBloc>(
           create: (context) => ToggleIndexBloc(
-            IndexToggled(index: index, isSelected: true),
+            Toggled(index: index, isSelected: true),
           ),
         ),
       ],

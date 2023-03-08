@@ -10,7 +10,7 @@ class ToggleIndexBloc extends Cubit<IndexToggled> {
   Future toggleState(int index, bool isSelected) async {
     try {
       /// once the card price range is calculated will return the price from the state itself
-      emit(IndexToggled(index: index, isSelected: !isSelected));
+      emit(Toggled(index: index, isSelected: !isSelected));
     } catch (_) {}
   }
 }

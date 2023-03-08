@@ -29,12 +29,13 @@ class TestScreen extends StatelessWidget {
                           child: const Text("Event1")),
                       const SizedBox(width: 10),
                       ElevatedButton(
-                          onPressed: () =>
-                              bloc2.add(const TestEvent2(" I am event 2")),
+                          onPressed: () => bloc2
+                              .add(const TestEvent2(message: " I am event 2")),
                           child: const Text("Event2")),
                       const SizedBox(width: 10),
                       ElevatedButton(
-                          onPressed: () => bloc3.add(const TestEvent3(false)),
+                          onPressed: () =>
+                              bloc3.add(const TestEvent3(check: false)),
                           child: const Text("Event3")),
                     ],
                   ),
@@ -44,10 +45,11 @@ class TestScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: BlocBuilder<TestBloc, TestState>(
                   builder: (context, state) {
-                    if (state is TestState1) {
-                      return const Center(child: Text("I am state 1"));
-                    }
-                    return const SizedBox.shrink();
+                    return state.maybeMap(
+                      testState1: (value) =>
+                          const Center(child: Text('I am state 1')),
+                      orElse: () => const SizedBox.shrink(),
+                    );
                   },
                 ),
               ),
@@ -58,20 +60,21 @@ class TestScreen extends StatelessWidget {
                   BlocBuilder<TestBloc, TestState>(
                     bloc: bloc2,
                     builder: (context, state) {
-                      if (state is TestState2) {
-                        return Center(child: Text(state.message));
-                      }
-                      return const SizedBox.shrink();
+                      return state.maybeMap(
+                        testState2: (value) => Center(
+                            child: Text('I am state 2 ${value.message}')),
+                        orElse: () => const SizedBox.shrink(),
+                      );
                     },
                   ),
                   BlocBuilder<TestBloc, TestState>(
                     bloc: bloc3,
                     builder: (context, state) {
-                      if (state is TestState3) {
-                        return Center(
-                            child: Text("I am state 3 ${state.check}"));
-                      }
-                      return const SizedBox.shrink();
+                      return state.maybeMap(
+                        testState3: (value) =>
+                            Center(child: Text('I am state 3 ${value.check}')),
+                        orElse: () => const SizedBox.shrink(),
+                      );
                     },
                   ),
                 ],

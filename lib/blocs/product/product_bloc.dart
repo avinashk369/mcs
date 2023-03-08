@@ -40,21 +40,9 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
 
-        List<ProductModel> personalCare = state.personalCare!
-            .map((e) => e.id == event.productModel.id ? event.productModel : e)
-            .toList();
-        List<ProductModel> dailyNeeds = state.dailyNeeds!
-            .map((e) => e.id == event.productModel.id ? event.productModel : e)
-            .toList();
-        List<ProductModel> dairyProducts = state.dairyProducts!
-            .map((e) => e.id == event.productModel.id ? event.productModel : e)
-            .toList();
         emit(ProductState.loaded(
           products: products,
           addedProducts: cartProducts,
-          dailyNeeds: dailyNeeds,
-          dairyProducts: dairyProducts,
-          personalCare: personalCare,
         ));
       }
     } catch (e, stac) {
@@ -123,6 +111,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
   Future _loadProducts(LoadPrdoucts event, Emitter<ProductState> emit) async {
     try {
+      emit(const ProductLoading());
       await Future.delayed(const Duration(seconds: 3), () {});
       Map<String, dynamic> data = {
         "city_id": event.cityId,
@@ -130,19 +119,8 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       };
       List<ProductModel> productList =
           await _productRepositoryImpl.loadProducts(data);
-      List<ProductModel> personalCare =
-          await _productRepositoryImpl.loadPersonalCare();
-      List<ProductModel> dailyNeeds =
-          await _productRepositoryImpl.loadDailyNeeds();
-      List<ProductModel> dairyProducts =
-          await _productRepositoryImpl.loadDairyProducts();
 
-      emit(ProductLoaded(
-          products: productList,
-          addedProducts: const [],
-          personalCare: personalCare,
-          dailyNeeds: dailyNeeds,
-          dairyProducts: dairyProducts));
+      emit(ProductLoaded(products: productList, addedProducts: const []));
     } on ServerError catch (e) {
       emit(ProductError(message: e.errorMessage));
     } catch (e) {

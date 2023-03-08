@@ -1,26 +1,8 @@
 part of 'test_bloc.dart';
 
-@immutable
-abstract class TestEvent extends Equatable {
-  const TestEvent();
-}
-
-class TestEvent1 extends TestEvent {
-  const TestEvent1();
-  @override
-  List<Object> get props => [];
-}
-
-class TestEvent2 extends TestEvent {
-  final String message;
-  const TestEvent2(this.message);
-  @override
-  List<Object> get props => [message];
-}
-
-class TestEvent3 extends TestEvent {
-  final bool check;
-  const TestEvent3(this.check);
-  @override
-  List<Object> get props => [check];
+@freezed
+class TestEvent with _$TestEvent {
+  const factory TestEvent.event1() = TestEvent1;
+  const factory TestEvent.event2({String? message}) = TestEvent2;
+  const factory TestEvent.event3({bool? check}) = TestEvent3;
 }

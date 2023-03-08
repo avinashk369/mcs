@@ -18,7 +18,7 @@ class SubCatList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ToggleIndexBloc(
-        const IndexToggled(index: 0, isSelected: true),
+        const Toggled(index: 0, isSelected: true),
       ),
       child: Builder(builder: (context) {
         return SizedBox(

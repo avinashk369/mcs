@@ -1,11 +1,8 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'index_toggled.freezed.dart';
 
-class IndexToggled extends Equatable {
-  final int index;
-  final bool isSelected;
-
-  const IndexToggled({required this.index, required this.isSelected});
-
-  @override
-  List<Object> get props => [index, isSelected];
+@freezed
+class IndexToggled with _$IndexToggled {
+  const factory IndexToggled.toggle(
+      {required int index, required bool isSelected}) = Toggled;
 }
