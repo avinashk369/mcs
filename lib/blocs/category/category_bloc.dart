@@ -13,8 +13,27 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
 
   CategoryBloc(this._categoryRepositoryImpl)
       : super(const CategoryState.initial()) {
-    on<LoadCategory>((event, emit) => _loadCategories(event, emit));
+    on<LoadCategory>(_loadCategories);
+    on<SwapIndex>(_swapItems);
   }
+
+  Future _swapItems(SwapIndex event, Emitter<CategoryState> emit) async {
+    try {
+      final curState = state;
+      emit(const CategoryLoading());
+      if (curState is CategoryLoaded) {
+        /// swaping list items here
+        List<CategoryModel> categories = List.from(curState.categories);
+        final temp = categories[event.last];
+        categories[event.last] = categories[event.current];
+        categories[event.current] = temp;
+        emit(CategoryLoaded(categories: categories));
+      }
+    } catch (e, _) {
+      emit(const CategoryError(message: 'something went wrong'));
+    }
+  }
+
   Future _loadCategories(
       LoadCategory event, Emitter<CategoryState> emit) async {
     try {

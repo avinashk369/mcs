@@ -7,4 +7,6 @@ class CategoryState with _$CategoryState {
   const factory CategoryState.loaded(
       {required List<CategoryModel> categories}) = CategoryLoaded;
   const factory CategoryState.error({required String message}) = CategoryError;
+  const factory CategoryState.swappedItems(
+      {required List<CategoryModel> categories}) = SwappedItems;
 }

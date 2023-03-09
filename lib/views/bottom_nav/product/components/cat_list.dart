@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mcs/blocs/toggle/toggle_index_bloc.dart';
 import 'package:mcs/models/category/category_model.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/product/components/cat_card.dart';
@@ -17,29 +15,26 @@ class CatList extends StatefulWidget implements PreferredSizeWidget {
 
   final List<CategoryModel> categories;
   final CategoryModel categoryModel;
-  final Function(CategoryModel category) onTap;
-
-  @override
-  State<CatList> createState() => _CatListState();
+  final Function(CategoryModel category, int index) onTap;
 
   @override
   final Size preferredSize;
+
+  @override
+  State<CatList> createState() => _CatListState();
 }
 
 class _CatListState extends State<CatList> {
-  final itemKey = GlobalKey();
   final scrollController = ScrollController();
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => scrollController.position.ensureVisible(
-        itemKey.currentContext!.findRenderObject()!,
-        alignment:
-            0.5, // How far into view the item should be scrolled (between 0 and 1).
-        duration: const Duration(seconds: 1),
-      ),
-    );
-    super.initState();
+
+  void scrollToMaxExtent() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollController.animateTo(
+        scrollController.position.minScrollExtent,
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.easeIn,
+      );
+    });
   }
 
   @override
@@ -55,15 +50,13 @@ class _CatListState extends State<CatList> {
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
           itemBuilder: (_, index) {
-            if (widget.categoryModel == widget.categories[index]) {
-              context.read<ToggleIndexBloc>().toggleState(index, false);
-            }
             return CatCard(
-              key: ValueKey(index),
               categoryModel: widget.categories[index],
-              isSeleted: widget.categoryModel == widget.categories[index],
               index: index,
-              onTap: (cat) => widget.onTap(cat),
+              onTap: (cat, index) {
+                widget.onTap(cat, index);
+                scrollToMaxExtent();
+              },
               child: CachedNetworkImage(
                 imageUrl: widget.categories[index].categoryImg!,
                 fit: BoxFit.fill,

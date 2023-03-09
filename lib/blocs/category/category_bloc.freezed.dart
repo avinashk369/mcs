@@ -16,42 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CategoryEvent {
-  String get cityId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String cityId) loadCategory,
+    required TResult Function(int current, int last) swapIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String cityId)? loadCategory,
+    TResult? Function(int current, int last)? swapIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String cityId)? loadCategory,
+    TResult Function(int current, int last)? swapIndex,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadCategory value) loadCategory,
+    required TResult Function(SwapIndex value) swapIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadCategory value)? loadCategory,
+    TResult? Function(SwapIndex value)? swapIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadCategory value)? loadCategory,
+    TResult Function(SwapIndex value)? swapIndex,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $CategoryEventCopyWith<CategoryEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +61,6 @@ abstract class $CategoryEventCopyWith<$Res> {
   factory $CategoryEventCopyWith(
           CategoryEvent value, $Res Function(CategoryEvent) then) =
       _$CategoryEventCopyWithImpl<$Res, CategoryEvent>;
-  @useResult
-  $Res call({String cityId});
 }
 
 /// @nodoc
@@ -73,28 +72,13 @@ class _$CategoryEventCopyWithImpl<$Res, $Val extends CategoryEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? cityId = null,
-  }) {
-    return _then(_value.copyWith(
-      cityId: null == cityId
-          ? _value.cityId
-          : cityId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$LoadCategoryCopyWith<$Res>
-    implements $CategoryEventCopyWith<$Res> {
+abstract class _$$LoadCategoryCopyWith<$Res> {
   factory _$$LoadCategoryCopyWith(
           _$LoadCategory value, $Res Function(_$LoadCategory) then) =
       __$$LoadCategoryCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String cityId});
 }
@@ -163,6 +147,7 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String cityId) loadCategory,
+    required TResult Function(int current, int last) swapIndex,
   }) {
     return loadCategory(cityId);
   }
@@ -171,6 +156,7 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String cityId)? loadCategory,
+    TResult? Function(int current, int last)? swapIndex,
   }) {
     return loadCategory?.call(cityId);
   }
@@ -179,6 +165,7 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String cityId)? loadCategory,
+    TResult Function(int current, int last)? swapIndex,
     required TResult orElse(),
   }) {
     if (loadCategory != null) {
@@ -191,6 +178,7 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadCategory value) loadCategory,
+    required TResult Function(SwapIndex value) swapIndex,
   }) {
     return loadCategory(this);
   }
@@ -199,6 +187,7 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadCategory value)? loadCategory,
+    TResult? Function(SwapIndex value)? swapIndex,
   }) {
     return loadCategory?.call(this);
   }
@@ -207,6 +196,7 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadCategory value)? loadCategory,
+    TResult Function(SwapIndex value)? swapIndex,
     required TResult orElse(),
   }) {
     if (loadCategory != null) {
@@ -219,11 +209,161 @@ class _$LoadCategory with DiagnosticableTreeMixin implements LoadCategory {
 abstract class LoadCategory implements CategoryEvent {
   const factory LoadCategory({required final String cityId}) = _$LoadCategory;
 
-  @override
   String get cityId;
-  @override
   @JsonKey(ignore: true)
   _$$LoadCategoryCopyWith<_$LoadCategory> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SwapIndexCopyWith<$Res> {
+  factory _$$SwapIndexCopyWith(
+          _$SwapIndex value, $Res Function(_$SwapIndex) then) =
+      __$$SwapIndexCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int current, int last});
+}
+
+/// @nodoc
+class __$$SwapIndexCopyWithImpl<$Res>
+    extends _$CategoryEventCopyWithImpl<$Res, _$SwapIndex>
+    implements _$$SwapIndexCopyWith<$Res> {
+  __$$SwapIndexCopyWithImpl(
+      _$SwapIndex _value, $Res Function(_$SwapIndex) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? current = null,
+    Object? last = null,
+  }) {
+    return _then(_$SwapIndex(
+      current: null == current
+          ? _value.current
+          : current // ignore: cast_nullable_to_non_nullable
+              as int,
+      last: null == last
+          ? _value.last
+          : last // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SwapIndex with DiagnosticableTreeMixin implements SwapIndex {
+  const _$SwapIndex({required this.current, required this.last});
+
+  @override
+  final int current;
+  @override
+  final int last;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CategoryEvent.swapIndex(current: $current, last: $last)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CategoryEvent.swapIndex'))
+      ..add(DiagnosticsProperty('current', current))
+      ..add(DiagnosticsProperty('last', last));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SwapIndex &&
+            (identical(other.current, current) || other.current == current) &&
+            (identical(other.last, last) || other.last == last));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, current, last);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SwapIndexCopyWith<_$SwapIndex> get copyWith =>
+      __$$SwapIndexCopyWithImpl<_$SwapIndex>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String cityId) loadCategory,
+    required TResult Function(int current, int last) swapIndex,
+  }) {
+    return swapIndex(current, last);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String cityId)? loadCategory,
+    TResult? Function(int current, int last)? swapIndex,
+  }) {
+    return swapIndex?.call(current, last);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String cityId)? loadCategory,
+    TResult Function(int current, int last)? swapIndex,
+    required TResult orElse(),
+  }) {
+    if (swapIndex != null) {
+      return swapIndex(current, last);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadCategory value) loadCategory,
+    required TResult Function(SwapIndex value) swapIndex,
+  }) {
+    return swapIndex(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadCategory value)? loadCategory,
+    TResult? Function(SwapIndex value)? swapIndex,
+  }) {
+    return swapIndex?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadCategory value)? loadCategory,
+    TResult Function(SwapIndex value)? swapIndex,
+    required TResult orElse(),
+  }) {
+    if (swapIndex != null) {
+      return swapIndex(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SwapIndex implements CategoryEvent {
+  const factory SwapIndex(
+      {required final int current, required final int last}) = _$SwapIndex;
+
+  int get current;
+  int get last;
+  @JsonKey(ignore: true)
+  _$$SwapIndexCopyWith<_$SwapIndex> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -235,6 +375,7 @@ mixin _$CategoryState {
     required TResult Function() loading,
     required TResult Function(List<CategoryModel> categories) loaded,
     required TResult Function(String message) error,
+    required TResult Function(List<CategoryModel> categories) swappedItems,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -243,6 +384,7 @@ mixin _$CategoryState {
     TResult? Function()? loading,
     TResult? Function(List<CategoryModel> categories)? loaded,
     TResult? Function(String message)? error,
+    TResult? Function(List<CategoryModel> categories)? swappedItems,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -251,6 +393,7 @@ mixin _$CategoryState {
     TResult Function()? loading,
     TResult Function(List<CategoryModel> categories)? loaded,
     TResult Function(String message)? error,
+    TResult Function(List<CategoryModel> categories)? swappedItems,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -260,6 +403,7 @@ mixin _$CategoryState {
     required TResult Function(CategoryLoading value) loading,
     required TResult Function(CategoryLoaded value) loaded,
     required TResult Function(CategoryError value) error,
+    required TResult Function(SwappedItems value) swappedItems,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -268,6 +412,7 @@ mixin _$CategoryState {
     TResult? Function(CategoryLoading value)? loading,
     TResult? Function(CategoryLoaded value)? loaded,
     TResult? Function(CategoryError value)? error,
+    TResult? Function(SwappedItems value)? swappedItems,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -276,6 +421,7 @@ mixin _$CategoryState {
     TResult Function(CategoryLoading value)? loading,
     TResult Function(CategoryLoaded value)? loaded,
     TResult Function(CategoryError value)? error,
+    TResult Function(SwappedItems value)? swappedItems,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -349,6 +495,7 @@ class _$CategoryInitial
     required TResult Function() loading,
     required TResult Function(List<CategoryModel> categories) loaded,
     required TResult Function(String message) error,
+    required TResult Function(List<CategoryModel> categories) swappedItems,
   }) {
     return initial();
   }
@@ -360,6 +507,7 @@ class _$CategoryInitial
     TResult? Function()? loading,
     TResult? Function(List<CategoryModel> categories)? loaded,
     TResult? Function(String message)? error,
+    TResult? Function(List<CategoryModel> categories)? swappedItems,
   }) {
     return initial?.call();
   }
@@ -371,6 +519,7 @@ class _$CategoryInitial
     TResult Function()? loading,
     TResult Function(List<CategoryModel> categories)? loaded,
     TResult Function(String message)? error,
+    TResult Function(List<CategoryModel> categories)? swappedItems,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -386,6 +535,7 @@ class _$CategoryInitial
     required TResult Function(CategoryLoading value) loading,
     required TResult Function(CategoryLoaded value) loaded,
     required TResult Function(CategoryError value) error,
+    required TResult Function(SwappedItems value) swappedItems,
   }) {
     return initial(this);
   }
@@ -397,6 +547,7 @@ class _$CategoryInitial
     TResult? Function(CategoryLoading value)? loading,
     TResult? Function(CategoryLoaded value)? loaded,
     TResult? Function(CategoryError value)? error,
+    TResult? Function(SwappedItems value)? swappedItems,
   }) {
     return initial?.call(this);
   }
@@ -408,6 +559,7 @@ class _$CategoryInitial
     TResult Function(CategoryLoading value)? loading,
     TResult Function(CategoryLoaded value)? loaded,
     TResult Function(CategoryError value)? error,
+    TResult Function(SwappedItems value)? swappedItems,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -471,6 +623,7 @@ class _$CategoryLoading
     required TResult Function() loading,
     required TResult Function(List<CategoryModel> categories) loaded,
     required TResult Function(String message) error,
+    required TResult Function(List<CategoryModel> categories) swappedItems,
   }) {
     return loading();
   }
@@ -482,6 +635,7 @@ class _$CategoryLoading
     TResult? Function()? loading,
     TResult? Function(List<CategoryModel> categories)? loaded,
     TResult? Function(String message)? error,
+    TResult? Function(List<CategoryModel> categories)? swappedItems,
   }) {
     return loading?.call();
   }
@@ -493,6 +647,7 @@ class _$CategoryLoading
     TResult Function()? loading,
     TResult Function(List<CategoryModel> categories)? loaded,
     TResult Function(String message)? error,
+    TResult Function(List<CategoryModel> categories)? swappedItems,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -508,6 +663,7 @@ class _$CategoryLoading
     required TResult Function(CategoryLoading value) loading,
     required TResult Function(CategoryLoaded value) loaded,
     required TResult Function(CategoryError value) error,
+    required TResult Function(SwappedItems value) swappedItems,
   }) {
     return loading(this);
   }
@@ -519,6 +675,7 @@ class _$CategoryLoading
     TResult? Function(CategoryLoading value)? loading,
     TResult? Function(CategoryLoaded value)? loaded,
     TResult? Function(CategoryError value)? error,
+    TResult? Function(SwappedItems value)? swappedItems,
   }) {
     return loading?.call(this);
   }
@@ -530,6 +687,7 @@ class _$CategoryLoading
     TResult Function(CategoryLoading value)? loading,
     TResult Function(CategoryLoaded value)? loaded,
     TResult Function(CategoryError value)? error,
+    TResult Function(SwappedItems value)? swappedItems,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -627,6 +785,7 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
     required TResult Function() loading,
     required TResult Function(List<CategoryModel> categories) loaded,
     required TResult Function(String message) error,
+    required TResult Function(List<CategoryModel> categories) swappedItems,
   }) {
     return loaded(categories);
   }
@@ -638,6 +797,7 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
     TResult? Function()? loading,
     TResult? Function(List<CategoryModel> categories)? loaded,
     TResult? Function(String message)? error,
+    TResult? Function(List<CategoryModel> categories)? swappedItems,
   }) {
     return loaded?.call(categories);
   }
@@ -649,6 +809,7 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
     TResult Function()? loading,
     TResult Function(List<CategoryModel> categories)? loaded,
     TResult Function(String message)? error,
+    TResult Function(List<CategoryModel> categories)? swappedItems,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -664,6 +825,7 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
     required TResult Function(CategoryLoading value) loading,
     required TResult Function(CategoryLoaded value) loaded,
     required TResult Function(CategoryError value) error,
+    required TResult Function(SwappedItems value) swappedItems,
   }) {
     return loaded(this);
   }
@@ -675,6 +837,7 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
     TResult? Function(CategoryLoading value)? loading,
     TResult? Function(CategoryLoaded value)? loaded,
     TResult? Function(CategoryError value)? error,
+    TResult? Function(SwappedItems value)? swappedItems,
   }) {
     return loaded?.call(this);
   }
@@ -686,6 +849,7 @@ class _$CategoryLoaded with DiagnosticableTreeMixin implements CategoryLoaded {
     TResult Function(CategoryLoading value)? loading,
     TResult Function(CategoryLoaded value)? loaded,
     TResult Function(CategoryError value)? error,
+    TResult Function(SwappedItems value)? swappedItems,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -781,6 +945,7 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
     required TResult Function() loading,
     required TResult Function(List<CategoryModel> categories) loaded,
     required TResult Function(String message) error,
+    required TResult Function(List<CategoryModel> categories) swappedItems,
   }) {
     return error(message);
   }
@@ -792,6 +957,7 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
     TResult? Function()? loading,
     TResult? Function(List<CategoryModel> categories)? loaded,
     TResult? Function(String message)? error,
+    TResult? Function(List<CategoryModel> categories)? swappedItems,
   }) {
     return error?.call(message);
   }
@@ -803,6 +969,7 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
     TResult Function()? loading,
     TResult Function(List<CategoryModel> categories)? loaded,
     TResult Function(String message)? error,
+    TResult Function(List<CategoryModel> categories)? swappedItems,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -818,6 +985,7 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
     required TResult Function(CategoryLoading value) loading,
     required TResult Function(CategoryLoaded value) loaded,
     required TResult Function(CategoryError value) error,
+    required TResult Function(SwappedItems value) swappedItems,
   }) {
     return error(this);
   }
@@ -829,6 +997,7 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
     TResult? Function(CategoryLoading value)? loading,
     TResult? Function(CategoryLoaded value)? loaded,
     TResult? Function(CategoryError value)? error,
+    TResult? Function(SwappedItems value)? swappedItems,
   }) {
     return error?.call(this);
   }
@@ -840,6 +1009,7 @@ class _$CategoryError with DiagnosticableTreeMixin implements CategoryError {
     TResult Function(CategoryLoading value)? loading,
     TResult Function(CategoryLoaded value)? loaded,
     TResult Function(CategoryError value)? error,
+    TResult Function(SwappedItems value)? swappedItems,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -856,5 +1026,173 @@ abstract class CategoryError implements CategoryState {
   String get message;
   @JsonKey(ignore: true)
   _$$CategoryErrorCopyWith<_$CategoryError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SwappedItemsCopyWith<$Res> {
+  factory _$$SwappedItemsCopyWith(
+          _$SwappedItems value, $Res Function(_$SwappedItems) then) =
+      __$$SwappedItemsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<CategoryModel> categories});
+}
+
+/// @nodoc
+class __$$SwappedItemsCopyWithImpl<$Res>
+    extends _$CategoryStateCopyWithImpl<$Res, _$SwappedItems>
+    implements _$$SwappedItemsCopyWith<$Res> {
+  __$$SwappedItemsCopyWithImpl(
+      _$SwappedItems _value, $Res Function(_$SwappedItems) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? categories = null,
+  }) {
+    return _then(_$SwappedItems(
+      categories: null == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<CategoryModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SwappedItems with DiagnosticableTreeMixin implements SwappedItems {
+  const _$SwappedItems({required final List<CategoryModel> categories})
+      : _categories = categories;
+
+  final List<CategoryModel> _categories;
+  @override
+  List<CategoryModel> get categories {
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categories);
+  }
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'CategoryState.swappedItems(categories: $categories)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CategoryState.swappedItems'))
+      ..add(DiagnosticsProperty('categories', categories));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SwappedItems &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_categories));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SwappedItemsCopyWith<_$SwappedItems> get copyWith =>
+      __$$SwappedItemsCopyWithImpl<_$SwappedItems>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<CategoryModel> categories) loaded,
+    required TResult Function(String message) error,
+    required TResult Function(List<CategoryModel> categories) swappedItems,
+  }) {
+    return swappedItems(categories);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<CategoryModel> categories)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<CategoryModel> categories)? swappedItems,
+  }) {
+    return swappedItems?.call(categories);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<CategoryModel> categories)? loaded,
+    TResult Function(String message)? error,
+    TResult Function(List<CategoryModel> categories)? swappedItems,
+    required TResult orElse(),
+  }) {
+    if (swappedItems != null) {
+      return swappedItems(categories);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CategoryInitial value) initial,
+    required TResult Function(CategoryLoading value) loading,
+    required TResult Function(CategoryLoaded value) loaded,
+    required TResult Function(CategoryError value) error,
+    required TResult Function(SwappedItems value) swappedItems,
+  }) {
+    return swappedItems(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CategoryInitial value)? initial,
+    TResult? Function(CategoryLoading value)? loading,
+    TResult? Function(CategoryLoaded value)? loaded,
+    TResult? Function(CategoryError value)? error,
+    TResult? Function(SwappedItems value)? swappedItems,
+  }) {
+    return swappedItems?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CategoryInitial value)? initial,
+    TResult Function(CategoryLoading value)? loading,
+    TResult Function(CategoryLoaded value)? loaded,
+    TResult Function(CategoryError value)? error,
+    TResult Function(SwappedItems value)? swappedItems,
+    required TResult orElse(),
+  }) {
+    if (swappedItems != null) {
+      return swappedItems(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SwappedItems implements CategoryState {
+  const factory SwappedItems({required final List<CategoryModel> categories}) =
+      _$SwappedItems;
+
+  List<CategoryModel> get categories;
+  @JsonKey(ignore: true)
+  _$$SwappedItemsCopyWith<_$SwappedItems> get copyWith =>
       throw _privateConstructorUsedError;
 }

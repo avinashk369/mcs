@@ -87,7 +87,11 @@ class ProductList extends StatelessWidget {
               bottom: ProductFilter(
                 categoryBloc: context.read<CategoryBloc>(),
                 categoryModel: category,
-                onTap: (categoryModel) {
+                onTap: (categoryModel, last) {
+                  /// swap list items
+                  context
+                      .read<CategoryBloc>()
+                      .add(SwapIndex(current: 0, last: last));
                   context.read<SubcatBloc>().add(SubcatEvent.loadsubcat(
                       catId: categoryModel.id!,
                       cityId: cityId,

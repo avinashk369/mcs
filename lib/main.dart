@@ -43,11 +43,11 @@ void main() async {
   ]);
   // initialize api client
   Dio dio = Dio();
-  dio.interceptors.add(LogInterceptor(
-      // responseBody: true,
-      // request: true,
-      // requestBody: true,
-      ));
+  //dio.interceptors.add(LogInterceptor(
+  // responseBody: true,
+  // request: true,
+  // requestBody: true,
+  //  ));
   ApiClient apiClient = ApiClient(dio);
   Bloc.observer = SimpleBlocDelegate();
   runApp(MyApp(apiClient: apiClient));
