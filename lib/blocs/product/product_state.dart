@@ -11,4 +11,6 @@ class ProductState with _$ProductState {
       List<ProductModel>? dailyNeeds,
       List<ProductModel>? dairyProducts}) = ProductLoaded;
   const factory ProductState.error({required String message}) = ProductError;
+  const factory ProductState.searchResult(
+      {required List<ProductModel> products}) = SearchResult;
 }

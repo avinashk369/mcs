@@ -9,6 +9,7 @@ class ApiConst {
 
   static const String banners = 'Api_controller/GetBanner';
   static const String products = 'Api_controller/GetProducts';
+  static const String searchProducts = 'Api_controller/SearchProducts';
   static const String login = 'Api_controller/EnterMobile';
   static const String otpVerify = 'Api_controller/VarifyOtp';
   static const String resendOtp = 'Api_controller/ResendOtp';

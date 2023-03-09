@@ -81,4 +81,21 @@ class ProductRepositoryImpl implements ProductRepository {
     }
     return products;
   }
+
+  @override
+  Future<List<ProductModel>> searchProduct(Map<String, dynamic> data) async {
+    late List<ProductModel> products;
+    try {
+      BaseResponse<List<ProductModel>> productList =
+          await apiClient.searchProducts(data);
+      if (productList.status!) {
+        products = productList.data!;
+      } else {
+        throw Exception(productList.message);
+      }
+    } catch (e) {
+      throw ServerError.withError(error: e);
+    }
+    return products;
+  }
 }

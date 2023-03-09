@@ -37,6 +37,11 @@ abstract class ApiClient {
   Future<BaseResponse<List<ProductModel>>> getProducts(
       @Body() Map<String, dynamic> data);
 
+  @POST(ApiConst.searchProducts)
+  @FormUrlEncoded()
+  Future<BaseResponse<List<ProductModel>>> searchProducts(
+      @Body() Map<String, dynamic> data);
+
   @GET("Home/HomeFeaturesData")
   Future<UserModel> getHomeFeatureData(
       @Header("Authorization") String accetoken);

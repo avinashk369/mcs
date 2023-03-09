@@ -5,4 +5,5 @@ abstract class ProductRepository {
   Future<List<ProductModel>> loadPersonalCare();
   Future<List<ProductModel>> loadDailyNeeds();
   Future<List<ProductModel>> loadDairyProducts();
+  Future<List<ProductModel>> searchProduct(Map<String, dynamic> data);
 }

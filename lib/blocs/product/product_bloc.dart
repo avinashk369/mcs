@@ -15,11 +15,32 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
   ProductBloc(this._productRepositoryImpl)
       : super(const ProductState.initial()) {
-    on<LoadPrdoucts>((event, emit) => _loadProducts(event, emit));
-    on<RemoveProduct>((event, emit) => _removeProduct(event, emit));
-    on<AddProduct>((event, emit) => _addProduct(event, emit));
-    on<DeleteProduct>((event, emit) => _deleteFromCart(event, emit));
+    on<LoadPrdoucts>(_loadProducts);
+    on<RemoveProduct>(_removeProduct);
+    on<AddProduct>(_addProduct);
+    on<DeleteProduct>(_deleteFromCart);
+    on<SearchProduct>(_searchProduct);
   }
+
+  Future _searchProduct(SearchProduct event, Emitter<ProductState> emit) async {
+    try {
+      emit(const ProductLoading());
+      await Future.delayed(const Duration(seconds: 3), () {});
+      Map<String, dynamic> data = {
+        "city_id": event.cityId,
+        "search_keyword": event.keyword
+      };
+      List<ProductModel> productList =
+          await _productRepositoryImpl.searchProduct(data);
+
+      emit(SearchResult(products: productList));
+    } on ServerError catch (error) {
+      emit(ProductError(message: error.errorMessage));
+    } catch (e) {
+      emit(const ProductError(message: 'Something went wrong'));
+    }
+  }
+
   Future _addProduct(AddProduct event, Emitter<ProductState> emit) async {
     try {
       final state = this.state;

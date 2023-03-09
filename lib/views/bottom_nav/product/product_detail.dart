@@ -257,14 +257,13 @@ class _ProductDetailState extends State<ProductDetail> {
                         const SizedBox(height: 8),
                         BlocBuilder<ProductBloc, ProductState>(
                           builder: (context, state) {
-                            return state.map(
+                            return state.maybeMap(
                               initial: (_) => LoadingUI(),
                               loading: (_) => LoadingUI(),
                               loaded: (res) => DailyNeed(
-                                products: res.dailyNeeds!,
-                                height: 250,
-                              ),
+                                  products: res.dailyNeeds!, height: 250),
                               error: (err) => Text(err.message),
+                              orElse: () => const SizedBox.shrink(),
                             );
                           },
                         ),

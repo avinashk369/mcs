@@ -12,4 +12,6 @@ class ProductEvent with _$ProductEvent {
       DeleteProduct;
   const factory ProductEvent.loadProductByCatId({required String catId}) =
       LoadProductByCatId;
+  const factory ProductEvent.search(
+      {required String keyword, required String cityId}) = SearchProduct;
 }
