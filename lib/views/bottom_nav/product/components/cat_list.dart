@@ -1,8 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mcs/blocs/category/category_bloc.dart';
 import 'package:mcs/models/category/category_model.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/product/components/cat_card.dart';
+
+import '../../../../blocs/toggle/toggle_index_bloc.dart';
 
 class CatList extends StatefulWidget implements PreferredSizeWidget {
   const CatList({
@@ -26,6 +30,16 @@ class CatList extends StatefulWidget implements PreferredSizeWidget {
 
 class _CatListState extends State<CatList> {
   final scrollController = ScrollController();
+
+  @override
+  void initState() {
+    /// swaping the list item and making them visible
+    final int index = widget.categories.indexOf(widget.categoryModel);
+    context.read<CategoryBloc>().add(SwapIndex(current: 0, last: index));
+    context.read<ToggleIndexBloc>().toggleState(0, false);
+
+    super.initState();
+  }
 
   void scrollToMaxExtent() {
     WidgetsBinding.instance.addPostFrameCallback((_) {

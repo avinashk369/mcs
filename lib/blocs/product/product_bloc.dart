@@ -79,15 +79,15 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         List<ProductModel> products = state.products
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
-        List<ProductModel> personalCare = state.personalCare!
-            .map((e) => e.id == event.productModel.id ? event.productModel : e)
-            .toList();
-        List<ProductModel> dailyNeeds = state.dailyNeeds!
-            .map((e) => e.id == event.productModel.id ? event.productModel : e)
-            .toList();
-        List<ProductModel> dairyProducts = state.dairyProducts!
-            .map((e) => e.id == event.productModel.id ? event.productModel : e)
-            .toList();
+        // List<ProductModel> personalCare = state.personalCare!
+        //     .map((e) => e.id == event.productModel.id ? event.productModel : e)
+        //     .toList();
+        // List<ProductModel> dailyNeeds = state.dailyNeeds!
+        //     .map((e) => e.id == event.productModel.id ? event.productModel : e)
+        //     .toList();
+        // List<ProductModel> dairyProducts = state.dairyProducts!
+        //     .map((e) => e.id == event.productModel.id ? event.productModel : e)
+        //     .toList();
         List<ProductModel> cartProducts = state.addedProducts!
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
@@ -98,9 +98,9 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         emit(ProductLoaded(
           products: products,
           addedProducts: cartProducts,
-          personalCare: personalCare,
-          dailyNeeds: dailyNeeds,
-          dairyProducts: dairyProducts,
+          // personalCare: personalCare,
+          // dailyNeeds: dailyNeeds,
+          // dairyProducts: dairyProducts,
         ));
       }
     } catch (e) {

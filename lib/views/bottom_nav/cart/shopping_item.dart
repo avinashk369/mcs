@@ -70,12 +70,12 @@ class ShoppingItem extends StatelessWidget {
                     Expanded(
                       flex: 5,
                       child: Row(
-                        children: [
+                        children: const [
                           // Text(
                           //   "₹${productModel.offerPrice.toString()}",
                           //   style: kLabelStyleBold.copyWith(fontSize: 16),
                           // ),
-                          const SizedBox(
+                          SizedBox(
                             width: 5,
                           ),
                           // Text(
@@ -86,7 +86,7 @@ class ShoppingItem extends StatelessWidget {
                           //     color: greyColor,
                           //   ),
                           // ),
-                          const SizedBox(
+                          SizedBox(
                             width: 5,
                           ),
                           // Text(
