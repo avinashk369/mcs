@@ -5,11 +5,11 @@ class CustomInput extends StatelessWidget {
   final String? hintText;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
+  final Function? onTouched;
   final TextEditingController? textController;
   final TextInputType? textInputType;
   final TextCapitalization textCapitalization;
   final bool isPassword;
-  final bool isPrefix;
   final int? numOfLines;
   final int? maxLength;
   final FocusNode? focusNode;
@@ -18,6 +18,9 @@ class CustomInput extends StatelessWidget {
   final TextStyle hintTextStyle;
   final Widget? prefixWidget;
   final bool? isEnabled;
+  final bool readOnly;
+  final bool autoFocus;
+  final Widget? suffixWidget;
   const CustomInput({
     Key? key,
     this.validator,
@@ -27,8 +30,10 @@ class CustomInput extends StatelessWidget {
     this.textInputType,
     this.numOfLines,
     this.isPassword = false,
-    this.isPrefix = false,
+    this.readOnly = false,
+    this.autoFocus = false,
     this.prefixWidget,
+    this.suffixWidget,
     this.inputTextDecoration = const InputDecoration(
       counter: Offstage(),
       contentPadding: EdgeInsets.all(8),
@@ -51,6 +56,7 @@ class CustomInput extends StatelessWidget {
     this.maxLength = 10,
     this.onChanged,
     this.isEnabled = true,
+    this.onTouched,
     this.textCapitalization = TextCapitalization.words,
   }) : super(key: key);
 
@@ -58,6 +64,7 @@ class CustomInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       focusNode: focusNode,
+      autofocus: autoFocus,
       controller: textController,
       cursorColor: darkColor,
       keyboardType: textInputType ?? TextInputType.text,
@@ -67,14 +74,17 @@ class CustomInput extends StatelessWidget {
       maxLines: numOfLines,
       maxLength: maxLength,
       obscureText: isPassword,
+      cursorHeight: 25,
       textCapitalization: textCapitalization,
+      readOnly: readOnly,
       onChanged: (value) => onChanged!(value),
+      onTap: () => onTouched!(),
       style: textStyle,
       decoration: inputTextDecoration.copyWith(
-        hintText: hintText,
-        hintStyle: hintTextStyle,
-        prefixIcon: isPrefix ? prefixWidget : null,
-      ),
+          hintText: hintText,
+          hintStyle: hintTextStyle,
+          prefixIcon: prefixWidget,
+          suffix: suffixWidget ?? const SizedBox.shrink()),
       enabled: isEnabled,
     );
   }

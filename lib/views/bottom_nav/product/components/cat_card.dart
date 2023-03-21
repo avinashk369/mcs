@@ -28,8 +28,9 @@ class CatCard extends StatelessWidget {
         onTap: () {
           /// making first item toggled
           context.read<ToggleIndexBloc>().toggleState(0, false);
-          context.read<ProductBloc>().add(ProductEvent.loadProduct(
-              cityId: '4', categoryId: categoryModel.id));
+          context
+              .read<ProductBloc>()
+              .add(ProductEvent.loadProduct(cityId: '4', categoryId: '125'));
           onTap(categoryModel, index);
         },
         child: Card(

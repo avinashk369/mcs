@@ -126,14 +126,23 @@ class _MyAppState extends State<MyApp> {
             create: (context) => NavigationBloc(),
           ),
         ],
-        child: MaterialApp(
-          title: appName,
-          initialRoute: homeRoute,
-          onGenerateRoute: RouteGenerator.generateRoute,
-          debugShowCheckedModeBanner: false,
-          theme: CustomTheme.lightTheme, //3
-          darkTheme: CustomTheme.lightTheme, //4
-          themeMode: currentTheme.currentTheme,
+        child: GestureDetector(
+          onTap: () {
+            FocusScopeNode currentFocus = FocusScope.of(context);
+
+            if (!currentFocus.hasPrimaryFocus) {
+              currentFocus.unfocus();
+            }
+          },
+          child: MaterialApp(
+            title: appName,
+            initialRoute: homeRoute,
+            onGenerateRoute: RouteGenerator.generateRoute,
+            debugShowCheckedModeBanner: false,
+            theme: CustomTheme.lightTheme, //3
+            darkTheme: CustomTheme.lightTheme, //4
+            themeMode: currentTheme.currentTheme,
+          ),
         ),
       ),
     );

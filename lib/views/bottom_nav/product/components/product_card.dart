@@ -25,8 +25,10 @@ class ProductCard extends StatelessWidget {
       final state = context.watch<ProductBloc>().state;
       return InkWell(
         borderRadius: BorderRadius.circular(10),
-        onTap: () => Navigator.of(context)
-            .pushNamed(productDetail, arguments: productModel),
+
+        /// on tap is no longer required as app doesn't has product detail screeenn
+        // onTap: () => Navigator.of(context)
+        //     .pushNamed(productDetail, arguments: productModel),
         child: SizedBox(
           height: height,
           width: width,

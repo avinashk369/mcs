@@ -6,6 +6,7 @@ const String settingRoute = '/setting';
 const String otpRoute = '/otp';
 const String products = '/productList';
 const String productDetail = '/productDetail';
+const String productSearch = '/productSearch';
 const String checkout = '/checkout';
 const String dashboardRoute = '/home';
 const String registerRoute = '/register';

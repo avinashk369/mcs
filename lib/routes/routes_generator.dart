@@ -9,6 +9,7 @@ import 'package:mcs/views/bottom_nav/product/product_detail.dart';
 import 'package:mcs/views/bottom_nav/product/product_list.dart';
 import 'package:mcs/views/welcome.dart';
 
+import '../views/bottom_nav/product/search/product_search_screen.dart';
 import 'route_constants.dart';
 
 class RouteGenerator {
@@ -42,6 +43,8 @@ class RouteGenerator {
         return SlideRightRoute(
           page: ProductDetail(productModel: args as ProductModel),
         );
+      case productSearch:
+        return SlideRightRoute(page: const ProductSearchScreen());
       case checkout:
         return SlideRightRoute(
           page: CheckoutScreen(products: args as List<ProductModel>),

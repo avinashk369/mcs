@@ -66,6 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
             elevation: 0,
             bottom: SearchBar(
               onSearch: ((searchText) {}),
+              onTouched: () => Navigator.of(context).pushNamed(productSearch),
+              readOnly: true,
             ),
             flexibleSpace: FlexibleSpaceBar(
                 collapseMode: CollapseMode.pin,

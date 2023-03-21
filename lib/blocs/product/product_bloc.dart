@@ -33,7 +33,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       List<ProductModel> productList =
           await _productRepositoryImpl.searchProduct(data);
 
-      emit(SearchResult(products: productList));
+      emit(ProductLoaded(products: productList, addedProducts: const []));
     } on ServerError catch (error) {
       emit(ProductError(message: error.errorMessage));
     } catch (e) {

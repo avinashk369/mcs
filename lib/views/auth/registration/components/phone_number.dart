@@ -33,7 +33,6 @@ class PhoneNumber extends StatelessWidget {
                   onChanged: (value) => loginBloc.checkNumber(value),
                   validator: (value) =>
                       (value!.length < 10) ? "Invalid mobile number" : null,
-                  isPrefix: true,
                   hintTextStyle: kLabelStyle,
                   prefixWidget: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
