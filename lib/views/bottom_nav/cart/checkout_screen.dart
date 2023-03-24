@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mcs/models/product/product_mode.dart';
+import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/cart/price_detail.dart';
 import 'package:mcs/widgets/custom_input.dart';
@@ -23,13 +24,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     // TODO: implement initState
     super.initState();
     _scrollController = ScrollController();
-    // total = widget.products.fold(0, (sum, product) {
-    //   return sum + product.offerPrice! * product.count;
-    // });
-    // totalPrice = widget.products.fold(0, (sum, product) {
-    //   return sum + product.price! * product.count;
-    // });
-    // saved = totalPrice - total;
+    total = ProductUtility.calculatePrice(widget.products);
+    totalPrice = ProductUtility.calculateActualPrice(widget.products);
+    saved = totalPrice - total;
   }
 
   @override
@@ -136,23 +133,53 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * .15,
                   child: ListView.separated(
-                      separatorBuilder: (_, __) => const SizedBox(width: 5),
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      separatorBuilder: (_, __) => Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 10),
+                            width: 1,
+                            color: greyColor.withOpacity(.6),
+                          ),
                       scrollDirection: Axis.horizontal,
                       itemCount: widget.products.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         final product = widget.products[index];
-                        return SizedBox(
-                            height: MediaQuery.of(context).size.height * .15,
-                            width: MediaQuery.of(context).size.height * .15,
-                            child: CachedNetworkImage(
-                              imageUrl: product.productImage!,
-                              placeholder: (context, url) =>
-                                  Image.asset("assets/images/photo.jpg"),
-                              errorWidget: (context, url, error) =>
-                                  Image.asset("assets/images/photo.jpg"),
-                              fit: BoxFit.fitWidth,
-                            ));
+                        return Stack(
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * .15,
+                              width: MediaQuery.of(context).size.height * .15,
+                              child: CachedNetworkImage(
+                                imageUrl: product.productImage!,
+                                placeholder: (context, url) =>
+                                    Image.asset("assets/images/photo.jpg"),
+                                errorWidget: (context, url, error) =>
+                                    Image.asset("assets/images/photo.jpg"),
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                            Positioned(
+                                bottom: 5,
+                                right: 5,
+                                child: Container(
+                                  height: 20,
+                                  width: 20,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(2),
+                                    color: redColor,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      product.count.toString(),
+                                      style: kLabelStyleBold.copyWith(
+                                        color: secondaryLight,
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                          ],
+                        );
                       }),
                 ),
                 const SizedBox(
@@ -164,9 +191,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     children: [
                       Text(
                         "₹$total",
-                        style: kLabelStyle.copyWith(
-                          decoration: TextDecoration.lineThrough,
-                          color: greyColor,
+                        style: kLabelStyleBold.copyWith(
+                          fontSize: 18,
                         ),
                       ),
                       const SizedBox(
@@ -174,8 +200,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ),
                       Text(
                         "₹$totalPrice",
-                        style: kLabelStyleBold.copyWith(
-                          fontSize: 18,
+                        style: kLabelStyle.copyWith(
+                          decoration: TextDecoration.lineThrough,
                         ),
                       ),
                       const SizedBox(

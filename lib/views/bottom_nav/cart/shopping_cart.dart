@@ -4,6 +4,7 @@ import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/blocs/user/user_bloc.dart';
 import 'package:mcs/resources/user/user_repositoryimpl.dart';
 import 'package:mcs/routes/route_constants.dart';
+import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/cart/price_detail.dart';
 import 'package:mcs/views/bottom_nav/cart/shopping_list.dart';
@@ -29,6 +30,15 @@ class _ShoppingCartState extends State<ShoppingCart> {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<ProductBloc>().state;
+    double total = 0;
+    double totalPrice = 0;
+    if (state is ProductLoaded) {
+      total = ProductUtility.calculatePrice(state.addedProducts!);
+      totalPrice = ProductUtility.calculateActualPrice(state.addedProducts!);
+    }
+    double saved = totalPrice - total;
+
     return MultiBlocProvider(
       providers: [
         BlocProvider<UserBloc>(
@@ -37,55 +47,43 @@ class _ShoppingCartState extends State<ShoppingCart> {
       ],
       child: Scaffold(
         persistentFooterButtons: [
-          Builder(builder: (context) {
-            final state = context.watch<ProductBloc>().state;
-            double total = 0;
-            // if (state is ProductLoaded) {
-            //   total = state.addedProducts!.fold(0, (sum, product) {
-            //     return sum + product.offerPrice! * product.count;
-            //   });
-            // }
-
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: showPriceDetail,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "₹$total",
-                        style: kLabelStyleBold.copyWith(
-                          fontSize: 18,
-                        ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: showPriceDetail,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "₹$total",
+                      style: kLabelStyleBold.copyWith(
+                        fontSize: 18,
                       ),
-                      TextButton(
-                          onPressed: showPriceDetail,
-                          style: TextButton.styleFrom(
-                            minimumSize: Size.zero,
-                            padding: EdgeInsets.zero,
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          child: Text(
-                            "View price details",
-                            style:
-                                kLabelStyleBold.copyWith(color: primaryLight),
-                          )),
-                    ],
-                  ),
+                    ),
+                    TextButton(
+                        onPressed: showPriceDetail,
+                        style: TextButton.styleFrom(
+                          minimumSize: Size.zero,
+                          padding: EdgeInsets.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        child: Text(
+                          "View price details",
+                          style: kLabelStyleBold.copyWith(color: primaryLight),
+                        )),
+                  ],
                 ),
-                ElevatedButton(
-                    onPressed: () => Navigator.of(context).pushNamed(checkout,
-                        arguments: (state is ProductLoaded)
-                            ? state.addedProducts
-                            : []),
-                    child: const Text(
-                      "Checkout",
-                    )),
-              ],
-            );
-          }),
+              ),
+              ElevatedButton(
+                  onPressed: () => Navigator.of(context).pushNamed(checkout,
+                      arguments:
+                          (state is ProductLoaded) ? state.addedProducts : []),
+                  child: const Text(
+                    "Checkout",
+                  )),
+            ],
+          )
         ],
         body: CustomScrollView(
           controller: scrollController,
@@ -162,74 +160,51 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Builder(builder: (context) {
-                    final state = context.watch<ProductBloc>().state;
-                    double total = 0;
-                    // if (state is ProductLoaded) {
-                    //   total = state.addedProducts!.fold(0, (sum, product) {
-                    //     return sum + product.offerPrice! * product.count;
-                    //   });
-                    // }
-                    double totalPrice = 0;
-                    // if (state is ProductLoaded) {
-                    //   totalPrice = state.addedProducts!.fold(0, (sum, product) {
-                    //     return sum + product.price! * product.count;
-                    //   });
-                    // }
 
-                    double saved = totalPrice - total;
-                    return Container(
-                        height: kToolbarHeight * .75,
-                        decoration: BoxDecoration(
-                          color: greenColor.withAlpha(40),
-                        ),
-                        child: Row(
-                          children: [
-                            const SizedBox(
-                              width: 20,
+                  Container(
+                      height: kToolbarHeight * .75,
+                      decoration: BoxDecoration(
+                        color: greenColor.withAlpha(40),
+                      ),
+                      child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          SizedBox(
+                            child: Image.asset(
+                              "assets/images/reward.gif",
                             ),
-                            SizedBox(
-                              child: Image.asset(
-                                "assets/images/reward.gif",
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "You Saved ₹$saved",
-                              style:
-                                  kLabelStyleBold.copyWith(color: greenColor),
-                            ),
-                          ],
-                        ));
-                  }),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "You Saved ₹$saved",
+                            style: kLabelStyleBold.copyWith(color: greenColor),
+                          ),
+                        ],
+                      )),
+
                   const SizedBox(
                     height: 10,
                   ),
-                  BlocBuilder<ProductBloc, ProductState>(
-                      builder: (context, state) {
-                    return state.maybeMap(
-                      initial: (_) => LoadingUI(),
-                      loaded: (res) =>
-                          ShoppingList(addedProducts: res.addedProducts!),
-                      error: (err) => Text(err.message),
-                      orElse: () => const SizedBox.shrink(),
-                    );
-                  }),
+                  state.maybeMap(
+                    initial: (_) => LoadingUI(),
+                    loaded: (res) =>
+                        ShoppingList(addedProducts: res.addedProducts!),
+                    error: (err) => Text(err.message),
+                    orElse: () => const SizedBox.shrink(),
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
-                  BlocBuilder<ProductBloc, ProductState>(
-                      builder: (context, state) {
-                    return state.maybeMap(
-                      initial: (_) => LoadingUI(),
-                      loaded: (res) =>
-                          PriceDetail(products: res.addedProducts!),
-                      error: (err) => Text(err.message),
-                      orElse: () => const SizedBox.shrink(),
-                    );
-                  }),
+                  state.maybeMap(
+                    initial: (_) => LoadingUI(),
+                    loaded: (res) => PriceDetail(products: res.addedProducts!),
+                    error: (err) => Text(err.message),
+                    orElse: () => const SizedBox.shrink(),
+                  ),
                 ],
               ),
             ),

@@ -20,6 +20,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<AddProduct>(_addProduct);
     on<DeleteProduct>(_deleteFromCart);
     on<SearchProduct>(_searchProduct);
+    on<UpdatePrice>(_updatePrice);
   }
 
   Future _searchProduct(SearchProduct event, Emitter<ProductState> emit) async {
@@ -36,6 +37,23 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       emit(ProductLoaded(products: productList, addedProducts: const []));
     } on ServerError catch (error) {
       emit(ProductError(message: error.errorMessage));
+    } catch (e) {
+      emit(const ProductError(message: 'Something went wrong'));
+    }
+  }
+
+  /// update product price
+  Future _updatePrice(UpdatePrice event, Emitter<ProductState> emit) async {
+    try {
+      final state = this.state;
+      if (state is ProductLoaded) {
+        List<ProductModel> products = state.products
+            .map((e) => e.id == event.productModel.id ? event.productModel : e)
+            .toList();
+        List<ProductModel> cartProducts = state.addedProducts!;
+        emit(ProductState.loaded(
+            products: products, addedProducts: cartProducts));
+      }
     } catch (e) {
       emit(const ProductError(message: 'Something went wrong'));
     }

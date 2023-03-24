@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mcs/models/product/product_mode.dart';
+import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
 
 class PriceDetail extends StatelessWidget {
@@ -8,62 +9,63 @@ class PriceDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double total = 0;
-    // total = products.fold(0, (sum, product) {
-    //   return sum + product.offerPrice! * product.count;
-    // });
-    // double totalPrice = 0;
-    // totalPrice = products.fold(0, (sum, product) {
-    //   return sum + product.price! * product.count;
-    // });
-
-    // double saved = totalPrice - total;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Divider(),
-          const SizedBox(
-            height: 5,
-          ),
-          Text(
+    double total = ProductUtility.calculatePrice(products);
+    double totalPrice = ProductUtility.calculateActualPrice(products);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Divider(),
+        const SizedBox(
+          height: 5,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
             "Price details",
             style: kLabelStyleBold.copyWith(fontSize: 14),
           ),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "MRP(${products.length} items)",
                 style: kLabelStyle,
               ),
-              //Text("₹$totalPrice", style: kLabelStyle),
+              Text("₹$totalPrice", style: kLabelStyle),
             ],
           ),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "Product discount",
                 style: kLabelStyle,
               ),
-              // Text(
-              //   "-₹$saved",
-              //   style: kLabelStyle.copyWith(color: greenColor),
-              // ),
+              Text(
+                "-₹${totalPrice - total}",
+                style: kLabelStyle.copyWith(color: greenColor),
+              ),
             ],
           ),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -76,14 +78,17 @@ class PriceDetail extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 5,
-          ),
-          const Divider(),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        const Divider(),
+        const SizedBox(
+          height: 5,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -96,16 +101,16 @@ class PriceDetail extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Divider(),
-          // Text(
-          //   "You will save ₹$saved on this order",
-          //   style: kLabelStyleBold.copyWith(color: greenColor),
-          // ),
-        ],
-      ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        const Divider(),
+        // Text(
+        //   "You will save ₹$saved on this order",
+        //   style: kLabelStyleBold.copyWith(color: greenColor),
+        // ),
+      ],
     );
   }
 }

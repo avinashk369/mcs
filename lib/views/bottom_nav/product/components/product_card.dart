@@ -23,6 +23,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       final state = context.watch<ProductBloc>().state;
+
       return InkWell(
         borderRadius: BorderRadius.circular(10),
 
@@ -72,35 +73,75 @@ class ProductCard extends StatelessWidget {
                           maxLines: 2,
                           style: kLabelStyleBold,
                         ),
-                        Text(
-                          "size - 1Kg",
-                          style: kLabelStyleBold,
+                        SizedBox(
+                          height: 25,
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            itemCount: productModel.variant?.length,
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: productModel.variant!.length > 1
+                                    ? () {
+                                        context.read<ProductBloc>().add(
+                                            UpdatePrice(
+                                                productModel: productModel
+                                                    .copyWith(index: index)));
+                                        if (state is ProductLoaded) {
+                                          addToCart(productModel.copyWith(
+                                              index: index));
+                                        }
+                                      }
+                                    : null,
+                                child: Container(
+                                  margin:
+                                      const EdgeInsets.only(top: 5, right: 2),
+                                  padding: const EdgeInsets.all(3),
+                                  decoration: BoxDecoration(
+                                      color: productModel.index == index
+                                          ? primaryLight
+                                          : secondaryLight,
+                                      borderRadius: BorderRadius.circular(4),
+                                      border: Border.all(color: primaryLight)),
+                                  child: Center(
+                                    child: Text(
+                                      "${productModel.variant![index].unitName}-${productModel.variant![index].unit}",
+                                      style: kLabelStyleBold.copyWith(
+                                          color: productModel.index == index
+                                              ? secondaryLight
+                                              : greyColor),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
                         ),
+
                         const SizedBox(
-                          height: 10,
+                          height: 4,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             RichText(
                                 text: TextSpan(children: [
-                              // TextSpan(
-                              //     text:
-                              //         "₹${productModel.offerPrice.toString()}",
-                              //     style: kLabelStyleBold.copyWith(
-                              //       fontSize: 12,
-                              //     )),
                               TextSpan(
-                                  text: " ",
+                                  text:
+                                      "₹${productModel.variant![productModel.index].discount.toString()}",
                                   style: kLabelStyleBold.copyWith(
-                                    fontSize: 12,
+                                    fontSize: 18,
                                   )),
-                              // TextSpan(
-                              //     text: "₹${productModel.price.toString()}",
-                              //     style: kLabelStyleBold.copyWith(
-                              //         fontSize: 10,
-                              //         color: greyColor,
-                              //         decoration: TextDecoration.lineThrough)),
+                              TextSpan(
+                                  text: " ", style: kLabelStyleBold.copyWith()),
+                              TextSpan(
+                                  text:
+                                      "₹${productModel.variant![productModel.index].price.toString()}",
+                                  style: kLabelStyleBold.copyWith(
+                                      fontSize: 12,
+                                      color: greyColor,
+                                      decoration: TextDecoration.lineThrough)),
                             ])),
                             InkWell(
                               onTap: () => (state is ProductLoaded) &&

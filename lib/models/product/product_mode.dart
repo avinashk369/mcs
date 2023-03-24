@@ -29,6 +29,7 @@ class ProductModel with _$ProductModel {
     String? productGroup,
     List<Variant>? variant,
     @JsonKey(ignore: true) @Default(0) int count,
+    @JsonKey(ignore: true) @Default(0) int index,
     double? rating,
   }) = _ProductModel;
 

@@ -35,6 +35,8 @@ mixin _$ProductModel {
   List<Variant>? get variant => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   int get count => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  int get index => throw _privateConstructorUsedError;
   double? get rating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -64,6 +66,7 @@ abstract class $ProductModelCopyWith<$Res> {
       String? productGroup,
       List<Variant>? variant,
       @JsonKey(ignore: true) int count,
+      @JsonKey(ignore: true) int index,
       double? rating});
 }
 
@@ -94,6 +97,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? productGroup = freezed,
     Object? variant = freezed,
     Object? count = null,
+    Object? index = null,
     Object? rating = freezed,
   }) {
     return _then(_value.copyWith(
@@ -153,6 +157,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -184,6 +192,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
       String? productGroup,
       List<Variant>? variant,
       @JsonKey(ignore: true) int count,
+      @JsonKey(ignore: true) int index,
       double? rating});
 }
 
@@ -212,6 +221,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? productGroup = freezed,
     Object? variant = freezed,
     Object? count = null,
+    Object? index = null,
     Object? rating = freezed,
   }) {
     return _then(_$_ProductModel(
@@ -271,6 +281,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -299,6 +313,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       this.productGroup,
       final List<Variant>? variant,
       @JsonKey(ignore: true) this.count = 0,
+      @JsonKey(ignore: true) this.index = 0,
       this.rating})
       : _variant = variant;
 
@@ -343,11 +358,14 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
   @JsonKey(ignore: true)
   final int count;
   @override
+  @JsonKey(ignore: true)
+  final int index;
+  @override
   final double? rating;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProductModel(id: $id, productId: $productId, name: $name, description: $description, productImage: $productImage, stockStatus: $stockStatus, categoryId: $categoryId, cityId: $cityId, couponCode: $couponCode, createdAt: $createdAt, updatedAt: $updatedAt, productGroup: $productGroup, variant: $variant, count: $count, rating: $rating)';
+    return 'ProductModel(id: $id, productId: $productId, name: $name, description: $description, productImage: $productImage, stockStatus: $stockStatus, categoryId: $categoryId, cityId: $cityId, couponCode: $couponCode, createdAt: $createdAt, updatedAt: $updatedAt, productGroup: $productGroup, variant: $variant, count: $count, index: $index, rating: $rating)';
   }
 
   @override
@@ -369,6 +387,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       ..add(DiagnosticsProperty('productGroup', productGroup))
       ..add(DiagnosticsProperty('variant', variant))
       ..add(DiagnosticsProperty('count', count))
+      ..add(DiagnosticsProperty('index', index))
       ..add(DiagnosticsProperty('rating', rating));
   }
 
@@ -400,6 +419,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
                 other.productGroup == productGroup) &&
             const DeepCollectionEquality().equals(other._variant, _variant) &&
             (identical(other.count, count) || other.count == count) &&
+            (identical(other.index, index) || other.index == index) &&
             (identical(other.rating, rating) || other.rating == rating));
   }
 
@@ -421,6 +441,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       productGroup,
       const DeepCollectionEquality().hash(_variant),
       count,
+      index,
       rating);
 
   @JsonKey(ignore: true)
@@ -453,6 +474,7 @@ abstract class _ProductModel implements ProductModel {
       final String? productGroup,
       final List<Variant>? variant,
       @JsonKey(ignore: true) final int count,
+      @JsonKey(ignore: true) final int index,
       final double? rating}) = _$_ProductModel;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
@@ -487,6 +509,9 @@ abstract class _ProductModel implements ProductModel {
   @override
   @JsonKey(ignore: true)
   int get count;
+  @override
+  @JsonKey(ignore: true)
+  int get index;
   @override
   double? get rating;
   @override

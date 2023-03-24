@@ -14,4 +14,7 @@ class ProductEvent with _$ProductEvent {
       LoadProductByCatId;
   const factory ProductEvent.search(
       {required String keyword, required String cityId}) = SearchProduct;
+
+  const factory ProductEvent.updatePrice({required ProductModel productModel}) =
+      UpdatePrice;
 }

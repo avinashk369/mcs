@@ -22,7 +22,7 @@ class ShoppingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.zero,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -47,7 +47,7 @@ class ShoppingItem extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            width: 5,
+            width: 10,
           ),
           Expanded(
             child: Column(
@@ -61,8 +61,11 @@ class ShoppingItem extends StatelessWidget {
                   productModel.name!,
                   style: kLabelStyleBold,
                 ),
+                const SizedBox(
+                  height: 4,
+                ),
                 Text(
-                  "5Kg",
+                  "${productModel.variant![productModel.index].unitName}-${productModel.variant![productModel.index].unit}",
                   style: kLabelStyleBold.copyWith(color: greyColor),
                 ),
                 Row(
