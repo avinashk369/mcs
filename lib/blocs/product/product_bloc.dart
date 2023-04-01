@@ -21,10 +21,28 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<DeleteProduct>(_deleteFromCart);
     on<SearchProduct>(_searchProduct);
     on<UpdatePrice>(_updatePrice);
+    on<StartSearch>(_startSearch);
+  }
+
+  /// start search event ehandeling to make loaded product list empty
+  Future _startSearch(StartSearch event, Emitter<ProductState> emit) async {
+    try {
+      final state = this.state;
+      if (state is ProductLoaded) {
+        emit(ProductLoaded(products: [], addedProducts: state.addedProducts));
+      }
+    } catch (e) {
+      emit(const ProductError(message: 'Something went wrong'));
+    }
   }
 
   Future _searchProduct(SearchProduct event, Emitter<ProductState> emit) async {
     try {
+      final state = this.state;
+      List<ProductModel> addedProducts = [];
+      if (state is ProductLoaded) {
+        addedProducts = state.addedProducts ?? [];
+      }
       emit(const ProductLoading());
       await Future.delayed(const Duration(seconds: 3), () {});
       Map<String, dynamic> data = {
@@ -34,7 +52,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       List<ProductModel> productList =
           await _productRepositoryImpl.searchProduct(data);
 
-      emit(ProductLoaded(products: productList, addedProducts: const []));
+      emit(ProductLoaded(products: productList, addedProducts: addedProducts));
     } on ServerError catch (error) {
       emit(ProductError(message: error.errorMessage));
     } catch (e) {
@@ -50,9 +68,8 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         List<ProductModel> products = state.products
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
-        List<ProductModel> cartProducts = state.addedProducts!;
         emit(ProductState.loaded(
-            products: products, addedProducts: cartProducts));
+            products: products, addedProducts: state.addedProducts!));
       }
     } catch (e) {
       emit(const ProductError(message: 'Something went wrong'));
@@ -149,7 +166,16 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   }
 
   Future _loadProducts(LoadPrdoucts event, Emitter<ProductState> emit) async {
+    List<ProductModel> addedProducts = [];
     try {
+      final state = this.state;
+
+      if (state is ProductLoaded) {
+        addedProducts = state.addedProducts!;
+      }
+      if (state is ProductError) {
+        addedProducts = state.addedProducts!;
+      }
       emit(const ProductLoading());
       await Future.delayed(const Duration(seconds: 3), () {});
       Map<String, dynamic> data = {
@@ -159,11 +185,11 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       List<ProductModel> productList =
           await _productRepositoryImpl.loadProducts(data);
 
-      emit(ProductLoaded(products: productList, addedProducts: const []));
+      emit(ProductLoaded(products: productList, addedProducts: addedProducts));
     } on ServerError catch (e) {
-      emit(ProductError(message: e.errorMessage));
+      emit(ProductError(message: e.errorMessage, addedProducts: addedProducts));
     } catch (e) {
-      emit(ProductError(message: e.toString()));
+      emit(ProductError(message: e.toString(), addedProducts: addedProducts));
     }
   }
 }

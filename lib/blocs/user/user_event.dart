@@ -7,4 +7,5 @@ class UserEvent with _$UserEvent {
   const factory UserEvent.verifyOtp(
       {required String mobileNumber, required int otp}) = VerifyOtp;
   const factory UserEvent.resendOtp({required String mobile}) = ResendOtp;
+  const factory UserEvent.saveAddress() = SaveAddress;
 }

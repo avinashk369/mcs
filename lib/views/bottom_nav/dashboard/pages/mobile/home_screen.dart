@@ -1,12 +1,16 @@
 library home_screen;
 
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mcs/blocs/category/category_bloc.dart';
 import 'package:mcs/blocs/data/data_bloc.dart';
+import 'package:mcs/blocs/location/location_bloc.dart';
 import 'package:mcs/blocs/navigation/navigationbloc.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/models/category/category_model.dart';
@@ -65,19 +69,39 @@ class _HomeScreenState extends State<HomeScreen> {
             snap: false,
             elevation: 0,
             bottom: SearchBar(
+              searchTextController: TextEditingController(),
               onSearch: ((searchText) {}),
-              onTouched: () => Navigator.of(context).pushNamed(productSearch),
+              onTouched: () {
+                context.read<ProductBloc>().add(const StartSearch());
+                Navigator.of(context).pushNamed(productSearch);
+              },
               readOnly: true,
             ),
             flexibleSpace: FlexibleSpaceBar(
                 collapseMode: CollapseMode.pin,
                 background: Column(
-                  children: const [
-                    CustomAppBar(
-                      title: 'Village doohri',
-                      isSubtitle: true,
-                      subtitle: 'Village doohri, Pilkuhwa UP',
-                    ),
+                  children: [
+                    BlocConsumer<LocationBloc, LocationState>(
+                        listener: (context, state) {
+                      state.maybeMap(
+                        orElse: () {},
+                        permissionDenied: (value) =>
+                            showAlertDialog(context: context),
+                        serviceDisabled: (value) =>
+                            showAlertDialog(context: context),
+                      );
+                    }, builder: (context, state) {
+                      return state.maybeMap(
+                        loaded: (value) => CustomAppBar(
+                          title: value.address.locality!,
+                          isSubtitle: true,
+                          subtitle:
+                              '${value.address.thoroughfare!} ${value.address.subLocality!}',
+                        ),
+                        error: (error) => Text(error.message),
+                        orElse: () => const SizedBox.shrink(),
+                      );
+                    }),
                   ],
                 )),
           ),
@@ -352,6 +376,56 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           //grid(),
+        ],
+      ),
+    );
+  }
+
+  Future<bool> showAlertDialog({
+    required BuildContext context,
+  }) async {
+    if (!Platform.isIOS) {
+      return await showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Location Services Disabled'),
+          content:
+              const Text('You need to enable Location Services in Setting'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () => Navigator.of(context).pop(false),
+            ),
+            TextButton(
+              child: const Text('Setting'),
+              onPressed: () {
+                //openAppSettings();
+                Navigator.of(context).pop(false);
+              },
+            ),
+          ],
+        ),
+      );
+    }
+
+// todo : showDialog for ios
+    return await showCupertinoDialog(
+      context: context,
+      builder: (context) => CupertinoAlertDialog(
+        title: const Text('Location Services Disabled'),
+        content: const Text('You need to enable location services in setting'),
+        actions: <Widget>[
+          CupertinoDialogAction(
+            child: const Text('Cancel'),
+            onPressed: () => Navigator.of(context).pop(false),
+          ),
+          CupertinoDialogAction(
+            child: const Text('Setting'),
+            onPressed: () {
+              //openAppSettings();
+              Navigator.of(context).pop(false);
+            },
+          ),
         ],
       ),
     );

@@ -13,8 +13,10 @@ import 'package:mcs/routes/routes_generator.dart';
 import 'package:mcs/utils/utils.dart';
 
 import 'blocs/bloc_delegate.dart';
+import 'blocs/location/location_bloc.dart';
 import 'blocs/product/productbloc.dart';
 import 'blocs/subcat/subcat_bloc.dart';
+import 'blocs/user/user_bloc.dart';
 import 'resources/category/category_repositoryImpl.dart';
 import 'routes/route_constants.dart';
 import 'services/ApiClient.dart';
@@ -43,11 +45,11 @@ void main() async {
   ]);
   // initialize api client
   Dio dio = Dio();
-  //dio.interceptors.add(LogInterceptor(
-  // responseBody: true,
-  // request: true,
-  // requestBody: true,
-  //  ));
+  // dio.interceptors.add(LogInterceptor(
+  //   responseBody: true,
+  //   request: true,
+  //   requestBody: true,
+  // ));
   ApiClient apiClient = ApiClient(dio);
   Bloc.observer = SimpleBlocDelegate();
   runApp(MyApp(apiClient: apiClient));
@@ -109,8 +111,13 @@ class _MyAppState extends State<MyApp> {
                   ..add(const LoadBanners(cityId: "4")),
           ),
           BlocProvider(
+              create: (context) => LocationBloc()..add(const LoadLocation())),
+          BlocProvider(
             create: ((context) =>
                 ProductBloc(context.read<ProductRepositoryImpl>())),
+          ),
+          BlocProvider<UserBloc>(
+            create: (context) => UserBloc(context.read<UserRepositoryImpl>()),
           ),
           BlocProvider(
             create: (context) => CategoryBloc(

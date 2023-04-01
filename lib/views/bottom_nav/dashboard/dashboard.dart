@@ -9,11 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/navigation/navigation_bloc.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
-import 'package:mcs/resources/user/user_repositoryimpl.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/widgets/loading_ui.dart';
 
-import '../../../blocs/user/user_bloc.dart';
 import '../../../models/banner/banner_model.dart';
 import '../TabNavigationItem.dart';
 part 'components/promotional_banner.dart';
@@ -40,95 +38,91 @@ class _DashboardState extends State<Dashboard> {
   }
 
 // navigate to login screen if user taps on index where authentication is required
-  Future<void> checkCredsAndNavigate(int index, BuildContext context) async {
+  Future<void> checkCredsAndNavigate(int index, BuildContext context,
+      {bool isCart = false}) async {
+    //isCart
     context.read<NavigationBloc>().changeNavigation(index);
+    //  : Fluttertoast.showToast(msg: 'Your cart is empty');
   }
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<UserBloc>(
-          create: (context) => UserBloc(context.read<UserRepositoryImpl>()),
+    return Scaffold(
+      //extendBody: true,
+      body: BlocBuilder<NavigationBloc, int>(
+        builder: (context, state) => IndexedStack(
+          index: state,
+          children: TabNavigationItem.items.map((item) => item.page).toList(),
         ),
-      ],
-      child: Scaffold(
-        //extendBody: true,
-        body: BlocBuilder<NavigationBloc, int>(
-          builder: (context, state) => IndexedStack(
-            index: state,
-            children: TabNavigationItem.items.map((item) => item.page).toList(),
-          ),
-        ),
-        bottomNavigationBar: BlocBuilder<NavigationBloc, int>(
-          builder: (context, state) {
-            return NavigationBarTheme(
-              data: const NavigationBarThemeData(
-                indicatorColor: primaryLight,
-              ),
-              child: NavigationBar(
-                backgroundColor: Colors.grey[100],
-                height: 60,
-                labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-                selectedIndex: state, //controller.currentIndex.value,
-                animationDuration: const Duration(seconds: 1),
-                onDestinationSelected: (int index) {
-                  checkCredsAndNavigate(index, context);
-                },
+      ),
+      bottomNavigationBar: BlocBuilder<NavigationBloc, int>(
+        builder: (context, state) {
+          final prodState = context.watch<ProductBloc>().state;
+          bool isCart = false;
+          if (prodState is ProductLoaded) {
+            isCart = prodState.addedProducts!.isNotEmpty;
+          }
+          return NavigationBarTheme(
+            data: const NavigationBarThemeData(
+              indicatorColor: primaryLight,
+            ),
+            child: NavigationBar(
+              backgroundColor: Colors.grey[100],
+              height: 60,
+              labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+              selectedIndex: state, //controller.currentIndex.value,
+              animationDuration: const Duration(seconds: 1),
+              onDestinationSelected: (int index) {
+                checkCredsAndNavigate(index, context, isCart: isCart);
+              },
 
-                destinations: TabNavigationItem.items
-                    .map(
-                      (item) => NavigationDestination(
-                        icon: item.title == cart
-                            ? Builder(builder: (context) {
-                                final state =
-                                    context.watch<ProductBloc>().state;
-
-                                return badge.Badge(
-                                  position: badge.BadgePosition.topEnd(
-                                      end: -5, top: -5),
-                                  // animationDuration:
-                                  //     const Duration(milliseconds: 300),
-                                  // animationType: BadgeAnimationType.slide,
-                                  badgeContent: state.maybeMap(
-                                    loaded: (res) => Text(
-                                      res.addedProducts!.length.toString(),
-                                      style: kLabelStyle.copyWith(
-                                          color: secondaryLight),
-                                    ),
-                                    orElse: () => const SizedBox.shrink(),
+              destinations: TabNavigationItem.items
+                  .map(
+                    (item) => NavigationDestination(
+                      icon: item.title == cart
+                          ? Builder(builder: (context) {
+                              return badge.Badge(
+                                position: badge.BadgePosition.topEnd(
+                                    end: -5, top: -5),
+                                // animationDuration:
+                                //     const Duration(milliseconds: 300),
+                                // animationType: BadgeAnimationType.slide,
+                                badgeContent: prodState.maybeMap(
+                                  loaded: (res) => Text(
+                                    res.addedProducts!.length.toString(),
+                                    style: kLabelStyle.copyWith(
+                                        color: secondaryLight),
                                   ),
-                                  child: item.icon,
-                                );
-                              })
-                            : item.icon,
-                        label: item.title,
-                        selectedIcon: item.title == cart
-                            ? Builder(builder: (context) {
-                                final state =
-                                    context.watch<ProductBloc>().state;
-                                return badge.Badge(
-                                  position: badge.BadgePosition.topEnd(
-                                      end: -5, top: -5),
-                                  badgeContent: state.maybeMap(
-                                    loaded: (res) => Text(
-                                      res.addedProducts!.length.toString(),
-                                      style: kLabelStyle.copyWith(
-                                          color: secondaryLight),
-                                    ),
-                                    orElse: () => const SizedBox.shrink(),
+                                  orElse: () => const SizedBox.shrink(),
+                                ),
+                                child: item.icon,
+                              );
+                            })
+                          : item.icon,
+                      label: item.title,
+                      selectedIcon: item.title == cart
+                          ? Builder(builder: (context) {
+                              return badge.Badge(
+                                position: badge.BadgePosition.topEnd(
+                                    end: -5, top: -5),
+                                badgeContent: prodState.maybeMap(
+                                  loaded: (res) => Text(
+                                    res.addedProducts!.length.toString(),
+                                    style: kLabelStyle.copyWith(
+                                        color: secondaryLight),
                                   ),
-                                  child: item.selectedIcon,
-                                );
-                              })
-                            : item.selectedIcon,
-                      ),
-                    )
-                    .toList(),
-              ),
-            );
-          },
-        ),
+                                  orElse: () => const SizedBox.shrink(),
+                                ),
+                                child: item.selectedIcon,
+                              );
+                            })
+                          : item.selectedIcon,
+                    ),
+                  )
+                  .toList(),
+            ),
+          );
+        },
       ),
     );
   }

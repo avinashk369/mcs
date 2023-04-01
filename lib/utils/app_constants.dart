@@ -7,7 +7,7 @@ const String userImage = "user_image";
 const String userLat = "user_lat";
 const String userLng = "user_lng";
 const String defValSf = "NA";
-
+const String cartItems = "cart_items";
 const String defImg = "assets/images/app_logo.png";
 
 //app constants

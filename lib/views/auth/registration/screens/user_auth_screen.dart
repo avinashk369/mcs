@@ -5,7 +5,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/login/loginbloc.dart';
 import 'package:mcs/blocs/user/user_bloc.dart';
-import 'package:mcs/resources/user/user_repositoryimpl.dart';
 import 'package:mcs/routes/route_constants.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/widgets/custom_input.dart';
@@ -52,10 +51,10 @@ class _UserAuthScreenState extends State<UserAuthScreen> {
                   BlocProvider<LoginBloc>(
                     create: (context) => LoginBloc(),
                   ),
-                  BlocProvider<UserBloc>(
-                    create: (context) =>
-                        UserBloc(context.read<UserRepositoryImpl>()),
-                  ),
+                  // BlocProvider<UserBloc>(
+                  //   create: (context) =>
+                  //       UserBloc(context.read<UserRepositoryImpl>()),
+                  // ),
                 ],
                 child: UserAuth(
                   mobileNumberController: mobileNumberController,

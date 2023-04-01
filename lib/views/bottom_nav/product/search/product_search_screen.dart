@@ -1,13 +1,14 @@
 library product_search_screen;
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/models/product/product_mode.dart';
-import 'package:mcs/routes/route_constants.dart';
 import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/widgets/extensions/widget_modifier.dart';
 
+import '../../../../blocs/navigation/navigation_bloc.dart';
 import '../../../../utils/styles.dart';
 import '../../../../utils/theme_constants.dart';
 import '../../../../widgets/loading_ui.dart';
@@ -16,8 +17,8 @@ import '../components/product_grid.dart';
 part './components/bottom_sheet_cart.dart';
 
 class ProductSearchScreen extends StatelessWidget {
-  const ProductSearchScreen({super.key});
-
+  ProductSearchScreen({super.key});
+  TextEditingController searchTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final state = context.watch<ProductBloc>().state;
@@ -39,6 +40,7 @@ class ProductSearchScreen extends StatelessWidget {
                 ),
                 SearchBar(
                   autoFocus: true,
+                  searchTextController: searchTextController,
                   onSearch: (searchText) {
                     /// need to call bloc event to search product
                     FocusScopeNode currentFocus = FocusScope.of(context);
@@ -69,16 +71,28 @@ class ProductSearchScreen extends StatelessWidget {
               )),
             ),
             orElse: () => const SliverToBoxAdapter(child: SizedBox.shrink()),
-          )
+          ),
+          isCart
+              ? const SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: kToolbarHeight,
+                  ),
+                )
+              : const SliverToBoxAdapter(child: SizedBox.shrink())
         ],
       ),
-      bottomSheet: isCart
+      bottomSheet: isCart && searchTextController.text.trim().isNotEmpty
           ? state.maybeMap(
               loaded: (res) => BottomSheetCart(
-                products: res.addedProducts!,
-                onTap: () => Navigator.of(context)
-                    .pushNamed(checkout, arguments: res.addedProducts),
-              ),
+                  productList: res.addedProducts!,
+                  onTap: () {
+                    // Navigator.of(context)
+                    //     .pushNamed(checkout, arguments: res.addedProducts);
+                    // change the navigation to the cart page on home screen. index 2 is cart index, it can be changed
+                    context.read<NavigationBloc>().changeNavigation(2);
+                    // pop the navigation stack to the home screen
+                    Navigator.of(context).pop();
+                  }),
               orElse: () => const SizedBox.shrink(),
             )
           : const SizedBox.shrink(),

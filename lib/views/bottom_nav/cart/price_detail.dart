@@ -54,7 +54,7 @@ class PriceDetail extends StatelessWidget {
                 style: kLabelStyle,
               ),
               Text(
-                "-₹${totalPrice - total}",
+                "₹-${totalPrice - total}",
                 style: kLabelStyle.copyWith(color: greenColor),
               ),
             ],

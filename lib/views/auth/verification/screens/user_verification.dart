@@ -60,10 +60,10 @@ class _UserVerificationState extends State<UserVerification> {
                 BlocProvider<LoginBloc>(
                   create: (context) => LoginBloc(),
                 ),
-                BlocProvider<UserBloc>(
-                  create: (context) =>
-                      UserBloc(context.read<UserRepositoryImpl>()),
-                ),
+                // BlocProvider<UserBloc>(
+                //   create: (context) =>
+                //       UserBloc(context.read<UserRepositoryImpl>()),
+                // ),
                 BlocProvider(
                     create: (context) =>
                         TimerBloc()..validateCountdownResendCode()),

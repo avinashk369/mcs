@@ -2,13 +2,10 @@ library user_settings;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mcs/resources/user/user_repositoryimpl.dart';
 import 'package:mcs/routes/route_constants.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/custom_appbar.dart';
 
-import '../../blocs/user/user_bloc.dart';
 import '../../widgets/themes/config.dart';
 
 class UserSettings extends StatelessWidget {
@@ -16,80 +13,73 @@ class UserSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<UserBloc>(
-          create: (context) => UserBloc(context.read<UserRepositoryImpl>()),
-        ),
-      ],
-      child: Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              expandedHeight: kToolbarHeight,
-              automaticallyImplyLeading: false,
-              floating: true,
-              pinned: true,
-              snap: false,
-              elevation: 0,
-              flexibleSpace: FlexibleSpaceBar(
-                  collapseMode: CollapseMode.pin,
-                  background: Column(
-                    children: const [
-                      CustomAppBar(
-                        title: 'Settings',
-                      ),
-                    ],
-                  )),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  listTileCard(
-                    'My Vehicles',
-                    () {
-                      currentTheme.toggleTheme();
-                      print("On tapped");
-                    },
-                    CachedNetworkImage(imageUrl: carImage),
-                    context,
-                  ),
-                  listTileCard(
-                    'My Wallet',
-                    () async {},
-                    const Icon(
-                      Icons.wallet_membership,
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: kToolbarHeight,
+            automaticallyImplyLeading: false,
+            floating: true,
+            pinned: true,
+            snap: false,
+            elevation: 0,
+            flexibleSpace: FlexibleSpaceBar(
+                collapseMode: CollapseMode.pin,
+                background: Column(
+                  children: const [
+                    CustomAppBar(
+                      title: 'Settings',
                     ),
-                    context,
+                  ],
+                )),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                listTileCard(
+                  'My Vehicles',
+                  () {
+                    currentTheme.toggleTheme();
+                    print("On tapped");
+                  },
+                  CachedNetworkImage(imageUrl: carImage),
+                  context,
+                ),
+                listTileCard(
+                  'My Wallet',
+                  () async {},
+                  const Icon(
+                    Icons.wallet_membership,
                   ),
-                  listTileCard(
-                    'Help',
-                    () async {},
-                    const Icon(
-                      Icons.help,
-                    ),
-                    context,
+                  context,
+                ),
+                listTileCard(
+                  'Help',
+                  () async {},
+                  const Icon(
+                    Icons.help,
                   ),
-                  listTileCard(
-                    'Log out',
-                    () async {
-                      final navigator = Navigator.of(context);
-                      await PreferenceUtils.clear();
+                  context,
+                ),
+                listTileCard(
+                  'Log out',
+                  () async {
+                    final navigator = Navigator.of(context);
+                    await PreferenceUtils.clear();
 
-                      navigator.pushNamedAndRemoveUntil(
-                          homeRoute, (Route<dynamic> route) => false);
-                    },
-                    const Icon(
-                      Icons.exit_to_app,
-                      color: redColor,
-                    ),
-                    context,
+                    navigator.pushNamedAndRemoveUntil(
+                        homeRoute, (Route<dynamic> route) => false);
+                  },
+                  const Icon(
+                    Icons.exit_to_app,
+                    color: redColor,
                   ),
-                ],
-              ),
+                  context,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

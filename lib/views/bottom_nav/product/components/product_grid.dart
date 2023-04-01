@@ -4,6 +4,9 @@ import 'package:mcs/blocs/product/productbloc.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/views/bottom_nav/dashboard/pages/mobile/home_screen.dart';
 
+import '../../../../utils/app_constants.dart';
+import '../../../../utils/preference_utils.dart';
+
 class ProductGrid extends StatelessWidget {
   const ProductGrid({Key? key, required this.products}) : super(key: key);
   final List<ProductModel> products;
@@ -17,10 +20,18 @@ class ProductGrid extends StatelessWidget {
             productModel: products[index],
             height: 220,
             addToCart: (product) {
+              /// add products into pref for local storage
+              PreferenceUtils.clearCart(cartItems)!.then((value) => {
+                    PreferenceUtils.putString(cartItems,
+                        product.copyWith(count: 1).toJson().toString())
+                  });
+
               context.read<ProductBloc>().add(AddProduct(
                   productModel: product.copyWith(count: 1), isCart: false));
             },
             deleteFromCart: (product) {
+              /// remove product from pref
+              PreferenceUtils.clearCart(cartItems);
               context.read<ProductBloc>().add(DeleteProduct(product));
             },
             offer: "",

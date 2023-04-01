@@ -28,8 +28,9 @@ class ProductModel with _$ProductModel {
     String? updatedAt,
     String? productGroup,
     List<Variant>? variant,
-    @JsonKey(ignore: true) @Default(0) int count,
-    @JsonKey(ignore: true) @Default(0) int index,
+    @JsonKey(includeToJson: true, includeFromJson: true) @Default(0) int count,
+    @JsonKey(includeToJson: true, includeFromJson: true) @Default(0) int index,
+    //@JsonKey(ignore: true) @Default(false) bool inCart,
     double? rating,
   }) = _ProductModel;
 

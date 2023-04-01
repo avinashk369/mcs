@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
 
 import 'auth/registration/screens/user_auth_screen.dart';
-import 'onboard/onboard_screens.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({Key? key}) : super(key: key);
@@ -29,8 +28,12 @@ class _WelcomeState extends State<Welcome> {
     hasSeen = PreferenceUtils.getBool(has_seen);
     creationTime = PreferenceUtils.getString(creation_time);
     lastSignInTime = PreferenceUtils.getString(sign_in_time);
-    print(
-        "user metadata $userId userId \n $creationTime  creation time \n $lastSignInTime  last sign in time");
+
+    String carts = PreferenceUtils.getString(cartItems);
+    print('Avinash cart $carts');
+    // print(
+    //     "user metadata $userId userId \n $creationTime  creation time \n $lastSignInTime  last sign in time");
+
     super.initState();
   }
 
@@ -39,7 +42,7 @@ class _WelcomeState extends State<Welcome> {
     return Scaffold(
         body: userId!.isNotEmpty
             ? const Dashboard()
-            : const Dashboard() //UserAuthScreen()
+            : const UserAuthScreen() //UserAuthScreen()
 
         );
   }

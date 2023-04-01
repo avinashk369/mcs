@@ -31,6 +31,14 @@ class PreferenceUtils {
     return _prefs!.getString(key) ?? defValue;
   }
 
+  /// clear kart
+  static Future<bool>? clearCart(String key) async {
+    if (PreferenceUtils.getString(key).isNotEmpty) {
+      return (PreferenceUtils.remove(key))!;
+    }
+    return false;
+  }
+
   // put string
   static Future<bool>? putString(String key, String value) {
     if (_prefs == null) return null;

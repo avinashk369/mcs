@@ -50,6 +50,9 @@ dependencies:
   animate_do: ^3.0.2
   webview_flutter: ^4.0.2
   flutter_native_splash: ^2.2.18
+  location: ^4.4.0
+  geocoding: ^2.1.0
+
 
 
   

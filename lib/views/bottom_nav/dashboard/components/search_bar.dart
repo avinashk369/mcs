@@ -5,6 +5,7 @@ import 'package:mcs/widgets/custom_input.dart';
 class SearchBar extends StatelessWidget implements PreferredSizeWidget {
   final Function(String searchText) onSearch;
   final Function? onTouched;
+  final TextEditingController searchTextController;
   final bool readOnly;
   final bool autoFocus;
   const SearchBar({
@@ -13,11 +14,11 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget {
     this.onTouched,
     this.readOnly = false,
     this.autoFocus = false,
+    required this.searchTextController,
   })  : preferredSize = const Size.fromHeight(kAppBarHeight),
         super(key: key);
   @override
   Widget build(BuildContext context) {
-    TextEditingController search = TextEditingController();
     return Container(
       height: kToolbarHeight,
       color: Colors.white,
@@ -29,7 +30,7 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: CustomInput(
-                    textController: search,
+                    textController: searchTextController,
                     hintText: 'Search products',
                     onChanged: (v) {},
                     readOnly: readOnly,
@@ -38,7 +39,9 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
             InkWell(
-              onTap: () => search.text.isEmpty ? null : onSearch(search.text),
+              onTap: () => searchTextController.text.isEmpty
+                  ? null
+                  : onSearch(searchTextController.text),
               child: Container(
                 width: 48,
                 height: 48,

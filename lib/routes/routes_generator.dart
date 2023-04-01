@@ -44,7 +44,7 @@ class RouteGenerator {
           page: ProductDetail(productModel: args as ProductModel),
         );
       case productSearch:
-        return SlideRightRoute(page: const ProductSearchScreen());
+        return SlideRightRoute(page: ProductSearchScreen());
       case checkout:
         return SlideRightRoute(
           page: CheckoutScreen(products: args as List<ProductModel>),
@@ -52,7 +52,7 @@ class RouteGenerator {
       case otpRoute:
         Map<String, dynamic> data = args as Map<String, dynamic>;
         int token = data['token'];
-        String mobile = data['mobile'];
+        String mobile = data['mobile_no'];
         return SlideRightRoute(
           page: UserVerification(
             token: token.toString(),

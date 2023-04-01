@@ -14,7 +14,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserLoginEvent>(_userLogin);
     on<VerifyOtp>(_verifyOtpEvent);
     on<ResendOtp>(_resendOtp);
+    on<SaveAddress>(_saveAddress);
   }
+
+  /// save user address
+  Future _saveAddress(SaveAddress event, Emitter<UserState> emit) async {}
 
   /// user login event handeling
   Future<void> _userLogin(UserLoginEvent event, Emitter<UserState> emit) async {

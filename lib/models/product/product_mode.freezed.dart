@@ -33,10 +33,11 @@ mixin _$ProductModel {
   String? get updatedAt => throw _privateConstructorUsedError;
   String? get productGroup => throw _privateConstructorUsedError;
   List<Variant>? get variant => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+  @JsonKey(includeToJson: true, includeFromJson: true)
   int get count => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  int get index => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: true, includeFromJson: true)
+  int get index =>
+      throw _privateConstructorUsedError; //@JsonKey(ignore: true) @Default(false) bool inCart,
   double? get rating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -65,8 +66,8 @@ abstract class $ProductModelCopyWith<$Res> {
       String? updatedAt,
       String? productGroup,
       List<Variant>? variant,
-      @JsonKey(ignore: true) int count,
-      @JsonKey(ignore: true) int index,
+      @JsonKey(includeToJson: true, includeFromJson: true) int count,
+      @JsonKey(includeToJson: true, includeFromJson: true) int index,
       double? rating});
 }
 
@@ -191,8 +192,8 @@ abstract class _$$_ProductModelCopyWith<$Res>
       String? updatedAt,
       String? productGroup,
       List<Variant>? variant,
-      @JsonKey(ignore: true) int count,
-      @JsonKey(ignore: true) int index,
+      @JsonKey(includeToJson: true, includeFromJson: true) int count,
+      @JsonKey(includeToJson: true, includeFromJson: true) int index,
       double? rating});
 }
 
@@ -312,8 +313,8 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       this.updatedAt,
       this.productGroup,
       final List<Variant>? variant,
-      @JsonKey(ignore: true) this.count = 0,
-      @JsonKey(ignore: true) this.index = 0,
+      @JsonKey(includeToJson: true, includeFromJson: true) this.count = 0,
+      @JsonKey(includeToJson: true, includeFromJson: true) this.index = 0,
       this.rating})
       : _variant = variant;
 
@@ -355,11 +356,12 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
   }
 
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeToJson: true, includeFromJson: true)
   final int count;
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeToJson: true, includeFromJson: true)
   final int index;
+//@JsonKey(ignore: true) @Default(false) bool inCart,
   @override
   final double? rating;
 
@@ -473,8 +475,8 @@ abstract class _ProductModel implements ProductModel {
       final String? updatedAt,
       final String? productGroup,
       final List<Variant>? variant,
-      @JsonKey(ignore: true) final int count,
-      @JsonKey(ignore: true) final int index,
+      @JsonKey(includeToJson: true, includeFromJson: true) final int count,
+      @JsonKey(includeToJson: true, includeFromJson: true) final int index,
       final double? rating}) = _$_ProductModel;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
@@ -507,12 +509,12 @@ abstract class _ProductModel implements ProductModel {
   @override
   List<Variant>? get variant;
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeToJson: true, includeFromJson: true)
   int get count;
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeToJson: true, includeFromJson: true)
   int get index;
-  @override
+  @override //@JsonKey(ignore: true) @Default(false) bool inCart,
   double? get rating;
   @override
   @JsonKey(ignore: true)

@@ -13,7 +13,7 @@ class UserRepositoryImpl implements UserRepository {
   Future<UserModel> userLogin(String mobileNumber) async {
     late UserModel userMasters;
     try {
-      Map<String, dynamic> body = {"mobile": mobileNumber};
+      Map<String, dynamic> body = {"mobile_no": mobileNumber};
       userMasters = (await apiClient.userLogin(body));
     } catch (error, _) {
       throw ServerError.withError(error: error);
@@ -25,7 +25,7 @@ class UserRepositoryImpl implements UserRepository {
   Future<UserModel> verifyOtp(String mobile, int otp) async {
     late UserModel userModel;
     try {
-      Map<String, dynamic> body = {"otp": otp, "mobile_number": mobile};
+      Map<String, dynamic> body = {"otp": otp, "mobile_no": mobile};
       userModel = await apiClient.otpVerificaiotn(body);
     } catch (error, stacktrace) {
       throw ServerError.withError(error: error);
@@ -50,7 +50,7 @@ class UserRepositoryImpl implements UserRepository {
   Future<UserModel> resendOtp(String mobileNumber) async {
     late UserModel userMasters;
     try {
-      Map<String, dynamic> body = {"mobile": mobileNumber};
+      Map<String, dynamic> body = {"mobile_no": mobileNumber};
       userMasters = (await apiClient.resendOtp(body));
     } catch (error, _) {
       throw ServerError.withError(error: error);

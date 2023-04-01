@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mcs/blocs/user/user_bloc.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
@@ -119,7 +121,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           ),
                         )),
                         ElevatedButton(
-                            onPressed: () => showAddressDialog(context),
+                            onPressed: () => showAddressDialog(context,
+                                    onSubmit: (formData) {
+                                  /// call event to save user address
+                                  context
+                                      .read<UserBloc>()
+                                      .add(const SaveAddress());
+                                  Navigator.of(context).pop();
+                                }),
                             child: const Text("Change")),
                       ],
                     ),
@@ -233,89 +242,140 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
-  showAddressDialog(BuildContext context) => showModalBottomSheet(
-      isScrollControlled: true,
-      enableDrag: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      context: context,
-      builder: (context) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              height: 5,
-              child: Center(
-                child: Container(
-                  width: 50,
-                  decoration: BoxDecoration(
-                    color: greyColor,
-                    borderRadius: BorderRadius.circular(10),
+  showAddressDialog(BuildContext context,
+          {required Function(Map<String, dynamic>) onSubmit}) =>
+      showModalBottomSheet(
+          isScrollControlled: true,
+          enableDrag: true,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          context: context,
+          builder: (context) {
+            ///final locationState = context.read<LocationBloc>().state;
+
+            /// get the user location detail
+            /// (locationState is LocationLoaded) ? locationState.address.thoroughfare : ''
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 5,
+                  child: Center(
+                    child: Container(
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: greyColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text("Address ",
-                  style: kLabelStyleBold.copyWith(fontSize: 16)),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Form(
-                child: Column(
-                  children: [
-                    CustomInput(
-                      hintText: "Name",
-                      textController: TextEditingController(),
-                      onChanged: (value) {},
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CustomInput(
-                      hintText: "City",
-                      textController: TextEditingController(),
-                      onChanged: (value) {},
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CustomInput(
-                      hintText: "State",
-                      textController: TextEditingController(),
-                      onChanged: (value) {},
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    CustomInput(
-                      hintText: "Address",
-                      textController: TextEditingController(),
-                      numOfLines: 3,
-                      onChanged: (value) {},
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                        onPressed: () {}, child: const Text("Submit"))
-                  ],
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-            ),
-          ],
-        );
-      });
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text("Address ",
+                      style: kLabelStyleBold.copyWith(fontSize: 16)),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Form(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CustomInput(
+                          hintText: "Name",
+                          textController: TextEditingController(),
+                          onChanged: (value) {},
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CustomInput(
+                          hintText: "Mobile",
+                          textController: TextEditingController(),
+                          onChanged: (value) {},
+                          textInputType: TextInputType.phone,
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CustomInput(
+                          hintText: "House No",
+                          textController: TextEditingController(),
+                          onChanged: (value) {},
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CustomInput(
+                          hintText: "Society (Optional)",
+                          textController: TextEditingController(),
+                          onChanged: (value) {},
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CustomInput(
+                          hintText: "Street",
+                          textController: TextEditingController(),
+                          onChanged: (value) {},
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CustomInput(
+                          hintText: "Landmark",
+                          textController: TextEditingController(),
+                          onChanged: (value) {},
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CustomInput(
+                          hintText: "City",
+                          textController: TextEditingController(),
+                          onChanged: (value) {},
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CustomInput(
+                          hintText: "Pincode",
+                          textController: TextEditingController(),
+                          onChanged: (value) {},
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 15)),
+                          onPressed: () {
+                            onSubmit({});
+                          },
+                          child: Text(
+                            "Submit".toUpperCase(),
+                            style: kLabelStyleBold.copyWith(
+                                fontSize: 18, color: secondaryLight),
+                          ),
+                        ),
+                        const SizedBox(height: 10)
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            );
+          });
 }
