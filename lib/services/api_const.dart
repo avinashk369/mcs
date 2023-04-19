@@ -15,4 +15,5 @@ class ApiConst {
   static const String resendOtp = 'Api_controller/ResendOtp';
   static const String getCategory = 'Api_controller/GetCategory';
   static const String getSubCategory = 'Api_controller/GetSubCategory';
+  static const String saveAddress = 'Api_controller/AddDeliveryAddress';
 }

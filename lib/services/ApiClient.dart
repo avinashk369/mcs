@@ -75,6 +75,12 @@ abstract class ApiClient {
     @Body() Map<String, dynamic> data,
   );
 
+  @POST(ApiConst.saveAddress)
+  @FormUrlEncoded()
+  Future<BaseResponse<UserModel>> saveUserAddress(
+    @Body() Map<String, dynamic> data,
+  );
+
   /// get location suggestion
   //Future<SuggestionDetail> getLocationSuggestion();
 

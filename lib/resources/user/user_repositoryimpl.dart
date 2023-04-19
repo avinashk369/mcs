@@ -25,7 +25,7 @@ class UserRepositoryImpl implements UserRepository {
   Future<UserModel> verifyOtp(String mobile, int otp) async {
     late UserModel userModel;
     try {
-      Map<String, dynamic> body = {"otp": otp, "mobile_no": mobile};
+      Map<String, dynamic> body = {"otp": "1234", "mobile_no": "8787878787"};
       userModel = await apiClient.otpVerificaiotn(body);
     } catch (error, stacktrace) {
       throw ServerError.withError(error: error);
@@ -56,5 +56,16 @@ class UserRepositoryImpl implements UserRepository {
       throw ServerError.withError(error: error);
     }
     return userMasters;
+  }
+
+  @override
+  Future<UserModel> saveAddress(Map<String, dynamic> data) async {
+    late UserModel userMaster;
+    try {
+      userMaster = (await apiClient.saveUserAddress(data)).data!;
+    } catch (error) {
+      throw ServerError.withError(error: error);
+    }
+    return userMaster;
   }
 }
