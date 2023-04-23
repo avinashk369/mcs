@@ -9,6 +9,7 @@ import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/widgets/extensions/widget_modifier.dart';
 
 import '../../../../blocs/navigation/navigation_bloc.dart';
+import '../../../../routes/route_constants.dart';
 import '../../../../utils/styles.dart';
 import '../../../../utils/theme_constants.dart';
 import '../../../../widgets/loading_ui.dart';
@@ -17,6 +18,7 @@ import '../components/product_grid.dart';
 part './components/bottom_sheet_cart.dart';
 
 class ProductSearchScreen extends StatelessWidget {
+  static const String tag = productSearch;
   ProductSearchScreen({super.key});
   TextEditingController searchTextController = TextEditingController();
   @override

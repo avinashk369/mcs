@@ -24,4 +24,9 @@ class ProductUtility {
     }
     return total;
   }
+
+  static int getCalculatedOffer(double part, double total) =>
+      (((total - part) / total) * 100).toInt();
+
+  static String perKgPrice(double price) => (price / 1000).toStringAsFixed(2);
 }

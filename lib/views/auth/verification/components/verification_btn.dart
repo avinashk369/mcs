@@ -23,7 +23,7 @@ class VerificationBtn extends StatelessWidget {
             // PreferenceUtils.putString(user_id, state.userModel.id!);
 
             Navigator.of(context)
-                .popAndPushNamed(dashboardRoute, arguments: userModel.otp);
+                .popAndPushNamed(Dashboard.tag, arguments: userModel.otp);
           },
           orElse: () => {},
         );

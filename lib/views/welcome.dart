@@ -3,9 +3,11 @@ import 'package:mcs/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
 
+import '../routes/route_constants.dart';
 import 'auth/registration/screens/user_auth_screen.dart';
 
 class Welcome extends StatefulWidget {
+  static const String tag = homeRoute;
   const Welcome({Key? key}) : super(key: key);
 
   @override

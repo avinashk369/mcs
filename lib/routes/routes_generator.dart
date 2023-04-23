@@ -17,16 +17,16 @@ class RouteGenerator {
     // Getting arguments passed in while calling Navigator.pushNamed
     final args = settings.arguments;
     switch (settings.name) {
-      case homeRoute:
+      case Welcome.tag:
         //SplashView()
         return SlideRightRoute(page: const Welcome());
       // case loginRoute:
       //   return SlideRightRoute(page: LoginView());
-      case dashboardRoute:
+      case Dashboard.tag:
         return SlideRightRoute(
           page: const Dashboard(),
         );
-      case products:
+      case ProductList.tag:
         Map<String, dynamic> data = args as Map<String, dynamic>;
         CategoryModel categoryModel = data['category'];
         int index = data['index'];
@@ -43,13 +43,13 @@ class RouteGenerator {
         return SlideRightRoute(
           page: ProductDetail(productModel: args as ProductModel),
         );
-      case productSearch:
+      case ProductSearchScreen.tag:
         return SlideRightRoute(page: ProductSearchScreen());
-      case checkout:
+      case CheckoutScreen.tag:
         return SlideRightRoute(
           page: CheckoutScreen(products: args as List<ProductModel>),
         );
-      case otpRoute:
+      case UserVerification.tag:
         Map<String, dynamic> data = args as Map<String, dynamic>;
         int token = data['token'];
         String mobile = data['mobile_no'];

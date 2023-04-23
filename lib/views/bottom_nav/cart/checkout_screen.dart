@@ -11,8 +11,10 @@ import 'package:mcs/widgets/custom_input.dart';
 import 'package:mcs/widgets/loading_ui.dart';
 
 import '../../../blocs/user/user_bloc.dart';
+import '../../../routes/route_constants.dart';
 
 class CheckoutScreen extends StatefulWidget {
+  static const String tag = checkout;
   const CheckoutScreen({Key? key, required this.products}) : super(key: key);
   final List<ProductModel> products;
 

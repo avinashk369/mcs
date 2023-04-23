@@ -11,6 +11,7 @@ import 'package:mcs/resources/user/user_repositoryimpl.dart';
 import 'package:mcs/routes/route_constants.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/auth/verification/components/button_state.dart';
+import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
 import 'package:mcs/widgets/loading_ui.dart';
 import 'package:mcs/widgets/responsive_widgets.dart';
 import 'package:mcs/widgets/themes/config.dart';
@@ -27,6 +28,7 @@ part '../components/_otp_container.dart';
 part '../components/verification_btn.dart';
 
 class UserVerification extends StatefulWidget {
+  static const String tag = otpRoute;
   const UserVerification({Key? key, required this.token, required this.mobile})
       : super(key: key);
   final String token;

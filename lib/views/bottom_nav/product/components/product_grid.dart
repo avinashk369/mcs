@@ -18,7 +18,7 @@ class ProductGrid extends StatelessWidget {
         (context, index) {
           return ProductCard(
             productModel: products[index],
-            height: 220,
+            height: 225,
             addToCart: (product) {
               /// add products into pref for local storage
               PreferenceUtils.clearCart(cartItems)!.then((value) => {
@@ -44,7 +44,7 @@ class ProductGrid extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 5,
         crossAxisSpacing: 1,
-        childAspectRatio: .75,
+        childAspectRatio: .7,
       ),
     );
   }

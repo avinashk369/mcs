@@ -2,9 +2,9 @@ library user_settings;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:mcs/routes/route_constants.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/custom_appbar.dart';
+import 'package:mcs/views/welcome.dart';
 
 import '../../widgets/themes/config.dart';
 
@@ -68,7 +68,7 @@ class UserSettings extends StatelessWidget {
                     await PreferenceUtils.clear();
 
                     navigator.pushNamedAndRemoveUntil(
-                        homeRoute, (Route<dynamic> route) => false);
+                        Welcome.tag, (Route<dynamic> route) => false);
                   },
                   const Icon(
                     Icons.exit_to_app,

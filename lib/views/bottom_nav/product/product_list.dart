@@ -14,10 +14,13 @@ import 'package:mcs/views/bottom_nav/product/components/product_filter.dart';
 import 'package:mcs/views/bottom_nav/product/components/product_grid.dart';
 import 'package:mcs/widgets/extensions/widget_modifier.dart';
 import 'package:mcs/widgets/loading_ui.dart';
+import 'package:mcs/widgets/no_product_error.dart';
 
 import '../../../blocs/category/categorybloc.dart';
+import '../../../routes/route_constants.dart';
 
 class ProductList extends StatelessWidget {
+  static const String tag = products;
   const ProductList(
       {Key? key,
       required this.category,
@@ -107,12 +110,8 @@ class ProductList extends StatelessWidget {
                   loading: (_) => SliverToBoxAdapter(
                       child: LoadingUI().verticalPadding(10)),
                   loaded: (res) => ProductGrid(products: res.products),
-                  error: (err) => SliverToBoxAdapter(
-                      child: Center(
-                          child: Text(
-                    err.message,
-                    style: kLabelStyleBold.copyWith(color: redColor),
-                  ))),
+                  error: (err) =>
+                      const SliverToBoxAdapter(child: NoProductError()),
                   orElse: () =>
                       const SliverToBoxAdapter(child: SizedBox.shrink()),
                 );

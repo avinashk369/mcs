@@ -7,6 +7,7 @@ import 'package:mcs/blocs/login/loginbloc.dart';
 import 'package:mcs/blocs/user/user_bloc.dart';
 import 'package:mcs/routes/route_constants.dart';
 import 'package:mcs/utils/utils.dart';
+import 'package:mcs/views/auth/verification/screens/user_verification.dart';
 import 'package:mcs/widgets/custom_input.dart';
 import 'package:mcs/widgets/responsive_widgets.dart';
 import 'package:flutter/material.dart';

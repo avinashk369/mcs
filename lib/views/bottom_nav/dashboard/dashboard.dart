@@ -13,11 +13,13 @@ import 'package:mcs/utils/utils.dart';
 import 'package:mcs/widgets/loading_ui.dart';
 
 import '../../../models/banner/banner_model.dart';
+import '../../../routes/route_constants.dart';
 import '../TabNavigationItem.dart';
 part 'components/promotional_banner.dart';
 part 'components/subjects_list.dart';
 
 class Dashboard extends StatefulWidget {
+  static const String tag = dashboardRoute;
   const Dashboard({
     Key? key,
   }) : super(key: key);

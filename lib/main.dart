@@ -11,6 +11,7 @@ import 'package:mcs/resources/product/product_repositoryImpl.dart';
 import 'package:mcs/resources/repository.dart';
 import 'package:mcs/routes/routes_generator.dart';
 import 'package:mcs/utils/utils.dart';
+import 'package:mcs/views/welcome.dart';
 
 import 'blocs/bloc_delegate.dart';
 import 'blocs/location/location_bloc.dart';
@@ -143,7 +144,7 @@ class _MyAppState extends State<MyApp> {
           },
           child: MaterialApp(
             title: appName,
-            initialRoute: homeRoute,
+            initialRoute: Welcome.tag,
             onGenerateRoute: RouteGenerator.generateRoute,
             debugShowCheckedModeBanner: false,
             theme: CustomTheme.lightTheme, //3

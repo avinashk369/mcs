@@ -5,6 +5,7 @@ import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/routes/route_constants.dart';
 import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
+import 'package:mcs/views/bottom_nav/cart/checkout_screen.dart';
 import 'package:mcs/views/bottom_nav/cart/price_detail.dart';
 import 'package:mcs/views/bottom_nav/cart/shopping_list.dart';
 import 'package:mcs/views/bottom_nav/custom_appbar.dart';
@@ -69,7 +70,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
               ),
             ),
             ElevatedButton(
-                onPressed: () => Navigator.of(context).pushNamed(checkout,
+                onPressed: () => Navigator.of(context).pushNamed(
+                    CheckoutScreen.tag,
                     arguments: (state is ProductLoaded)
                         ? state.addedProducts ?? [] as List<ProductModel>
                         : []),

@@ -15,11 +15,15 @@ import 'package:mcs/blocs/navigation/navigationbloc.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/models/category/category_model.dart';
 import 'package:mcs/models/product/product_mode.dart';
+import 'package:mcs/models/product/variant.dart';
 import 'package:mcs/routes/route_constants.dart';
+import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/custom_appbar.dart';
 import 'package:mcs/views/bottom_nav/dashboard/components/search_bar.dart';
 import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
+import 'package:mcs/views/bottom_nav/product/product_list.dart';
+import 'package:mcs/views/bottom_nav/product/search/product_search_screen.dart';
 import 'package:mcs/widgets/extensions/widget_modifier.dart';
 import 'package:mcs/widgets/loading_ui.dart';
 import 'package:mcs/widgets/placeholders/product_holder.dart';
@@ -73,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onSearch: ((searchText) {}),
               onTouched: () {
                 context.read<ProductBloc>().add(const StartSearch());
-                Navigator.of(context).pushNamed(productSearch);
+                Navigator.of(context).pushNamed(ProductSearchScreen.tag);
               },
               readOnly: true,
             ),

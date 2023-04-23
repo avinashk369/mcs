@@ -19,7 +19,7 @@ class LoginButton extends StatelessWidget {
             'token': state.userModel.otp
           };
           Navigator.of(context)
-              .pushReplacementNamed(otpRoute, arguments: userData);
+              .pushReplacementNamed(UserVerification.tag, arguments: userData);
         }
       },
       child: BlocBuilder<UserBloc, UserState>(
