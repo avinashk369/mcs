@@ -1,0 +1,24 @@
+Product Table:
+
+product_id (primary key)
+product_name
+product_description
+product_category
+Variant Table:
+
+variant_id (primary key)
+variant_name
+variant_description
+product_id (foreign key)
+Option Table:
+
+option_id (primary key)
+option_name
+option_value
+variant_id (foreign key)
+Pricing Table:
+
+pricing_id (primary key)
+price
+quantity
+variant_id (foreign key)

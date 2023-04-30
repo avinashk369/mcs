@@ -12,6 +12,7 @@ import 'package:mcs/models/category/category_model.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/product/components/product_filter.dart';
 import 'package:mcs/views/bottom_nav/product/components/product_grid.dart';
+import 'package:mcs/views/bottom_nav/product/search/product_search_screen.dart';
 import 'package:mcs/widgets/extensions/widget_modifier.dart';
 import 'package:mcs/widgets/loading_ui.dart';
 import 'package:mcs/widgets/no_product_error.dart';
@@ -33,6 +34,11 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.watch<ProductBloc>().state;
+    bool isCart = false;
+    if (state is ProductLoaded) {
+      isCart = state.addedProducts!.isNotEmpty;
+    }
     return MultiBlocProvider(
       providers: [
         // this is for category toggle
@@ -104,21 +110,30 @@ class ProductList extends StatelessWidget {
             ),
 
             /// will open after logic is implemented
-            BlocBuilder<ProductBloc, ProductState>(
-              builder: (context, state) {
-                return state.maybeMap(
-                  loading: (_) => SliverToBoxAdapter(
-                      child: LoadingUI().verticalPadding(10)),
-                  loaded: (res) => ProductGrid(products: res.products),
-                  error: (err) =>
-                      const SliverToBoxAdapter(child: NoProductError()),
-                  orElse: () =>
-                      const SliverToBoxAdapter(child: SizedBox.shrink()),
-                );
-              },
+            state.maybeMap(
+              loading: (_) =>
+                  SliverToBoxAdapter(child: LoadingUI().verticalPadding(10)),
+              loaded: (res) => ProductGrid(products: res.products),
+              error: (err) => const SliverToBoxAdapter(child: NoProductError()),
+              orElse: () => const SliverToBoxAdapter(child: SizedBox.shrink()),
             ),
           ],
         ),
+        bottomSheet: isCart
+            ? state.maybeMap(
+                loaded: (res) => BottomSheetCart(
+                    productList: res.addedProducts!,
+                    onTap: () {
+                      // Navigator.of(context)
+                      //     .pushNamed(checkout, arguments: res.addedProducts);
+                      // change the navigation to the cart page on home screen. index 2 is cart index, it can be changed
+                      context.read<NavigationBloc>().changeNavigation(2);
+                      // pop the navigation stack to the home screen
+                      Navigator.of(context).pop();
+                    }),
+                orElse: () => const SizedBox.shrink(),
+              )
+            : const SizedBox.shrink(),
       ),
     );
   }

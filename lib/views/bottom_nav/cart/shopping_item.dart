@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/utils/utils.dart';
 
@@ -147,8 +148,15 @@ class ShoppingItem extends StatelessWidget {
                               Expanded(
                                 flex: 1,
                                 child: IconButton(
-                                  onPressed: () => addToCart(productModel
-                                      .copyWith(count: productModel.count + 1)),
+                                  onPressed: int.parse(productModel
+                                              .variant![productModel.index]
+                                              .maxQty!) <
+                                          productModel.count
+                                      ? () => Fluttertoast.showToast(
+                                          msg:
+                                              "Sorry! You have reached max ${productModel.count} Qty.")
+                                      : () => addToCart(productModel.copyWith(
+                                          count: productModel.count + 1)),
                                   icon: const Icon(Icons.add_circle_outline),
                                 ),
                               ),

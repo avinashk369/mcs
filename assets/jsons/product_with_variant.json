@@ -1,0 +1,67 @@
+{
+    "product": {
+      "product_id": 123,
+      "product_name": "T-Shirt",
+      "product_description": "A comfortable and stylish t-shirt",
+      "product_category": "Clothing",
+      "product_images": [
+        "https://example.com/images/tshirt_front.jpg",
+        "https://example.com/images/tshirt_back.jpg"
+      ],
+      "variants": [
+        {
+          "variant_id": 456,
+          "variant_name": "Small, Blue",
+          "variant_description": "A small, blue t-shirt",
+          "options": [
+            {
+              "option_name": "Size",
+              "option_value": "Small"
+            },
+            {
+              "option_name": "Color",
+              "option_value": "Blue"
+            }
+          ],
+          "pricing": {
+            "price": 19.99,
+            "quantity": 50,
+            "offer_price": 15.99,
+            "offer_start_date": "2023-05-01",
+            "offer_end_date": "2023-05-07"
+          },
+          "variant_images": [
+            "https://example.com/images/tshirt_large_red_front.jpg",
+            "https://example.com/images/tshirt_large_red_back.jpg"
+          ]
+        },
+        {
+          "variant_id": 789,
+          "variant_name": "Large, Red",
+          "variant_description": "A large, red t-shirt",
+          "options": [
+            {
+              "option_name": "Size",
+              "option_value": "Large"
+            },
+            {
+              "option_name": "Color",
+              "option_value": "Red"
+            }
+          ],
+          "pricing": {
+            "price": 24.99,
+            "quantity": 30,
+            "offer_price": 19.99,
+            "offer_start_date": "2023-05-01",
+            "offer_end_date": "2023-05-07"
+          },
+          "variant_images": [
+            "https://example.com/images/tshirt_large_red_front.jpg",
+            "https://example.com/images/tshirt_large_red_back.jpg"
+          ]
+        }
+      ]
+    }
+  }
+  
