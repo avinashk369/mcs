@@ -26,7 +26,7 @@ class TimerBloc extends Cubit<TimerState> {
       _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         currentDurationSecond++;
 
-        if (maxDurationInSecond - currentDurationSecond >= 0) {
+        if (maxDurationInSecond - currentDurationSecond > 0) {
           durationCountdown = maxDurationInSecond - currentDurationSecond;
           emit(CountDownstarted(
               countDown: durationCountdown, canResend: isCanResendCode));

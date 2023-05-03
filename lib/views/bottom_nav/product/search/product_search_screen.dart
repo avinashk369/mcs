@@ -91,7 +91,7 @@ class ProductSearchScreen extends StatelessWidget {
                     // Navigator.of(context)
                     //     .pushNamed(checkout, arguments: res.addedProducts);
                     // change the navigation to the cart page on home screen. index 2 is cart index, it can be changed
-                    context.read<NavigationBloc>().changeNavigation(2);
+                    context.read<NavigationBloc>().changeNavigation(3);
                     // pop the navigation stack to the home screen
                     Navigator.of(context).pop();
                   }),

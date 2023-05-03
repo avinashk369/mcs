@@ -166,14 +166,14 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<UserModel> userLogin(data) async {
+  Future<AuthModel> userLogin(data) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<UserModel>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<AuthModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -186,19 +186,19 @@ class _ApiClient implements ApiClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UserModel.fromJson(_result.data!);
+    final value = AuthModel.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<UserModel> otpVerificaiotn(data) async {
+  Future<BaseResponse<UserModel>> otpVerificaiotn(data) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(data);
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<UserModel>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BaseResponse<UserModel>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -211,7 +211,10 @@ class _ApiClient implements ApiClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UserModel.fromJson(_result.data!);
+    final value = BaseResponse<UserModel>.fromJson(
+      _result.data!,
+      (json) => UserModel.fromJson(json as Map<String, dynamic>),
+    );
     return value;
   }
 

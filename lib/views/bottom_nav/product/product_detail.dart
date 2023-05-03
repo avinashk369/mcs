@@ -111,7 +111,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                 widget.productModel.copyWith(count: 1))
                         ? () {
                             // change the navigation to the cart page on home screen. index 2 is cart index, it can be changed
-                            context.read<NavigationBloc>().changeNavigation(2);
+                            context.read<NavigationBloc>().changeNavigation(3);
                             // pop all the navigation stack to the home screen
                             Navigator.of(context)
                                 .popUntil((route) => route.isFirst);
@@ -147,7 +147,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         productModel: widget.productModel.copyWith(count: 1),
                         isCart: false));
                     // change the navigation to the cart page on home screen. index 2 is cart index, it can be changed
-                    context.read<NavigationBloc>().changeNavigation(2);
+                    context.read<NavigationBloc>().changeNavigation(3);
                     // pop all the navigation stack to the home screen
                     Navigator.of(context).popUntil((route) => route.isFirst);
                   },

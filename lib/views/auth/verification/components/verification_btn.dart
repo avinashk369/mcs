@@ -17,10 +17,10 @@ class VerificationBtn extends StatelessWidget {
       listener: (context, state) {
         state.maybeWhen(
           loaded: (userModel) {
-            // PreferenceUtils.putString(accessToken, state.userModel.token!);
-            // PreferenceUtils.putInt(mobileNumber, state.userModel.mobile!);
-            // PreferenceUtils.putString(user_type, state.userModel.userType!);
-            // PreferenceUtils.putString(user_id, state.userModel.id!);
+            //PreferenceUtils.putString(accessToken, userModel.token!);
+            PreferenceUtils.putString(mobileNumber, userModel.mobileNo!);
+            PreferenceUtils.putString(user_type, userModel.userType!);
+            PreferenceUtils.putString(user_id, userModel.id!);
 
             Navigator.of(context)
                 .popAndPushNamed(Dashboard.tag, arguments: userModel.otp);

@@ -24,7 +24,7 @@ class BuildTimer extends StatelessWidget {
                     }
                   : null,
               child: Text(
-                !canResend ? '$countDown' : 'Resend OTP',
+                countDown > 0 ? '$countDown' : 'Resend OTP',
                 style: kLabelStyleBold.copyWith(
                   color: redColor,
                 ),

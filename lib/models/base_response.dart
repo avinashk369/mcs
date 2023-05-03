@@ -9,7 +9,9 @@ class BaseResponse<T> {
   final String? message;
   final bool? status;
   final T? data;
-  BaseResponse(this.message, this.data, {this.status = false});
+  final int? newUser;
+  BaseResponse(this.message, this.data,
+      {this.status = false, this.newUser = 0});
   factory BaseResponse.fromJson(
     Map<String, dynamic> json,
     T Function(Object? json) fromJsonT,

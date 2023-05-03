@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/routes/route_constants.dart';
@@ -21,10 +22,12 @@ class ShoppingCart extends StatefulWidget {
 
 class _ShoppingCartState extends State<ShoppingCart> {
   late ScrollController scrollController;
+  late String newUser;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    newUser = PreferenceUtils.getString(user_type);
     scrollController = ScrollController();
   }
 
@@ -70,14 +73,13 @@ class _ShoppingCartState extends State<ShoppingCart> {
               ),
             ),
             ElevatedButton(
-                onPressed: () => Navigator.of(context).pushNamed(
-                    CheckoutScreen.tag,
-                    arguments: (state is ProductLoaded)
-                        ? state.addedProducts ?? [] as List<ProductModel>
-                        : []),
-                child: const Text(
-                  "Checkout",
-                )),
+                onPressed: ((int.tryParse(newUser))! > 0)
+                    ? () => Navigator.of(context).pushNamed(CheckoutScreen.tag,
+                        arguments: (state is ProductLoaded)
+                            ? state.addedProducts ?? [] as List<ProductModel>
+                            : [])
+                    : () => Fluttertoast.showToast(msg: "Update profile"),
+                child: const Text("Checkout")),
           ],
         )
       ],

@@ -4,30 +4,32 @@ import 'package:mcs/models/models.dart';
 import 'package:mcs/resources/user/user_repository.dart';
 import 'package:mcs/services/ApiClient.dart';
 
+import '../../models/user/auth_model.dart';
+
 class UserRepositoryImpl implements UserRepository {
   final ApiClient apiClient;
 
   UserRepositoryImpl({required this.apiClient});
 
   @override
-  Future<UserModel> userLogin(String mobileNumber) async {
-    late UserModel userMasters;
+  Future<AuthModel> userLogin(String mobileNumber) async {
+    late AuthModel authModel;
     try {
       Map<String, dynamic> body = {"mobile_no": mobileNumber};
-      userMasters = (await apiClient.userLogin(body));
+      authModel = (await apiClient.userLogin(body));
     } catch (error, _) {
       throw ServerError.withError(error: error);
     }
-    return userMasters;
+    return authModel;
   }
 
   @override
-  Future<UserModel> verifyOtp(String mobile, int otp) async {
-    late UserModel userModel;
+  Future<BaseResponse<UserModel>> verifyOtp(String mobile, int otp) async {
+    late BaseResponse<UserModel> userModel;
     try {
-      Map<String, dynamic> body = {"otp": "1234", "mobile_no": "8787878787"};
+      Map<String, dynamic> body = {"otp": otp, "mobile_no": mobile};
       userModel = await apiClient.otpVerificaiotn(body);
-    } catch (error, stacktrace) {
+    } catch (error, _) {
       throw ServerError.withError(error: error);
     }
     return userModel;
@@ -36,11 +38,11 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<UserModel> register(
       Map<String, dynamic> registerData, String token) async {
-    UserModel userMasters = UserModel();
+    UserModel userMasters = const UserModel();
     try {
       userMasters =
           await apiClient.userRegistration(token, jsonEncode(registerData));
-    } catch (error, stacktrace) {
+    } catch (error, _) {
       throw ServerError.withError(error: error);
     }
     return userMasters;

@@ -13,10 +13,10 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<UserBloc, UserState>(
       listener: (context, state) {
-        if (state is UserLoaded) {
+        if (state is Authorized) {
           Map<String, dynamic> userData = {
             'mobile_no': mobileNumber.substring(3, mobileNumber.length),
-            'token': state.userModel.otp
+            'token': state.authModel.otp
           };
           Navigator.of(context)
               .pushReplacementNamed(UserVerification.tag, arguments: userData);
@@ -40,9 +40,8 @@ class LoginButton extends StatelessWidget {
           ),
         ),
         onPressed: isValid
-            ? () => context
-                .read<UserBloc>()
-                .add(UserLoginEvent(mobileNumber: mobileNumber))
+            ? () => context.read<UserBloc>().add(UserLoginEvent(
+                mobileNumber: mobileNumber.substring(3, mobileNumber.length)))
             : null,
         child: isLoading
             ? const CircularProgressIndicator.adaptive(

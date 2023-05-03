@@ -44,7 +44,7 @@ class _WelcomeState extends State<Welcome> {
     return Scaffold(
         body: userId!.isNotEmpty
             ? const Dashboard()
-            : const Dashboard() //UserAuthScreen()
+            : const UserAuthScreen() //UserAuthScreen()
         );
   }
 }

@@ -2,10 +2,12 @@ library user_settings;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/custom_appbar.dart';
 import 'package:mcs/views/welcome.dart';
 
+import '../../blocs/navigation/navigationbloc.dart';
 import '../../widgets/themes/config.dart';
 
 class UserSettings extends StatelessWidget {
@@ -37,34 +39,11 @@ class UserSettings extends StatelessWidget {
             delegate: SliverChildListDelegate(
               [
                 listTileCard(
-                  'My Vehicles',
-                  () {
-                    currentTheme.toggleTheme();
-                    print("On tapped");
-                  },
-                  CachedNetworkImage(imageUrl: carImage),
-                  context,
-                ),
-                listTileCard(
-                  'My Wallet',
-                  () async {},
-                  const Icon(
-                    Icons.wallet_membership,
-                  ),
-                  context,
-                ),
-                listTileCard(
-                  'Help',
-                  () async {},
-                  const Icon(
-                    Icons.help,
-                  ),
-                  context,
-                ),
-                listTileCard(
                   'Log out',
                   () async {
                     final navigator = Navigator.of(context);
+                    context.read<NavigationBloc>().changeNavigation(0);
+
                     await PreferenceUtils.clear();
 
                     navigator.pushNamedAndRemoveUntil(

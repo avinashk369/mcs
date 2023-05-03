@@ -39,7 +39,7 @@ class _UiTestState extends State<UiTest> {
                         }
                         if (state is UserLoaded) {
                           return Text(
-                            "${state.userModel.status.toString()}\n${state.userModel.message}",
+                            "${state.userModel.status.toString()}\n${state.userModel.id}",
                             style: kLabelStyleBold,
                           );
                         }

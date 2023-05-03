@@ -13,6 +13,7 @@ import 'package:mcs/models/payment/transfer.model.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../models/user/auth_model.dart';
 import 'api_const.dart';
 
 part 'ApiClient.g.dart';
@@ -48,13 +49,13 @@ abstract class ApiClient {
 
   @POST(ApiConst.login)
   @FormUrlEncoded()
-  Future<UserModel> userLogin(
+  Future<AuthModel> userLogin(
     @Body() Map<String, dynamic> data,
   );
 
   @POST(ApiConst.otpVerify)
   @FormUrlEncoded()
-  Future<UserModel> otpVerificaiotn(
+  Future<BaseResponse<UserModel>> otpVerificaiotn(
     @Body() Map<String, dynamic> data,
   );
 

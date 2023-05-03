@@ -25,6 +25,7 @@ const String billingInfo = "Billing informations";
 
 /// bottom nav tab
 const String home = "Home";
+const String food = "Food";
 const String orders = "Orders";
 const String settings = "Settings";
 const String cart = "Cart";

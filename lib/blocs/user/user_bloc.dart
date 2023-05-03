@@ -2,7 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mcs/models/user/user_model.dart';
 
+import '../../models/base_response.dart';
 import '../../models/server_error.dart';
+import '../../models/user/auth_model.dart';
 import '../../resources/user/user_repository.dart';
 part 'user_bloc.freezed.dart';
 part 'user_event.dart';
@@ -33,12 +35,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     emit(const UserLoading());
 
     try {
-      UserModel userModel =
+      AuthModel authModel =
           await _userRepositoryImpl.userLogin(event.mobileNumber);
-      emit(UserLoaded(userModel: userModel));
+      emit(Authorized(authModel: authModel));
     } on ServerError catch (e) {
       emit(UserError(message: e.errorMessage));
-    } catch (e) {
+    } catch (e, _) {
       emit(UserError(message: e.toString()));
     }
   }
@@ -47,10 +49,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Future<void> _verifyOtpEvent(VerifyOtp event, Emitter<UserState> emit) async {
     emit(const UserLoading());
     try {
-      UserModel userModel =
+      BaseResponse<UserModel> userModel =
           await _userRepositoryImpl.verifyOtp(event.mobileNumber, event.otp);
       emit(userModel.status!
-          ? UserLoaded(userModel: userModel)
+          ? UserLoaded(
+              userModel: userModel.data!
+                  .copyWith(userType: userModel.newUser.toString()))
+
+          /// if user object need isNew user param
           : UserError(message: userModel.message!));
     } on ServerError catch (e) {
       emit(UserError(message: e.errorMessage));
