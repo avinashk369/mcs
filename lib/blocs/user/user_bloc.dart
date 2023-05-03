@@ -17,6 +17,27 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<VerifyOtp>(_verifyOtpEvent);
     on<ResendOtp>(_resendOtp);
     on<SaveAddress>(_saveAddress);
+    on<UpdateProfile>(_updateProfile);
+    on<EmptyEvent>(_emptyState);
+  }
+
+  ///empty event
+  Future _emptyState(EmptyEvent event, Emitter<UserState> emit) async {
+    emit(const EmptyState());
+  }
+
+  /// update profile
+  Future _updateProfile(UpdateProfile event, Emitter<UserState> emit) async {
+    try {
+      emit(const UserLoading());
+      BaseResponse<UserModel> userModel =
+          await _userRepositoryImpl.updateProfile(event.userModel);
+      emit(ProfileUpdated(userModel: userModel.data!));
+    } on ServerError catch (e) {
+      emit(UserError(message: e.errorMessage));
+    } catch (e, _) {
+      emit(UserError(message: e.toString()));
+    }
   }
 
   /// save user address

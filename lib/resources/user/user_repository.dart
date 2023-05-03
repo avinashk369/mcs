@@ -8,4 +8,5 @@ abstract class UserRepository {
   Future<BaseResponse<UserModel>> verifyOtp(String mobile, int otp);
   Future<UserModel> saveAddress(Map<String, dynamic> data);
   Future<UserModel> register(Map<String, dynamic> registerData, String token);
+  Future<BaseResponse<UserModel>> updateProfile(UserModel userModel);
 }

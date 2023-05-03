@@ -82,6 +82,10 @@ abstract class ApiClient {
     @Body() Map<String, dynamic> data,
   );
 
+  @POST(ApiConst.userRegisteration)
+  @FormUrlEncoded()
+  Future<BaseResponse<UserModel>> registerUser(@Body() UserModel userModel);
+
   /// get location suggestion
   //Future<SuggestionDetail> getLocationSuggestion();
 

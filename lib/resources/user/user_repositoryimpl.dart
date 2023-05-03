@@ -70,4 +70,15 @@ class UserRepositoryImpl implements UserRepository {
     }
     return userMaster;
   }
+
+  @override
+  Future<BaseResponse<UserModel>> updateProfile(UserModel userModel) async {
+    late BaseResponse<UserModel> userMaster;
+    try {
+      userMaster = await apiClient.registerUser(userModel);
+    } catch (error, _) {
+      throw ServerError.withError(error: error);
+    }
+    return userMaster;
+  }
 }

@@ -12,4 +12,7 @@ class UserState with _$UserState {
   const factory UserState.loaded({required UserModel userModel}) = UserLoaded;
   const factory UserState.verified({required UserModel userModel}) =
       UserVerified;
+  const factory UserState.profileUpdated({required UserModel userModel}) =
+      ProfileUpdated;
+  const factory UserState.emptyState() = EmptyState;
 }

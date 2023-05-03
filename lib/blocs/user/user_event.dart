@@ -9,4 +9,7 @@ class UserEvent with _$UserEvent {
   const factory UserEvent.resendOtp({required String mobile}) = ResendOtp;
   const factory UserEvent.saveAddress({required Map<String, dynamic> data}) =
       SaveAddress;
+  const factory UserEvent.updateProfile({required UserModel userModel}) =
+      UpdateProfile;
+  const factory UserEvent.emptyEvent() = EmptyEvent;
 }

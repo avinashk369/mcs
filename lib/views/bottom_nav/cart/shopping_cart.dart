@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
-import 'package:mcs/models/product/product_mode.dart';
-import 'package:mcs/routes/route_constants.dart';
+import 'package:mcs/blocs/user/user_bloc.dart';
+import 'package:mcs/models/models.dart';
 import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/cart/checkout_screen.dart';
@@ -23,12 +22,18 @@ class ShoppingCart extends StatefulWidget {
 class _ShoppingCartState extends State<ShoppingCart> {
   late ScrollController scrollController;
   late String newUser;
+  late TextEditingController _fNameController;
+  late TextEditingController _lNameController;
+  late TextEditingController _emailController;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     newUser = PreferenceUtils.getString(user_type);
     scrollController = ScrollController();
+    _fNameController = TextEditingController();
+    _lNameController = TextEditingController();
+    _emailController = TextEditingController();
   }
 
   @override
@@ -78,7 +83,20 @@ class _ShoppingCartState extends State<ShoppingCart> {
                         arguments: (state is ProductLoaded)
                             ? state.addedProducts ?? [] as List<ProductModel>
                             : [])
-                    : () => Fluttertoast.showToast(msg: "Update profile"),
+                    : () {
+                        context.read<UserBloc>().add(const EmptyEvent());
+                        _fNameController.clear();
+                        _lNameController.clear();
+                        _emailController.clear();
+                        showProfileDialog(
+                          context,
+                          onSubmit: (userModel) {
+                            context
+                                .read<UserBloc>()
+                                .add(UpdateProfile(userModel: userModel));
+                          },
+                        );
+                      },
                 child: const Text("Checkout")),
           ],
         )
@@ -226,8 +244,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
         curve: Curves.easeInOut,
       );
 
-  showAddressDialog(BuildContext context,
-          {required Function(Map<String, dynamic>) onSubmit}) =>
+  showProfileDialog(BuildContext context,
+          {required Function(UserModel userModel) onSubmit}) =>
       showModalBottomSheet(
           isScrollControlled: true,
           enableDrag: true,
@@ -236,126 +254,125 @@ class _ShoppingCartState extends State<ShoppingCart> {
           ),
           context: context,
           builder: (context) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  height: 5,
-                  child: Center(
-                    child: Container(
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: greyColor,
-                        borderRadius: BorderRadius.circular(10),
+            return SingleChildScrollView(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).viewInsets.top,
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 5,
+                    child: Center(
+                      child: Container(
+                        width: 50,
+                        decoration: BoxDecoration(
+                          color: greyColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text("Address ",
-                      style: kLabelStyleBold.copyWith(fontSize: 16)),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Form(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        CustomInput(
-                          hintText: "Name",
-                          textController: TextEditingController(),
-                          onChanged: (value) {},
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        CustomInput(
-                          hintText: "Mobile",
-                          textController: TextEditingController(),
-                          onChanged: (value) {},
-                          textInputType: TextInputType.phone,
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        CustomInput(
-                          hintText: "House No",
-                          textController: TextEditingController(),
-                          onChanged: (value) {},
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        CustomInput(
-                          hintText: "Society (Optional)",
-                          textController: TextEditingController(),
-                          onChanged: (value) {},
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        CustomInput(
-                          hintText: "Street",
-                          textController: TextEditingController(),
-                          onChanged: (value) {},
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        CustomInput(
-                          hintText: "Landmark",
-                          textController: TextEditingController(),
-                          onChanged: (value) {},
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        CustomInput(
-                          hintText: "City",
-                          textController: TextEditingController(),
-                          onChanged: (value) {},
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        CustomInput(
-                          hintText: "Pincode",
-                          textController: TextEditingController(),
-                          onChanged: (value) {},
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 15)),
-                          onPressed: () {
-                            onSubmit({});
-                          },
-                          child: Text(
-                            "Submit".toUpperCase(),
-                            style: kLabelStyleBold.copyWith(
-                                fontSize: 18, color: secondaryLight),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text("Complete Profile ",
+                        style: kLabelStyleBold.copyWith(fontSize: 16)),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  BlocConsumer<UserBloc, UserState>(listener: (context, state) {
+                    state.mapOrNull(
+                      profileUpdated: (value) {
+                        Future.delayed(const Duration(seconds: 5), () {
+                          Navigator.of(context).pop();
+                        });
+                      },
+                    );
+                  }, builder: (context, state) {
+                    return state.maybeMap(
+                      profileUpdated: (value) => const Text("Profile updated!"),
+                      orElse: () => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Form(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              CustomInput(
+                                hintText: "First Name",
+                                maxLength: 50,
+                                textController: _fNameController,
+                                onTouched: () {},
+                                onChanged: (value) {},
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              CustomInput(
+                                hintText: "Last Name",
+                                maxLength: 50,
+                                textController: _lNameController,
+                                onTouched: () {},
+                                onChanged: (value) {},
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              CustomInput(
+                                hintText: "Email",
+                                textController: _emailController,
+                                onChanged: (value) => {},
+                                onTouched: () {},
+                                maxLength: 50,
+                                textInputType: TextInputType.emailAddress,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 15)),
+                                onPressed: (state is UserLoading)
+                                    ? null
+                                    : () {
+                                        UserModel userModel = UserModel(
+                                            cityId: "4",
+                                            mobileNo: "9540621919",
+                                            deviceToken: "token",
+                                            deviceType: "android",
+                                            email: _emailController.text
+                                                .trim()
+                                                .toLowerCase(),
+                                            firstName:
+                                                _fNameController.text.trim(),
+                                            lastName:
+                                                _lNameController.text.trim());
+
+                                        onSubmit(userModel);
+                                      },
+                                child: Text(
+                                  "Submit".toUpperCase(),
+                                  style: kLabelStyleBold.copyWith(
+                                      fontSize: 18, color: secondaryLight),
+                                ),
+                              ),
+                              const SizedBox(height: 10)
+                            ],
                           ),
                         ),
-                        const SizedBox(height: 10)
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+                      ),
+                    );
+                  }),
+                ],
+              ),
             );
           });
 }
