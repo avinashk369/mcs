@@ -13,16 +13,22 @@ part 'user_state.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository _userRepositoryImpl;
   UserBloc(this._userRepositoryImpl) : super(const UserState.initial()) {
-    on<UserLoginEvent>(_userLogin);
-    on<VerifyOtp>(_verifyOtpEvent);
-    on<ResendOtp>(_resendOtp);
-    on<SaveAddress>(_saveAddress);
-    on<UpdateProfile>(_updateProfile);
-    on<EmptyEvent>(_emptyState);
+    on<UserEvent>(
+      (event, emit) async {
+        await event.map(
+          login: (event) async => await _userLogin(event, emit),
+          emptyEvent: (_) async => await _emptyState(emit),
+          resendOtp: (event) async => await _resendOtp(event, emit),
+          saveAddress: (event) async => await _saveAddress(event, emit),
+          updateProfile: (event) async => await _updateProfile(event, emit),
+          verifyOtp: (event) async => await _verifyOtpEvent(event, emit),
+        );
+      },
+    );
   }
 
   ///empty event
-  Future _emptyState(EmptyEvent event, Emitter<UserState> emit) async {
+  Future _emptyState(Emitter<UserState> emit) async {
     emit(const EmptyState());
   }
 

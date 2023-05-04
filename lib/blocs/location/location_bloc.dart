@@ -8,7 +8,13 @@ part 'location_state.dart';
 
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
   LocationBloc() : super(const LocationInitial()) {
-    on<LoadLocation>(_loadLocation);
+    on<LocationEvent>(
+      (event, emit) async {
+        await event.map(
+          loadLocation: (event) async => await _loadLocation(event, emit),
+        );
+      },
+    );
   }
 
   /// get user current location

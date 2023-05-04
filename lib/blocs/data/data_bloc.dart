@@ -17,9 +17,15 @@ class DataBloc extends Bloc<DataEvent, DataState> {
 
   DataBloc({required this.dataRepositoryImpl})
       : super(const DataState.initial()) {
-    on<LoadCities>(_loadCities);
-    on<ChangeTheme>(_changeTheme);
-    on<LoadBanners>(_loadBanners);
+    on<DataEvent>(
+      (event, emit) async {
+        await event.map(
+          loadBanners: (event) async => await _loadBanners(event, emit),
+          changeTheme: (event) async => await _changeTheme(event, emit),
+          loadCities: (event) async => await _loadCities(event, emit),
+        );
+      },
+    );
   }
   Future _changeTheme(ChangeTheme event, Emitter<DataState> emit) async {
     emit(ThemeUpdated(isUpdated: event.status));

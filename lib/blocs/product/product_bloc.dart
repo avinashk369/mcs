@@ -15,13 +15,21 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
   ProductBloc(this._productRepositoryImpl)
       : super(const ProductState.initial()) {
-    on<LoadPrdoucts>(_loadProducts);
-    on<RemoveProduct>(_removeProduct);
-    on<AddProduct>(_addProduct);
-    on<DeleteProduct>(_deleteFromCart);
-    on<SearchProduct>(_searchProduct);
-    on<UpdatePrice>(_updatePrice);
-    on<StartSearch>(_startSearch);
+    on<ProductEvent>(
+      (event, emit) async {
+        await event.mapOrNull(
+          addProduct: (event) async => await _addProduct(event, emit),
+          deleteProduct: (event) async => await _deleteFromCart(event, emit),
+          loadProduct: (event) async => await _loadProducts(event, emit),
+
+          ///loadProductByCatId: (event) async => await _addProduct(event, emit),
+          removeProduct: (event) async => await _removeProduct(event, emit),
+          search: (event) async => await _searchProduct(event, emit),
+          updatePrice: (event) async => await _updatePrice(event, emit),
+          startSearch: (event) async => await _startSearch(event, emit),
+        );
+      },
+    );
   }
 
   /// start search event ehandeling to make loaded product list empty

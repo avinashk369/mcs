@@ -345,7 +345,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                     : () {
                                         UserModel userModel = UserModel(
                                             cityId: "4",
-                                            mobileNo: "9540621919",
+                                            mobileNo: PreferenceUtils.getString(
+                                                mobileNumber),
                                             deviceToken: "token",
                                             deviceType: "android",
                                             email: _emailController.text

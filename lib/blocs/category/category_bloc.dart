@@ -13,8 +13,14 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
 
   CategoryBloc(this._categoryRepositoryImpl)
       : super(const CategoryState.initial()) {
-    on<LoadCategory>(_loadCategories);
-    on<SwapIndex>(_swapItems);
+    on<CategoryEvent>(
+      (event, emit) async {
+        await event.map(
+          loadCategory: (event) async => await _loadCategories(event, emit),
+          swapIndex: (event) async => await _swapItems(event, emit),
+        );
+      },
+    );
   }
 
   Future _swapItems(SwapIndex event, Emitter<CategoryState> emit) async {

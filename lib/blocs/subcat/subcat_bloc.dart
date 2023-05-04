@@ -12,7 +12,11 @@ part 'subcate_state.dart';
 class SubcatBloc extends Bloc<SubcatEvent, SubcatState> {
   final CategoryRepository _categoryRepositoryImpl;
   SubcatBloc(this._categoryRepositoryImpl) : super(const SubcatInitializing()) {
-    on<LoadSubcat>((event, emit) => _loadSubcategories(event, emit));
+    on<SubcatEvent>((event, emit) async {
+      await event.map(
+        loadsubcat: (event) async => await _loadSubcategories(event, emit),
+      );
+    });
   }
   Future _loadSubcategories(LoadSubcat event, Emitter<SubcatState> emit) async {
     try {
