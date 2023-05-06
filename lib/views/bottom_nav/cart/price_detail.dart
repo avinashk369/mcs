@@ -4,12 +4,15 @@ import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
 
 class PriceDetail extends StatelessWidget {
-  const PriceDetail({Key? key, required this.products}) : super(key: key);
+  const PriceDetail(
+      {Key? key, required this.products, this.shippingCharge = 0.0})
+      : super(key: key);
   final List<ProductModel> products;
+  final double shippingCharge;
 
   @override
   Widget build(BuildContext context) {
-    double total = ProductUtility.calculatePrice(products);
+    double total = ProductUtility.calculatePrice(products) + shippingCharge;
     double totalPrice = ProductUtility.calculateActualPrice(products);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +76,7 @@ class PriceDetail extends StatelessWidget {
                 style: kLabelStyle,
               ),
               Text(
-                "Free",
+                shippingCharge.toStringAsFixed(2),
                 style: kLabelStyle.copyWith(color: greenColor),
               ),
             ],

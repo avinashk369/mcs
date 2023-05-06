@@ -15,4 +15,6 @@ class UserState with _$UserState {
   const factory UserState.profileUpdated({required UserModel userModel}) =
       ProfileUpdated;
   const factory UserState.emptyState() = EmptyState;
+  const factory UserState.addressLoaded(
+      {required List<UserAddress> userAddress}) = AddressLoaded;
 }

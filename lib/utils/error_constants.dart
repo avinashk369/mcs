@@ -1,2 +1,11 @@
-const String email_error = "Please enter valid email address";
-const String phone_error = "Invalid phone number";
+const String emailError = "Please enter valid email address";
+const String phoneError = "Invalid mobile number";
+const String invalidFName = "Please enter first name";
+const String invalidLName = "Please enter last name";
+const String invalidHouseNo = "Please enter house number";
+const String invalidSociety = "Please enter society name";
+const String invalidStreet = "Please enter street name";
+const String invalidLandmark = "Please enter landmark";
+const String invalidCity = "Please enter city name";
+const String invalidPincode = "Please enter pincode";
+const String invalidCoupon = "Invalid coupon";

@@ -31,6 +31,22 @@ mixin _$UserAddress {
   String? get landmark => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   int get count => throw _privateConstructorUsedError;
+  String? get deliveryAddressId => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
+  String? get lastName => throw _privateConstructorUsedError;
+  String? get mobileNumber => throw _privateConstructorUsedError;
+  String? get altMobileNumber => throw _privateConstructorUsedError;
+  String? get homeNo => throw _privateConstructorUsedError;
+  String? get street => throw _privateConstructorUsedError;
+  String? get area => throw _privateConstructorUsedError;
+  String? get society => throw _privateConstructorUsedError;
+  String? get latitude => throw _privateConstructorUsedError;
+  String? get longitude => throw _privateConstructorUsedError;
+  String? get addressType => throw _privateConstructorUsedError;
+  String? get isDefault => throw _privateConstructorUsedError;
+  String? get isDelete => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
   double? get rating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -56,6 +72,22 @@ abstract class $UserAddressCopyWith<$Res> {
       String? pincode,
       String? landmark,
       @JsonKey(ignore: true) int count,
+      String? deliveryAddressId,
+      String? firstName,
+      String? lastName,
+      String? mobileNumber,
+      String? altMobileNumber,
+      String? homeNo,
+      String? street,
+      String? area,
+      String? society,
+      String? latitude,
+      String? longitude,
+      String? addressType,
+      String? isDefault,
+      String? isDelete,
+      String? createdAt,
+      String? updatedAt,
       double? rating});
 }
 
@@ -82,6 +114,22 @@ class _$UserAddressCopyWithImpl<$Res, $Val extends UserAddress>
     Object? pincode = freezed,
     Object? landmark = freezed,
     Object? count = null,
+    Object? deliveryAddressId = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? mobileNumber = freezed,
+    Object? altMobileNumber = freezed,
+    Object? homeNo = freezed,
+    Object? street = freezed,
+    Object? area = freezed,
+    Object? society = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? addressType = freezed,
+    Object? isDefault = freezed,
+    Object? isDelete = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? rating = freezed,
   }) {
     return _then(_value.copyWith(
@@ -125,6 +173,70 @@ class _$UserAddressCopyWithImpl<$Res, $Val extends UserAddress>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      deliveryAddressId: freezed == deliveryAddressId
+          ? _value.deliveryAddressId
+          : deliveryAddressId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mobileNumber: freezed == mobileNumber
+          ? _value.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      altMobileNumber: freezed == altMobileNumber
+          ? _value.altMobileNumber
+          : altMobileNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      homeNo: freezed == homeNo
+          ? _value.homeNo
+          : homeNo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      street: freezed == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      area: freezed == area
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as String?,
+      society: freezed == society
+          ? _value.society
+          : society // ignore: cast_nullable_to_non_nullable
+              as String?,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as String?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressType: freezed == addressType
+          ? _value.addressType
+          : addressType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDefault: freezed == isDefault
+          ? _value.isDefault
+          : isDefault // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDelete: freezed == isDelete
+          ? _value.isDelete
+          : isDelete // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -152,6 +264,22 @@ abstract class _$$_UserAddressCopyWith<$Res>
       String? pincode,
       String? landmark,
       @JsonKey(ignore: true) int count,
+      String? deliveryAddressId,
+      String? firstName,
+      String? lastName,
+      String? mobileNumber,
+      String? altMobileNumber,
+      String? homeNo,
+      String? street,
+      String? area,
+      String? society,
+      String? latitude,
+      String? longitude,
+      String? addressType,
+      String? isDefault,
+      String? isDelete,
+      String? createdAt,
+      String? updatedAt,
       double? rating});
 }
 
@@ -176,6 +304,22 @@ class __$$_UserAddressCopyWithImpl<$Res>
     Object? pincode = freezed,
     Object? landmark = freezed,
     Object? count = null,
+    Object? deliveryAddressId = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? mobileNumber = freezed,
+    Object? altMobileNumber = freezed,
+    Object? homeNo = freezed,
+    Object? street = freezed,
+    Object? area = freezed,
+    Object? society = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? addressType = freezed,
+    Object? isDefault = freezed,
+    Object? isDelete = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? rating = freezed,
   }) {
     return _then(_$_UserAddress(
@@ -219,6 +363,70 @@ class __$$_UserAddressCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      deliveryAddressId: freezed == deliveryAddressId
+          ? _value.deliveryAddressId
+          : deliveryAddressId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mobileNumber: freezed == mobileNumber
+          ? _value.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      altMobileNumber: freezed == altMobileNumber
+          ? _value.altMobileNumber
+          : altMobileNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      homeNo: freezed == homeNo
+          ? _value.homeNo
+          : homeNo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      street: freezed == street
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      area: freezed == area
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as String?,
+      society: freezed == society
+          ? _value.society
+          : society // ignore: cast_nullable_to_non_nullable
+              as String?,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as String?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressType: freezed == addressType
+          ? _value.addressType
+          : addressType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDefault: freezed == isDefault
+          ? _value.isDefault
+          : isDefault // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDelete: freezed == isDelete
+          ? _value.isDelete
+          : isDelete // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
@@ -243,6 +451,22 @@ class _$_UserAddress implements _UserAddress {
       this.pincode,
       this.landmark,
       @JsonKey(ignore: true) this.count = 0,
+      this.deliveryAddressId,
+      this.firstName,
+      this.lastName,
+      this.mobileNumber,
+      this.altMobileNumber,
+      this.homeNo,
+      this.street,
+      this.area,
+      this.society,
+      this.latitude,
+      this.longitude,
+      this.addressType,
+      this.isDefault,
+      this.isDelete,
+      this.createdAt,
+      this.updatedAt,
       this.rating});
 
   factory _$_UserAddress.fromJson(Map<String, dynamic> json) =>
@@ -270,11 +494,43 @@ class _$_UserAddress implements _UserAddress {
   @JsonKey(ignore: true)
   final int count;
   @override
+  final String? deliveryAddressId;
+  @override
+  final String? firstName;
+  @override
+  final String? lastName;
+  @override
+  final String? mobileNumber;
+  @override
+  final String? altMobileNumber;
+  @override
+  final String? homeNo;
+  @override
+  final String? street;
+  @override
+  final String? area;
+  @override
+  final String? society;
+  @override
+  final String? latitude;
+  @override
+  final String? longitude;
+  @override
+  final String? addressType;
+  @override
+  final String? isDefault;
+  @override
+  final String? isDelete;
+  @override
+  final String? createdAt;
+  @override
+  final String? updatedAt;
+  @override
   final double? rating;
 
   @override
   String toString() {
-    return 'UserAddress(id: $id, userId: $userId, name: $name, number: $number, state: $state, city: $city, address: $address, pincode: $pincode, landmark: $landmark, count: $count, rating: $rating)';
+    return 'UserAddress(id: $id, userId: $userId, name: $name, number: $number, state: $state, city: $city, address: $address, pincode: $pincode, landmark: $landmark, count: $count, deliveryAddressId: $deliveryAddressId, firstName: $firstName, lastName: $lastName, mobileNumber: $mobileNumber, altMobileNumber: $altMobileNumber, homeNo: $homeNo, street: $street, area: $area, society: $society, latitude: $latitude, longitude: $longitude, addressType: $addressType, isDefault: $isDefault, isDelete: $isDelete, createdAt: $createdAt, updatedAt: $updatedAt, rating: $rating)';
   }
 
   @override
@@ -293,13 +549,69 @@ class _$_UserAddress implements _UserAddress {
             (identical(other.landmark, landmark) ||
                 other.landmark == landmark) &&
             (identical(other.count, count) || other.count == count) &&
+            (identical(other.deliveryAddressId, deliveryAddressId) ||
+                other.deliveryAddressId == deliveryAddressId) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.mobileNumber, mobileNumber) ||
+                other.mobileNumber == mobileNumber) &&
+            (identical(other.altMobileNumber, altMobileNumber) ||
+                other.altMobileNumber == altMobileNumber) &&
+            (identical(other.homeNo, homeNo) || other.homeNo == homeNo) &&
+            (identical(other.street, street) || other.street == street) &&
+            (identical(other.area, area) || other.area == area) &&
+            (identical(other.society, society) || other.society == society) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.addressType, addressType) ||
+                other.addressType == addressType) &&
+            (identical(other.isDefault, isDefault) ||
+                other.isDefault == isDefault) &&
+            (identical(other.isDelete, isDelete) ||
+                other.isDelete == isDelete) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
             (identical(other.rating, rating) || other.rating == rating));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, name, number, state,
-      city, address, pincode, landmark, count, rating);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        userId,
+        name,
+        number,
+        state,
+        city,
+        address,
+        pincode,
+        landmark,
+        count,
+        deliveryAddressId,
+        firstName,
+        lastName,
+        mobileNumber,
+        altMobileNumber,
+        homeNo,
+        street,
+        area,
+        society,
+        latitude,
+        longitude,
+        addressType,
+        isDefault,
+        isDelete,
+        createdAt,
+        updatedAt,
+        rating
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -327,6 +639,22 @@ abstract class _UserAddress implements UserAddress {
       final String? pincode,
       final String? landmark,
       @JsonKey(ignore: true) final int count,
+      final String? deliveryAddressId,
+      final String? firstName,
+      final String? lastName,
+      final String? mobileNumber,
+      final String? altMobileNumber,
+      final String? homeNo,
+      final String? street,
+      final String? area,
+      final String? society,
+      final String? latitude,
+      final String? longitude,
+      final String? addressType,
+      final String? isDefault,
+      final String? isDelete,
+      final String? createdAt,
+      final String? updatedAt,
       final double? rating}) = _$_UserAddress;
 
   factory _UserAddress.fromJson(Map<String, dynamic> json) =
@@ -353,6 +681,38 @@ abstract class _UserAddress implements UserAddress {
   @override
   @JsonKey(ignore: true)
   int get count;
+  @override
+  String? get deliveryAddressId;
+  @override
+  String? get firstName;
+  @override
+  String? get lastName;
+  @override
+  String? get mobileNumber;
+  @override
+  String? get altMobileNumber;
+  @override
+  String? get homeNo;
+  @override
+  String? get street;
+  @override
+  String? get area;
+  @override
+  String? get society;
+  @override
+  String? get latitude;
+  @override
+  String? get longitude;
+  @override
+  String? get addressType;
+  @override
+  String? get isDefault;
+  @override
+  String? get isDelete;
+  @override
+  String? get createdAt;
+  @override
+  String? get updatedAt;
   @override
   double? get rating;
   @override

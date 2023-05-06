@@ -7,16 +7,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/login/login_bloc.dart';
 import 'package:mcs/blocs/login/timer_bloc.dart';
 import 'package:mcs/blocs/user/user_bloc.dart';
-import 'package:mcs/resources/user/user_repositoryimpl.dart';
 import 'package:mcs/routes/route_constants.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/auth/verification/components/button_state.dart';
 import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
-import 'package:mcs/widgets/loading_ui.dart';
 import 'package:mcs/widgets/responsive_widgets.dart';
 import 'package:mcs/widgets/themes/config.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sms_autofill/sms_autofill.dart';
+
+import '../../../../widgets/submit_button.dart';
 
 part 'mobile/otp_contr.dart';
 

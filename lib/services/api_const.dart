@@ -17,4 +17,7 @@ class ApiConst {
   static const String getSubCategory = 'Api_controller/GetSubCategory';
   static const String saveAddress = 'Api_controller/AddDeliveryAddress';
   static const String userRegisteration = 'Api_controller/UserRegistration';
+  static const String applyCoupon = 'Api_controller/ApplyCoupon';
+  static const String userAddress = 'Api_controller/GetDeliveryAddress';
+  static const String shippingCharge = 'Api_controller/GetShippingCharge';
 }

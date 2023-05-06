@@ -5,7 +5,7 @@ class CustomInput extends StatelessWidget {
   final String? hintText;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
-  final Function? onTouched;
+  final Function()? onTouched;
   final TextEditingController? textController;
   final TextInputType? textInputType;
   final TextCapitalization textCapitalization;
@@ -53,7 +53,7 @@ class CustomInput extends StatelessWidget {
     ),
     this.textStyle = const TextStyle(),
     this.hintTextStyle = const TextStyle(),
-    this.maxLength = 10,
+    this.maxLength = 20,
     this.onChanged,
     this.isEnabled = true,
     this.onTouched,
@@ -78,7 +78,7 @@ class CustomInput extends StatelessWidget {
       textCapitalization: textCapitalization,
       readOnly: readOnly,
       onChanged: (value) => onChanged!(value),
-      onTap: () => onTouched!(),
+      onTap: () => onTouched ?? () {},
       style: textStyle,
       decoration: inputTextDecoration.copyWith(
           hintText: hintText,

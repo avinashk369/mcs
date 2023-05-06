@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mcs/blocs/cart/cart_bloc.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/blocs/user/user_bloc.dart';
 import 'package:mcs/models/models.dart';
@@ -10,6 +11,7 @@ import 'package:mcs/views/bottom_nav/cart/price_detail.dart';
 import 'package:mcs/views/bottom_nav/cart/shopping_list.dart';
 import 'package:mcs/views/bottom_nav/custom_appbar.dart';
 import 'package:mcs/widgets/custom_input.dart';
+import 'package:mcs/widgets/extensions/ext_string.dart';
 import 'package:mcs/widgets/loading_ui.dart';
 
 class ShoppingCart extends StatefulWidget {
@@ -25,20 +27,23 @@ class _ShoppingCartState extends State<ShoppingCart> {
   late TextEditingController _fNameController;
   late TextEditingController _lNameController;
   late TextEditingController _emailController;
+  final GlobalKey<FormState> profileKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
     newUser = PreferenceUtils.getString(user_type);
     scrollController = ScrollController();
     _fNameController = TextEditingController();
     _lNameController = TextEditingController();
     _emailController = TextEditingController();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final state = context.watch<ProductBloc>().state;
+    final cartState = context.watch<CartBloc>().state;
     double total = 0;
     double totalPrice = 0;
     if (state is ProductLoaded) {
@@ -46,6 +51,9 @@ class _ShoppingCartState extends State<ShoppingCart> {
       totalPrice = ProductUtility.calculateActualPrice(state.addedProducts!);
     }
     double saved = totalPrice - total;
+    if (cartState is ShippingChargeLoaded) {
+      total = total + cartState.shippingModel.shippingCharge!;
+    }
 
     return Scaffold(
       persistentFooterButtons: [
@@ -79,10 +87,23 @@ class _ShoppingCartState extends State<ShoppingCart> {
             ),
             ElevatedButton(
                 onPressed: ((int.tryParse(newUser))! > 0)
-                    ? () => Navigator.of(context).pushNamed(CheckoutScreen.tag,
-                        arguments: (state is ProductLoaded)
-                            ? state.addedProducts ?? [] as List<ProductModel>
-                            : [])
+                    ? () {
+                        Map<String, dynamic> data = {};
+                        data.putIfAbsent(
+                            'products',
+                            () => (state is ProductLoaded)
+                                ? state.addedProducts ??
+                                    [] as List<ProductModel>
+                                : []);
+                        data.putIfAbsent(
+                            'shipping_charge',
+                            () => (cartState is ShippingChargeLoaded)
+                                ? cartState.shippingModel.shippingCharge!
+                                : 0.0);
+
+                        Navigator.of(context)
+                            .pushNamed(CheckoutScreen.tag, arguments: data);
+                      }
                     : () {
                         context.read<UserBloc>().add(const EmptyEvent());
                         _fNameController.clear();
@@ -124,6 +145,24 @@ class _ShoppingCartState extends State<ShoppingCart> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
+                BlocListener<ProductBloc, ProductState>(
+                  bloc: context.read<ProductBloc>(),
+                  listenWhen: (previous, current) {
+                    return current is ProductLoaded;
+                  },
+                  listener: (context, state) {
+                    if (state is ProductLoaded) {
+                      if (ProductUtility.calculatePrice(state.addedProducts!) >
+                          0) {
+                        context.read<CartBloc>().add(LoadShippingCharge(data: {
+                              "user_id": PreferenceUtils.getString(user_uid),
+                              "amount": total
+                            }));
+                      }
+                    }
+                  },
+                  child: const SizedBox.shrink(),
+                ),
                 const SizedBox(
                   height: 15,
                 ),
@@ -226,7 +265,12 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 ),
                 state.maybeMap(
                   initial: (_) => LoadingUI(),
-                  loaded: (res) => PriceDetail(products: res.addedProducts!),
+                  loaded: (res) => PriceDetail(
+                    products: res.addedProducts!,
+                    shippingCharge: (cartState is ShippingChargeLoaded)
+                        ? cartState.shippingModel.shippingCharge!
+                        : 0.0,
+                  ),
                   error: (err) => Text(err.message),
                   orElse: () => const SizedBox.shrink(),
                 ),
@@ -290,7 +334,9 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   ),
                   BlocConsumer<UserBloc, UserState>(listener: (context, state) {
                     state.mapOrNull(
-                      profileUpdated: (value) {
+                      profileUpdated: (userModel) {
+                        PreferenceUtils.putString(
+                            user_uid, userModel.userModel.userId!);
                         Future.delayed(const Duration(seconds: 5), () {
                           Navigator.of(context).pop();
                         });
@@ -298,10 +344,12 @@ class _ShoppingCartState extends State<ShoppingCart> {
                     );
                   }, builder: (context, state) {
                     return state.maybeMap(
-                      profileUpdated: (value) => const Text("Profile updated!"),
+                      profileUpdated: (value) => profileCompletedWidget(),
                       orElse: () => Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Form(
+                          key: profileKey,
+                          autovalidateMode: AutovalidateMode.disabled,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
@@ -309,8 +357,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                 hintText: "First Name",
                                 maxLength: 50,
                                 textController: _fNameController,
-                                onTouched: () {},
-                                onChanged: (value) {},
+                                validator: (value) =>
+                                    value!.isEmptyString ? null : invalidFName,
                               ),
                               const SizedBox(
                                 height: 8,
@@ -319,8 +367,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                 hintText: "Last Name",
                                 maxLength: 50,
                                 textController: _lNameController,
-                                onTouched: () {},
-                                onChanged: (value) {},
+                                validator: (value) =>
+                                    value!.isEmptyString ? null : invalidLName,
                               ),
                               const SizedBox(
                                 height: 8,
@@ -328,8 +376,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                               CustomInput(
                                 hintText: "Email",
                                 textController: _emailController,
-                                onChanged: (value) => {},
-                                onTouched: () {},
+                                validator: (value) =>
+                                    value!.isValidEmail ? null : emailError,
                                 maxLength: 50,
                                 textInputType: TextInputType.emailAddress,
                               ),
@@ -356,6 +404,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                                 _fNameController.text.trim(),
                                             lastName:
                                                 _lNameController.text.trim());
+                                        if (!profileKey.currentState!
+                                            .validate()) return;
 
                                         onSubmit(userModel);
                                       },
@@ -376,4 +426,26 @@ class _ShoppingCartState extends State<ShoppingCart> {
               ),
             );
           });
+  Widget profileCompletedWidget() => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Icon(
+            Icons.check_circle,
+            size: 100,
+            color: greenColor,
+          ),
+          const SizedBox(
+            height: 25,
+          ),
+          Text(
+            "Profile completed successfully!",
+            textAlign: TextAlign.center,
+            style: kLabelStyleBold.copyWith(fontSize: 20),
+          ),
+          const SizedBox(
+            height: 25,
+          )
+        ],
+      );
 }

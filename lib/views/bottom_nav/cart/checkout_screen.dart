@@ -1,22 +1,33 @@
+library checkout_screen;
+
 import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:mcs/blocs/cart/cart_bloc.dart';
 import 'package:mcs/blocs/location/location_bloc.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/cart/price_detail.dart';
 import 'package:mcs/widgets/custom_input.dart';
+import 'package:mcs/widgets/extensions/ext_string.dart';
 import 'package:mcs/widgets/loading_ui.dart';
 
 import '../../../blocs/user/user_bloc.dart';
+import '../../../resources/cart/cart_repositoryImpl.dart';
 import '../../../routes/route_constants.dart';
+import '../../../widgets/submit_button.dart';
+part 'coupon_widget.dart';
 
 class CheckoutScreen extends StatefulWidget {
   static const String tag = checkout;
-  const CheckoutScreen({Key? key, required this.products}) : super(key: key);
+  const CheckoutScreen(
+      {Key? key, required this.products, this.shippingCharge = 0.0})
+      : super(key: key);
   final List<ProductModel> products;
+  final double shippingCharge;
 
   @override
   State<CheckoutScreen> createState() => _CheckoutScreenState();
@@ -33,6 +44,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   late TextEditingController _landmarkController;
   late TextEditingController _cityController;
   late TextEditingController _pincodeController;
+  late TextEditingController _couponController;
+  final GlobalKey<FormState> addressKey = GlobalKey<FormState>();
+
   double total = 0;
   double totalPrice = 0;
   double saved = 0;
@@ -48,223 +62,261 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     _landmarkController = TextEditingController();
     _cityController = TextEditingController();
     _pincodeController = TextEditingController();
+    _couponController = TextEditingController();
     super.initState();
     _scrollController = ScrollController();
     total = ProductUtility.calculatePrice(widget.products);
     totalPrice = ProductUtility.calculateActualPrice(widget.products);
     saved = totalPrice - total;
+    String userId = PreferenceUtils.getString(user_uid);
+    if (userId.isNotEmpty) {
+      context.read<UserBloc>().add(LoadAddress(data: {"user_id": userId}));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Checkout"),
-      ),
-      persistentFooterButtons: [
-        Builder(builder: (context) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: showPriceDetail,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "₹$total",
-                      style: kLabelStyleBold.copyWith(
-                        fontSize: 18,
-                      ),
-                    ),
-                    TextButton(
-                        onPressed: showPriceDetail,
-                        style: TextButton.styleFrom(
-                          minimumSize: Size.zero,
-                          padding: EdgeInsets.zero,
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        ),
-                        child: Text(
-                          "View price details",
-                          style: kLabelStyleBold.copyWith(color: primaryLight),
-                        )),
-                  ],
-                ),
-              ),
-              ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Place Order",
-                  )),
-            ],
-          );
-        }),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CartBloc>(
+          create: (context) => CartBloc(
+            cartRepositoryImpl: context.read<CartRepositoryImpl>(),
+          ),
+        ),
       ],
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                Card(
-                  margin: EdgeInsets.zero,
-                  color: secondaryLight,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                            child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                        text: "Deliver to: ",
-                                        style: kLabelStyle),
-                                    TextSpan(
-                                        text: "Avinash,",
-                                        style: kLabelStyleBold),
-                                    TextSpan(
-                                        text: "9540621919",
-                                        style: kLabelStyleBold)
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 3,
-                              ),
-                              Text(
-                                "Laxmipur ward no 16, Rosera Samastipur",
-                                style: kLabelStyle,
-                              ),
-                            ],
-                          ),
-                        )),
-                        BlocConsumer<UserBloc, UserState>(
-                            listener: (context, state) {
-                          state.mapOrNull(
-                            error: (error) =>
-                                Fluttertoast.showToast(msg: error.message),
-                            addressSaved: (success) =>
-                                Fluttertoast.showToast(msg: success.message),
-                          );
-                        }, builder: (context, state) {
-                          return state.maybeMap(
-                            loading: (value) => LoadingUI(),
-                            orElse: () => ElevatedButton(
-                              onPressed: () => showAddressDialog(context,
-                                  onSubmit: (formData) {
-                                /// call event to save user address
-                                context
-                                    .read<UserBloc>()
-                                    .add(SaveAddress(data: formData));
-                                Navigator.of(context).pop();
-                              }),
-                              child: const Text("Change"),
-                            ),
-                          );
-                        }),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Text(" ${widget.products.length} Items",
-                    style: kLabelStyleBold.copyWith(fontSize: 16)),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .15,
-                  child: ListView.separated(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      separatorBuilder: (_, __) => Container(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 10),
-                            width: 1,
-                            color: greyColor.withOpacity(.6),
-                          ),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: widget.products.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        final product = widget.products[index];
-                        return Stack(
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * .15,
-                              width: MediaQuery.of(context).size.height * .15,
-                              child: CachedNetworkImage(
-                                imageUrl: product.productImage!,
-                                placeholder: (context, url) =>
-                                    Image.asset("assets/images/photo.jpg"),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset("assets/images/photo.jpg"),
-                                fit: BoxFit.fitWidth,
-                              ),
-                            ),
-                            Positioned(
-                                bottom: 5,
-                                right: 5,
-                                child: Container(
-                                  height: 20,
-                                  width: 20,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(2),
-                                    color: redColor,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      product.count.toString(),
-                                      style: kLabelStyleBold.copyWith(
-                                        color: secondaryLight,
-                                      ),
-                                    ),
-                                  ),
-                                ))
-                          ],
-                        );
-                      }),
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Checkout"),
+        ),
+        persistentFooterButtons: [
+          Builder(builder: (context) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: showPriceDetail,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "₹$total",
+                        "₹${total + widget.shippingCharge}",
                         style: kLabelStyleBold.copyWith(
                           fontSize: 18,
                         ),
                       ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "₹$totalPrice",
-                        style: kLabelStyle.copyWith(
-                          decoration: TextDecoration.lineThrough,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "₹$saved saved",
-                        style: kLabelStyleBold.copyWith(
-                          color: greenColor,
-                        ),
-                      ),
+                      TextButton(
+                          onPressed: showPriceDetail,
+                          style: TextButton.styleFrom(
+                            minimumSize: Size.zero,
+                            padding: EdgeInsets.zero,
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          ),
+                          child: Text(
+                            "View price details",
+                            style:
+                                kLabelStyleBold.copyWith(color: primaryLight),
+                          )),
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
-                PriceDetail(products: widget.products),
+                ElevatedButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Place Order",
+                    )),
               ],
-            ),
-          ),
+            );
+          }),
         ],
+        body: CustomScrollView(
+          controller: _scrollController,
+          slivers: [
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  BlocBuilder<UserBloc, UserState>(builder: (context, state) {
+                    if (state is AddressLoaded) {
+                      return Text("address ${state.userAddress.length}");
+                    }
+                    return const SizedBox.shrink();
+                  }),
+                  Card(
+                    margin: EdgeInsets.zero,
+                    color: secondaryLight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                          text: "Deliver to: ",
+                                          style: kLabelStyle),
+                                      TextSpan(
+                                          text: "Avinash,",
+                                          style: kLabelStyleBold),
+                                      TextSpan(
+                                          text: "9540621919",
+                                          style: kLabelStyleBold)
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 3,
+                                ),
+                                Text(
+                                  "Laxmipur ward no 16, Rosera Samastipur",
+                                  style: kLabelStyle,
+                                ),
+                              ],
+                            ),
+                          )),
+                          BlocConsumer<UserBloc, UserState>(
+                              listener: (context, state) {
+                            state.mapOrNull(
+                              error: (error) =>
+                                  Fluttertoast.showToast(msg: error.message),
+                              addressSaved: (success) =>
+                                  Fluttertoast.showToast(msg: success.message),
+                            );
+                          }, builder: (context, state) {
+                            return state.maybeMap(
+                              loading: (value) => LoadingUI(),
+                              orElse: () => ElevatedButton(
+                                onPressed: () => showAddressDialog(context,
+                                    onSubmit: (formData) {
+                                  /// call event to save user address
+                                  context
+                                      .read<UserBloc>()
+                                      .add(SaveAddress(data: formData));
+                                  Navigator.of(context).pop();
+                                }),
+                                child: const Text("Change"),
+                              ),
+                            );
+                          }),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(" ${widget.products.length} Items",
+                      style: kLabelStyleBold.copyWith(fontSize: 16)),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .15,
+                    child: ListView.separated(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        separatorBuilder: (_, __) => Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 10),
+                              width: 1,
+                              color: greyColor.withOpacity(.6),
+                            ),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: widget.products.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          final product = widget.products[index];
+                          return Stack(
+                            children: [
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * .15,
+                                width: MediaQuery.of(context).size.height * .15,
+                                child: CachedNetworkImage(
+                                  imageUrl: product.productImage!,
+                                  placeholder: (context, url) =>
+                                      Image.asset("assets/images/photo.jpg"),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset("assets/images/photo.jpg"),
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              ),
+                              Positioned(
+                                  bottom: 5,
+                                  right: 5,
+                                  child: Container(
+                                    height: 20,
+                                    width: 20,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(2),
+                                      color: redColor,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        product.count.toString(),
+                                        style: kLabelStyleBold.copyWith(
+                                          color: secondaryLight,
+                                        ),
+                                      ),
+                                    ),
+                                  ))
+                            ],
+                          );
+                        }),
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          "₹$total",
+                          style: kLabelStyleBold.copyWith(
+                            fontSize: 18,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "₹$totalPrice",
+                          style: kLabelStyle.copyWith(
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "₹$saved saved",
+                          style: kLabelStyleBold.copyWith(
+                            color: greenColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  PriceDetail(
+                    products: widget.products,
+                    shippingCharge: widget.shippingCharge,
+                  ),
+                  const SizedBox(height: 25),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(
+                      "Apply Coupon",
+                      style: kLabelStyleBold.copyWith(fontSize: 14),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  CouponWidget(
+                    couponController: _couponController,
+                    subTotal: ProductUtility.calculatePrice(widget.products),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -290,10 +342,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             if (locationState is LocationLoaded) {
               addressMap['latitude'] = locationState.locationData.latitude;
               addressMap['longitude'] = locationState.locationData.longitude;
-              addressMap['area'] = locationState.address.thoroughfare;
+              addressMap['area'] = locationState.address.thoroughfare ?? "";
             }
-            addressMap['alt_mobile_no'] = '1234567890';
-            addressMap['user_id'] = '12345';
+            addressMap['alt_mobile_no'] =
+                PreferenceUtils.getString(mobile_number);
+            addressMap['user_id'] = PreferenceUtils.getString(user_uid);
             return SingleChildScrollView(
               padding: EdgeInsets.only(
                   top: MediaQuery.of(context).viewInsets.top,
@@ -331,6 +384,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Form(
+                      key: addressKey,
+                      autovalidateMode: AutovalidateMode.disabled,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -338,7 +393,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             hintText: "First Name",
                             maxLength: 50,
                             textController: _fNameController,
-                            onTouched: () {},
+                            validator: (value) =>
+                                value!.isEmptyString ? null : invalidFName,
                             onChanged: (value) =>
                                 addressMap['first_name'] = value,
                           ),
@@ -349,7 +405,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             hintText: "Last Name",
                             maxLength: 50,
                             textController: _lNameController,
-                            onTouched: () {},
+                            validator: (value) =>
+                                value!.isEmptyString ? null : invalidLName,
                             onChanged: (value) =>
                                 addressMap['last_name'] = value,
                           ),
@@ -361,8 +418,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             textController: _mobileController,
                             onChanged: (value) =>
                                 addressMap['mobile_no'] = value,
-                            onTouched: () {},
+                            validator: (value) =>
+                                value!.isValidPhone ? null : phoneError,
                             textInputType: TextInputType.phone,
+                            maxLength: 10,
                           ),
                           const SizedBox(
                             height: 8,
@@ -372,15 +431,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             maxLength: 100,
                             textController: _houseNoController,
                             onChanged: (value) => addressMap['home_no'] = value,
-                            onTouched: () {},
+                            validator: (value) =>
+                                value!.isEmptyString ? null : invalidHouseNo,
                           ),
                           const SizedBox(
                             height: 8,
                           ),
                           CustomInput(
-                            hintText: "Society (Optional)",
+                            hintText: "Society",
                             textController: _societyController,
-                            onTouched: () {},
+                            validator: (value) =>
+                                value!.isEmptyString ? null : invalidSociety,
                             onChanged: (value) => addressMap['society'] = value,
                           ),
                           const SizedBox(
@@ -390,7 +451,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             hintText: "Street",
                             maxLength: 100,
                             textController: _streetController,
-                            onTouched: () {},
+                            validator: (value) =>
+                                value!.isEmptyString ? null : invalidStreet,
                             onChanged: (value) => addressMap['street'] = value,
                           ),
                           const SizedBox(
@@ -400,7 +462,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             hintText: "Landmark",
                             maxLength: 50,
                             textController: _landmarkController,
-                            onTouched: () {},
+                            validator: (value) =>
+                                value!.isEmptyString ? null : invalidLandmark,
                             onChanged: (value) =>
                                 addressMap['landmark'] = value,
                           ),
@@ -411,7 +474,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             hintText: "City",
                             maxLength: 20,
                             textController: _cityController,
-                            onTouched: () {},
+                            validator: (value) =>
+                                value!.isEmptyString ? null : invalidCity,
                             onChanged: (value) => addressMap['city'] = value,
                           ),
                           const SizedBox(
@@ -421,8 +485,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             hintText: "Pincode",
                             textController: _pincodeController,
                             textInputType: TextInputType.phone,
-                            onTouched: () {},
+                            validator: (value) =>
+                                value!.isEmptyString ? null : invalidPincode,
                             onChanged: (value) => addressMap['pincode'] = value,
+                            maxLength: 6,
                           ),
                           const SizedBox(
                             height: 10,
@@ -431,7 +497,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             style: ElevatedButton.styleFrom(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 15)),
-                            onPressed: () => onSubmit(addressMap),
+                            onPressed: () {
+                              if (!addressKey.currentState!.validate()) return;
+                              onSubmit(addressMap);
+                            },
                             child: Text(
                               "Submit".toUpperCase(),
                               style: kLabelStyleBold.copyWith(

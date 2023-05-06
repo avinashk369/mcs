@@ -5,6 +5,7 @@ const String poweredBy = 'Powered By Maxburn Fitness';
 const String signinWith = "Sign In With";
 const String login = "Login";
 const String phoneNumber = "Phone Number";
+const String couponCode = "Enter coupon code";
 const String otpNumber = "OTP Number";
 const String submit = "Submit";
 const String privacy = "Privacy Policy";

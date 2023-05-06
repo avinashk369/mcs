@@ -6,12 +6,20 @@ part of 'coupon_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CouponModel _$CouponModelFromJson(Map<String, dynamic> json) => CouponModel()
-  ..couponCode = json['coupon_code'] as String?
-  ..discount = (json['discount'] as num?)?.toDouble();
+_$_CouponModel _$$_CouponModelFromJson(Map<String, dynamic> json) =>
+    _$_CouponModel(
+      shippingCharge: (json['shipping_charge'] as num?)?.toDouble(),
+    );
 
-Map<String, dynamic> _$CouponModelToJson(CouponModel instance) =>
-    <String, dynamic>{
-      'coupon_code': instance.couponCode,
-      'discount': instance.discount,
-    };
+Map<String, dynamic> _$$_CouponModelToJson(_$_CouponModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('shipping_charge', instance.shippingCharge);
+  return val;
+}

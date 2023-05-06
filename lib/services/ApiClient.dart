@@ -7,6 +7,9 @@ import 'package:mcs/models/models.dart'
         BaseResponse,
         BannerModel,
         SubCateModel,
+        CouponModel,
+        UserAddress,
+        ShippingModel,
         CategoryModel;
 import 'package:mcs/models/payment/order.model.dart';
 import 'package:mcs/models/payment/transfer.model.dart';
@@ -85,6 +88,24 @@ abstract class ApiClient {
   @POST(ApiConst.userRegisteration)
   @FormUrlEncoded()
   Future<BaseResponse<UserModel>> registerUser(@Body() UserModel userModel);
+
+  @POST(ApiConst.applyCoupon)
+  @FormUrlEncoded()
+  Future<BaseResponse<CouponModel>> applyCoupon(
+    @Body() Map<String, dynamic> data,
+  );
+
+  @POST(ApiConst.shippingCharge)
+  @FormUrlEncoded()
+  Future<BaseResponse<ShippingModel>> getShippingCharge(
+    @Body() Map<String, dynamic> data,
+  );
+
+  @POST(ApiConst.userAddress)
+  @FormUrlEncoded()
+  Future<BaseResponse<List<UserAddress>>> userAddress(
+    @Body() Map<String, dynamic> data,
+  );
 
   /// get location suggestion
   //Future<SuggestionDetail> getLocationSuggestion();

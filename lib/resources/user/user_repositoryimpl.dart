@@ -61,14 +61,14 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<UserModel> saveAddress(Map<String, dynamic> data) async {
-    late UserModel userMaster;
+  Future<bool> saveAddress(Map<String, dynamic> data) async {
+    late BaseResponse<UserModel> baseResponse;
     try {
-      userMaster = (await apiClient.saveUserAddress(data)).data!;
-    } catch (error) {
+      baseResponse = await apiClient.saveUserAddress(data);
+    } catch (error, _) {
       throw ServerError.withError(error: error);
     }
-    return userMaster;
+    return baseResponse.status!;
   }
 
   @override
@@ -80,5 +80,16 @@ class UserRepositoryImpl implements UserRepository {
       throw ServerError.withError(error: error);
     }
     return userMaster;
+  }
+
+  @override
+  Future<List<UserAddress>> loadAddress(Map<String, dynamic> data) async {
+    late List<UserAddress> userAddress;
+    try {
+      userAddress = (await apiClient.userAddress(data)).data!;
+    } catch (error, _) {
+      throw ServerError.withError(error: error);
+    }
+    return userAddress;
   }
 }

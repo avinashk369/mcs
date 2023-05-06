@@ -18,7 +18,7 @@ class VerificationBtn extends StatelessWidget {
         state.maybeWhen(
           loaded: (userModel) {
             //PreferenceUtils.putString(accessToken, userModel.token!);
-            PreferenceUtils.putString(mobileNumber, userModel.mobileNo!);
+            PreferenceUtils.putString(mobile_number, userModel.mobileNo!);
             PreferenceUtils.putString(user_type, userModel.userType!);
             PreferenceUtils.putString(user_id, userModel.id!);
 
@@ -29,31 +29,18 @@ class VerificationBtn extends StatelessWidget {
         );
       },
       child: BlocBuilder<UserBloc, UserState>(
-        builder: (context, state) =>
-            otpVerifyBtn(state is UserLoading, otp, context),
+        builder: (context, state) => SubmitButton(
+          isLoading: state is UserLoading,
+          isActive: isValid,
+          onTap: () {
+            context
+                .read<UserBloc>()
+                .add(VerifyOtp(otp: otp, mobileNumber: mobileNumber));
+            context.read<TimerBloc>().cancelTimer();
+          },
+          child: const FittedBox(child: Text("Verify OTP")),
+        ),
       ),
     );
   }
-
-  Widget otpVerifyBtn(bool isLoading, int otp, BuildContext context) =>
-      ElevatedButton(
-        onPressed: isValid
-            ? () {
-                context
-                    .read<UserBloc>()
-                    .add(VerifyOtp(otp: otp, mobileNumber: mobileNumber));
-                context.read<TimerBloc>().cancelTimer();
-              }
-            : null,
-        style: ElevatedButton.styleFrom(
-          fixedSize: const Size.fromHeight(48),
-          backgroundColor: isLoading ? Colors.white24 : primaryLight,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0),
-          ),
-        ),
-        child: isLoading
-            ? LoadingUI()
-            : const FittedBox(child: Text("Verify OTP")),
-      );
 }

@@ -24,34 +24,22 @@ class LoginButton extends StatelessWidget {
       },
       child: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
-          return button((state is UserLoading) ? true : false, context);
+          return SubmitButton(
+            isActive: isValid,
+            isLoading: (state is UserLoading) ? true : false,
+            onTap: () => context.read<UserBloc>().add(
+                  UserLoginEvent(
+                    mobileNumber:
+                        mobileNumber.substring(3, mobileNumber.length),
+                  ),
+                ),
+            child: const Icon(
+              Icons.arrow_forward_ios,
+              size: 25,
+            ),
+          );
         },
       ),
     );
   }
-
-  Widget button(bool isLoading, BuildContext context) => ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          fixedSize: const Size.fromHeight(48),
-          // onPrimary: Colors.white,
-          // primary: isLoading ? Colors.white24 : const Color(0xff1B5E20),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(3.0),
-          ),
-        ),
-        onPressed: isValid
-            ? () => context.read<UserBloc>().add(UserLoginEvent(
-                mobileNumber: mobileNumber.substring(3, mobileNumber.length)))
-            : null,
-        child: isLoading
-            ? const CircularProgressIndicator.adaptive(
-                backgroundColor: secondaryLight,
-                valueColor: AlwaysStoppedAnimation<Color>(secondaryLight),
-                strokeWidth: 2,
-              )
-            : const Icon(
-                Icons.arrow_forward_ios,
-                size: 25,
-              ),
-      );
 }

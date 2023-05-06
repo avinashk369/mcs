@@ -5,6 +5,7 @@ import 'package:mcs/models/user/user_model.dart';
 import '../../models/base_response.dart';
 import '../../models/server_error.dart';
 import '../../models/user/auth_model.dart';
+import '../../models/user/user_address.dart';
 import '../../resources/user/user_repository.dart';
 part 'user_bloc.freezed.dart';
 part 'user_event.dart';
@@ -22,9 +23,23 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           saveAddress: (event) async => await _saveAddress(event, emit),
           updateProfile: (event) async => await _updateProfile(event, emit),
           verifyOtp: (event) async => await _verifyOtpEvent(event, emit),
+          loadAddress: (event) async => await _loadAddress(event, emit),
         );
       },
     );
+  }
+
+  Future _loadAddress(LoadAddress event, Emitter<UserState> emit) async {
+    try {
+      emit(const UserLoading());
+      List<UserAddress> userAddress =
+          await _userRepositoryImpl.loadAddress(event.data);
+      emit(AddressLoaded(userAddress: userAddress));
+    } on ServerError catch (e) {
+      emit(UserError(message: e.errorMessage));
+    } catch (e, _) {
+      emit(UserError(message: e.toString()));
+    }
   }
 
   ///empty event

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mcs/blocs/cart/cart_bloc.dart';
 import 'package:mcs/blocs/category/categorybloc.dart';
 import 'package:mcs/blocs/data/data_bloc.dart';
 import 'package:mcs/blocs/navigation/navigationbloc.dart';
@@ -18,8 +19,8 @@ import 'blocs/location/location_bloc.dart';
 import 'blocs/product/productbloc.dart';
 import 'blocs/subcat/subcat_bloc.dart';
 import 'blocs/user/user_bloc.dart';
+import 'resources/cart/cart_repositoryImpl.dart';
 import 'resources/category/category_repositoryImpl.dart';
-import 'routes/route_constants.dart';
 import 'services/ApiClient.dart';
 import 'widgets/themes/config.dart';
 import 'widgets/themes/custom_theme.dart';
@@ -102,6 +103,11 @@ class _MyAppState extends State<MyApp> {
             apiClient: widget.apiClient,
           ),
         ),
+        RepositoryProvider(
+          create: (_) => CartRepositoryImpl(
+            apiClient: widget.apiClient,
+          ),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -133,6 +139,9 @@ class _MyAppState extends State<MyApp> {
           BlocProvider<NavigationBloc>(
             create: (context) => NavigationBloc(),
           ),
+          BlocProvider<CartBloc>(
+              create: (context) => CartBloc(
+                  cartRepositoryImpl: context.read<CartRepositoryImpl>()))
         ],
         child: GestureDetector(
           onTap: () {

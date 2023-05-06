@@ -12,3 +12,5 @@ export 'banner/banner_model.dart';
 export 'category/subcat_model.dart';
 export 'category/category_model.dart';
 export 'product/product_mode.dart';
+export 'user/user_address.dart';
+export 'coupon/shipping_model.dart';

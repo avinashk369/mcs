@@ -46,8 +46,14 @@ class RouteGenerator {
       case ProductSearchScreen.tag:
         return SlideRightRoute(page: ProductSearchScreen());
       case CheckoutScreen.tag:
+        Map<String, dynamic> data = args as Map<String, dynamic>;
+        List<ProductModel> products = data['products'];
+        double shippingChrage = data['shipping_charge'];
         return SlideRightRoute(
-          page: CheckoutScreen(products: args as List<ProductModel>),
+          page: CheckoutScreen(
+            products: products,
+            shippingCharge: shippingChrage,
+          ),
         );
       case UserVerification.tag:
         Map<String, dynamic> data = args as Map<String, dynamic>;

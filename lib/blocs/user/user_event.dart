@@ -12,4 +12,6 @@ class UserEvent with _$UserEvent {
   const factory UserEvent.updateProfile({required UserModel userModel}) =
       UpdateProfile;
   const factory UserEvent.emptyEvent() = EmptyEvent;
+  const factory UserEvent.loadAddress({required Map<String, dynamic> data}) =
+      LoadAddress;
 }
