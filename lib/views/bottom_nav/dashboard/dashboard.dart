@@ -7,6 +7,7 @@ import 'package:badges/badges.dart' as badge;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mcs/blocs/navigation/navigation_bloc.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/utils/utils.dart';
@@ -42,9 +43,9 @@ class _DashboardState extends State<Dashboard> {
 // navigate to login screen if user taps on index where authentication is required
   Future<void> checkCredsAndNavigate(int index, BuildContext context,
       {bool isCart = false}) async {
-    //isCart
-    context.read<NavigationBloc>().changeNavigation(index);
-    //  : Fluttertoast.showToast(msg: 'Your cart is empty');
+    isCart
+        ? context.read<NavigationBloc>().changeNavigation(index)
+        : Fluttertoast.showToast(msg: 'Your cart is empty');
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/cart/cart_bloc.dart';
+import 'package:mcs/blocs/navigation/navigation_bloc.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/blocs/user/user_bloc.dart';
 import 'package:mcs/models/models.dart';
@@ -158,6 +159,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                               "user_id": PreferenceUtils.getString(user_uid),
                               "amount": total
                             }));
+                      } else {
+                        context.read<NavigationBloc>().changeNavigation(0);
                       }
                     }
                   },

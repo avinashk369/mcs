@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mcs/blocs/cart/cart_bloc.dart';
 import 'package:mcs/blocs/location/location_bloc.dart';
-import 'package:mcs/models/product/product_mode.dart';
+import 'package:mcs/models/models.dart';
 import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/cart/price_detail.dart';
@@ -46,7 +46,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   late TextEditingController _pincodeController;
   late TextEditingController _couponController;
   final GlobalKey<FormState> addressKey = GlobalKey<FormState>();
-
+  late String userId;
   double total = 0;
   double totalPrice = 0;
   double saved = 0;
@@ -68,7 +68,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     total = ProductUtility.calculatePrice(widget.products);
     totalPrice = ProductUtility.calculateActualPrice(widget.products);
     saved = totalPrice - total;
-    String userId = PreferenceUtils.getString(user_uid);
+    userId = PreferenceUtils.getString(user_uid);
     if (userId.isNotEmpty) {
       context.read<UserBloc>().add(LoadAddress(data: {"user_id": userId}));
     }
@@ -134,63 +134,37 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  BlocBuilder<UserBloc, UserState>(builder: (context, state) {
+                  BlocBuilder<UserBloc, UserState>(
+                      buildWhen: (previous, current) {
+                    return current is AddressLoaded;
+                  }, builder: (context, state) {
                     if (state is AddressLoaded) {
-                      return Text("address ${state.userAddress.length}");
+                      return addressCard(state.userAddress.last);
                     }
                     return const SizedBox.shrink();
                   }),
-                  Card(
-                    margin: EdgeInsets.zero,
-                    color: secondaryLight,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                RichText(
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                          text: "Deliver to: ",
-                                          style: kLabelStyle),
-                                      TextSpan(
-                                          text: "Avinash,",
-                                          style: kLabelStyleBold),
-                                      TextSpan(
-                                          text: "9540621919",
-                                          style: kLabelStyleBold)
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 3,
-                                ),
-                                Text(
-                                  "Laxmipur ward no 16, Rosera Samastipur",
-                                  style: kLabelStyle,
-                                ),
-                              ],
-                            ),
-                          )),
-                          BlocConsumer<UserBloc, UserState>(
-                              listener: (context, state) {
-                            state.mapOrNull(
-                              error: (error) =>
-                                  Fluttertoast.showToast(msg: error.message),
-                              addressSaved: (success) =>
-                                  Fluttertoast.showToast(msg: success.message),
-                            );
-                          }, builder: (context, state) {
-                            return state.maybeMap(
-                              loading: (value) => LoadingUI(),
-                              orElse: () => ElevatedButton(
-                                onPressed: () => showAddressDialog(context,
+                  BlocConsumer<UserBloc, UserState>(listener: (context, state) {
+                    state.mapOrNull(
+                      error: (error) =>
+                          Fluttertoast.showToast(msg: error.message),
+                      addressSaved: (success) {
+                        context
+                            .read<UserBloc>()
+                            .add(LoadAddress(data: {"user_id": userId}));
+                        Fluttertoast.showToast(
+                            msg: success.message,
+                            backgroundColor: greenColor,
+                            textColor: secondaryLight);
+                      },
+                    );
+                  }, builder: (context, state) {
+                    return state.maybeMap(
+                      //loading: (value) => LoadingUI(),
+                      orElse: () => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SubmitButton(
+                            isActive: true,
+                            onTap: () => showAddressDialog(context,
                                     onSubmit: (formData) {
                                   /// call event to save user address
                                   context
@@ -198,17 +172,18 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       .add(SaveAddress(data: formData));
                                   Navigator.of(context).pop();
                                 }),
-                                child: const Text("Change"),
-                              ),
-                            );
-                          }),
-                        ],
+                            child: Text("Add new address".toUpperCase(),
+                                style: kLabelStyleBold.copyWith(
+                                    fontSize: 14, color: secondaryLight))),
                       ),
-                    ),
-                  ),
+                    );
+                  }),
                   const SizedBox(height: 10),
                   Text(" ${widget.products.length} Items",
                       style: kLabelStyleBold.copyWith(fontSize: 16)),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * .15,
                     child: ListView.separated(
@@ -311,7 +286,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   CouponWidget(
                     couponController: _couponController,
                     subTotal: ProductUtility.calculatePrice(widget.products),
+                    onTap: () => showPriceDetail(),
                   ),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),
@@ -320,6 +297,73 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       ),
     );
   }
+
+  Widget addressCard(UserAddress userAddress) => Container(
+        margin: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+            border: Border.all(color: greyColor.withOpacity(.4)),
+            borderRadius: BorderRadius.circular(4)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Expanded(
+                  child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(Icons.home),
+                        const SizedBox(width: 5),
+                        Text(
+                          "Home",
+                          style: kLabelStyleBold.copyWith(fontSize: 16),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          //TextSpan(text: "Deliver to: \n", style: kLabelStyle),
+                          TextSpan(
+                              text:
+                                  "${userAddress.firstName!.trim()} ${userAddress.lastName}",
+                              style: kLabelStyleBold),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(text: "Mobile: ", style: kLabelStyle),
+                          TextSpan(
+                              text: userAddress.mobileNumber,
+                              style: kLabelStyleBold)
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    Text(
+                      "${userAddress.homeNo!},${userAddress.street ?? userAddress.society},${userAddress.area}, ${userAddress.landmark}, ${userAddress.city}, Pincode: ${userAddress.pincode} ",
+                      style: kLabelStyle.copyWith(height: 1.4),
+                    ),
+                  ],
+                ),
+              )),
+            ],
+          ),
+        ),
+      );
 
   showPriceDetail() => _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
