@@ -8,6 +8,7 @@ const String products = '/productList';
 const String productDetail = '/productDetail';
 const String productSearch = '/productSearch';
 const String checkout = '/checkout';
+const String orderHistory = '/orderHistory';
 const String dashboardRoute = '/home';
 const String registerRoute = '/register';
 const String offersRoute = '/offers';

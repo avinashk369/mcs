@@ -8,17 +8,19 @@ class SubmitButton extends StatelessWidget {
       this.isActive = false,
       required this.onTap,
       this.isLoading = false,
-      required this.child});
+      required this.child,
+      this.height = 48});
   final bool isActive;
   final bool isLoading;
   final Function onTap;
   final Widget child;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        fixedSize: const Size.fromHeight(48),
+        fixedSize: Size.fromHeight(height),
         // onPrimary: Colors.white,
         // primary: isLoading ? Colors.white24 : const Color(0xff1B5E20),
         shape: RoundedRectangleBorder(

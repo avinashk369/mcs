@@ -7,6 +7,7 @@ import 'package:mcs/views/bottom_nav/cart/checkout_screen.dart';
 import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
 import 'package:mcs/views/bottom_nav/product/product_detail.dart';
 import 'package:mcs/views/bottom_nav/product/product_list.dart';
+import 'package:mcs/views/order/order_history.dart';
 import 'package:mcs/views/welcome.dart';
 
 import '../views/bottom_nav/product/search/product_search_screen.dart';
@@ -65,6 +66,8 @@ class RouteGenerator {
             mobile: mobile,
           ),
         );
+      case OrderHistory.tag:
+        return SlideRightRoute(page: const OrderHistory());
 
       default:
         // If there is no such named route in the switch statement, e.g. /third

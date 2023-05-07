@@ -29,4 +29,28 @@ class ProductUtility {
       (((total - part) / total) * 100).toInt();
 
   static String perKgPrice(double price) => (price / 1000).toStringAsFixed(2);
+
+  static List<String> getProductQty(List<ProductModel> products) {
+    List<String> qty = [];
+    for (ProductModel product in products) {
+      qty.add(product.count.toString());
+    }
+    return qty;
+  }
+
+  static List<String> getProductIds(List<ProductModel> products) {
+    List<String> ids = [];
+    for (ProductModel product in products) {
+      ids.add(product.id.toString());
+    }
+    return ids;
+  }
+
+  static List<String> getProductPriceUnitIds(List<ProductModel> products) {
+    List<String> priceUnits = [];
+    for (ProductModel product in products) {
+      priceUnits.add(product.variant![product.index].priceUnitId.toString());
+    }
+    return priceUnits;
+  }
 }

@@ -1,6 +1,5 @@
 library user_settings;
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/utils/utils.dart';
@@ -8,7 +7,7 @@ import 'package:mcs/views/bottom_nav/custom_appbar.dart';
 import 'package:mcs/views/welcome.dart';
 
 import '../../blocs/navigation/navigationbloc.dart';
-import '../../widgets/themes/config.dart';
+import '../order/order_history.dart';
 
 class UserSettings extends StatelessWidget {
   const UserSettings({Key? key}) : super(key: key);
@@ -30,7 +29,7 @@ class UserSettings extends StatelessWidget {
                 background: Column(
                   children: const [
                     CustomAppBar(
-                      title: 'Settings',
+                      title: 'Profile',
                     ),
                   ],
                 )),
@@ -38,9 +37,55 @@ class UserSettings extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    PreferenceUtils.getString(user_name),
+                    style: kLabelStyleBold.copyWith(fontSize: 18),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+                  child: Text(
+                    PreferenceUtils.getString(mobile_number),
+                    style: kLabelStyleBold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                listTileCard(
+                  'Orders',
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(OrderHistory.tag),
+                  const Icon(
+                    Icons.history,
+                    color: redColor,
+                  ),
+                  context,
+                ),
+                listTileCard(
+                  'Wallet',
+                  onTap: () async {},
+                  const Icon(
+                    Icons.wallet,
+                    color: redColor,
+                  ),
+                  context,
+                ),
+                listTileCard(
+                  'Address book',
+                  onTap: () async {},
+                  const Icon(
+                    Icons.location_city,
+                    color: redColor,
+                  ),
+                  context,
+                ),
                 listTileCard(
                   'Log out',
-                  () async {
+                  onTap: () async {
                     final navigator = Navigator.of(context);
                     context.read<NavigationBloc>().changeNavigation(0);
 
@@ -58,18 +103,38 @@ class UserSettings extends StatelessWidget {
               ],
             ),
           ),
+          SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const Spacer(),
+                  Text(
+                    "Online Canteen",
+                    style: kLabelStyleBold.copyWith(color: greyColor),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    "v1.0.1",
+                    style: kLabelStyleBold.copyWith(color: greyColor),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  )
+                ],
+              ))
         ],
       ),
     );
   }
 
-  Widget listTileCard(
-          String title, Function() onTap, Widget child, BuildContext context) =>
+  Widget listTileCard(String title, Widget child, BuildContext context,
+          {required Function() onTap}) =>
       InkWell(
         onTap: onTap,
         child: Card(
           elevation: 0,
-          color: Colors.grey[50],
+          color: greyColor.withOpacity(.03),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
           ),
@@ -82,7 +147,7 @@ class UserSettings extends StatelessWidget {
                   width: 40,
                   padding: const EdgeInsets.all(5.0),
                   decoration: BoxDecoration(
-                    color: Colors.grey[100],
+                    color: greyColor.withOpacity(.08),
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: child,
@@ -95,6 +160,12 @@ class UserSettings extends StatelessWidget {
                   style: kLabelStyleBold.copyWith(
                       fontSize: 12, color: Theme.of(context).primaryColor),
                 ),
+                const Spacer(),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 18,
+                  color: greyColor,
+                )
               ],
             ),
           ),

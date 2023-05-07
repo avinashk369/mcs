@@ -20,4 +20,7 @@ class ApiConst {
   static const String applyCoupon = 'Api_controller/ApplyCoupon';
   static const String userAddress = 'Api_controller/GetDeliveryAddress';
   static const String shippingCharge = 'Api_controller/GetShippingCharge';
+  static const String loadOrder = 'Api_controller/MyOrderList';
+  static const String placeOrder = 'Api_controller/PlaceOrder';
+  static const String orderDetail = 'Api_controller/OrderDetails';
 }

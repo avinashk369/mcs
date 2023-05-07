@@ -3,7 +3,6 @@ import 'package:mcs/models/models.dart'
     show
         CityModel,
         UserModel,
-        PaymentModel,
         BaseResponse,
         BannerModel,
         SubCateModel,
@@ -11,8 +10,7 @@ import 'package:mcs/models/models.dart'
         UserAddress,
         ShippingModel,
         CategoryModel;
-import 'package:mcs/models/payment/order.model.dart';
-import 'package:mcs/models/payment/transfer.model.dart';
+import 'package:mcs/models/order/order_model.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -45,10 +43,6 @@ abstract class ApiClient {
   @FormUrlEncoded()
   Future<BaseResponse<List<ProductModel>>> searchProducts(
       @Body() Map<String, dynamic> data);
-
-  @GET("Home/HomeFeaturesData")
-  Future<UserModel> getHomeFeatureData(
-      @Header("Authorization") String accetoken);
 
   @POST(ApiConst.login)
   @FormUrlEncoded()
@@ -101,64 +95,27 @@ abstract class ApiClient {
     @Body() Map<String, dynamic> data,
   );
 
+  @POST(ApiConst.placeOrder)
+  @FormUrlEncoded()
+  Future<BaseResponse<OrderModel>> placeOrder(
+    @Body() Map<String, dynamic> data,
+  );
+
+  @POST(ApiConst.loadOrder)
+  @FormUrlEncoded()
+  Future<BaseResponse<List<OrderModel>>> loadOrder(
+    @Body() Map<String, dynamic> data,
+  );
+
+  @POST(ApiConst.orderDetail)
+  @FormUrlEncoded()
+  Future<BaseResponse<OrderModel>> orderDetail(
+    @Body() Map<String, dynamic> data,
+  );
+
   @POST(ApiConst.userAddress)
   @FormUrlEncoded()
   Future<BaseResponse<List<UserAddress>>> userAddress(
     @Body() Map<String, dynamic> data,
   );
-
-  /// get location suggestion
-  //Future<SuggestionDetail> getLocationSuggestion();
-
-  /// get all subscription list
-  @POST("auth/register")
-  @FormUrlEncoded()
-  Future<UserModel> userRegistration(
-    @Field("token") String token,
-    @Field("registerData") String registerData,
-  );
-
-  /// create order api
-  @POST("https://api.razorpay.com/v1/orders")
-  Future<OrderModel> createOrderApi(
-    @Header("Authorization") String token,
-    @Body() OrderModel data,
-  );
-
-  /// split and transfer api
-  @POST("https://api.razorpay.com/v1/payments/{pay_id}/transfers")
-  Future<TransferModel> splitAndTransferApi(
-      @Header("Authorization") String token,
-      @Path("pay_id") String paymentId,
-      @Body() TransferModel transferModel);
-
-  /// save payment log into the database table
-  @POST("booking/paymentLog")
-  Future<PaymentModel> logPayment(
-    @Header("Authorization") String token,
-    @Body() PaymentModel paymentModel,
-  );
-  // /// place subscription order
-  // @POST("payment/order-with-rozorpay")
-  // @FormUrlEncoded()
-  // Future<OrderModel> addSubscriptionOrder(
-  //   @Header("Authorization") String accetoken,
-  //   @Field("token") String token,
-  //   @Field("amount") int amount,
-  //   @Field("subscription_plan_id") String subsId,
-  //   @Field("date_time") int dateTime,
-  //   @Field("duration") int duration,
-  //   @Field("sessoin_per_week") int sessionCount,
-  // );
-
-  // /// place subscription order
-  // @POST("payment/checkout-with-rozorpay")
-  // @FormUrlEncoded()
-  // Future<OrderModel> checkoutOrder(
-  //   @Header("Authorization") String accetoken,
-  //   @Field("token") String token,
-  //   @Field("amount") int amount,
-  //   @Field("order_id") String orderid,
-  //   @Field("payment_data") String paymentData,
-  // );
 }

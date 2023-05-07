@@ -21,6 +21,7 @@ import 'blocs/subcat/subcat_bloc.dart';
 import 'blocs/user/user_bloc.dart';
 import 'resources/cart/cart_repositoryImpl.dart';
 import 'resources/category/category_repositoryImpl.dart';
+import 'resources/order/order_repositoryImpl.dart';
 import 'services/ApiClient.dart';
 import 'widgets/themes/config.dart';
 import 'widgets/themes/custom_theme.dart';
@@ -105,6 +106,11 @@ class _MyAppState extends State<MyApp> {
         ),
         RepositoryProvider(
           create: (_) => CartRepositoryImpl(
+            apiClient: widget.apiClient,
+          ),
+        ),
+        RepositoryProvider(
+          create: (_) => OrderRepositoryImpl(
             apiClient: widget.apiClient,
           ),
         ),

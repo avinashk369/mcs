@@ -13,10 +13,11 @@ import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/cart/price_detail.dart';
 import 'package:mcs/widgets/custom_input.dart';
 import 'package:mcs/widgets/extensions/ext_string.dart';
-import 'package:mcs/widgets/loading_ui.dart';
 
+import '../../../blocs/order/order_bloc.dart';
 import '../../../blocs/user/user_bloc.dart';
 import '../../../resources/cart/cart_repositoryImpl.dart';
+import '../../../resources/order/order_repositoryImpl.dart';
 import '../../../routes/route_constants.dart';
 import '../../../widgets/submit_button.dart';
 part 'coupon_widget.dart';
@@ -76,12 +77,16 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locationState = context.watch<LocationBloc>().state;
     return MultiBlocProvider(
       providers: [
         BlocProvider<CartBloc>(
           create: (context) => CartBloc(
             cartRepositoryImpl: context.read<CartRepositoryImpl>(),
           ),
+        ),
+        BlocProvider<OrderBloc>(
+          create: (context) => OrderBloc(context.read<OrderRepositoryImpl>()),
         ),
       ],
       child: Scaffold(
@@ -119,11 +124,63 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     ],
                   ),
                 ),
-                ElevatedButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Place Order",
-                    )),
+                BlocConsumer<OrderBloc, OrderState>(
+                  listener: (context, state) => state.mapOrNull(
+                    error: (value) =>
+                        Fluttertoast.showToast(msg: value.message),
+                  ),
+                  builder: (context, state) {
+                    return SubmitButton(
+                      isActive: true,
+                      height: 40,
+                      isLoading: (state is OrderLoading) ? true : false,
+                      onTap: () {
+                        // PARAM     user_id, total_amount, payment_type, product_id, price_unit_id, quantity,
+                        // address, latitude, longitude, coupon_discount, shipping_charge, deduct_wallet
+                        // NOTE: payment_type 1 for cod 2 for online.
+                        // Deduct_wallet if user pay using wallet otherwise send 0
+                        // product_id, price_unit_id, quantity will be multiple that why you need to send it by comma separated like if product ids 1,2,3 same as price_unit_id as quantity.
+                        Map<String, dynamic> data = {};
+                        data.putIfAbsent('user_id', () => userId);
+                        data.putIfAbsent('total_amount',
+                            () => total + widget.shippingCharge);
+                        data.putIfAbsent('payment_type', () => 1);
+                        data.putIfAbsent(
+                            'product_id',
+                            () =>
+                                ProductUtility.getProductIds(widget.products));
+
+                        data.putIfAbsent(
+                            'price_unit_id',
+                            () => ProductUtility.getProductPriceUnitIds(
+                                widget.products));
+                        data.putIfAbsent(
+                            'quantity',
+                            () =>
+                                ProductUtility.getProductQty(widget.products));
+                        data.putIfAbsent(
+                            'shipping_charge', () => widget.shippingCharge);
+                        data.putIfAbsent(
+                            'latitude',
+                            () => (locationState is LocationLoaded)
+                                ? locationState.locationData.latitude
+                                : 0.0);
+                        data.putIfAbsent(
+                            'longitude',
+                            () => (locationState is LocationLoaded)
+                                ? locationState.locationData.longitude
+                                : 0.0);
+                        context.read<OrderBloc>().add(PlaceOrder(data: data));
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.only(top: 2),
+                        child: Text(
+                          "Place Order",
+                        ),
+                      ),
+                    );
+                  },
+                )
               ],
             );
           }),
@@ -135,14 +192,16 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               delegate: SliverChildListDelegate(
                 [
                   BlocBuilder<UserBloc, UserState>(
-                      buildWhen: (previous, current) {
-                    return current is AddressLoaded;
-                  }, builder: (context, state) {
-                    if (state is AddressLoaded) {
-                      return addressCard(state.userAddress.last);
-                    }
-                    return const SizedBox.shrink();
-                  }),
+                    buildWhen: (previous, current) {
+                      return current is AddressLoaded;
+                    },
+                    builder: (context, state) => state.maybeMap(
+                      addressLoaded: (value) => value.userAddress.isNotEmpty
+                          ? addressCard(value.userAddress.first)
+                          : const SizedBox.shrink(),
+                      orElse: () => const SizedBox.shrink(),
+                    ),
+                  ),
                   BlocConsumer<UserBloc, UserState>(listener: (context, state) {
                     state.mapOrNull(
                       error: (error) =>
@@ -273,6 +332,35 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   PriceDetail(
                     products: widget.products,
                     shippingCharge: widget.shippingCharge,
+                  ),
+                  const SizedBox(height: 5),
+                  Container(
+                    decoration:
+                        BoxDecoration(color: greyColor.withOpacity(.04)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(children: [
+                        CircleAvatar(
+                          maxRadius: 10,
+                          backgroundColor: redColor.withOpacity(0.8),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 1),
+                            child: Text(
+                              "₹",
+                              style:
+                                  kLabelStyle.copyWith(color: secondaryLight),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            "In case of refund, you will receive your refund amount in Online Canteen wallet. It will be used in the next order",
+                            style: kLabelStyle.copyWith(fontSize: 10),
+                          ),
+                        )
+                      ]),
+                    ),
                   ),
                   const SizedBox(height: 25),
                   Padding(

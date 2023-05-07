@@ -40,8 +40,8 @@ class UserRepositoryImpl implements UserRepository {
       Map<String, dynamic> registerData, String token) async {
     UserModel userMasters = const UserModel();
     try {
-      userMasters =
-          await apiClient.userRegistration(token, jsonEncode(registerData));
+      // userMasters =
+      //     await apiClient.userRegistration(token, jsonEncode(registerData));
     } catch (error, _) {
       throw ServerError.withError(error: error);
     }

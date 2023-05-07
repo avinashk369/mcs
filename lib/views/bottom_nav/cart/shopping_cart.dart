@@ -14,6 +14,7 @@ import 'package:mcs/views/bottom_nav/custom_appbar.dart';
 import 'package:mcs/widgets/custom_input.dart';
 import 'package:mcs/widgets/extensions/ext_string.dart';
 import 'package:mcs/widgets/loading_ui.dart';
+import 'package:mcs/widgets/submit_button.dart';
 
 class ShoppingCart extends StatefulWidget {
   const ShoppingCart({Key? key}) : super(key: key);
@@ -86,8 +87,10 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 ],
               ),
             ),
-            ElevatedButton(
-                onPressed: ((int.tryParse(newUser))! > 0)
+            SubmitButton(
+                isActive: true,
+                height: 40,
+                onTap: ((int.tryParse(newUser))! > 0)
                     ? () {
                         Map<String, dynamic> data = {};
                         data.putIfAbsent(
@@ -119,7 +122,10 @@ class _ShoppingCartState extends State<ShoppingCart> {
                           },
                         );
                       },
-                child: const Text("Checkout")),
+                child: const Padding(
+                  padding: EdgeInsets.only(top: 2),
+                  child: Text("Checkout"),
+                )),
           ],
         )
       ],
@@ -338,6 +344,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   BlocConsumer<UserBloc, UserState>(listener: (context, state) {
                     state.mapOrNull(
                       profileUpdated: (userModel) {
+                        PreferenceUtils.putString(user_name,
+                            "${userModel.userModel.firstName} ${userModel.userModel.lastName}");
                         PreferenceUtils.putString(
                             user_uid, userModel.userModel.userId!);
                         Future.delayed(const Duration(seconds: 5), () {
