@@ -38,9 +38,9 @@ class CategoryList extends StatelessWidget {
       },
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4,
-        mainAxisSpacing: 5,
-        crossAxisSpacing: 1,
-        childAspectRatio: .8,
+        mainAxisSpacing: 4,
+        crossAxisSpacing: 8,
+        childAspectRatio: .7,
       ),
     ).horizontalPadding(5);
   }

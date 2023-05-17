@@ -39,6 +39,12 @@ mixin _$ProductModel {
   int get index =>
       throw _privateConstructorUsedError; //@JsonKey(ignore: true) @Default(false) bool inCart,
   double? get rating => throw _privateConstructorUsedError;
+  String? get orderId => throw _privateConstructorUsedError;
+  String? get priceUnitId => throw _privateConstructorUsedError;
+  String? get quantity => throw _privateConstructorUsedError;
+  String? get purchasePrice => throw _privateConstructorUsedError;
+  String? get price => throw _privateConstructorUsedError;
+  String? get discount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -68,7 +74,13 @@ abstract class $ProductModelCopyWith<$Res> {
       List<Variant>? variant,
       @JsonKey(includeToJson: true, includeFromJson: true) int count,
       @JsonKey(includeToJson: true, includeFromJson: true) int index,
-      double? rating});
+      double? rating,
+      String? orderId,
+      String? priceUnitId,
+      String? quantity,
+      String? purchasePrice,
+      String? price,
+      String? discount});
 }
 
 /// @nodoc
@@ -100,6 +112,12 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? count = null,
     Object? index = null,
     Object? rating = freezed,
+    Object? orderId = freezed,
+    Object? priceUnitId = freezed,
+    Object? quantity = freezed,
+    Object? purchasePrice = freezed,
+    Object? price = freezed,
+    Object? discount = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -166,6 +184,30 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
+      orderId: freezed == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      priceUnitId: freezed == priceUnitId
+          ? _value.priceUnitId
+          : priceUnitId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as String?,
+      purchasePrice: freezed == purchasePrice
+          ? _value.purchasePrice
+          : purchasePrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String?,
+      discount: freezed == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -194,7 +236,13 @@ abstract class _$$_ProductModelCopyWith<$Res>
       List<Variant>? variant,
       @JsonKey(includeToJson: true, includeFromJson: true) int count,
       @JsonKey(includeToJson: true, includeFromJson: true) int index,
-      double? rating});
+      double? rating,
+      String? orderId,
+      String? priceUnitId,
+      String? quantity,
+      String? purchasePrice,
+      String? price,
+      String? discount});
 }
 
 /// @nodoc
@@ -224,6 +272,12 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? count = null,
     Object? index = null,
     Object? rating = freezed,
+    Object? orderId = freezed,
+    Object? priceUnitId = freezed,
+    Object? quantity = freezed,
+    Object? purchasePrice = freezed,
+    Object? price = freezed,
+    Object? discount = freezed,
   }) {
     return _then(_$_ProductModel(
       id: freezed == id
@@ -290,6 +344,30 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double?,
+      orderId: freezed == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      priceUnitId: freezed == priceUnitId
+          ? _value.priceUnitId
+          : priceUnitId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as String?,
+      purchasePrice: freezed == purchasePrice
+          ? _value.purchasePrice
+          : purchasePrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String?,
+      discount: freezed == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -315,7 +393,13 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       final List<Variant>? variant,
       @JsonKey(includeToJson: true, includeFromJson: true) this.count = 0,
       @JsonKey(includeToJson: true, includeFromJson: true) this.index = 0,
-      this.rating})
+      this.rating,
+      this.orderId,
+      this.priceUnitId,
+      this.quantity,
+      this.purchasePrice,
+      this.price,
+      this.discount})
       : _variant = variant;
 
   factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -364,10 +448,22 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
 //@JsonKey(ignore: true) @Default(false) bool inCart,
   @override
   final double? rating;
+  @override
+  final String? orderId;
+  @override
+  final String? priceUnitId;
+  @override
+  final String? quantity;
+  @override
+  final String? purchasePrice;
+  @override
+  final String? price;
+  @override
+  final String? discount;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProductModel(id: $id, productId: $productId, name: $name, description: $description, productImage: $productImage, stockStatus: $stockStatus, categoryId: $categoryId, cityId: $cityId, couponCode: $couponCode, createdAt: $createdAt, updatedAt: $updatedAt, productGroup: $productGroup, variant: $variant, count: $count, index: $index, rating: $rating)';
+    return 'ProductModel(id: $id, productId: $productId, name: $name, description: $description, productImage: $productImage, stockStatus: $stockStatus, categoryId: $categoryId, cityId: $cityId, couponCode: $couponCode, createdAt: $createdAt, updatedAt: $updatedAt, productGroup: $productGroup, variant: $variant, count: $count, index: $index, rating: $rating, orderId: $orderId, priceUnitId: $priceUnitId, quantity: $quantity, purchasePrice: $purchasePrice, price: $price, discount: $discount)';
   }
 
   @override
@@ -390,7 +486,13 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       ..add(DiagnosticsProperty('variant', variant))
       ..add(DiagnosticsProperty('count', count))
       ..add(DiagnosticsProperty('index', index))
-      ..add(DiagnosticsProperty('rating', rating));
+      ..add(DiagnosticsProperty('rating', rating))
+      ..add(DiagnosticsProperty('orderId', orderId))
+      ..add(DiagnosticsProperty('priceUnitId', priceUnitId))
+      ..add(DiagnosticsProperty('quantity', quantity))
+      ..add(DiagnosticsProperty('purchasePrice', purchasePrice))
+      ..add(DiagnosticsProperty('price', price))
+      ..add(DiagnosticsProperty('discount', discount));
   }
 
   @override
@@ -422,29 +524,46 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
             const DeepCollectionEquality().equals(other._variant, _variant) &&
             (identical(other.count, count) || other.count == count) &&
             (identical(other.index, index) || other.index == index) &&
-            (identical(other.rating, rating) || other.rating == rating));
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.orderId, orderId) || other.orderId == orderId) &&
+            (identical(other.priceUnitId, priceUnitId) ||
+                other.priceUnitId == priceUnitId) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
+            (identical(other.purchasePrice, purchasePrice) ||
+                other.purchasePrice == purchasePrice) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.discount, discount) ||
+                other.discount == discount));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      productId,
-      name,
-      description,
-      productImage,
-      stockStatus,
-      categoryId,
-      cityId,
-      couponCode,
-      createdAt,
-      updatedAt,
-      productGroup,
-      const DeepCollectionEquality().hash(_variant),
-      count,
-      index,
-      rating);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        productId,
+        name,
+        description,
+        productImage,
+        stockStatus,
+        categoryId,
+        cityId,
+        couponCode,
+        createdAt,
+        updatedAt,
+        productGroup,
+        const DeepCollectionEquality().hash(_variant),
+        count,
+        index,
+        rating,
+        orderId,
+        priceUnitId,
+        quantity,
+        purchasePrice,
+        price,
+        discount
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -477,7 +596,13 @@ abstract class _ProductModel implements ProductModel {
       final List<Variant>? variant,
       @JsonKey(includeToJson: true, includeFromJson: true) final int count,
       @JsonKey(includeToJson: true, includeFromJson: true) final int index,
-      final double? rating}) = _$_ProductModel;
+      final double? rating,
+      final String? orderId,
+      final String? priceUnitId,
+      final String? quantity,
+      final String? purchasePrice,
+      final String? price,
+      final String? discount}) = _$_ProductModel;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$_ProductModel.fromJson;
@@ -516,6 +641,18 @@ abstract class _ProductModel implements ProductModel {
   int get index;
   @override //@JsonKey(ignore: true) @Default(false) bool inCart,
   double? get rating;
+  @override
+  String? get orderId;
+  @override
+  String? get priceUnitId;
+  @override
+  String? get quantity;
+  @override
+  String? get purchasePrice;
+  @override
+  String? get price;
+  @override
+  String? get discount;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>

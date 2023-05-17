@@ -67,7 +67,7 @@ class RouteGenerator {
           ),
         );
       case OrderHistory.tag:
-        return SlideRightRoute(page: const OrderHistory());
+        return SlideRightRoute(page: OrderHistory());
 
       default:
         // If there is no such named route in the switch statement, e.g. /third

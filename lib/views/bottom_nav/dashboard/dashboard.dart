@@ -35,7 +35,7 @@ class _DashboardState extends State<Dashboard> {
   late String token;
   @override
   void initState() {
-    userId = PreferenceUtils.getString(user_id);
+    userId = PreferenceUtils.getString(user_uid);
     token = PreferenceUtils.getString(accessToken);
     super.initState();
   }

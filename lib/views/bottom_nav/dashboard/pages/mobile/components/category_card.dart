@@ -13,6 +13,37 @@ class CategoryCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            child: Card(
+              semanticContainer: true,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              elevation: 0,
+              color: Colors.grey[300],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: child,
+            ),
+          ),
+          const SizedBox(height: 5),
+          SizedBox(
+            height: 35,
+            //decoration: BoxDecoration(border: Border.all()),
+            child: Text(
+              title,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              style: kLabelStyle.copyWith(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget catCard() => Column(
         children: [
           Expanded(
             child: Card(
@@ -33,7 +64,5 @@ class CategoryCard extends StatelessWidget {
             style: kLabelStyle.copyWith(fontWeight: FontWeight.bold),
           ),
         ],
-      ),
-    );
-  }
+      );
 }

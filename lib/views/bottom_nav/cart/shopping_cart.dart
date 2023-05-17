@@ -157,19 +157,17 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   listenWhen: (previous, current) {
                     return current is ProductLoaded;
                   },
-                  listener: (context, state) {
-                    if (state is ProductLoaded) {
-                      if (ProductUtility.calculatePrice(state.addedProducts!) >
-                          0) {
-                        context.read<CartBloc>().add(LoadShippingCharge(data: {
+                  listener: (context, state) => state.mapOrNull(
+                    loaded: (value) => (ProductUtility.calculatePrice(
+                                value.addedProducts!) >
+                            0)
+                        ? context.read<CartBloc>().add(
+                                LoadShippingCharge(data: {
                               "user_id": PreferenceUtils.getString(user_uid),
                               "amount": total
-                            }));
-                      } else {
-                        context.read<NavigationBloc>().changeNavigation(0);
-                      }
-                    }
-                  },
+                            }))
+                        : context.read<NavigationBloc>().changeNavigation(0),
+                  ),
                   child: const SizedBox.shrink(),
                 ),
                 const SizedBox(
@@ -263,7 +261,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   height: 10,
                 ),
                 state.maybeMap(
-                  initial: (_) => LoadingUI(),
+                  initial: (_) => const LoadingUI(),
                   loaded: (res) =>
                       ShoppingList(addedProducts: res.addedProducts!),
                   error: (err) => Text(err.message),
@@ -273,7 +271,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   height: 10,
                 ),
                 state.maybeMap(
-                  initial: (_) => LoadingUI(),
+                  initial: (_) => const LoadingUI(),
                   loaded: (res) => PriceDetail(
                     products: res.addedProducts!,
                     shippingCharge: (cartState is ShippingChargeLoaded)

@@ -26,6 +26,12 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       count: json['count'] as int? ?? 0,
       index: json['index'] as int? ?? 0,
       rating: (json['rating'] as num?)?.toDouble(),
+      orderId: json['order_id'] as String?,
+      priceUnitId: json['price_unit_id'] as String?,
+      quantity: json['quantity'] as String?,
+      purchasePrice: json['purchase_price'] as String?,
+      price: json['price'] as String?,
+      discount: json['discount'] as String?,
     );
 
 Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) {
@@ -53,5 +59,11 @@ Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) {
   val['count'] = instance.count;
   val['index'] = instance.index;
   writeNotNull('rating', instance.rating);
+  writeNotNull('order_id', instance.orderId);
+  writeNotNull('price_unit_id', instance.priceUnitId);
+  writeNotNull('quantity', instance.quantity);
+  writeNotNull('purchase_price', instance.purchasePrice);
+  writeNotNull('price', instance.price);
+  writeNotNull('discount', instance.discount);
   return val;
 }

@@ -41,7 +41,7 @@ class ProductUtility {
   static List<String> getProductIds(List<ProductModel> products) {
     List<String> ids = [];
     for (ProductModel product in products) {
-      ids.add(product.id.toString());
+      ids.add(product.productId.toString());
     }
     return ids;
   }

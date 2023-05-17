@@ -27,7 +27,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       BaseResponse<OrderModel> order =
           await _orderRepository.placeOrders(event.data);
       emit(order.status!
-          ? OrderPlaced(orderModel: order.data!)
+          ? OrderPlaced(message: order.message!)
           : OrderError(message: order.message!));
     } on ServerError catch (error) {
       emit(OrderError(message: error.errorMessage));

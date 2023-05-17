@@ -20,6 +20,7 @@ import '../../../resources/cart/cart_repositoryImpl.dart';
 import '../../../resources/order/order_repositoryImpl.dart';
 import '../../../routes/route_constants.dart';
 import '../../../widgets/submit_button.dart';
+import '../../order/order_history.dart';
 part 'coupon_widget.dart';
 
 class CheckoutScreen extends StatefulWidget {
@@ -39,10 +40,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   late TextEditingController _fNameController;
   late TextEditingController _lNameController;
   late TextEditingController _mobileController;
-  late TextEditingController _houseNoController;
-  late TextEditingController _societyController;
-  late TextEditingController _streetController;
-  late TextEditingController _landmarkController;
+  late TextEditingController _addressController;
+  late TextEditingController _stateController;
   late TextEditingController _cityController;
   late TextEditingController _pincodeController;
   late TextEditingController _couponController;
@@ -52,15 +51,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   double totalPrice = 0;
   double saved = 0;
   Map<String, dynamic> addressMap = {};
+  late String addressId;
   @override
   void initState() {
     _fNameController = TextEditingController();
     _lNameController = TextEditingController();
     _mobileController = TextEditingController();
-    _houseNoController = TextEditingController();
-    _societyController = TextEditingController();
-    _streetController = TextEditingController();
-    _landmarkController = TextEditingController();
+    _addressController = TextEditingController();
+    _stateController = TextEditingController();
     _cityController = TextEditingController();
     _pincodeController = TextEditingController();
     _couponController = TextEditingController();
@@ -73,6 +71,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     if (userId.isNotEmpty) {
       context.read<UserBloc>().add(LoadAddress(data: {"user_id": userId}));
     }
+  }
+
+  void clearTextController() {
+    _fNameController.clear();
+    _lNameController.clear();
+    _mobileController.clear();
+    _addressController.clear();
+    _stateController.clear();
+    _cityController.clear();
+    _pincodeController.clear();
+    _couponController.clear();
   }
 
   @override
@@ -128,6 +137,15 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   listener: (context, state) => state.mapOrNull(
                     error: (value) =>
                         Fluttertoast.showToast(msg: value.message),
+                    orderPlaced: (value) {
+                      Fluttertoast.showToast(
+                          msg: value.message!,
+                          backgroundColor: greenColor,
+                          textColor: secondaryLight);
+
+                      /// Navigate to the order list screen
+                      Navigator.of(context).pushNamed(OrderHistory.tag);
+                    },
                   ),
                   builder: (context, state) {
                     return SubmitButton(
@@ -142,6 +160,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         // product_id, price_unit_id, quantity will be multiple that why you need to send it by comma separated like if product ids 1,2,3 same as price_unit_id as quantity.
                         Map<String, dynamic> data = {};
                         data.putIfAbsent('user_id', () => userId);
+                        data.putIfAbsent(
+                            'delivery_address_id', () => addressId);
+                        data.putIfAbsent('deduct_wallet', () => 0);
                         data.putIfAbsent('total_amount',
                             () => total + widget.shippingCharge);
                         data.putIfAbsent('payment_type', () => 1);
@@ -191,10 +212,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  BlocBuilder<UserBloc, UserState>(
-                    buildWhen: (previous, current) {
-                      return current is AddressLoaded;
-                    },
+                  BlocConsumer<UserBloc, UserState>(
+                    listenWhen: (previous, current) => current is AddressLoaded,
+                    listener: (context, state) => state.mapOrNull(
+                      addressLoaded: (value) =>
+                          addressId = value.userAddress.first.address!,
+                    ),
+                    buildWhen: (previous, current) => current is AddressLoaded,
                     builder: (context, state) => state.maybeMap(
                       addressLoaded: (value) => value.userAddress.isNotEmpty
                           ? addressCard(value.userAddress.first)
@@ -223,14 +247,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: SubmitButton(
                             isActive: true,
-                            onTap: () => showAddressDialog(context,
-                                    onSubmit: (formData) {
-                                  /// call event to save user address
-                                  context
-                                      .read<UserBloc>()
-                                      .add(SaveAddress(data: formData));
-                                  Navigator.of(context).pop();
-                                }),
+                            onTap: () {
+                              /// clear existing value from the input field
+                              clearTextController();
+                              showAddressDialog(context, onSubmit: (formData) {
+                                /// call event to save user address
+                                context
+                                    .read<UserBloc>()
+                                    .add(SaveAddress(data: formData));
+                                Navigator.of(context).pop();
+                              });
+                            },
                             child: Text("Add new address".toUpperCase(),
                                 style: kLabelStyleBold.copyWith(
                                     fontSize: 14, color: secondaryLight))),
@@ -377,6 +404,33 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     onTap: () => showPriceDetail(),
                   ),
                   const SizedBox(height: 10),
+
+                  /// need to show the payment option
+                  /// COD will be default option
+                  /// UPI or Online payment will be disabled
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: true,
+                        onChanged: (val) {},
+                        activeColor: primaryLight,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2)),
+                      ),
+                      Text("COD", style: kLabelStyleBold),
+                      const SizedBox(width: 10),
+                      Checkbox(
+                        value: true,
+                        onChanged: (val) {},
+                        activeColor: greyColor.withOpacity(.8),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2)),
+                      ),
+                      Text("OnLine",
+                          style: kLabelStyleBold.copyWith(
+                              color: greyColor.withOpacity(.8)))
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -442,7 +496,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       height: 3,
                     ),
                     Text(
-                      "${userAddress.homeNo!},${userAddress.street ?? userAddress.society},${userAddress.area}, ${userAddress.landmark}, ${userAddress.city}, Pincode: ${userAddress.pincode} ",
+                      "${userAddress.address!}, ${userAddress.state}, ${userAddress.city}, Pincode: ${userAddress.pincode} ",
                       style: kLabelStyle.copyWith(height: 1.4),
                     ),
                   ],
@@ -469,7 +523,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           context: context,
           builder: (context) {
             final locationState = context.read<LocationBloc>().state;
-
+            // PARAM user_id, first_name, last_name, mobile_no, address, city, state, pincode, latitude, longitude
             /// get the user location detail
             if (locationState is LocationLoaded) {
               addressMap['latitude'] = locationState.locationData.latitude;
@@ -559,45 +613,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             height: 8,
                           ),
                           CustomInput(
-                            hintText: "House No",
+                            hintText: "Complete Address",
                             maxLength: 100,
-                            textController: _houseNoController,
-                            onChanged: (value) => addressMap['home_no'] = value,
+                            textController: _addressController,
+                            numOfLines: 4,
+                            onChanged: (value) => addressMap['address'] = value,
                             validator: (value) =>
                                 value!.isEmptyString ? null : invalidHouseNo,
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          CustomInput(
-                            hintText: "Society",
-                            textController: _societyController,
-                            validator: (value) =>
-                                value!.isEmptyString ? null : invalidSociety,
-                            onChanged: (value) => addressMap['society'] = value,
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          CustomInput(
-                            hintText: "Street",
-                            maxLength: 100,
-                            textController: _streetController,
-                            validator: (value) =>
-                                value!.isEmptyString ? null : invalidStreet,
-                            onChanged: (value) => addressMap['street'] = value,
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          CustomInput(
-                            hintText: "Landmark",
-                            maxLength: 50,
-                            textController: _landmarkController,
-                            validator: (value) =>
-                                value!.isEmptyString ? null : invalidLandmark,
-                            onChanged: (value) =>
-                                addressMap['landmark'] = value,
                           ),
                           const SizedBox(
                             height: 8,
@@ -609,6 +631,16 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             validator: (value) =>
                                 value!.isEmptyString ? null : invalidCity,
                             onChanged: (value) => addressMap['city'] = value,
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          CustomInput(
+                            hintText: "State",
+                            textController: _stateController,
+                            validator: (value) =>
+                                value!.isEmptyString ? null : invalidSociety,
+                            onChanged: (value) => addressMap['state'] = value,
                           ),
                           const SizedBox(
                             height: 8,

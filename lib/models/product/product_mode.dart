@@ -32,6 +32,12 @@ class ProductModel with _$ProductModel {
     @JsonKey(includeToJson: true, includeFromJson: true) @Default(0) int index,
     //@JsonKey(ignore: true) @Default(false) bool inCart,
     double? rating,
+    String? orderId,
+    String? priceUnitId,
+    String? quantity,
+    String? purchasePrice,
+    String? price,
+    String? discount,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>

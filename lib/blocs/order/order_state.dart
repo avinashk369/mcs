@@ -7,8 +7,8 @@ class OrderState with _$OrderState {
   const factory OrderState.orderLoaded({required List<OrderModel> order}) =
       OrderLoaded;
   const factory OrderState.error({required String message}) = OrderError;
-  const factory OrderState.orderPlaced({required OrderModel orderModel}) =
-      OrderPlaced;
+  const factory OrderState.orderPlaced(
+      {OrderModel? orderModel, String? message}) = OrderPlaced;
   const factory OrderState.orderDetail({required OrderModel orderModel}) =
       OrderDetailLoaded;
 }

@@ -24,7 +24,7 @@ class _WelcomeState extends State<Welcome> {
   @override
   void initState() {
     authtoken = PreferenceUtils.getString(accessToken);
-    userId = PreferenceUtils.getString(user_id);
+    userId = PreferenceUtils.getString(user_uid);
     if (authtoken != '') print(JwtDecoder.parseJwt(authtoken));
     // TODO: implement initState
     hasSeen = PreferenceUtils.getBool(has_seen);

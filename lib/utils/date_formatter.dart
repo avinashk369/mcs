@@ -84,11 +84,7 @@ class DateFormatter {
 
   static String dateToString(DateTime rawDate) {
     //DateTime rawDate = DateFormat("yyyy-MM-dd kk:mm").parse(date);
-    return DateFormat('d').format(rawDate) +
-        " " +
-        DateFormat('LLL').format(rawDate) +
-        " " +
-        DateFormat('jm').format(rawDate);
+    return "${DateFormat('d').format(rawDate)} ${DateFormat('LLL').format(rawDate)} ${DateFormat('jm').format(rawDate)}";
   }
 
   static String dateToDateMonthDay(DateTime rawDate) {
@@ -106,9 +102,7 @@ class DateFormatter {
       DateFormat("yyyy-MM-dd").format(dateTime);
 
   static String dayMonth(String date) {
-    return DateFormat('d').format(stringToDateTime(date)) +
-        " " +
-        DateFormat('LLL').format(stringToDateTime(date));
+    return "${DateFormat('d').format(stringToDateTime(date))} ${DateFormat('LLL').format(stringToDateTime(date))}";
   }
 
   static DateTime stringToDate(String dateTime) =>

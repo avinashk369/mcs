@@ -65,8 +65,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Future _saveAddress(SaveAddress event, Emitter<UserState> emit) async {
     try {
       emit(const UserLoading());
-      await _userRepositoryImpl.saveAddress(event.data);
-      emit(const AddressSaved(message: 'User address saved successfully!'));
+      bool status = await _userRepositoryImpl.saveAddress(event.data);
+
+      emit(status
+          ? const AddressSaved(message: 'User address saved successfully!')
+          : const UserError(message: 'Something went wrong'));
     } catch (e) {
       emit(const UserError(message: 'Something went wrong'));
     }

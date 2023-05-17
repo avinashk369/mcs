@@ -112,14 +112,17 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                BlocBuilder<DataBloc, DataState>(builder: (context, state) {
-                  return state.maybeMap(
-                    loading: (value) => LoadingUI(),
-                    bannersLoaded: (value) =>
-                        PromotionalBanner(banners: value.banners),
-                    orElse: () => const SizedBox.shrink(),
-                  );
-                }),
+                BlocBuilder<DataBloc, DataState>(
+                    buildWhen: (previous, current) =>
+                        (current != previous && current is BannersLoaded),
+                    builder: (context, state) {
+                      return state.maybeMap(
+                        loading: (value) => const LoadingUI(),
+                        bannersLoaded: (value) =>
+                            PromotionalBanner(banners: value.banners),
+                        orElse: () => const SizedBox.shrink(),
+                      );
+                    }),
                 BlocBuilder<CategoryBloc, CategoryState>(
                   buildWhen: (previous, current) =>
                       (current != previous && current is CategoryLoaded),

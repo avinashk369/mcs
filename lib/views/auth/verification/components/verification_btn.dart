@@ -20,7 +20,7 @@ class VerificationBtn extends StatelessWidget {
             //PreferenceUtils.putString(accessToken, userModel.token!);
             PreferenceUtils.putString(mobile_number, userModel.mobileNo!);
             PreferenceUtils.putString(user_type, userModel.userType!);
-            PreferenceUtils.putString(user_id, userModel.id!);
+            PreferenceUtils.putString(user_uid, userModel.userId!);
 
             Navigator.of(context)
                 .popAndPushNamed(Dashboard.tag, arguments: userModel.otp);
