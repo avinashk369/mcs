@@ -18,4 +18,5 @@ class ProductEvent with _$ProductEvent {
   const factory ProductEvent.updatePrice({required ProductModel productModel}) =
       UpdatePrice;
   const factory ProductEvent.startSearch() = StartSearch;
+  const factory ProductEvent.clearKart() = ClearKart;
 }

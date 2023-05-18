@@ -27,6 +27,7 @@ mixin _$ProductEvent {
     required TResult Function(String keyword, String cityId) search,
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
+    required TResult Function() clearKart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +40,7 @@ mixin _$ProductEvent {
     TResult? Function(String keyword, String cityId)? search,
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +53,7 @@ mixin _$ProductEvent {
     TResult Function(String keyword, String cityId)? search,
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
+    TResult Function()? clearKart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +67,7 @@ mixin _$ProductEvent {
     required TResult Function(SearchProduct value) search,
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +80,7 @@ mixin _$ProductEvent {
     TResult? Function(SearchProduct value)? search,
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,6 +93,7 @@ mixin _$ProductEvent {
     TResult Function(SearchProduct value)? search,
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -202,6 +208,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     required TResult Function(String keyword, String cityId) search,
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
+    required TResult Function() clearKart,
   }) {
     return loadProduct(categoryId, cityId);
   }
@@ -217,6 +224,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult? Function(String keyword, String cityId)? search,
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
   }) {
     return loadProduct?.call(categoryId, cityId);
   }
@@ -232,6 +240,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult Function(String keyword, String cityId)? search,
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
+    TResult Function()? clearKart,
     required TResult orElse(),
   }) {
     if (loadProduct != null) {
@@ -251,6 +260,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     required TResult Function(SearchProduct value) search,
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
   }) {
     return loadProduct(this);
   }
@@ -266,6 +276,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult? Function(SearchProduct value)? search,
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
   }) {
     return loadProduct?.call(this);
   }
@@ -281,6 +292,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult Function(SearchProduct value)? search,
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
     required TResult orElse(),
   }) {
     if (loadProduct != null) {
@@ -403,6 +415,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     required TResult Function(String keyword, String cityId) search,
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
+    required TResult Function() clearKart,
   }) {
     return addProduct(productModel, isCart);
   }
@@ -418,6 +431,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult? Function(String keyword, String cityId)? search,
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
   }) {
     return addProduct?.call(productModel, isCart);
   }
@@ -433,6 +447,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult Function(String keyword, String cityId)? search,
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
+    TResult Function()? clearKart,
     required TResult orElse(),
   }) {
     if (addProduct != null) {
@@ -452,6 +467,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     required TResult Function(SearchProduct value) search,
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
   }) {
     return addProduct(this);
   }
@@ -467,6 +483,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult? Function(SearchProduct value)? search,
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
   }) {
     return addProduct?.call(this);
   }
@@ -482,6 +499,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult Function(SearchProduct value)? search,
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
     required TResult orElse(),
   }) {
     if (addProduct != null) {
@@ -595,6 +613,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     required TResult Function(String keyword, String cityId) search,
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
+    required TResult Function() clearKart,
   }) {
     return removeProduct(productModel);
   }
@@ -610,6 +629,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult? Function(String keyword, String cityId)? search,
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
   }) {
     return removeProduct?.call(productModel);
   }
@@ -625,6 +645,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult Function(String keyword, String cityId)? search,
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
+    TResult Function()? clearKart,
     required TResult orElse(),
   }) {
     if (removeProduct != null) {
@@ -644,6 +665,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     required TResult Function(SearchProduct value) search,
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
   }) {
     return removeProduct(this);
   }
@@ -659,6 +681,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult? Function(SearchProduct value)? search,
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
   }) {
     return removeProduct?.call(this);
   }
@@ -674,6 +697,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult Function(SearchProduct value)? search,
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
     required TResult orElse(),
   }) {
     if (removeProduct != null) {
@@ -785,6 +809,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     required TResult Function(String keyword, String cityId) search,
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
+    required TResult Function() clearKart,
   }) {
     return deleteProduct(productModel);
   }
@@ -800,6 +825,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult? Function(String keyword, String cityId)? search,
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
   }) {
     return deleteProduct?.call(productModel);
   }
@@ -815,6 +841,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult Function(String keyword, String cityId)? search,
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
+    TResult Function()? clearKart,
     required TResult orElse(),
   }) {
     if (deleteProduct != null) {
@@ -834,6 +861,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     required TResult Function(SearchProduct value) search,
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
   }) {
     return deleteProduct(this);
   }
@@ -849,6 +877,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult? Function(SearchProduct value)? search,
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
   }) {
     return deleteProduct?.call(this);
   }
@@ -864,6 +893,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult Function(SearchProduct value)? search,
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
     required TResult orElse(),
   }) {
     if (deleteProduct != null) {
@@ -967,6 +997,7 @@ class _$LoadProductByCatId
     required TResult Function(String keyword, String cityId) search,
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
+    required TResult Function() clearKart,
   }) {
     return loadProductByCatId(catId);
   }
@@ -982,6 +1013,7 @@ class _$LoadProductByCatId
     TResult? Function(String keyword, String cityId)? search,
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
   }) {
     return loadProductByCatId?.call(catId);
   }
@@ -997,6 +1029,7 @@ class _$LoadProductByCatId
     TResult Function(String keyword, String cityId)? search,
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
+    TResult Function()? clearKart,
     required TResult orElse(),
   }) {
     if (loadProductByCatId != null) {
@@ -1016,6 +1049,7 @@ class _$LoadProductByCatId
     required TResult Function(SearchProduct value) search,
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
   }) {
     return loadProductByCatId(this);
   }
@@ -1031,6 +1065,7 @@ class _$LoadProductByCatId
     TResult? Function(SearchProduct value)? search,
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
   }) {
     return loadProductByCatId?.call(this);
   }
@@ -1046,6 +1081,7 @@ class _$LoadProductByCatId
     TResult Function(SearchProduct value)? search,
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
     required TResult orElse(),
   }) {
     if (loadProductByCatId != null) {
@@ -1155,6 +1191,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     required TResult Function(String keyword, String cityId) search,
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
+    required TResult Function() clearKart,
   }) {
     return search(keyword, cityId);
   }
@@ -1170,6 +1207,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult? Function(String keyword, String cityId)? search,
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
   }) {
     return search?.call(keyword, cityId);
   }
@@ -1185,6 +1223,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult Function(String keyword, String cityId)? search,
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
+    TResult Function()? clearKart,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -1204,6 +1243,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     required TResult Function(SearchProduct value) search,
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
   }) {
     return search(this);
   }
@@ -1219,6 +1259,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult? Function(SearchProduct value)? search,
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
   }) {
     return search?.call(this);
   }
@@ -1234,6 +1275,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult Function(SearchProduct value)? search,
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -1347,6 +1389,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     required TResult Function(String keyword, String cityId) search,
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
+    required TResult Function() clearKart,
   }) {
     return updatePrice(productModel);
   }
@@ -1362,6 +1405,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult? Function(String keyword, String cityId)? search,
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
   }) {
     return updatePrice?.call(productModel);
   }
@@ -1377,6 +1421,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult Function(String keyword, String cityId)? search,
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
+    TResult Function()? clearKart,
     required TResult orElse(),
   }) {
     if (updatePrice != null) {
@@ -1396,6 +1441,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     required TResult Function(SearchProduct value) search,
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
   }) {
     return updatePrice(this);
   }
@@ -1411,6 +1457,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult? Function(SearchProduct value)? search,
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
   }) {
     return updatePrice?.call(this);
   }
@@ -1426,6 +1473,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult Function(SearchProduct value)? search,
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
     required TResult orElse(),
   }) {
     if (updatePrice != null) {
@@ -1498,6 +1546,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     required TResult Function(String keyword, String cityId) search,
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
+    required TResult Function() clearKart,
   }) {
     return startSearch();
   }
@@ -1513,6 +1562,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult? Function(String keyword, String cityId)? search,
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
   }) {
     return startSearch?.call();
   }
@@ -1528,6 +1578,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult Function(String keyword, String cityId)? search,
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
+    TResult Function()? clearKart,
     required TResult orElse(),
   }) {
     if (startSearch != null) {
@@ -1547,6 +1598,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     required TResult Function(SearchProduct value) search,
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
   }) {
     return startSearch(this);
   }
@@ -1562,6 +1614,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult? Function(SearchProduct value)? search,
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
   }) {
     return startSearch?.call(this);
   }
@@ -1577,6 +1630,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult Function(SearchProduct value)? search,
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
     required TResult orElse(),
   }) {
     if (startSearch != null) {
@@ -1588,6 +1642,157 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
 
 abstract class StartSearch implements ProductEvent {
   const factory StartSearch() = _$StartSearch;
+}
+
+/// @nodoc
+abstract class _$$ClearKartCopyWith<$Res> {
+  factory _$$ClearKartCopyWith(
+          _$ClearKart value, $Res Function(_$ClearKart) then) =
+      __$$ClearKartCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearKartCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$ClearKart>
+    implements _$$ClearKartCopyWith<$Res> {
+  __$$ClearKartCopyWithImpl(
+      _$ClearKart _value, $Res Function(_$ClearKart) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
+  const _$ClearKart();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ProductEvent.clearKart()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'ProductEvent.clearKart'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearKart);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(ProductModel productModel, bool isCart)
+        addProduct,
+    required TResult Function(ProductModel productModel) removeProduct,
+    required TResult Function(ProductModel productModel) deleteProduct,
+    required TResult Function(String catId) loadProductByCatId,
+    required TResult Function(String keyword, String cityId) search,
+    required TResult Function(ProductModel productModel) updatePrice,
+    required TResult Function() startSearch,
+    required TResult Function() clearKart,
+  }) {
+    return clearKart();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel)? removeProduct,
+    TResult? Function(ProductModel productModel)? deleteProduct,
+    TResult? Function(String catId)? loadProductByCatId,
+    TResult? Function(String keyword, String cityId)? search,
+    TResult? Function(ProductModel productModel)? updatePrice,
+    TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
+  }) {
+    return clearKart?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel)? removeProduct,
+    TResult Function(ProductModel productModel)? deleteProduct,
+    TResult Function(String catId)? loadProductByCatId,
+    TResult Function(String keyword, String cityId)? search,
+    TResult Function(ProductModel productModel)? updatePrice,
+    TResult Function()? startSearch,
+    TResult Function()? clearKart,
+    required TResult orElse(),
+  }) {
+    if (clearKart != null) {
+      return clearKart();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(AddProduct value) addProduct,
+    required TResult Function(RemoveProduct value) removeProduct,
+    required TResult Function(DeleteProduct value) deleteProduct,
+    required TResult Function(LoadProductByCatId value) loadProductByCatId,
+    required TResult Function(SearchProduct value) search,
+    required TResult Function(UpdatePrice value) updatePrice,
+    required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
+  }) {
+    return clearKart(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(AddProduct value)? addProduct,
+    TResult? Function(RemoveProduct value)? removeProduct,
+    TResult? Function(DeleteProduct value)? deleteProduct,
+    TResult? Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult? Function(SearchProduct value)? search,
+    TResult? Function(UpdatePrice value)? updatePrice,
+    TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
+  }) {
+    return clearKart?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(AddProduct value)? addProduct,
+    TResult Function(RemoveProduct value)? removeProduct,
+    TResult Function(DeleteProduct value)? deleteProduct,
+    TResult Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult Function(SearchProduct value)? search,
+    TResult Function(UpdatePrice value)? updatePrice,
+    TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
+    required TResult orElse(),
+  }) {
+    if (clearKart != null) {
+      return clearKart(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ClearKart implements ProductEvent {
+  const factory ClearKart() = _$ClearKart;
 }
 
 /// @nodoc

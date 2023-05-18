@@ -27,9 +27,22 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           search: (event) async => await _searchProduct(event, emit),
           updatePrice: (event) async => await _updatePrice(event, emit),
           startSearch: (event) async => await _startSearch(event, emit),
+          clearKart: (event) async => await _clearKart(event, emit),
         );
       },
     );
+  }
+
+  /// clear kart event
+  Future _clearKart(ClearKart event, Emitter<ProductState> emit) async {
+    try {
+      final state = this.state;
+      if (state is ProductLoaded) {
+        emit(const ProductLoaded(products: [], addedProducts: []));
+      }
+    } catch (e) {
+      emit(const ProductError(message: 'Something went wrong'));
+    }
   }
 
   /// start search event ehandeling to make loaded product list empty

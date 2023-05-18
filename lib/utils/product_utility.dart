@@ -30,27 +30,43 @@ class ProductUtility {
 
   static String perKgPrice(double price) => (price / 1000).toStringAsFixed(2);
 
-  static List<String> getProductQty(List<ProductModel> products) {
-    List<String> qty = [];
+  static String getProductQty(List<ProductModel> products) {
+    // List<String> qty = [];
+    // for (ProductModel product in products) {
+    //   qty.add(product.count.toString());
+    // }
+    // return qty;
+    String qty = "";
     for (ProductModel product in products) {
-      qty.add(product.count.toString());
+      qty += "${product.count},";
     }
-    return qty;
+    return qty.substring(0, qty.length - 1);
   }
 
-  static List<String> getProductIds(List<ProductModel> products) {
-    List<String> ids = [];
+  static String getProductIds(List<ProductModel> products) {
+    // List<String> ids = [];
+    // for (ProductModel product in products) {
+    //   ids.add(product.productId.toString());
+    // }
+    // return ids;
+    String ids = "";
     for (ProductModel product in products) {
-      ids.add(product.productId.toString());
+      ids += "${product.productId},";
     }
-    return ids;
+    return ids.substring(0, ids.length - 1);
   }
 
-  static List<String> getProductPriceUnitIds(List<ProductModel> products) {
-    List<String> priceUnits = [];
+  static String getProductPriceUnitIds(List<ProductModel> products) {
+    // List<String> priceUnits = [];
+    // for (ProductModel product in products) {
+    //   priceUnits.add(product.variant![product.index].priceUnitId.toString());
+    // }
+    // return priceUnits;
+    String priceUnits = "";
     for (ProductModel product in products) {
-      priceUnits.add(product.variant![product.index].priceUnitId.toString());
+      priceUnits +=
+          "${product.variant![product.index].priceUnitId.toString()},";
     }
-    return priceUnits;
+    return priceUnits.substring(0, priceUnits.length - 1);
   }
 }

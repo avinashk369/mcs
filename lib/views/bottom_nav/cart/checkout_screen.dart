@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mcs/blocs/cart/cart_bloc.dart';
 import 'package:mcs/blocs/location/location_bloc.dart';
+import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/models/models.dart';
 import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
@@ -52,6 +53,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   double saved = 0;
   Map<String, dynamic> addressMap = {};
   late String addressId;
+  late String address;
   @override
   void initState() {
     _fNameController = TextEditingController();
@@ -142,9 +144,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           msg: value.message!,
                           backgroundColor: greenColor,
                           textColor: secondaryLight);
+                      context.read<ProductBloc>().add(const ClearKart());
 
                       /// Navigate to the order list screen
-                      Navigator.of(context).pushNamed(OrderHistory.tag);
+                      Navigator.of(context)
+                          .pushReplacementNamed(OrderHistory.tag);
                     },
                   ),
                   builder: (context, state) {
@@ -162,6 +166,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         data.putIfAbsent('user_id', () => userId);
                         data.putIfAbsent(
                             'delivery_address_id', () => addressId);
+                        data.putIfAbsent('address', () => address);
                         data.putIfAbsent('deduct_wallet', () => 0);
                         data.putIfAbsent('total_amount',
                             () => total + widget.shippingCharge);
@@ -215,8 +220,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   BlocConsumer<UserBloc, UserState>(
                     listenWhen: (previous, current) => current is AddressLoaded,
                     listener: (context, state) => state.mapOrNull(
-                      addressLoaded: (value) =>
-                          addressId = value.userAddress.first.address!,
+                      addressLoaded: (value) {
+                        addressId = value.userAddress.first.deliveryAddressId!;
+                        address = value.userAddress.first.address!;
+                      },
                     ),
                     buildWhen: (previous, current) => current is AddressLoaded,
                     builder: (context, state) => state.maybeMap(

@@ -10,8 +10,14 @@ class BaseResponse<T> {
   final bool? status;
   final T? data;
   final int? newUser;
-  BaseResponse(this.message, this.data,
-      {this.status = false, this.newUser = 0});
+  final double? subTotal;
+  BaseResponse(
+    this.message,
+    this.data, {
+    this.status = false,
+    this.newUser = 0,
+    this.subTotal = 0.0,
+  });
   factory BaseResponse.fromJson(
     Map<String, dynamic> json,
     T Function(Object? json) fromJsonT,

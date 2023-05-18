@@ -55,11 +55,13 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   Future _orderDetail(OrderDetail event, Emitter<OrderState> emit) async {
     try {
       emit(const OrderLoading());
-      BaseResponse<OrderModel> order =
+
+      BaseResponse<List<ProductModel>> products =
           await _orderRepository.orderDetail(event.data);
-      emit(order.status!
-          ? OrderDetailLoaded(orderModel: order.data!)
-          : OrderError(message: order.message!));
+      emit(products.status!
+          ? OrderDetailLoaded(
+              products: products.data!, subTotal: products.subTotal!)
+          : OrderError(message: products.message!));
     } on ServerError catch (error) {
       emit(OrderError(message: error.errorMessage));
     } catch (e) {

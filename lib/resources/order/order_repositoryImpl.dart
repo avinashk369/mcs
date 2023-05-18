@@ -33,14 +33,14 @@ class OrderRepositoryImpl extends OrderRepository {
   }
 
   @override
-  Future<BaseResponse<OrderModel>> orderDetail(
+  Future<BaseResponse<List<ProductModel>>> orderDetail(
       Map<String, dynamic> data) async {
-    late BaseResponse<OrderModel> orderModel;
+    late BaseResponse<List<ProductModel>> products;
     try {
-      orderModel = await apiClient.orderDetail(data);
+      products = await apiClient.orderDetail(data);
     } catch (error, _) {
       throw ServerError.withError(error: error);
     }
-    return orderModel;
+    return products;
   }
 }

@@ -109,7 +109,7 @@ abstract class ApiClient {
 
   @POST(ApiConst.orderDetail)
   @FormUrlEncoded()
-  Future<BaseResponse<OrderModel>> orderDetail(
+  Future<BaseResponse<List<ProductModel>>> orderDetail(
     @Body() Map<String, dynamic> data,
   );
 

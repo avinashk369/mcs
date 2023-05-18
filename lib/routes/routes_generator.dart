@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mcs/models/category/category_model.dart';
+import 'package:mcs/models/order/order_model.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/auth/verification/screens/user_verification.dart';
@@ -11,6 +12,7 @@ import 'package:mcs/views/order/order_history.dart';
 import 'package:mcs/views/welcome.dart';
 
 import '../views/bottom_nav/product/search/product_search_screen.dart';
+import '../views/order/order_detail_screen.dart';
 import 'route_constants.dart';
 
 class RouteGenerator {
@@ -67,7 +69,11 @@ class RouteGenerator {
           ),
         );
       case OrderHistory.tag:
-        return SlideRightRoute(page: OrderHistory());
+        return SlideRightRoute(page: const OrderHistory());
+      case OrderDetailScreen.tag:
+        Map<String, dynamic> data = args as Map<String, dynamic>;
+        OrderModel orderModel = data['order_model'];
+        return SlideRightRoute(page: OrderDetailScreen(orderModel: orderModel));
 
       default:
         // If there is no such named route in the switch statement, e.g. /third
