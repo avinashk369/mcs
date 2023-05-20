@@ -3,7 +3,7 @@ class ApiConst {
 //"https://mcs-rest-api.herokuapp.com/";
   /// online canteen api base url
   /// https://onlinecanteen.in/canteen_api/Api_controller/GetCity
-  static const String apiUrl = "https://onlinecanteen.in/canteen_api/";
+  static const String apiUrl = "https://onlinecanteen.in/tentionfreekart/";
 
   static const String cityList = 'Api_controller/GetCity';
 
