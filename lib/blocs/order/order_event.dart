@@ -8,4 +8,5 @@ class OrderEvent with _$OrderEvent {
       LoadOrder;
   const factory OrderEvent.orderDetail({required Map<String, dynamic> data}) =
       OrderDetail;
+  const factory OrderEvent.expandList({required bool isExpanded}) = ExpandList;
 }

@@ -4,13 +4,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/order/order_bloc.dart';
+import 'package:mcs/blocs/product/productbloc.dart';
 import 'package:mcs/models/order/order_model.dart';
+import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/order/order_detail_screen.dart';
 
 import '../../resources/order/order_repositoryImpl.dart';
 import '../../routes/route_constants.dart';
 import '../../widgets/loading_ui.dart';
+import '../bottom_nav/cart/checkout_screen.dart';
 part './components/order_card.dart';
 
 class OrderHistory extends StatelessWidget {
@@ -50,11 +53,36 @@ class OrderHistory extends StatelessWidget {
                           onTap: (orderModel) => Navigator.of(context)
                               .pushNamed(OrderDetailScreen.tag,
                                   arguments: {'order_model': orderModel}),
+                          repeatOrder: (orderModel, products) {
+                            context.read<ProductBloc>().add(RepeatOrder(
+                                products: products,
+                                shippingCharge: double.tryParse(
+                                    orderModel.shippingCharge!)!));
+                            // change the navigation to the cart page on home screen. index 2 is cart index, it can be changed
+                            // context.read<NavigationBloc>().changeNavigation(3);
+                            // pop the navigation stack to the home screen
+                            // Navigator.of(context).pop();
+                          },
                         ),
                         separatorBuilder: (_, __) => const SizedBox(height: 10),
                       ),
                       orElse: () => const SizedBox.shrink(),
                     ),
+                  ),
+                  BlocListener<ProductBloc, ProductState>(
+                    listener: (_, state) {
+                      if (state is ProductLoaded) {
+                        Map<String, dynamic> data = {};
+                        data.putIfAbsent('products', () => state.addedProducts);
+                        data.putIfAbsent(
+                            'shipping_charge', () => state.shippingCharge);
+
+                        Navigator.of(context).pushReplacementNamed(
+                            CheckoutScreen.tag,
+                            arguments: data);
+                      }
+                    },
+                    child: const SizedBox.shrink(),
                   )
                 ],
               ),

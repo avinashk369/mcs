@@ -25,6 +25,25 @@ class ProductUtility {
     return total;
   }
 
+  /// calculate order item price
+  static double calculateOrderItemPrice(List<ProductModel> products) {
+    double total = 0.0;
+    for (var element in products) {
+      total += double.parse(element.price!) * int.tryParse(element.quantity!)!;
+    }
+    return total;
+  }
+
+  /// calculate original order item price
+  static double calculateOriginalOrderItemPrice(List<ProductModel> products) {
+    double total = 0.0;
+    for (var element in products) {
+      total += double.parse(element.originalPrice!) *
+          int.tryParse(element.quantity!)!;
+    }
+    return total;
+  }
+
   static int getCalculatedOffer(double part, double total) =>
       (((total - part) / total) * 100).toInt();
 

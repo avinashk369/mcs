@@ -41,7 +41,7 @@ class ShoppingItem extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: productModel.productImage ??
                     ' https://picsum.photos/250?image=9 ',
-                errorWidget: (context, url, error) =>
+                errorWidget: (_, __, ___) =>
                     Image.asset('assets/images/logo.png'),
                 fit: BoxFit.fitWidth,
               ),

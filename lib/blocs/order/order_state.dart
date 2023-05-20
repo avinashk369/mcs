@@ -12,4 +12,6 @@ class OrderState with _$OrderState {
   const factory OrderState.orderDetail(
       {required List<ProductModel> products,
       required double subTotal}) = OrderDetailLoaded;
+  const factory OrderState.expandedList({required bool isExapnded}) =
+      ExpandedList;
 }

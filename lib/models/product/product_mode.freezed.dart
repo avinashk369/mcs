@@ -45,6 +45,10 @@ mixin _$ProductModel {
   String? get purchasePrice => throw _privateConstructorUsedError;
   String? get price => throw _privateConstructorUsedError;
   String? get discount => throw _privateConstructorUsedError;
+  String? get itemId => throw _privateConstructorUsedError;
+  String? get originalPrice => throw _privateConstructorUsedError;
+  String? get unit => throw _privateConstructorUsedError;
+  int? get total => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -80,7 +84,11 @@ abstract class $ProductModelCopyWith<$Res> {
       String? quantity,
       String? purchasePrice,
       String? price,
-      String? discount});
+      String? discount,
+      String? itemId,
+      String? originalPrice,
+      String? unit,
+      int? total});
 }
 
 /// @nodoc
@@ -118,6 +126,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? purchasePrice = freezed,
     Object? price = freezed,
     Object? discount = freezed,
+    Object? itemId = freezed,
+    Object? originalPrice = freezed,
+    Object? unit = freezed,
+    Object? total = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -208,6 +220,22 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
               as String?,
+      itemId: freezed == itemId
+          ? _value.itemId
+          : itemId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      originalPrice: freezed == originalPrice
+          ? _value.originalPrice
+          : originalPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      total: freezed == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -242,7 +270,11 @@ abstract class _$$_ProductModelCopyWith<$Res>
       String? quantity,
       String? purchasePrice,
       String? price,
-      String? discount});
+      String? discount,
+      String? itemId,
+      String? originalPrice,
+      String? unit,
+      int? total});
 }
 
 /// @nodoc
@@ -278,6 +310,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? purchasePrice = freezed,
     Object? price = freezed,
     Object? discount = freezed,
+    Object? itemId = freezed,
+    Object? originalPrice = freezed,
+    Object? unit = freezed,
+    Object? total = freezed,
   }) {
     return _then(_$_ProductModel(
       id: freezed == id
@@ -368,6 +404,22 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
               as String?,
+      itemId: freezed == itemId
+          ? _value.itemId
+          : itemId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      originalPrice: freezed == originalPrice
+          ? _value.originalPrice
+          : originalPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as String?,
+      total: freezed == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -399,7 +451,11 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       this.quantity,
       this.purchasePrice,
       this.price,
-      this.discount})
+      this.discount,
+      this.itemId,
+      this.originalPrice,
+      this.unit,
+      this.total})
       : _variant = variant;
 
   factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -460,10 +516,18 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
   final String? price;
   @override
   final String? discount;
+  @override
+  final String? itemId;
+  @override
+  final String? originalPrice;
+  @override
+  final String? unit;
+  @override
+  final int? total;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProductModel(id: $id, productId: $productId, name: $name, description: $description, productImage: $productImage, stockStatus: $stockStatus, categoryId: $categoryId, cityId: $cityId, couponCode: $couponCode, createdAt: $createdAt, updatedAt: $updatedAt, productGroup: $productGroup, variant: $variant, count: $count, index: $index, rating: $rating, orderId: $orderId, priceUnitId: $priceUnitId, quantity: $quantity, purchasePrice: $purchasePrice, price: $price, discount: $discount)';
+    return 'ProductModel(id: $id, productId: $productId, name: $name, description: $description, productImage: $productImage, stockStatus: $stockStatus, categoryId: $categoryId, cityId: $cityId, couponCode: $couponCode, createdAt: $createdAt, updatedAt: $updatedAt, productGroup: $productGroup, variant: $variant, count: $count, index: $index, rating: $rating, orderId: $orderId, priceUnitId: $priceUnitId, quantity: $quantity, purchasePrice: $purchasePrice, price: $price, discount: $discount, itemId: $itemId, originalPrice: $originalPrice, unit: $unit, total: $total)';
   }
 
   @override
@@ -492,7 +556,11 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       ..add(DiagnosticsProperty('quantity', quantity))
       ..add(DiagnosticsProperty('purchasePrice', purchasePrice))
       ..add(DiagnosticsProperty('price', price))
-      ..add(DiagnosticsProperty('discount', discount));
+      ..add(DiagnosticsProperty('discount', discount))
+      ..add(DiagnosticsProperty('itemId', itemId))
+      ..add(DiagnosticsProperty('originalPrice', originalPrice))
+      ..add(DiagnosticsProperty('unit', unit))
+      ..add(DiagnosticsProperty('total', total));
   }
 
   @override
@@ -534,7 +602,12 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
                 other.purchasePrice == purchasePrice) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.discount, discount) ||
-                other.discount == discount));
+                other.discount == discount) &&
+            (identical(other.itemId, itemId) || other.itemId == itemId) &&
+            (identical(other.originalPrice, originalPrice) ||
+                other.originalPrice == originalPrice) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.total, total) || other.total == total));
   }
 
   @JsonKey(ignore: true)
@@ -562,7 +635,11 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
         quantity,
         purchasePrice,
         price,
-        discount
+        discount,
+        itemId,
+        originalPrice,
+        unit,
+        total
       ]);
 
   @JsonKey(ignore: true)
@@ -602,7 +679,11 @@ abstract class _ProductModel implements ProductModel {
       final String? quantity,
       final String? purchasePrice,
       final String? price,
-      final String? discount}) = _$_ProductModel;
+      final String? discount,
+      final String? itemId,
+      final String? originalPrice,
+      final String? unit,
+      final int? total}) = _$_ProductModel;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$_ProductModel.fromJson;
@@ -653,6 +734,14 @@ abstract class _ProductModel implements ProductModel {
   String? get price;
   @override
   String? get discount;
+  @override
+  String? get itemId;
+  @override
+  String? get originalPrice;
+  @override
+  String? get unit;
+  @override
+  int? get total;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>

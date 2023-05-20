@@ -30,6 +30,7 @@ class PhoneNumber extends StatelessWidget {
                   hintText: phoneNumber,
                   textController: mobileNumberController,
                   textInputType: TextInputType.phone,
+                  onTouched: () => () {},
                   onChanged: (value) => loginBloc.checkNumber(value),
                   validator: (value) =>
                       (value!.length < 10) ? "Invalid mobile number" : null,

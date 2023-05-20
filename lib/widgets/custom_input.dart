@@ -78,7 +78,7 @@ class CustomInput extends StatelessWidget {
       textCapitalization: textCapitalization,
       readOnly: readOnly,
       onChanged: (value) => onChanged!(value),
-      onTap: () => onTouched ?? () {},
+      onTap: () => onTouched!() ?? () {},
       style: textStyle,
       decoration: inputTextDecoration.copyWith(
           hintText: hintText,

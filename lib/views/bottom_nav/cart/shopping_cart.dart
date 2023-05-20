@@ -368,6 +368,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                 textController: _fNameController,
                                 validator: (value) =>
                                     value!.isEmptyString ? null : invalidFName,
+                                onTouched: () => () {},
                               ),
                               const SizedBox(
                                 height: 8,
@@ -378,6 +379,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                 textController: _lNameController,
                                 validator: (value) =>
                                     value!.isEmptyString ? null : invalidLName,
+                                onTouched: () => () {},
                               ),
                               const SizedBox(
                                 height: 8,
@@ -389,6 +391,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                     value!.isValidEmail ? null : emailError,
                                 maxLength: 50,
                                 textInputType: TextInputType.emailAddress,
+                                onTouched: () => () {},
                               ),
                               const SizedBox(
                                 height: 10,

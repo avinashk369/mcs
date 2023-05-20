@@ -9,7 +9,8 @@ class ProductState with _$ProductState {
       List<ProductModel>? addedProducts,
       List<ProductModel>? personalCare,
       List<ProductModel>? dailyNeeds,
-      List<ProductModel>? dairyProducts}) = ProductLoaded;
+      List<ProductModel>? dairyProducts,
+      @Default(0.0) double shippingCharge}) = ProductLoaded;
   const factory ProductState.error(
       {required String message,
       List<ProductModel>? addedProducts}) = ProductError;

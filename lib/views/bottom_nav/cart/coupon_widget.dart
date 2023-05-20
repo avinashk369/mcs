@@ -35,6 +35,7 @@ class CouponWidget extends StatelessWidget {
                             value!.isEmptyString ? null : invalidCoupon,
                         hintTextStyle: kLabelStyle,
                         maxLength: 6,
+                        onTouched: () => () {},
                       ),
                     ),
                     const SizedBox(

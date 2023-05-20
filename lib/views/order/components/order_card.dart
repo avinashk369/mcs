@@ -1,9 +1,15 @@
 part of order_history;
 
 class OrderCard extends StatelessWidget {
-  const OrderCard({super.key, required this.orderModel, required this.onTap});
+  const OrderCard(
+      {super.key,
+      required this.orderModel,
+      required this.onTap,
+      required this.repeatOrder});
   final OrderModel orderModel;
   final Function(OrderModel orderModel) onTap;
+  final Function(OrderModel orderModel, List<ProductModel> products)
+      repeatOrder;
 
   @override
   Widget build(BuildContext context) {
@@ -27,20 +33,18 @@ class OrderCard extends StatelessWidget {
                     width: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: greenColor.withOpacity(.2),
+                      color: statusColor(orderModel).withOpacity(.2),
                     ),
-                    child: const Center(
-                      child: Icon(
-                        Icons.check,
-                        color: greenColor,
-                      ),
+                    child: Center(
+                      child: statusIcon(orderModel),
                     ),
                   ),
                   const SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Delivered in 16 minutes", style: kLabelStyleBold),
+                      Text("Order ${orderModel.status!}",
+                          style: kLabelStyleBold),
                       const SizedBox(height: 5),
                       Text(
                         "#${orderModel.orderId} - ${DateFormatter.dateToString(DateFormatter.stringToDate(orderModel.orderedAt!))}",
@@ -114,7 +118,8 @@ class OrderCard extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
-              onPressed: () {},
+              onPressed: () =>
+                  repeatOrder(orderModel, orderModel.productDetails!),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 5),
                 child: Text(
@@ -127,5 +132,27 @@ class OrderCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget statusIcon(OrderModel orderModel) {
+    switch (orderModel.status) {
+      case "Processing":
+        return Icon(Icons.hourglass_bottom, color: statusColor(orderModel));
+      case "Delivered":
+        return Icon(Icons.check, color: statusColor(orderModel));
+      default:
+        return Icon(Icons.pending, color: statusColor(orderModel));
+    }
+  }
+
+  Color statusColor(OrderModel orderModel) {
+    switch (orderModel.status) {
+      case "Processing":
+        return Colors.orange;
+      case "Delivered":
+        return primaryLight;
+      default:
+        return primaryLight;
+    }
   }
 }

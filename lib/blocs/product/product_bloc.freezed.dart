@@ -28,6 +28,9 @@ mixin _$ProductEvent {
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
     required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +44,8 @@ mixin _$ProductEvent {
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
     TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +59,8 @@ mixin _$ProductEvent {
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
     TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +75,7 @@ mixin _$ProductEvent {
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +89,7 @@ mixin _$ProductEvent {
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -94,6 +103,7 @@ mixin _$ProductEvent {
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -209,6 +219,9 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
     required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
   }) {
     return loadProduct(categoryId, cityId);
   }
@@ -225,6 +238,8 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
     TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
   }) {
     return loadProduct?.call(categoryId, cityId);
   }
@@ -241,6 +256,8 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
     TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
     required TResult orElse(),
   }) {
     if (loadProduct != null) {
@@ -261,6 +278,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
   }) {
     return loadProduct(this);
   }
@@ -277,6 +295,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
   }) {
     return loadProduct?.call(this);
   }
@@ -293,6 +312,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
     required TResult orElse(),
   }) {
     if (loadProduct != null) {
@@ -416,6 +436,9 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
     required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
   }) {
     return addProduct(productModel, isCart);
   }
@@ -432,6 +455,8 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
     TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
   }) {
     return addProduct?.call(productModel, isCart);
   }
@@ -448,6 +473,8 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
     TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
     required TResult orElse(),
   }) {
     if (addProduct != null) {
@@ -468,6 +495,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
   }) {
     return addProduct(this);
   }
@@ -484,6 +512,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
   }) {
     return addProduct?.call(this);
   }
@@ -500,6 +529,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
     required TResult orElse(),
   }) {
     if (addProduct != null) {
@@ -614,6 +644,9 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
     required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
   }) {
     return removeProduct(productModel);
   }
@@ -630,6 +663,8 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
     TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
   }) {
     return removeProduct?.call(productModel);
   }
@@ -646,6 +681,8 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
     TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
     required TResult orElse(),
   }) {
     if (removeProduct != null) {
@@ -666,6 +703,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
   }) {
     return removeProduct(this);
   }
@@ -682,6 +720,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
   }) {
     return removeProduct?.call(this);
   }
@@ -698,6 +737,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
     required TResult orElse(),
   }) {
     if (removeProduct != null) {
@@ -810,6 +850,9 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
     required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
   }) {
     return deleteProduct(productModel);
   }
@@ -826,6 +869,8 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
     TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
   }) {
     return deleteProduct?.call(productModel);
   }
@@ -842,6 +887,8 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
     TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
     required TResult orElse(),
   }) {
     if (deleteProduct != null) {
@@ -862,6 +909,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
   }) {
     return deleteProduct(this);
   }
@@ -878,6 +926,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
   }) {
     return deleteProduct?.call(this);
   }
@@ -894,6 +943,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
     required TResult orElse(),
   }) {
     if (deleteProduct != null) {
@@ -998,6 +1048,9 @@ class _$LoadProductByCatId
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
     required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
   }) {
     return loadProductByCatId(catId);
   }
@@ -1014,6 +1067,8 @@ class _$LoadProductByCatId
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
     TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
   }) {
     return loadProductByCatId?.call(catId);
   }
@@ -1030,6 +1085,8 @@ class _$LoadProductByCatId
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
     TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
     required TResult orElse(),
   }) {
     if (loadProductByCatId != null) {
@@ -1050,6 +1107,7 @@ class _$LoadProductByCatId
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
   }) {
     return loadProductByCatId(this);
   }
@@ -1066,6 +1124,7 @@ class _$LoadProductByCatId
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
   }) {
     return loadProductByCatId?.call(this);
   }
@@ -1082,6 +1141,7 @@ class _$LoadProductByCatId
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
     required TResult orElse(),
   }) {
     if (loadProductByCatId != null) {
@@ -1192,6 +1252,9 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
     required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
   }) {
     return search(keyword, cityId);
   }
@@ -1208,6 +1271,8 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
     TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
   }) {
     return search?.call(keyword, cityId);
   }
@@ -1224,6 +1289,8 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
     TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -1244,6 +1311,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
   }) {
     return search(this);
   }
@@ -1260,6 +1328,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
   }) {
     return search?.call(this);
   }
@@ -1276,6 +1345,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -1390,6 +1460,9 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
     required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
   }) {
     return updatePrice(productModel);
   }
@@ -1406,6 +1479,8 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
     TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
   }) {
     return updatePrice?.call(productModel);
   }
@@ -1422,6 +1497,8 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
     TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
     required TResult orElse(),
   }) {
     if (updatePrice != null) {
@@ -1442,6 +1519,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
   }) {
     return updatePrice(this);
   }
@@ -1458,6 +1536,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
   }) {
     return updatePrice?.call(this);
   }
@@ -1474,6 +1553,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
     required TResult orElse(),
   }) {
     if (updatePrice != null) {
@@ -1547,6 +1627,9 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
     required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
   }) {
     return startSearch();
   }
@@ -1563,6 +1646,8 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
     TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
   }) {
     return startSearch?.call();
   }
@@ -1579,6 +1664,8 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
     TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
     required TResult orElse(),
   }) {
     if (startSearch != null) {
@@ -1599,6 +1686,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
   }) {
     return startSearch(this);
   }
@@ -1615,6 +1703,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
   }) {
     return startSearch?.call(this);
   }
@@ -1631,6 +1720,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
     required TResult orElse(),
   }) {
     if (startSearch != null) {
@@ -1698,6 +1788,9 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     required TResult Function(ProductModel productModel) updatePrice,
     required TResult Function() startSearch,
     required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
   }) {
     return clearKart();
   }
@@ -1714,6 +1807,8 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     TResult? Function(ProductModel productModel)? updatePrice,
     TResult? Function()? startSearch,
     TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
   }) {
     return clearKart?.call();
   }
@@ -1730,6 +1825,8 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     TResult Function(ProductModel productModel)? updatePrice,
     TResult Function()? startSearch,
     TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
     required TResult orElse(),
   }) {
     if (clearKart != null) {
@@ -1750,6 +1847,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     required TResult Function(UpdatePrice value) updatePrice,
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
   }) {
     return clearKart(this);
   }
@@ -1766,6 +1864,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     TResult? Function(UpdatePrice value)? updatePrice,
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
   }) {
     return clearKart?.call(this);
   }
@@ -1782,6 +1881,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     TResult Function(UpdatePrice value)? updatePrice,
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
     required TResult orElse(),
   }) {
     if (clearKart != null) {
@@ -1796,6 +1896,223 @@ abstract class ClearKart implements ProductEvent {
 }
 
 /// @nodoc
+abstract class _$$RepeatOrderCopyWith<$Res> {
+  factory _$$RepeatOrderCopyWith(
+          _$RepeatOrder value, $Res Function(_$RepeatOrder) then) =
+      __$$RepeatOrderCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<ProductModel> products, double shippingCharge});
+}
+
+/// @nodoc
+class __$$RepeatOrderCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$RepeatOrder>
+    implements _$$RepeatOrderCopyWith<$Res> {
+  __$$RepeatOrderCopyWithImpl(
+      _$RepeatOrder _value, $Res Function(_$RepeatOrder) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? products = null,
+    Object? shippingCharge = null,
+  }) {
+    return _then(_$RepeatOrder(
+      products: null == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<ProductModel>,
+      shippingCharge: null == shippingCharge
+          ? _value.shippingCharge
+          : shippingCharge // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
+  const _$RepeatOrder(
+      {required final List<ProductModel> products,
+      required this.shippingCharge})
+      : _products = products;
+
+  final List<ProductModel> _products;
+  @override
+  List<ProductModel> get products {
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
+
+  @override
+  final double shippingCharge;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ProductEvent.repeatOrder(products: $products, shippingCharge: $shippingCharge)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ProductEvent.repeatOrder'))
+      ..add(DiagnosticsProperty('products', products))
+      ..add(DiagnosticsProperty('shippingCharge', shippingCharge));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RepeatOrder &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            (identical(other.shippingCharge, shippingCharge) ||
+                other.shippingCharge == shippingCharge));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_products), shippingCharge);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RepeatOrderCopyWith<_$RepeatOrder> get copyWith =>
+      __$$RepeatOrderCopyWithImpl<_$RepeatOrder>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(ProductModel productModel, bool isCart)
+        addProduct,
+    required TResult Function(ProductModel productModel) removeProduct,
+    required TResult Function(ProductModel productModel) deleteProduct,
+    required TResult Function(String catId) loadProductByCatId,
+    required TResult Function(String keyword, String cityId) search,
+    required TResult Function(ProductModel productModel) updatePrice,
+    required TResult Function() startSearch,
+    required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
+  }) {
+    return repeatOrder(products, shippingCharge);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel)? removeProduct,
+    TResult? Function(ProductModel productModel)? deleteProduct,
+    TResult? Function(String catId)? loadProductByCatId,
+    TResult? Function(String keyword, String cityId)? search,
+    TResult? Function(ProductModel productModel)? updatePrice,
+    TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
+  }) {
+    return repeatOrder?.call(products, shippingCharge);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel)? removeProduct,
+    TResult Function(ProductModel productModel)? deleteProduct,
+    TResult Function(String catId)? loadProductByCatId,
+    TResult Function(String keyword, String cityId)? search,
+    TResult Function(ProductModel productModel)? updatePrice,
+    TResult Function()? startSearch,
+    TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
+    required TResult orElse(),
+  }) {
+    if (repeatOrder != null) {
+      return repeatOrder(products, shippingCharge);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(AddProduct value) addProduct,
+    required TResult Function(RemoveProduct value) removeProduct,
+    required TResult Function(DeleteProduct value) deleteProduct,
+    required TResult Function(LoadProductByCatId value) loadProductByCatId,
+    required TResult Function(SearchProduct value) search,
+    required TResult Function(UpdatePrice value) updatePrice,
+    required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
+  }) {
+    return repeatOrder(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(AddProduct value)? addProduct,
+    TResult? Function(RemoveProduct value)? removeProduct,
+    TResult? Function(DeleteProduct value)? deleteProduct,
+    TResult? Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult? Function(SearchProduct value)? search,
+    TResult? Function(UpdatePrice value)? updatePrice,
+    TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
+  }) {
+    return repeatOrder?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(AddProduct value)? addProduct,
+    TResult Function(RemoveProduct value)? removeProduct,
+    TResult Function(DeleteProduct value)? deleteProduct,
+    TResult Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult Function(SearchProduct value)? search,
+    TResult Function(UpdatePrice value)? updatePrice,
+    TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
+    required TResult orElse(),
+  }) {
+    if (repeatOrder != null) {
+      return repeatOrder(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RepeatOrder implements ProductEvent {
+  const factory RepeatOrder(
+      {required final List<ProductModel> products,
+      required final double shippingCharge}) = _$RepeatOrder;
+
+  List<ProductModel> get products;
+  double get shippingCharge;
+  @JsonKey(ignore: true)
+  _$$RepeatOrderCopyWith<_$RepeatOrder> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ProductState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -1806,7 +2123,8 @@ mixin _$ProductState {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)
         loaded,
     required TResult Function(String message, List<ProductModel>? addedProducts)
         error,
@@ -1822,7 +2140,8 @@ mixin _$ProductState {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)?
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)?
         loaded,
     TResult? Function(String message, List<ProductModel>? addedProducts)? error,
     TResult? Function(List<ProductModel> products)? searchResult,
@@ -1837,7 +2156,8 @@ mixin _$ProductState {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)?
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)?
         loaded,
     TResult Function(String message, List<ProductModel>? addedProducts)? error,
     TResult Function(List<ProductModel> products)? searchResult,
@@ -1943,7 +2263,8 @@ class _$ProductInitial with DiagnosticableTreeMixin implements ProductInitial {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)
         loaded,
     required TResult Function(String message, List<ProductModel>? addedProducts)
         error,
@@ -1962,7 +2283,8 @@ class _$ProductInitial with DiagnosticableTreeMixin implements ProductInitial {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)?
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)?
         loaded,
     TResult? Function(String message, List<ProductModel>? addedProducts)? error,
     TResult? Function(List<ProductModel> products)? searchResult,
@@ -1980,7 +2302,8 @@ class _$ProductInitial with DiagnosticableTreeMixin implements ProductInitial {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)?
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)?
         loaded,
     TResult Function(String message, List<ProductModel>? addedProducts)? error,
     TResult Function(List<ProductModel> products)? searchResult,
@@ -2088,7 +2411,8 @@ class _$ProductLoading with DiagnosticableTreeMixin implements ProductLoading {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)
         loaded,
     required TResult Function(String message, List<ProductModel>? addedProducts)
         error,
@@ -2107,7 +2431,8 @@ class _$ProductLoading with DiagnosticableTreeMixin implements ProductLoading {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)?
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)?
         loaded,
     TResult? Function(String message, List<ProductModel>? addedProducts)? error,
     TResult? Function(List<ProductModel> products)? searchResult,
@@ -2125,7 +2450,8 @@ class _$ProductLoading with DiagnosticableTreeMixin implements ProductLoading {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)?
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)?
         loaded,
     TResult Function(String message, List<ProductModel>? addedProducts)? error,
     TResult Function(List<ProductModel> products)? searchResult,
@@ -2193,7 +2519,8 @@ abstract class _$$ProductLoadedCopyWith<$Res> {
       List<ProductModel>? addedProducts,
       List<ProductModel>? personalCare,
       List<ProductModel>? dailyNeeds,
-      List<ProductModel>? dairyProducts});
+      List<ProductModel>? dairyProducts,
+      double shippingCharge});
 }
 
 /// @nodoc
@@ -2212,6 +2539,7 @@ class __$$ProductLoadedCopyWithImpl<$Res>
     Object? personalCare = freezed,
     Object? dailyNeeds = freezed,
     Object? dairyProducts = freezed,
+    Object? shippingCharge = null,
   }) {
     return _then(_$ProductLoaded(
       products: null == products
@@ -2234,6 +2562,10 @@ class __$$ProductLoadedCopyWithImpl<$Res>
           ? _value._dairyProducts
           : dairyProducts // ignore: cast_nullable_to_non_nullable
               as List<ProductModel>?,
+      shippingCharge: null == shippingCharge
+          ? _value.shippingCharge
+          : shippingCharge // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -2246,7 +2578,8 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
       final List<ProductModel>? addedProducts,
       final List<ProductModel>? personalCare,
       final List<ProductModel>? dailyNeeds,
-      final List<ProductModel>? dairyProducts})
+      final List<ProductModel>? dairyProducts,
+      this.shippingCharge = 0.0})
       : _products = products,
         _addedProducts = addedProducts,
         _personalCare = personalCare,
@@ -2302,8 +2635,12 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
   }
 
   @override
+  @JsonKey()
+  final double shippingCharge;
+
+  @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProductState.loaded(products: $products, addedProducts: $addedProducts, personalCare: $personalCare, dailyNeeds: $dailyNeeds, dairyProducts: $dairyProducts)';
+    return 'ProductState.loaded(products: $products, addedProducts: $addedProducts, personalCare: $personalCare, dailyNeeds: $dailyNeeds, dairyProducts: $dairyProducts, shippingCharge: $shippingCharge)';
   }
 
   @override
@@ -2315,7 +2652,8 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
       ..add(DiagnosticsProperty('addedProducts', addedProducts))
       ..add(DiagnosticsProperty('personalCare', personalCare))
       ..add(DiagnosticsProperty('dailyNeeds', dailyNeeds))
-      ..add(DiagnosticsProperty('dairyProducts', dairyProducts));
+      ..add(DiagnosticsProperty('dairyProducts', dairyProducts))
+      ..add(DiagnosticsProperty('shippingCharge', shippingCharge));
   }
 
   @override
@@ -2331,7 +2669,9 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
             const DeepCollectionEquality()
                 .equals(other._dailyNeeds, _dailyNeeds) &&
             const DeepCollectionEquality()
-                .equals(other._dairyProducts, _dairyProducts));
+                .equals(other._dairyProducts, _dairyProducts) &&
+            (identical(other.shippingCharge, shippingCharge) ||
+                other.shippingCharge == shippingCharge));
   }
 
   @override
@@ -2341,7 +2681,8 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
       const DeepCollectionEquality().hash(_addedProducts),
       const DeepCollectionEquality().hash(_personalCare),
       const DeepCollectionEquality().hash(_dailyNeeds),
-      const DeepCollectionEquality().hash(_dairyProducts));
+      const DeepCollectionEquality().hash(_dairyProducts),
+      shippingCharge);
 
   @JsonKey(ignore: true)
   @override
@@ -2359,14 +2700,15 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)
         loaded,
     required TResult Function(String message, List<ProductModel>? addedProducts)
         error,
     required TResult Function(List<ProductModel> products) searchResult,
   }) {
-    return loaded(
-        products, addedProducts, personalCare, dailyNeeds, dairyProducts);
+    return loaded(products, addedProducts, personalCare, dailyNeeds,
+        dairyProducts, shippingCharge);
   }
 
   @override
@@ -2379,13 +2721,14 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)?
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)?
         loaded,
     TResult? Function(String message, List<ProductModel>? addedProducts)? error,
     TResult? Function(List<ProductModel> products)? searchResult,
   }) {
-    return loaded?.call(
-        products, addedProducts, personalCare, dailyNeeds, dairyProducts);
+    return loaded?.call(products, addedProducts, personalCare, dailyNeeds,
+        dairyProducts, shippingCharge);
   }
 
   @override
@@ -2398,15 +2741,16 @@ class _$ProductLoaded with DiagnosticableTreeMixin implements ProductLoaded {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)?
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)?
         loaded,
     TResult Function(String message, List<ProductModel>? addedProducts)? error,
     TResult Function(List<ProductModel> products)? searchResult,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(
-          products, addedProducts, personalCare, dailyNeeds, dairyProducts);
+      return loaded(products, addedProducts, personalCare, dailyNeeds,
+          dairyProducts, shippingCharge);
     }
     return orElse();
   }
@@ -2458,13 +2802,15 @@ abstract class ProductLoaded implements ProductState {
       final List<ProductModel>? addedProducts,
       final List<ProductModel>? personalCare,
       final List<ProductModel>? dailyNeeds,
-      final List<ProductModel>? dairyProducts}) = _$ProductLoaded;
+      final List<ProductModel>? dairyProducts,
+      final double shippingCharge}) = _$ProductLoaded;
 
   List<ProductModel> get products;
   List<ProductModel>? get addedProducts;
   List<ProductModel>? get personalCare;
   List<ProductModel>? get dailyNeeds;
   List<ProductModel>? get dairyProducts;
+  double get shippingCharge;
   @JsonKey(ignore: true)
   _$$ProductLoadedCopyWith<_$ProductLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2569,7 +2915,8 @@ class _$ProductError with DiagnosticableTreeMixin implements ProductError {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)
         loaded,
     required TResult Function(String message, List<ProductModel>? addedProducts)
         error,
@@ -2588,7 +2935,8 @@ class _$ProductError with DiagnosticableTreeMixin implements ProductError {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)?
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)?
         loaded,
     TResult? Function(String message, List<ProductModel>? addedProducts)? error,
     TResult? Function(List<ProductModel> products)? searchResult,
@@ -2606,7 +2954,8 @@ class _$ProductError with DiagnosticableTreeMixin implements ProductError {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)?
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)?
         loaded,
     TResult Function(String message, List<ProductModel>? addedProducts)? error,
     TResult Function(List<ProductModel> products)? searchResult,
@@ -2757,7 +3106,8 @@ class _$SearchResult with DiagnosticableTreeMixin implements SearchResult {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)
         loaded,
     required TResult Function(String message, List<ProductModel>? addedProducts)
         error,
@@ -2776,7 +3126,8 @@ class _$SearchResult with DiagnosticableTreeMixin implements SearchResult {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)?
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)?
         loaded,
     TResult? Function(String message, List<ProductModel>? addedProducts)? error,
     TResult? Function(List<ProductModel> products)? searchResult,
@@ -2794,7 +3145,8 @@ class _$SearchResult with DiagnosticableTreeMixin implements SearchResult {
             List<ProductModel>? addedProducts,
             List<ProductModel>? personalCare,
             List<ProductModel>? dailyNeeds,
-            List<ProductModel>? dairyProducts)?
+            List<ProductModel>? dairyProducts,
+            double shippingCharge)?
         loaded,
     TResult Function(String message, List<ProductModel>? addedProducts)? error,
     TResult Function(List<ProductModel> products)? searchResult,

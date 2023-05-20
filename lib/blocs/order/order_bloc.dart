@@ -14,11 +14,17 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     on<OrderEvent>(
       (event, emit) async {
         await event.map(
-            placeOrder: (event) async => await _placeOrder(event, emit),
-            loadOrder: (event) async => await _loadOrders(event, emit),
-            orderDetail: (event) async => await _orderDetail(event, emit));
+          placeOrder: (event) async => await _placeOrder(event, emit),
+          loadOrder: (event) async => await _loadOrders(event, emit),
+          orderDetail: (event) async => await _orderDetail(event, emit),
+          expandList: (event) async => await _expandList(event, emit),
+        );
       },
     );
+  }
+
+  Future _expandList(ExpandList event, Emitter<OrderState> emit) async {
+    emit(ExpandedList(isExapnded: !event.isExpanded));
   }
 
   Future _placeOrder(PlaceOrder event, Emitter<OrderState> emit) async {

@@ -6,6 +6,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mcs/models/server_error.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/resources/product/product_repository.dart';
+
+import '../../models/product/variant.dart';
 part 'product_bloc.freezed.dart';
 part 'product_event.dart';
 part 'product_state.dart';
@@ -28,9 +30,34 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           updatePrice: (event) async => await _updatePrice(event, emit),
           startSearch: (event) async => await _startSearch(event, emit),
           clearKart: (event) async => await _clearKart(event, emit),
+          repeatOrder: (event) async => await _repeatOrder(event, emit),
         );
       },
     );
+  }
+
+  /// repeat order
+  Future _repeatOrder(RepeatOrder event, Emitter<ProductState> emit) async {
+    try {
+      final state = this.state;
+      List<ProductModel> products = event.products.map((e) {
+        List<Variant> variants = [];
+        Variant variant = Variant(
+          discount: e.discount,
+          price: e.price,
+          maxQty: e.quantity,
+        );
+        variants.add(variant);
+        return e.copyWith(
+            variant: variants, index: 0, count: int.tryParse(e.quantity!)!);
+      }).toList();
+      emit(ProductLoaded(
+          products: state is ProductLoaded ? state.products : [],
+          addedProducts: products,
+          shippingCharge: event.shippingCharge));
+    } catch (e) {
+      emit(const ProductError(message: 'Something went wrong'));
+    }
   }
 
   /// clear kart event

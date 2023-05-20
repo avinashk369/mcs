@@ -19,4 +19,7 @@ class ProductEvent with _$ProductEvent {
       UpdatePrice;
   const factory ProductEvent.startSearch() = StartSearch;
   const factory ProductEvent.clearKart() = ClearKart;
+  const factory ProductEvent.repeatOrder(
+      {required List<ProductModel> products,
+      required double shippingCharge}) = RepeatOrder;
 }

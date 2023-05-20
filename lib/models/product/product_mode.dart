@@ -38,6 +38,10 @@ class ProductModel with _$ProductModel {
     String? purchasePrice,
     String? price,
     String? discount,
+    String? itemId,
+    String? originalPrice,
+    String? unit,
+    int? total,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>

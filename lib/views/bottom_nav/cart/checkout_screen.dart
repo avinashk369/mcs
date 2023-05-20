@@ -590,6 +590,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 value!.isEmptyString ? null : invalidFName,
                             onChanged: (value) =>
                                 addressMap['first_name'] = value,
+                            onTouched: () => () {},
                           ),
                           const SizedBox(
                             height: 8,
@@ -602,6 +603,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 value!.isEmptyString ? null : invalidLName,
                             onChanged: (value) =>
                                 addressMap['last_name'] = value,
+                            onTouched: () => () {},
                           ),
                           const SizedBox(
                             height: 8,
@@ -615,6 +617,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 value!.isValidPhone ? null : phoneError,
                             textInputType: TextInputType.phone,
                             maxLength: 10,
+                            onTouched: () => () {},
                           ),
                           const SizedBox(
                             height: 8,
@@ -627,6 +630,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             onChanged: (value) => addressMap['address'] = value,
                             validator: (value) =>
                                 value!.isEmptyString ? null : invalidHouseNo,
+                            onTouched: () => () {},
                           ),
                           const SizedBox(
                             height: 8,
@@ -638,6 +642,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             validator: (value) =>
                                 value!.isEmptyString ? null : invalidCity,
                             onChanged: (value) => addressMap['city'] = value,
+                            onTouched: () => () {},
                           ),
                           const SizedBox(
                             height: 8,
@@ -648,6 +653,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             validator: (value) =>
                                 value!.isEmptyString ? null : invalidSociety,
                             onChanged: (value) => addressMap['state'] = value,
+                            onTouched: () => () {},
                           ),
                           const SizedBox(
                             height: 8,
@@ -660,6 +666,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 value!.isEmptyString ? null : invalidPincode,
                             onChanged: (value) => addressMap['pincode'] = value,
                             maxLength: 6,
+                            onTouched: () => () {},
                           ),
                           const SizedBox(
                             height: 10,
