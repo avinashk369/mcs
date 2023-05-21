@@ -8,6 +8,7 @@ import 'package:mcs/views/welcome.dart';
 
 import '../../blocs/navigation/navigationbloc.dart';
 import '../order/order_history.dart';
+import 'user_address_screen.dart';
 
 class UserSettings extends StatelessWidget {
   const UserSettings({Key? key}) : super(key: key);
@@ -76,7 +77,8 @@ class UserSettings extends StatelessWidget {
                 ),
                 listTileCard(
                   'Address book',
-                  onTap: () async {},
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(UserAddressScreen.tag),
                   const Icon(
                     Icons.location_city,
                     color: redColor,

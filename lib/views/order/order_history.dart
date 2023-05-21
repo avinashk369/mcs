@@ -9,6 +9,7 @@ import 'package:mcs/models/order/order_model.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/order/order_detail_screen.dart';
+import 'package:mcs/widgets/custom_error_widget.dart';
 
 import '../../resources/order/order_repositoryImpl.dart';
 import '../../routes/route_constants.dart';
@@ -57,15 +58,14 @@ class OrderHistory extends StatelessWidget {
                             context.read<ProductBloc>().add(RepeatOrder(
                                 products: products,
                                 shippingCharge: double.tryParse(
-                                    orderModel.shippingCharge!)!));
-                            // change the navigation to the cart page on home screen. index 2 is cart index, it can be changed
-                            // context.read<NavigationBloc>().changeNavigation(3);
-                            // pop the navigation stack to the home screen
-                            // Navigator.of(context).pop();
+                                        orderModel.shippingCharge!) ??
+                                    0.0));
                           },
                         ),
                         separatorBuilder: (_, __) => const SizedBox(height: 10),
                       ),
+                      error: (value) => CustomErrorWidget(
+                          imageUrl: "", message: value.message),
                       orElse: () => const SizedBox.shrink(),
                     ),
                   ),

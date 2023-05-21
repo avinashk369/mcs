@@ -12,6 +12,7 @@ import 'package:mcs/models/models.dart';
 import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/cart/price_detail.dart';
+import 'package:mcs/widgets/dialog_utility.dart';
 import 'package:mcs/widgets/custom_input.dart';
 import 'package:mcs/widgets/extensions/ext_string.dart';
 
@@ -22,6 +23,8 @@ import '../../../resources/order/order_repositoryImpl.dart';
 import '../../../routes/route_constants.dart';
 import '../../../widgets/submit_button.dart';
 import '../../order/order_history.dart';
+import '../../user/components/address_card.dart';
+import '../../user/user_address_screen.dart';
 part 'coupon_widget.dart';
 
 class CheckoutScreen extends StatefulWidget {
@@ -38,15 +41,8 @@ class CheckoutScreen extends StatefulWidget {
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
   late ScrollController _scrollController;
-  late TextEditingController _fNameController;
-  late TextEditingController _lNameController;
-  late TextEditingController _mobileController;
-  late TextEditingController _addressController;
-  late TextEditingController _stateController;
-  late TextEditingController _cityController;
-  late TextEditingController _pincodeController;
+
   late TextEditingController _couponController;
-  final GlobalKey<FormState> addressKey = GlobalKey<FormState>();
   late String userId;
   double total = 0;
   double totalPrice = 0;
@@ -56,13 +52,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   late String address;
   @override
   void initState() {
-    _fNameController = TextEditingController();
-    _lNameController = TextEditingController();
-    _mobileController = TextEditingController();
-    _addressController = TextEditingController();
-    _stateController = TextEditingController();
-    _cityController = TextEditingController();
-    _pincodeController = TextEditingController();
     _couponController = TextEditingController();
     super.initState();
     _scrollController = ScrollController();
@@ -73,17 +62,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     if (userId.isNotEmpty) {
       context.read<UserBloc>().add(LoadAddress(data: {"user_id": userId}));
     }
-  }
-
-  void clearTextController() {
-    _fNameController.clear();
-    _lNameController.clear();
-    _mobileController.clear();
-    _addressController.clear();
-    _stateController.clear();
-    _cityController.clear();
-    _pincodeController.clear();
-    _couponController.clear();
   }
 
   @override
@@ -228,7 +206,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     buildWhen: (previous, current) => current is AddressLoaded,
                     builder: (context, state) => state.maybeMap(
                       addressLoaded: (value) => value.userAddress.isNotEmpty
-                          ? addressCard(value.userAddress.first)
+                          ? AddressCard(
+                              userAddress: value.userAddress.first,
+                              onChange: () => Navigator.of(context)
+                                  .pushNamed(UserAddressScreen.tag))
                           : const SizedBox.shrink(),
                       orElse: () => const SizedBox.shrink(),
                     ),
@@ -249,29 +230,29 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     );
                   }, builder: (context, state) {
                     return state.maybeMap(
-                      //loading: (value) => LoadingUI(),
-                      orElse: () => Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SubmitButton(
-                            isActive: true,
-                            onTap: () {
-                              /// clear existing value from the input field
-                              clearTextController();
-                              showAddressDialog(context, onSubmit: (formData) {
-                                /// call event to save user address
-                                context
-                                    .read<UserBloc>()
-                                    .add(SaveAddress(data: formData));
-                                Navigator.of(context).pop();
-                              });
-                            },
-                            child: Text("Add new address".toUpperCase(),
-                                style: kLabelStyleBold.copyWith(
-                                    fontSize: 14, color: secondaryLight))),
-                      ),
+                      orElse: () => const SizedBox.shrink(),
+                      addressLoaded: (value) => value.userAddress.isEmpty
+                          ? Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SubmitButton(
+                                  isActive: true,
+                                  onTap: () => DialogUtility.addAddress(context,
+                                          onSubmit: (formData) {
+                                        /// call event to save user address
+                                        context
+                                            .read<UserBloc>()
+                                            .add(SaveAddress(data: formData));
+                                        Navigator.of(context).pop();
+                                      }),
+                                  child: Text("Add new address".toUpperCase(),
+                                      style: kLabelStyleBold.copyWith(
+                                          fontSize: 14,
+                                          color: secondaryLight))),
+                            )
+                          : const SizedBox.shrink(),
                     );
                   }),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 16),
                   Text(" ${widget.products.length} Items",
                       style: kLabelStyleBold.copyWith(fontSize: 16)),
                   const SizedBox(
@@ -447,251 +428,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     );
   }
 
-  Widget addressCard(UserAddress userAddress) => Container(
-        margin: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-            border: Border.all(color: greyColor.withOpacity(.4)),
-            borderRadius: BorderRadius.circular(4)),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(Icons.home),
-                        const SizedBox(width: 5),
-                        Text(
-                          "Home",
-                          style: kLabelStyleBold.copyWith(fontSize: 16),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          //TextSpan(text: "Deliver to: \n", style: kLabelStyle),
-                          TextSpan(
-                              text:
-                                  "${userAddress.firstName!.trim()} ${userAddress.lastName}",
-                              style: kLabelStyleBold),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(text: "Mobile: ", style: kLabelStyle),
-                          TextSpan(
-                              text: userAddress.mobileNumber,
-                              style: kLabelStyleBold)
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    Text(
-                      "${userAddress.address!}, ${userAddress.state}, ${userAddress.city}, Pincode: ${userAddress.pincode} ",
-                      style: kLabelStyle.copyWith(height: 1.4),
-                    ),
-                  ],
-                ),
-              )),
-            ],
-          ),
-        ),
-      );
-
   showPriceDetail() => _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
-  showAddressDialog(BuildContext context,
-          {required Function(Map<String, dynamic>) onSubmit}) =>
-      showModalBottomSheet(
-          isScrollControlled: true,
-          enableDrag: true,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          context: context,
-          builder: (context) {
-            final locationState = context.read<LocationBloc>().state;
-            // PARAM user_id, first_name, last_name, mobile_no, address, city, state, pincode, latitude, longitude
-            /// get the user location detail
-            if (locationState is LocationLoaded) {
-              addressMap['latitude'] = locationState.locationData.latitude;
-              addressMap['longitude'] = locationState.locationData.longitude;
-              addressMap['area'] = locationState.address.thoroughfare ?? "";
-            }
-            addressMap['alt_mobile_no'] =
-                PreferenceUtils.getString(mobile_number);
-            addressMap['user_id'] = PreferenceUtils.getString(user_uid);
-            return SingleChildScrollView(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).viewInsets.top,
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: 5,
-                    child: Center(
-                      child: Container(
-                        width: 50,
-                        decoration: BoxDecoration(
-                          color: greyColor,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text("Address ",
-                        style: kLabelStyleBold.copyWith(fontSize: 16)),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Form(
-                      key: addressKey,
-                      autovalidateMode: AutovalidateMode.disabled,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          CustomInput(
-                            hintText: "First Name",
-                            maxLength: 50,
-                            textController: _fNameController,
-                            validator: (value) =>
-                                value!.isEmptyString ? null : invalidFName,
-                            onChanged: (value) =>
-                                addressMap['first_name'] = value,
-                            onTouched: () => () {},
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          CustomInput(
-                            hintText: "Last Name",
-                            maxLength: 50,
-                            textController: _lNameController,
-                            validator: (value) =>
-                                value!.isEmptyString ? null : invalidLName,
-                            onChanged: (value) =>
-                                addressMap['last_name'] = value,
-                            onTouched: () => () {},
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          CustomInput(
-                            hintText: "Mobile",
-                            textController: _mobileController,
-                            onChanged: (value) =>
-                                addressMap['mobile_no'] = value,
-                            validator: (value) =>
-                                value!.isValidPhone ? null : phoneError,
-                            textInputType: TextInputType.phone,
-                            maxLength: 10,
-                            onTouched: () => () {},
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          CustomInput(
-                            hintText: "Complete Address",
-                            maxLength: 100,
-                            textController: _addressController,
-                            numOfLines: 4,
-                            onChanged: (value) => addressMap['address'] = value,
-                            validator: (value) =>
-                                value!.isEmptyString ? null : invalidHouseNo,
-                            onTouched: () => () {},
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          CustomInput(
-                            hintText: "City",
-                            maxLength: 20,
-                            textController: _cityController,
-                            validator: (value) =>
-                                value!.isEmptyString ? null : invalidCity,
-                            onChanged: (value) => addressMap['city'] = value,
-                            onTouched: () => () {},
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          CustomInput(
-                            hintText: "State",
-                            textController: _stateController,
-                            validator: (value) =>
-                                value!.isEmptyString ? null : invalidSociety,
-                            onChanged: (value) => addressMap['state'] = value,
-                            onTouched: () => () {},
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          CustomInput(
-                            hintText: "Pincode",
-                            textController: _pincodeController,
-                            textInputType: TextInputType.phone,
-                            validator: (value) =>
-                                value!.isEmptyString ? null : invalidPincode,
-                            onChanged: (value) => addressMap['pincode'] = value,
-                            maxLength: 6,
-                            onTouched: () => () {},
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 15)),
-                            onPressed: () {
-                              if (!addressKey.currentState!.validate()) return;
-                              onSubmit(addressMap);
-                            },
-                            child: Text(
-                              "Submit".toUpperCase(),
-                              style: kLabelStyleBold.copyWith(
-                                  fontSize: 18, color: secondaryLight),
-                            ),
-                          ),
-                          const SizedBox(height: 10)
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          });
 }
