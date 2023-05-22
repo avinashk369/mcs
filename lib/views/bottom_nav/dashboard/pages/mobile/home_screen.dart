@@ -93,6 +93,27 @@ class _HomeScreenState extends State<HomeScreen> {
                             showAlertDialog(context: context),
                         serviceDisabled: (value) =>
                             showAlertDialog(context: context),
+                        loaded: (value) {
+                          if (value.cityModel != null) {
+                            PreferenceUtils.putString(
+                                currentCityId, value.cityModel!.id!);
+
+                            context.read<CategoryBloc>().add(
+                                CategoryEvent.loadCategory(
+                                    cityId: value.cityModel!.id!));
+
+                            context
+                                .read<DataBloc>()
+                                .add(LoadBanners(cityId: value.cityModel!.id!));
+                          } else {
+                            context
+                                .read<LocationBloc>()
+                                .add(GetCurrentCity(data: {
+                                  "latitude": value.locationData.latitude,
+                                  "longitude": value.locationData.longitude
+                                }));
+                          }
+                        },
                       );
                     }, builder: (context, state) {
                       return state.maybeMap(

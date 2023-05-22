@@ -28,6 +28,7 @@ const String user_name = "user_name";
 const String access_token = "access token";
 const String rupees = "₹";
 const String user_uid = "user_uid";
+const String currentCityId = "city_id";
 const String has_seen = "has_seen";
 const String theme_mode = "theme_mode";
 const String language = "language";

@@ -221,7 +221,7 @@ class ProductCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 height: kToolbarHeight,
                 decoration: BoxDecoration(
-                  color: greyColor.withOpacity(.2),
+                  color: greyColor.withOpacity(.08),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

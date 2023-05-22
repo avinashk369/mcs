@@ -100,13 +100,10 @@ class OrderDetailScreen extends StatelessWidget {
           ],
         ),
         bottomSheet: InkWell(
-          onTap: () {
-            final state = context.read<OrderBloc>().state;
-            context.read<ProductBloc>().add(RepeatOrder(
-                products: orderModel
-                    .productDetails!, //state is OrderDetailLoaded ? state.products : [],
-                shippingCharge: double.tryParse(orderModel.shippingCharge!)!));
-          },
+          onTap: () => context.read<ProductBloc>().add(RepeatOrder(
+              products: orderModel
+                  .productDetails!, //state is OrderDetailLoaded ? state.products : [],
+              shippingCharge: double.tryParse(orderModel.shippingCharge!)!)),
           child: Container(
             height: kBottomNavigationBarHeight,
             width: double.infinity,

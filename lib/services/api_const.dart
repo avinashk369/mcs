@@ -23,4 +23,5 @@ class ApiConst {
   static const String loadOrder = 'Api_controller/MyOrderList';
   static const String placeOrder = 'Api_controller/PlaceOrder';
   static const String orderDetail = 'Api_controller/OrderDetails';
+  static const String currentCity = 'Api_controller/GetCurrentCity';
 }

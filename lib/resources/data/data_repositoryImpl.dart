@@ -1,5 +1,5 @@
-import 'package:mcs/models/city/city_model.dart';
-import 'package:mcs/models/models.dart';
+import 'package:mcs/models/models.dart'
+    show CityModel, ServerError, BannerModel;
 import 'package:mcs/resources/data/data_repository.dart';
 import 'package:mcs/services/ApiClient.dart';
 

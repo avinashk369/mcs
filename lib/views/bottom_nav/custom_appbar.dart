@@ -22,7 +22,11 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(title),
+          Text(
+            title,
+            style:
+                kLabelStyle.copyWith(fontSize: 16, fontWeight: FontWeight.w700),
+          ),
           isSubtitle
               ? Text(
                   subtitle ?? '',

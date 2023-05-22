@@ -15,10 +15,10 @@ import 'package:mcs/views/bottom_nav/product/components/product_grid.dart';
 import 'package:mcs/views/bottom_nav/product/search/product_search_screen.dart';
 import 'package:mcs/widgets/extensions/widget_modifier.dart';
 import 'package:mcs/widgets/loading_ui.dart';
-import 'package:mcs/widgets/no_product_error.dart';
 
 import '../../../blocs/category/categorybloc.dart';
 import '../../../routes/route_constants.dart';
+import '../../../widgets/custom_error_widget.dart';
 
 class ProductList extends StatelessWidget {
   static const String tag = products;
@@ -111,10 +111,16 @@ class ProductList extends StatelessWidget {
 
             /// will open after logic is implemented
             state.maybeMap(
-              loading: (_) =>
-                  SliverToBoxAdapter(child: LoadingUI().verticalPadding(10)),
+              loading: (_) => SliverToBoxAdapter(
+                  child: const LoadingUI().verticalPadding(10)),
               loaded: (res) => ProductGrid(products: res.products),
-              error: (err) => const SliverToBoxAdapter(child: NoProductError()),
+              error: (err) => SliverToBoxAdapter(
+                child: CustomErrorWidget(
+                  imageUrl: "",
+                  message: "Sorry!!! We are not able to find the products",
+                  onRetry: () {},
+                ),
+              ),
               orElse: () => const SliverToBoxAdapter(child: SizedBox.shrink()),
             ),
           ],

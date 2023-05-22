@@ -2,19 +2,43 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geocoding/geocoding.dart' as geo;
 import 'package:location/location.dart';
+
+import '../../models/base_response.dart';
+import '../../models/city/city_model.dart';
+import '../../resources/location/location_repository.dart';
 part 'location_bloc.freezed.dart';
 part 'location_event.dart';
 part 'location_state.dart';
 
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
-  LocationBloc() : super(const LocationInitial()) {
+  final LocationRepository dataRepositoryImpl;
+  LocationBloc({required this.dataRepositoryImpl})
+      : super(const LocationInitial()) {
     on<LocationEvent>(
       (event, emit) async {
         await event.map(
           loadLocation: (event) async => await _loadLocation(event, emit),
+          getCurrentCity: (event) async => await _getCurrentCity(event, emit),
         );
       },
     );
+  }
+
+  /// get current city
+  Future _getCurrentCity(
+      GetCurrentCity event, Emitter<LocationState> emit) async {
+    try {
+      final currentState = state;
+      BaseResponse<CityModel> response =
+          await dataRepositoryImpl.getCurrentCity(event.data);
+      if (response.status!) {
+        if (currentState is LocationLoaded) {
+          emit(currentState.copyWith(cityModel: response.data));
+        }
+      }
+    } catch (e) {
+      emit(const LocationError(message: 'Unable to get current city'));
+    }
   }
 
   /// get user current location

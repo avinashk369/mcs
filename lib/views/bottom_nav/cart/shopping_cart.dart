@@ -33,7 +33,6 @@ class _ShoppingCartState extends State<ShoppingCart> {
 
   @override
   void initState() {
-    // TODO: implement initState
     newUser = PreferenceUtils.getString(user_type);
     scrollController = ScrollController();
     _fNameController = TextEditingController();
@@ -173,65 +172,6 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 const SizedBox(
                   height: 15,
                 ),
-                // user adderess section to add or edit address
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 16),
-                //   child: Card(
-                //     margin: EdgeInsets.zero,
-                //     color: secondaryLight,
-                //     child: Row(
-                //       children: [
-                //         Expanded(
-                //             child: Padding(
-                //           padding: const EdgeInsets.symmetric(horizontal: 8),
-                //           child: Column(
-                //             crossAxisAlignment: CrossAxisAlignment.start,
-                //             children: [
-                //               RichText(
-                //                 text: TextSpan(
-                //                   children: [
-                //                     TextSpan(
-                //                         text: "Deliver to: ",
-                //                         style: kLabelStyle),
-                //                     TextSpan(
-                //                         text: "Avinash,",
-                //                         style: kLabelStyleBold),
-                //                     TextSpan(
-                //                         text: "9540621919",
-                //                         style: kLabelStyleBold)
-                //                   ],
-                //                 ),
-                //               ),
-                //               const SizedBox(
-                //                 height: 3,
-                //               ),
-                //               Text(
-                //                 "Laxmipur ward no 16, Rosera Samastipur",
-                //                 maxLines: 1,
-                //                 softWrap: true,
-                //                 overflow: TextOverflow.ellipsis,
-                //                 style: kLabelStyle,
-                //               ),
-                //             ],
-                //           ),
-                //         )),
-                //         ElevatedButton(
-                //             onPressed: () => showAddressDialog(context,
-                //                     onSubmit: (formData) {
-                //                   /// call event to save user address
-                //                   context.read<UserBloc>().add(SaveAddress());
-                //                   Navigator.of(context).pop();
-                //                 }),
-                //             child: const Text("Change")),
-                //         const SizedBox(width: 10)
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // const SizedBox(
-                //   height: 10,
-                // ),
-
                 Container(
                     height: kToolbarHeight * .75,
                     decoration: BoxDecoration(
@@ -256,7 +196,6 @@ class _ShoppingCartState extends State<ShoppingCart> {
                         ),
                       ],
                     )),
-
                 const SizedBox(
                   height: 10,
                 ),
@@ -404,7 +343,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                     ? null
                                     : () {
                                         UserModel userModel = UserModel(
-                                            cityId: "4",
+                                            cityId: PreferenceUtils.getString(
+                                                currentCityId),
                                             mobileNo: PreferenceUtils.getString(
                                                 mobileNumber),
                                             deviceToken: "token",
