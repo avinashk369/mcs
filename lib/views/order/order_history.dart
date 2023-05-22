@@ -77,9 +77,8 @@ class OrderHistory extends StatelessWidget {
                         data.putIfAbsent(
                             'shipping_charge', () => state.shippingCharge);
 
-                        Navigator.of(context).pushReplacementNamed(
-                            CheckoutScreen.tag,
-                            arguments: data);
+                        Navigator.of(context)
+                            .pushNamed(CheckoutScreen.tag, arguments: data);
                       }
                     },
                     child: const SizedBox.shrink(),

@@ -40,6 +40,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   Future _repeatOrder(RepeatOrder event, Emitter<ProductState> emit) async {
     try {
       final state = this.state;
+      emit(const ProductLoading());
       List<ProductModel> products = event.products.map((e) {
         List<Variant> variants = [];
         Variant variant = Variant(

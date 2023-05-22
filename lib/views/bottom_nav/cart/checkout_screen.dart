@@ -262,12 +262,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     height: MediaQuery.of(context).size.height * .15,
                     child: ListView.separated(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
-                        separatorBuilder: (_, __) => Container(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 10),
-                              width: 1,
-                              color: greyColor.withOpacity(.6),
-                            ),
+                        separatorBuilder: (_, __) => const SizedBox(width: 10),
                         scrollDirection: Axis.horizontal,
                         itemCount: widget.products.length,
                         shrinkWrap: true,
@@ -285,12 +280,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       Image.asset("assets/images/photo.jpg"),
                                   errorWidget: (context, url, error) =>
                                       Image.asset("assets/images/photo.jpg"),
-                                  fit: BoxFit.fitWidth,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                               Positioned(
-                                  bottom: 5,
-                                  right: 5,
+                                  bottom: 1,
+                                  right: 1,
                                   child: Container(
                                     height: 20,
                                     width: 20,

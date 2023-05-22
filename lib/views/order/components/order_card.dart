@@ -117,6 +117,7 @@ class OrderCard extends StatelessWidget {
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero,
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                splashFactory: NoSplash.splashFactory,
               ),
               onPressed: () =>
                   repeatOrder(orderModel, orderModel.productDetails!),

@@ -56,6 +56,7 @@ class AddressItem extends StatelessWidget {
           PopupMenuButton(
             position: PopupMenuPosition.under,
             color: secondaryLight,
+            elevation: 1,
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 8),
               child: Icon(
@@ -76,7 +77,7 @@ class AddressItem extends StatelessWidget {
                 PopupMenuItem(
                   value: 'Default',
                   child: Text(
-                    "Make it default",
+                    "Set as default",
                     style: kLabelStyle,
                   ),
                 ),
