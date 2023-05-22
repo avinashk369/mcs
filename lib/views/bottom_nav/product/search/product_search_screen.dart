@@ -10,6 +10,8 @@ import 'package:mcs/widgets/extensions/widget_modifier.dart';
 
 import '../../../../blocs/navigation/navigation_bloc.dart';
 import '../../../../routes/route_constants.dart';
+import '../../../../utils/app_constants.dart';
+import '../../../../utils/preference_utils.dart';
 import '../../../../utils/styles.dart';
 import '../../../../utils/theme_constants.dart';
 import '../../../../widgets/loading_ui.dart';
@@ -50,9 +52,9 @@ class ProductSearchScreen extends StatelessWidget {
                     if (!currentFocus.hasPrimaryFocus) {
                       currentFocus.unfocus();
                     }
-                    context
-                        .read<ProductBloc>()
-                        .add(SearchProduct(keyword: searchText, cityId: "4"));
+                    context.read<ProductBloc>().add(SearchProduct(
+                        keyword: searchText,
+                        cityId: PreferenceUtils.getString(currentCityId)));
                   },
                 ),
                 const SizedBox(

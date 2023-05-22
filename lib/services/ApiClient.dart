@@ -118,4 +118,9 @@ abstract class ApiClient {
   Future<BaseResponse<List<UserAddress>>> userAddress(
     @Body() Map<String, dynamic> data,
   );
+
+  @POST(ApiConst.currentCity)
+  @FormUrlEncoded()
+  Future<BaseResponse<CityModel>> getCurrentCity(
+      @Body() Map<String, dynamic> data);
 }

@@ -28,7 +28,8 @@ class CustomTheme with ChangeNotifier {
         centerTitle: false,
         elevation: 0,
         titleSpacing: 5,
-        titleTextStyle: kLabelStyleBold.copyWith(fontSize: 18),
+        titleTextStyle:
+            kLabelStyle.copyWith(fontSize: 16, fontWeight: FontWeight.w700),
         foregroundColor: darkColor,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),

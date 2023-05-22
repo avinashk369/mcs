@@ -11,6 +11,7 @@ class CityModel with _$CityModel {
   const factory CityModel({
     String? id,
     String? cityName,
+    String? distance,
   }) = _CityModel;
   factory CityModel.fromJson(Map<String, dynamic> json) =>
       _$CityModelFromJson(json);

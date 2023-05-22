@@ -8,6 +8,7 @@ import 'package:mcs/blocs/category/categorybloc.dart';
 import 'package:mcs/blocs/data/data_bloc.dart';
 import 'package:mcs/blocs/navigation/navigationbloc.dart';
 import 'package:mcs/resources/data/data_repositoryImpl.dart';
+import 'package:mcs/resources/location/location_repositoryImpl.dart';
 import 'package:mcs/resources/product/product_repositoryImpl.dart';
 import 'package:mcs/resources/repository.dart';
 import 'package:mcs/routes/routes_generator.dart';
@@ -48,11 +49,11 @@ void main() async {
   ]);
   // initialize api client
   Dio dio = Dio();
-  dio.interceptors.add(LogInterceptor(
-    responseBody: true,
-    request: true,
-    requestBody: true,
-  ));
+  // dio.interceptors.add(LogInterceptor(
+  //   responseBody: true,
+  //   request: true,
+  //   requestBody: true,
+  // ));
   ApiClient apiClient = ApiClient(dio);
   Bloc.observer = SimpleBlocDelegate();
   runApp(MyApp(apiClient: apiClient));
@@ -114,17 +115,23 @@ class _MyAppState extends State<MyApp> {
             apiClient: widget.apiClient,
           ),
         ),
+        RepositoryProvider(
+          create: (_) => LocationRepositoryimpl(
+            apiClient: widget.apiClient,
+          ),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
             create: (context) =>
                 DataBloc(dataRepositoryImpl: context.read<DataRepositoryImpl>())
-                  ..add(const LoadCities())
-                  ..add(const LoadBanners(cityId: "4")),
+                  ..add(const LoadCities()),
           ),
           BlocProvider(
-              create: (context) => LocationBloc()..add(const LoadLocation())),
+              create: (context) => LocationBloc(
+                  dataRepositoryImpl: context.read<LocationRepositoryimpl>())
+                ..add(const LoadLocation())),
           BlocProvider(
             create: ((context) =>
                 ProductBloc(context.read<ProductRepositoryImpl>())),
@@ -135,7 +142,7 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
             create: (context) => CategoryBloc(
               context.read<CategoryRepositoryImpl>(),
-            )..add(const CategoryEvent.loadCategory(cityId: "4")),
+            ),
           ),
           BlocProvider<SubcatBloc>(
             create: (context) => SubcatBloc(

@@ -20,12 +20,12 @@ class CategoryList extends StatelessWidget {
           onTap: () {
             Map<String, dynamic> data = {
               "category": category,
-              "city_id": "4",
+              "city_id": PreferenceUtils.getString(currentCityId),
               'index': index
             };
-            context
-                .read<SubcatBloc>()
-                .add(SubcatEvent.loadsubcat(catId: category.id!, cityId: "4"));
+            context.read<SubcatBloc>().add(SubcatEvent.loadsubcat(
+                catId: category.id!,
+                cityId: PreferenceUtils.getString(currentCityId)));
             context.read<ProductBloc>().add(
                 ProductEvent.loadProduct(cityId: '4', categoryId: category.id));
             Navigator.of(context).pushNamed(ProductList.tag, arguments: data);
