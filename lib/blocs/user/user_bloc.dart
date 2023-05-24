@@ -24,9 +24,40 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           updateProfile: (event) async => await _updateProfile(event, emit),
           verifyOtp: (event) async => await _verifyOtpEvent(event, emit),
           loadAddress: (event) async => await _loadAddress(event, emit),
+          setDefaultAddress: (event) async =>
+              await _setDefaultAddress(event, emit),
         );
       },
     );
+  }
+
+  /// set default address
+  Future _setDefaultAddress(
+      SetDefaultAddress event, Emitter<UserState> emit) async {
+    try {
+      List<UserAddress> userAddress = [];
+      final state = this.state;
+      if (state is AddressLoaded) {
+        userAddress = List<UserAddress>.from(state.userAddress);
+      }
+      emit(const UserLoading());
+      BaseResponse response =
+          await _userRepositoryImpl.setDefaultAddress(event.data);
+      if (response.status!) {
+        int index = userAddress.indexWhere(
+            (element) => element.deliveryAddressId == event.data['address_id']);
+
+        userAddress[index].copyWith(isDefault: "1");
+        userAddress.sort((a, b) => b.isDefault!.compareTo(a.isDefault!));
+        emit(AddressLoaded(userAddress: userAddress));
+      } else {
+        emit(UserError(message: response.message!));
+      }
+    } on ServerError catch (e) {
+      emit(UserError(message: e.errorMessage));
+    } catch (e, _) {
+      emit(UserError(message: e.toString()));
+    }
   }
 
   Future _loadAddress(LoadAddress event, Emitter<UserState> emit) async {
@@ -34,6 +65,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(const UserLoading());
       List<UserAddress> userAddress =
           await _userRepositoryImpl.loadAddress(event.data);
+      userAddress.sort((a, b) => b.isDefault!.compareTo(a.isDefault!));
       emit(AddressLoaded(userAddress: userAddress));
     } on ServerError catch (e) {
       emit(UserError(message: e.errorMessage));

@@ -1,8 +1,10 @@
 part of user_address_screen;
 
 class AddressItem extends StatelessWidget {
-  const AddressItem({super.key, required this.userAddress});
+  const AddressItem(
+      {super.key, required this.userAddress, required this.onTap});
   final UserAddress userAddress;
+  final Function(String val, UserAddress userAddress) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class AddressItem extends StatelessWidget {
                     ),
                     TextSpan(
                       text:
-                          userAddress.isDefault == "0" ? "Current address" : "",
+                          userAddress.isDefault == "1" ? "Current address" : "",
                       style: kLabelStyleBold.copyWith(
                           color: primaryLight, fontSize: 9),
                     ),
@@ -64,7 +66,7 @@ class AddressItem extends StatelessWidget {
                 color: greyColor,
               ),
             ),
-            onSelected: (value) {},
+            onSelected: (String value) => onTap(value, userAddress),
             itemBuilder: (BuildContext bc) {
               return [
                 PopupMenuItem(

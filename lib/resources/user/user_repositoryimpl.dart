@@ -92,4 +92,15 @@ class UserRepositoryImpl implements UserRepository {
     }
     return userAddress;
   }
+
+  @override
+  Future<BaseResponse> setDefaultAddress(Map<String, dynamic> data) async {
+    late BaseResponse response;
+    try {
+      response = await apiClient.setDefaultAddress(data);
+    } catch (error, _) {
+      throw ServerError.withError(error: error);
+    }
+    return response;
+  }
 }

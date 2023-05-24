@@ -10,8 +10,23 @@ class AddressList extends StatelessWidget {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        itemBuilder: (_, index) => AddressItem(userAddress: userAddress[index]),
+        itemBuilder: (_, index) => AddressItem(
+              userAddress: userAddress[index],
+              onTap: (val, address) => action(context, val, address),
+            ),
         separatorBuilder: (_, __) => const SizedBox(height: 8),
         itemCount: userAddress.length);
+  }
+
+  void action(BuildContext context, String value, UserAddress address) {
+    switch (value) {
+      case 'Default':
+        context.read<UserBloc>().add(SetDefaultAddress(data: {
+              "user_id": PreferenceUtils.getString(user_uid),
+              "address_id": address.deliveryAddressId
+            }));
+        break;
+      default:
+    }
   }
 }

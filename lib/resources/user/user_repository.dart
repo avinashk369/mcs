@@ -11,4 +11,5 @@ abstract class UserRepository {
   Future<UserModel> register(Map<String, dynamic> registerData, String token);
   Future<BaseResponse<UserModel>> updateProfile(UserModel userModel);
   Future<List<UserAddress>> loadAddress(Map<String, dynamic> data);
+  Future<BaseResponse> setDefaultAddress(Map<String, dynamic> data);
 }

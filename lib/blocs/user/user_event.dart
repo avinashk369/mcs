@@ -14,4 +14,6 @@ class UserEvent with _$UserEvent {
   const factory UserEvent.emptyEvent() = EmptyEvent;
   const factory UserEvent.loadAddress({required Map<String, dynamic> data}) =
       LoadAddress;
+  const factory UserEvent.setDefaultAddress(
+      {required Map<String, dynamic> data}) = SetDefaultAddress;
 }

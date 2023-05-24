@@ -123,4 +123,8 @@ abstract class ApiClient {
   @FormUrlEncoded()
   Future<BaseResponse<CityModel>> getCurrentCity(
       @Body() Map<String, dynamic> data);
+
+  @POST(ApiConst.setDefaultAddress)
+  @FormUrlEncoded()
+  Future<BaseResponse> setDefaultAddress(@Body() Map<String, dynamic> data);
 }

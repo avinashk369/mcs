@@ -17,4 +17,6 @@ class UserState with _$UserState {
   const factory UserState.emptyState() = EmptyState;
   const factory UserState.addressLoaded(
       {required List<UserAddress> userAddress}) = AddressLoaded;
+  const factory UserState.defaultAddressAdded({required String message}) =
+      DefaultAddressAdded;
 }

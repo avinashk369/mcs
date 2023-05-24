@@ -3,7 +3,7 @@ class ApiConst {
 //"https://mcs-rest-api.herokuapp.com/";
   /// online canteen api base url
   /// https://onlinecanteen.in/canteen_api/Api_controller/GetCity
-  static const String apiUrl = "https://onlinecanteen.in/tentionfreekart/";
+  static const String apiUrl = "https://onlinecanteen.in/canteen_api/";
 
   static const String cityList = 'Api_controller/GetCity';
 
@@ -16,6 +16,7 @@ class ApiConst {
   static const String getCategory = 'Api_controller/GetCategory';
   static const String getSubCategory = 'Api_controller/GetSubCategory';
   static const String saveAddress = 'Api_controller/AddDeliveryAddress';
+  static const String setDefaultAddress = 'Api_controller/SetDefaultAddress';
   static const String userRegisteration = 'Api_controller/UserRegistration';
   static const String applyCoupon = 'Api_controller/ApplyCoupon';
   static const String userAddress = 'Api_controller/GetDeliveryAddress';
