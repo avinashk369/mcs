@@ -25,16 +25,16 @@ class LunchList extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        ListView.builder(
-          padding: EdgeInsets.zero,
-          itemCount: 5,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (_, index) => const FoodCard(
-            imageUrl:
-                "https://img.freepik.com/free-photo/tortilla-wrap-with-falafel-fresh-salad-vegan-tacos-vegetarian-healthy-food_2829-6193.jpg?size=338&ext=jpg",
-          ),
-        )
+        // ListView.builder(
+        //   padding: EdgeInsets.zero,
+        //   itemCount: 5,
+        //   shrinkWrap: true,
+        //   physics: const NeverScrollableScrollPhysics(),
+        //   itemBuilder: (_, index) => const FoodCard(
+        //     imageUrl:
+        //         "https://img.freepik.com/free-photo/tortilla-wrap-with-falafel-fresh-salad-vegan-tacos-vegetarian-healthy-food_2829-6193.jpg?size=338&ext=jpg",
+        //   ),
+        // )
       ],
     );
   }

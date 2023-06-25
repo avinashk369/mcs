@@ -16,14 +16,12 @@ import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/models/category/category_model.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/models/product/variant.dart';
-import 'package:mcs/routes/route_constants.dart';
-import 'package:mcs/utils/product_utility.dart';
 import 'package:mcs/utils/utils.dart';
-import 'package:mcs/views/bottom_nav/custom_appbar.dart';
-import 'package:mcs/views/bottom_nav/dashboard/components/search_bar.dart';
+import 'package:mcs/views/bottom_nav/common_appbar.dart';
 import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
 import 'package:mcs/views/bottom_nav/product/product_list.dart';
 import 'package:mcs/views/bottom_nav/product/search/product_search_screen.dart';
+import 'package:mcs/views/bottom_nav/searchbar_placeholder.dart';
 import 'package:mcs/widgets/extensions/widget_modifier.dart';
 import 'package:mcs/widgets/loading_ui.dart';
 import 'package:mcs/widgets/placeholders/product_holder.dart';
@@ -72,67 +70,30 @@ class _HomeScreenState extends State<HomeScreen> {
             pinned: true,
             snap: false,
             elevation: 0,
-            bottom: SearchBar(
-              searchTextController: TextEditingController(),
-              onSearch: ((searchText) {}),
-              onTouched: () {
-                context.read<ProductBloc>().add(const StartSearch());
-                Navigator.of(context).pushNamed(ProductSearchScreen.tag);
-              },
-              readOnly: true,
-            ),
+            bottom: SearchbarPlaceholder(
+                hintList: searchHintDashboard,
+                onTap: () {
+                  context.read<ProductBloc>().add(const StartSearch());
+                  Navigator.of(context).pushNamed(ProductSearchScreen.tag);
+                }),
             flexibleSpace: FlexibleSpaceBar(
                 collapseMode: CollapseMode.pin,
                 background: Column(
                   children: [
-                    BlocConsumer<LocationBloc, LocationState>(
-                        listener: (context, state) {
-                      state.maybeMap(
-                        orElse: () {},
-                        permissionDenied: (value) =>
+                    CommonAppbar(
+                        onLocationLoaded: (value) =>
+                            callOnLocationLoaded(value),
+                        onPermissionDenied: (permissionDenied) =>
                             showAlertDialog(context: context),
-                        serviceDisabled: (value) =>
-                            showAlertDialog(context: context),
-                        loaded: (value) {
-                          if (value.cityModel != null) {
-                            PreferenceUtils.putString(
-                                currentCityId, value.cityModel!.id!);
-
-                            context.read<CategoryBloc>().add(
-                                CategoryEvent.loadCategory(
-                                    cityId: value.cityModel!.id!));
-
-                            context
-                                .read<DataBloc>()
-                                .add(LoadBanners(cityId: value.cityModel!.id!));
-                          } else {
-                            context
-                                .read<LocationBloc>()
-                                .add(GetCurrentCity(data: {
-                                  "latitude": value.locationData.latitude,
-                                  "longitude": value.locationData.longitude
-                                }));
-                          }
-                        },
-                      );
-                    }, builder: (context, state) {
-                      return state.maybeMap(
-                        loaded: (value) => CustomAppBar(
-                          title: value.address.locality!,
-                          isSubtitle: true,
-                          subtitle:
-                              '${value.address.thoroughfare!} ${value.address.subLocality!}',
-                        ),
-                        error: (error) => Text(error.message),
-                        orElse: () => const SizedBox.shrink(),
-                      );
-                    }),
+                        onServiceDisabled: (serviceDisabled) =>
+                            showAlertDialog(context: context)),
                   ],
                 )),
           ),
           SliverList(
             delegate: SliverChildListDelegate(
               [
+                const SizedBox(height: 20),
                 BlocBuilder<DataBloc, DataState>(
                     buildWhen: (previous, current) =>
                         (current != previous && current is BannersLoaded),
@@ -156,199 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-                const SizedBox(height: 10),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 8),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       Text(
-                //         "Best selling",
-                //         style: kLabelStyleBold.copyWith(fontSize: 18),
-                //       ),
-                //       RawChip(
-                //         onPressed: () {},
-                //         backgroundColor: primaryLight,
-                //         visualDensity: VisualDensity.compact,
-                //         label: Text("View all",
-                //             style: kLabelStyle.copyWith(color: secondaryLight)),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // const SizedBox(height: 8),
-                // BlocBuilder<ProductBloc, ProductState>(
-                //   builder: (context, state) {
-                //     return state.maybeMap(
-                //       initial: (_) => const ProductHolder(),
-                //       loaded: (res) => BestSelling(
-                //         products: res.products,
-                //       ),
-                //       error: (err) => Text(err.message),
-                //       orElse: () => const SizedBox.shrink(),
-                //     );
-                //   },
-                // ),
-                // const SizedBox(height: 8),
-                // Container(
-                //     margin: const EdgeInsets.symmetric(horizontal: 8),
-                //     height: size.height * 0.15,
-                //     decoration: BoxDecoration(
-                //       color: const Color.fromARGB(255, 192, 242, 194),
-                //       borderRadius: BorderRadius.circular(5),
-                //     ),
-                //     child: Padding(
-                //       padding: const EdgeInsets.symmetric(horizontal: 8),
-                //       child: Column(
-                //         children: [
-                //           Row(
-                //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //             children: [
-                //               Text("Suggest new items",
-                //                   style: kLabelStyleBold.copyWith(
-                //                       fontSize: 18,
-                //                       fontFamily:
-                //                           GoogleFonts.nunitoSans().fontFamily)),
-                //               // Pulse(
-                //               //   infinite: true,
-                //               //   delay: const Duration(milliseconds: 800),
-                //               //   child: CircleAvatar(
-                //               //     backgroundColor: Colors.amber[400],
-                //               //     child: const Icon(
-                //               //       Icons.keyboard_arrow_right,
-                //               //       color: darkColor,
-                //               //     ),
-                //               //   ),
-                //               // ),
-                //               IconButton(
-                //                 onPressed: () {},
-                //                 icon: CircleAvatar(
-                //                   backgroundColor: Colors.amber[400],
-                //                   child: const Icon(
-                //                     Icons.keyboard_arrow_right,
-                //                     color: darkColor,
-                //                   ),
-                //                 ),
-                //               ),
-                //             ],
-                //           ),
-                //           Text(
-                //               "Let us know your favourite products that you currently don't see in th app. We will do out best to bring them to you.",
-                //               style: kLabelStyleBold.copyWith(
-                //                 fontSize: 10,
-                //                 color: Colors.grey,
-                //               )),
-                //         ],
-                //       ),
-                //     )),
-                // const SizedBox(height: 8),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 8),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       Text(
-                //         "Personal care",
-                //         style: kLabelStyleBold.copyWith(fontSize: 18),
-                //       ),
-                //       RawChip(
-                //         onPressed: () {},
-                //         backgroundColor: primaryLight,
-                //         visualDensity: VisualDensity.compact,
-                //         label: Text("View all",
-                //             style: kLabelStyle.copyWith(color: secondaryLight)),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // const SizedBox(height: 8),
-                // BlocBuilder<ProductBloc, ProductState>(
-                //   builder: (context, state) {
-                //     return state.maybeMap(
-                //       initial: (_) => LoadingUI(),
-                //       loaded: (res) => PersonalCare(
-                //         products: res.personalCare!,
-                //       ),
-                //       error: (err) => Text(err.message),
-                //       orElse: () => const SizedBox.shrink(),
-                //     );
-                //   },
-                // ),
-                // const SizedBox(
-                //   height: 12,
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 8),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       Text(
-                //         "Daily Needs",
-                //         style: kLabelStyleBold.copyWith(fontSize: 18),
-                //       ),
-                //       RawChip(
-                //         onPressed: () {},
-                //         backgroundColor: primaryLight,
-                //         visualDensity: VisualDensity.compact,
-                //         label: Text("View all",
-                //             style: kLabelStyle.copyWith(color: secondaryLight)),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // const SizedBox(height: 8),
-                // BlocBuilder<ProductBloc, ProductState>(
-                //   builder: (context, state) {
-                //     return state.map(
-                //       initial: (_) => LoadingUI(),
-                //       loading: (_) => LoadingUI(),
-                //       loaded: (res) => DailyNeed(
-                //         products: res.dailyNeeds!,
-                //         height: 280,
-                //       ),
-                //       error: (err) => Text(err.message),
-                //     );
-                //   },
-                // ),
-                // const SizedBox(
-                //   height: 12,
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 8),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       Text(
-                //         "Dairy & Bakery",
-                //         style: kLabelStyleBold.copyWith(fontSize: 18),
-                //       ),
-                //       RawChip(
-                //         onPressed: () {},
-                //         backgroundColor: primaryLight,
-                //         visualDensity: VisualDensity.compact,
-                //         label: Text("View all",
-                //             style: kLabelStyle.copyWith(color: secondaryLight)),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // const SizedBox(height: 8),
-                // BlocBuilder<ProductBloc, ProductState>(
-                //   builder: (context, state) {
-                //     return state.map(
-                //       initial: (_) => const ProductHolder(),
-                //       loading: (_) => LoadingUI(),
-                //       loaded: (res) => DairyBakery(
-                //         products: res.dairyProducts!,
-                //         height: 280,
-                //       ),
-                //       error: (err) => Text(err.message),
-                //     );
-                //   },
-                // ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -407,6 +176,23 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+  void callOnLocationLoaded(LocationLoaded value) {
+    if (value.cityModel != null) {
+      PreferenceUtils.putString(currentCityId, value.cityModel!.id!);
+
+      context
+          .read<CategoryBloc>()
+          .add(CategoryEvent.loadCategory(cityId: value.cityModel!.id!));
+
+      context.read<DataBloc>().add(LoadBanners(cityId: value.cityModel!.id!));
+    } else {
+      context.read<LocationBloc>().add(GetCurrentCity(data: {
+            "latitude": value.locationData.latitude,
+            "longitude": value.locationData.longitude
+          }));
+    }
   }
 
   Future<bool> showAlertDialog({

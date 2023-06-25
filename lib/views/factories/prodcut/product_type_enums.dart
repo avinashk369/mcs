@@ -1,0 +1,1 @@
+enum ProductType { food, grocery }

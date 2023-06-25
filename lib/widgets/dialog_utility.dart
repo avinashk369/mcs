@@ -11,7 +11,8 @@ import '../views/user/components/address_form.dart';
 class DialogUtility {
   /// address bottom sheet dialog
   static void addAddress(BuildContext context,
-      {required Function(Map<String, dynamic> data) onSubmit}) {
+      {required Function(Map<String, dynamic> data) onSubmit,
+      Map<String, dynamic>? preSet}) {
     Map<String, dynamic> addressMap = {};
     showModalBottomSheet(
         isScrollControlled: true,
@@ -67,6 +68,7 @@ class DialogUtility {
                   height: 20,
                 ),
                 AddressForm(
+                  preset: preSet ?? {},
                   onSubmit: (data) {
                     addressMap.addAll(data);
                     onSubmit(addressMap);

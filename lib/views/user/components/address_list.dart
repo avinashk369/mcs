@@ -20,6 +20,25 @@ class AddressList extends StatelessWidget {
 
   void action(BuildContext context, String value, UserAddress address) {
     switch (value) {
+      // case 'Edit':
+      //   DialogUtility.addAddress(
+      //     context,
+      //     onSubmit: (formData) {
+      //       /// call event to save user address
+      //       context.read<UserBloc>().add(SaveAddress(data: formData));
+      //       Navigator.of(context).pop();
+      //     },
+      //     preSet: {
+      //       'f_name': address.firstName,
+      //       'l_name': address.lastName,
+      //       'mobile': address.mobileNumber,
+      //       'address': address.address,
+      //       'state': address.state,
+      //       'city': address.city,
+      //       'pin_code': address.pincode,
+      //     },
+      //   );
+      //   break;
       case 'Default':
         context.read<UserBloc>().add(SetDefaultAddress(data: {
               "user_id": PreferenceUtils.getString(user_uid),

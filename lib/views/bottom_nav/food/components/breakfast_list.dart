@@ -28,15 +28,15 @@ class BreakfastList extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        ListView.builder(
-          padding: EdgeInsets.zero,
-          itemCount: 5,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (_, index) => FoodCard(
-            imageUrl: imgUrl,
-          ),
-        )
+        // ListView.builder(
+        //   padding: EdgeInsets.zero,
+        //   itemCount: 5,
+        //   shrinkWrap: true,
+        //   physics: const NeverScrollableScrollPhysics(),
+        //   itemBuilder: (_, index) => FoodCard(
+        //     imageUrl: imgUrl,
+        //   ),
+        // )
       ],
     );
   }

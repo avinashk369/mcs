@@ -46,7 +46,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
       emit(const CategoryLoading());
       List<CategoryModel> categories =
           await _categoryRepositoryImpl.getCategories(event.cityId);
-
+      categories.removeWhere((element) => element.id == '9');
       emit(CategoryLoaded(categories: categories));
     } on ServerError catch (e) {
       emit(CategoryError(message: e.errorMessage));

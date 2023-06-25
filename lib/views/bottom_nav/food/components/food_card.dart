@@ -1,39 +1,21 @@
 part of food_screen;
 
 class FoodCard extends StatelessWidget {
-  const FoodCard({Key? key, required this.imageUrl}) : super(key: key);
-  final String imageUrl;
+  const FoodCard(
+      {Key? key, required this.productModel, required this.addToCart})
+      : super(key: key);
+  final ProductModel productModel;
+  final Function(ProductModel product) addToCart;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SizedBox(
       height: size.height * .18,
-      child: Card(
-        elevation: 1,
-        color: Colors.blueGrey[50],
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: size.width * .45,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10)),
-                color: Colors.grey[850],
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(
-                    imageUrl,
-                  ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Expanded(
-                child: Padding(
+      child: Row(
+        children: [
+          Expanded(
+            child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,17 +30,10 @@ class FoodCard extends StatelessWidget {
                         //fontSize: 16,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      children: const [
-                        WidgetSpan(
-                          child: Icon(Icons.check_box, size: 18),
-                        ),
-                        WidgetSpan(
-                          child: SizedBox(width: 5),
-                        ),
+                      children: [
                         TextSpan(
-                          text:
-                              "Lunch name this testing widget and i am fine with the design",
-                        )
+                            text: productModel.name,
+                            style: kLabelStyle.copyWith(fontSize: 13))
                       ],
                     ),
                   ),
@@ -66,8 +41,8 @@ class FoodCard extends StatelessWidget {
                   Text(
                     "840  Cal| High protien ",
                     style: kLabelStyle.copyWith(
-                        // fontSize: 16,
-                        ),
+                      fontSize: 11,
+                    ),
                   ),
                   Text(
                     "2 serving ",
@@ -88,7 +63,8 @@ class FoodCard extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: "199",
+                              text: productModel
+                                  .variant![productModel.index].discount,
                               style: kLabelStyleBold.copyWith(
                                 fontFamily: GoogleFonts.poppins().fontFamily,
                                 // fontSize: 16,
@@ -112,7 +88,8 @@ class FoodCard extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: "249",
+                              text: productModel
+                                  .variant![productModel.index].price,
                               style: kLabelStyle.copyWith(
                                 decoration: TextDecoration.lineThrough,
                                 color: Colors.grey,
@@ -124,24 +101,56 @@ class FoodCard extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      Chip(
-                        visualDensity: VisualDensity.compact,
-                        backgroundColor: Colors.grey[50],
-                        label: Text(
-                          'ADD',
-                          style: kLabelStyleBold.copyWith(
-                            color: primaryLight,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ],
               ),
-            ))
-          ],
-        ),
+            ),
+          ),
+          SizedBox(
+            height: size.height * .18,
+            width: size.width * .45,
+            child: Stack(
+              children: [
+                Container(
+                  width: size.width * .45,
+                  height: size.height * .15,
+                  margin: const EdgeInsets.only(right: 8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey[850],
+                    image: DecorationImage(
+                      image: CachedNetworkImageProvider(
+                        productModel.productImage ?? "",
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 3,
+                  left: size.width * .1,
+                  child: ElevatedButton(
+                    onPressed: () => addToCart(productModel),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.add),
+                        const SizedBox(width: 10),
+                        Text(
+                          'ADD',
+                          style: kLabelStyleBold.copyWith(
+                            color: secondaryLight,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

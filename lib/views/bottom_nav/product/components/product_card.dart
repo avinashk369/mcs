@@ -1,16 +1,17 @@
 part of home_screen;
 
 class ProductCard extends StatelessWidget {
-  const ProductCard(
-      {Key? key,
-      required this.height,
-      required this.width,
-      this.hasOffer = false,
-      required this.offer,
-      required this.addToCart,
-      required this.productModel,
-      required this.deleteFromCart})
-      : super(key: key);
+  ProductCard({
+    Key? key,
+    required this.height,
+    required this.width,
+    this.hasOffer = false,
+    required this.offer,
+    required this.addToCart,
+    required this.productModel,
+    required this.deleteFromCart,
+    this.showAddOn,
+  }) : super(key: key);
   final double height;
   final double width;
   final bool? hasOffer;
@@ -18,6 +19,7 @@ class ProductCard extends StatelessWidget {
   final ProductModel productModel;
   final Function(ProductModel product) addToCart;
   final Function(ProductModel product) deleteFromCart;
+  Function(ProductModel product, ProductState state)? showAddOn;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class ProductCard extends StatelessWidget {
                             Image.asset("assets/images/logo.png"),
                         errorWidget: (context, url, error) =>
                             Image.asset("assets/images/logo.png"),
-                        fit: BoxFit.fitHeight,
+                        fit: BoxFit.fitWidth,
                       ),
                     ),
                   ),
@@ -71,10 +73,11 @@ class ProductCard extends StatelessWidget {
                         const SizedBox(height: 8),
                         SizedBox(
                           height: 25,
-                          child: variantCard(productModel.variant!.length > 1,
-                              productModel.variant![productModel.index],
-                              onTap: () => showVariantBottomSheet(
-                                  context, productModel.variant!, state)),
+                          child: variantCard(
+                            productModel.variant!.length > 1,
+                            productModel.variant![productModel.index],
+                            onTap: () => showAddOn!(productModel, state),
+                          ),
                         ),
 
                         const Spacer(),
@@ -202,170 +205,6 @@ class ProductCard extends StatelessWidget {
                   : const SizedBox.shrink()
             ],
           ),
-        ),
-      );
-
-  void showVariantBottomSheet(
-          BuildContext context, List<Variant> variants, ProductState state) =>
-      showModalBottomSheet(
-        context: context,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        builder: (_) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                height: kToolbarHeight,
-                decoration: BoxDecoration(
-                  color: greyColor.withOpacity(.08),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Choose an option', style: kLabelStyleBold),
-                        const SizedBox(height: 8),
-                        Text(
-                          productModel.name!,
-                          style: kLabelStyleBold.copyWith(
-                            color: greyColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                    CircleAvatar(
-                      backgroundColor: greyColor.withOpacity(.4),
-                      child: IconButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        icon: Icon(
-                          Icons.close,
-                          color: Colors.black.withOpacity(.5),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: variants.length,
-                shrinkWrap: true,
-                itemBuilder: (_, index) {
-                  return variantItem(variants[index], () {
-                    context.read<ProductBloc>().add(UpdatePrice(
-                        productModel: productModel.copyWith(index: index)));
-                    if (state is ProductLoaded) {
-                      addToCart(productModel.copyWith(index: index));
-                    }
-                    Navigator.of(context).pop();
-                  }, productModel.index == index);
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-            ],
-          );
-        },
-      );
-
-  Widget variantItem(Variant variant, Function() onTap, bool isSelected) =>
-      ListTile(
-        leading: SizedBox(
-          height: kToolbarHeight,
-          child: CachedNetworkImage(
-            imageUrl: productModel.productImage ?? '',
-            placeholder: (context, url) =>
-                Image.asset("assets/images/logo.png"),
-            errorWidget: (context, url, error) =>
-                Image.asset("assets/images/logo.png"),
-            fit: BoxFit.fitHeight,
-          ),
-        ),
-        title: Text(
-          "${variant.unitName}-${variant.unit}",
-          style: kLabelStyle,
-        ),
-        subtitle: Row(
-          children: [
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                      text:
-                          "₹${productModel.variant![productModel.index].discount.toString()}",
-                      style: kLabelStyleBold.copyWith(
-                        fontSize: 18,
-                      )),
-                  TextSpan(text: " ", style: kLabelStyleBold.copyWith()),
-                  TextSpan(
-                      text:
-                          "₹${productModel.variant![productModel.index].price.toString()}",
-                      style: kLabelStyleBold.copyWith(
-                          fontSize: 12,
-                          color: greyColor,
-                          decoration: TextDecoration.lineThrough)),
-                ],
-              ),
-            ),
-            const SizedBox(width: 10),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-              decoration: BoxDecoration(
-                  color: primaryLight, borderRadius: BorderRadius.circular(2)),
-              child: Text(
-                "${ProductUtility.getCalculatedOffer(double.parse(productModel.variant![productModel.index].discount!), double.parse(productModel.variant![productModel.index].price!)).toString()}% Off",
-                style: kLabelStyle.copyWith(color: Colors.white),
-              ),
-            )
-          ],
-        ),
-        trailing: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            //Text(),
-            InkWell(
-              onTap: onTap,
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: greyColor.withOpacity(.4)),
-                    borderRadius: BorderRadius.circular(2)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "Add",
-                      style: kLabelStyleBold.copyWith(fontSize: 11),
-                    ).horizontalPadding(5),
-                    const SizedBox(width: 10),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          left: BorderSide(color: greyColor.withOpacity(.4)),
-                        ),
-                        color: greyColor.withOpacity(.2),
-                      ),
-                      child: Icon(
-                        Icons.add,
-                        color: isSelected ? primaryLight : greyColor,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
         ),
       );
 }

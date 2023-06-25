@@ -11,6 +11,7 @@ import 'package:mcs/resources/data/data_repositoryImpl.dart';
 import 'package:mcs/resources/location/location_repositoryImpl.dart';
 import 'package:mcs/resources/product/product_repositoryImpl.dart';
 import 'package:mcs/resources/repository.dart';
+import 'package:mcs/resources/restaurant/restaurant_repositoryImpl.dart';
 import 'package:mcs/routes/routes_generator.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/welcome.dart';
@@ -119,6 +120,9 @@ class _MyAppState extends State<MyApp> {
           create: (_) => LocationRepositoryimpl(
             apiClient: widget.apiClient,
           ),
+        ),
+        RepositoryProvider(
+          create: (_) => RestaurantRepositoryImpl(apiClient: widget.apiClient),
         ),
       ],
       child: MultiBlocProvider(

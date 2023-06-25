@@ -74,3 +74,18 @@ const String bookingStatusPending = "pending";
 const String bookingStatusConfirmed = "confirmed";
 const String bookingStatusCancelled = "cancelled";
 const String bookingStatusCompleted = "completed";
+
+const List<String> searchHintDashboard = [
+  'Groceries',
+  'Bakery',
+  'Drinks',
+  'Home & living',
+  'Personel care'
+];
+const List<String> searchHintFood = [
+  'Fried Momo',
+  'Panner Tikka',
+  'Sandwitch',
+  'Chicken Curry',
+  'Thali'
+];

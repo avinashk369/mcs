@@ -26,8 +26,9 @@ class CategoryList extends StatelessWidget {
             context.read<SubcatBloc>().add(SubcatEvent.loadsubcat(
                 catId: category.id!,
                 cityId: PreferenceUtils.getString(currentCityId)));
-            context.read<ProductBloc>().add(
-                ProductEvent.loadProduct(cityId: '4', categoryId: category.id));
+            context.read<ProductBloc>().add(ProductEvent.loadProduct(
+                cityId: PreferenceUtils.getString(currentCityId),
+                categoryId: category.id));
             Navigator.of(context).pushNamed(ProductList.tag, arguments: data);
           },
           child: CachedNetworkImage(

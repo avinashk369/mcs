@@ -4,7 +4,7 @@ import 'package:mcs/utils/utils.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget(
-      {super.key, required this.imageUrl, required this.message, this.onRetry});
+      {super.key, this.imageUrl = "", required this.message, this.onRetry});
   final String imageUrl;
   final String message;
   final Function? onRetry;

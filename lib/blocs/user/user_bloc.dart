@@ -44,12 +44,16 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       BaseResponse response =
           await _userRepositoryImpl.setDefaultAddress(event.data);
       if (response.status!) {
-        int index = userAddress.indexWhere(
-            (element) => element.deliveryAddressId == event.data['address_id']);
+        List<UserAddress> address = userAddress
+            .map(
+              (e) => e.deliveryAddressId == event.data['address_id']
+                  ? e.copyWith(isDefault: "1")
+                  : e.copyWith(isDefault: "0"),
+            )
+            .toList();
 
-        userAddress[index].copyWith(isDefault: "1");
-        userAddress.sort((a, b) => b.isDefault!.compareTo(a.isDefault!));
-        emit(AddressLoaded(userAddress: userAddress));
+        address.sort((a, b) => b.isDefault!.compareTo(a.isDefault!));
+        emit(AddressLoaded(userAddress: address));
       } else {
         emit(UserError(message: response.message!));
       }

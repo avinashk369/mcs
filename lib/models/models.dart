@@ -13,3 +13,4 @@ export 'category/category_model.dart';
 export 'product/product_mode.dart';
 export 'user/user_address.dart';
 export 'coupon/shipping_model.dart';
+export 'restaurant/restaurant_model.dart';

@@ -9,7 +9,8 @@ import 'package:mcs/models/models.dart'
         CouponModel,
         UserAddress,
         ShippingModel,
-        CategoryModel;
+        CategoryModel,
+        RestaurantModel;
 import 'package:mcs/models/order/order_model.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:retrofit/retrofit.dart';
@@ -127,4 +128,11 @@ abstract class ApiClient {
   @POST(ApiConst.setDefaultAddress)
   @FormUrlEncoded()
   Future<BaseResponse> setDefaultAddress(@Body() Map<String, dynamic> data);
+
+  /// load restaurants
+  @POST(ApiConst.getSubCategory)
+  @FormUrlEncoded()
+  Future<BaseResponse<List<RestaurantModel>>> loadRestaurants(
+    @Body() Map<String, dynamic> data,
+  );
 }

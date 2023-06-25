@@ -25,16 +25,16 @@ class SnacksList extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        ListView.builder(
-          padding: EdgeInsets.zero,
-          itemCount: 5,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (_, index) => const FoodCard(
-            imageUrl:
-                "https://image.freepik.com/free-vector/hand-drawn-fast-food-illustration_23-2149013387.jpg",
-          ),
-        )
+        // ListView.builder(
+        //   padding: EdgeInsets.zero,
+        //   itemCount: 5,
+        //   shrinkWrap: true,
+        //   physics: const NeverScrollableScrollPhysics(),
+        //   itemBuilder: (_, index) => const FoodCard(
+        //     imageUrl:
+        //         "https://image.freepik.com/free-vector/hand-drawn-fast-food-illustration_23-2149013387.jpg",
+        //   ),
+        // )
       ],
     );
   }

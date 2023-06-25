@@ -10,6 +10,7 @@ const String userAddress = '/userAddress';
 const String productSearch = '/productSearch';
 const String checkout = '/checkout';
 const String orderHistory = '/orderHistory';
+const String restaurantProduct = '/restaurantProduct';
 const String orderDetail = '/orderDetail';
 const String dashboardRoute = '/home';
 const String registerRoute = '/register';

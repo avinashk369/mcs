@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mcs/models/category/category_model.dart';
+import 'package:mcs/models/models.dart';
 import 'package:mcs/models/order/order_model.dart';
-import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/auth/verification/screens/user_verification.dart';
 import 'package:mcs/views/bottom_nav/cart/checkout_screen.dart';
 import 'package:mcs/views/bottom_nav/dashboard/dashboard.dart';
+import 'package:mcs/views/bottom_nav/food/components/restaurant_product_screen.dart';
 import 'package:mcs/views/bottom_nav/product/product_detail.dart';
 import 'package:mcs/views/bottom_nav/product/product_list.dart';
 import 'package:mcs/views/order/order_history.dart';
@@ -77,6 +77,14 @@ class RouteGenerator {
         return SlideRightRoute(page: OrderDetailScreen(orderModel: orderModel));
       case UserAddressScreen.tag:
         return SlideRightRoute(page: const UserAddressScreen());
+      case RestaurantProductScreen.tag:
+        Map<String, dynamic> data = args as Map<String, dynamic>;
+        RestaurantModel restaurant = data['restaurant_model'];
+        RestaurantModel restaurantModel = restaurant;
+        return SlideRightRoute(
+            page: RestaurantProductScreen(
+          restaurantModel: restaurantModel,
+        ));
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();

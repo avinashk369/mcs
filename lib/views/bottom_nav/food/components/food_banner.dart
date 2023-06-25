@@ -130,7 +130,7 @@ class _FoodBannerState extends State<FoodBanner> {
                   Column(
                     children: [
                       Text(
-                        "20% MAXCASH",
+                        "20% OCCOIN",
                         style: kLabelStyleBold.copyWith(
                           color: Colors.white,
                         ),
@@ -195,7 +195,7 @@ class _FoodBannerState extends State<FoodBanner> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            primary: primary),
+            backgroundColor: primary),
         child: child,
       );
 }

@@ -5,8 +5,9 @@ import '../../../utils/utils.dart';
 import '../../../widgets/custom_input.dart';
 
 class AddressForm extends StatefulWidget {
-  const AddressForm({super.key, required this.onSubmit});
+  const AddressForm({super.key, required this.onSubmit, required this.preset});
   final Function(Map<String, dynamic> data) onSubmit;
+  final Map<String, dynamic> preset;
 
   @override
   State<AddressForm> createState() => _AddressFormState();
@@ -25,14 +26,21 @@ class _AddressFormState extends State<AddressForm> {
 
   @override
   void initState() {
-    _fNameController = TextEditingController();
-    _lNameController = TextEditingController();
-    _mobileController = TextEditingController();
-    _addressController = TextEditingController();
-    _stateController = TextEditingController();
-    _cityController = TextEditingController();
-    _pincodeController = TextEditingController();
-    clearTextController();
+    _fNameController = TextEditingController(
+        text: widget.preset.isNotEmpty ? widget.preset['f_name'] : null);
+    _lNameController = TextEditingController(
+        text: widget.preset.isNotEmpty ? widget.preset['l_name'] : null);
+    _mobileController = TextEditingController(
+        text: widget.preset.isNotEmpty ? widget.preset['mobile'] : null);
+    _addressController = TextEditingController(
+        text: widget.preset.isNotEmpty ? widget.preset['address'] : null);
+    _stateController = TextEditingController(
+        text: widget.preset.isNotEmpty ? widget.preset['state'] : null);
+    _cityController = TextEditingController(
+        text: widget.preset.isNotEmpty ? widget.preset['city'] : null);
+    _pincodeController = TextEditingController(
+        text: widget.preset.isNotEmpty ? widget.preset['pin_code'] : null);
+
     super.initState();
   }
 
