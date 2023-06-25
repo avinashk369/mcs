@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/utils/styles.dart';
