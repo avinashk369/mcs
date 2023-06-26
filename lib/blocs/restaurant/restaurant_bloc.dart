@@ -46,6 +46,7 @@ class RestaurantBloc extends Bloc<RestaurantEvent, RestaurantState> {
       emit(const RestaurantLoading());
       BaseResponse<List<ProductModel>> response =
           await _restaurantRepositoryImpl.loadProducts(event.request);
+      response.data!.sort((a, b) => b.addOnStatus!.compareTo(a.addOnStatus!));
       emit(response.status!
           ? RestaurantProductLoaded(products: response.data!)
           : RestaurantError(message: response.message!));

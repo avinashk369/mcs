@@ -23,6 +23,8 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           addProduct: (event) async => await _addProduct(event, emit),
           deleteProduct: (event) async => await _deleteFromCart(event, emit),
           loadProduct: (event) async => await _loadProducts(event, emit),
+          loadRestaurantProducts: (event) async =>
+              await _loadRestaurantProducts(event, emit),
 
           ///loadProductByCatId: (event) async => await _addProduct(event, emit),
           removeProduct: (event) async => await _removeProduct(event, emit),
@@ -226,7 +228,38 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         addedProducts = state.addedProducts!;
       }
       emit(const ProductLoading());
-      await Future.delayed(const Duration(seconds: 3), () {});
+      //await Future.delayed(const Duration(seconds: 3), () {});
+      Map<String, dynamic> data = {
+        "city_id": event.cityId,
+        "category_id": event.categoryId
+      };
+      List<ProductModel> productList =
+          await _productRepositoryImpl.loadProducts(data);
+
+      /// ! REMOVE THIS LINE WHEN ADD_ON TESTING ARE DONE
+      productList.sort((a, b) => b.addOnStatus!.compareTo(a.addOnStatus!));
+
+      emit(ProductLoaded(products: productList, addedProducts: addedProducts));
+    } on ServerError catch (e) {
+      emit(ProductError(message: e.errorMessage, addedProducts: addedProducts));
+    } catch (e) {
+      emit(ProductError(message: e.toString(), addedProducts: addedProducts));
+    }
+  }
+
+  Future _loadRestaurantProducts(
+      LoadRestaurantProducts event, Emitter<ProductState> emit) async {
+    List<ProductModel> addedProducts = [];
+    try {
+      final state = this.state;
+
+      if (state is ProductLoaded) {
+        addedProducts = state.addedProducts!;
+      }
+      if (state is ProductError) {
+        addedProducts = state.addedProducts!;
+      }
+      emit(const ProductLoading());
       Map<String, dynamic> data = {
         "city_id": event.cityId,
         "category_id": event.categoryId

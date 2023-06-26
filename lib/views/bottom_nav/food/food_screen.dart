@@ -12,6 +12,7 @@ import 'package:mcs/resources/restaurant/restaurant_repositoryImpl.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/bottom_nav/common_appbar.dart';
 import 'package:mcs/views/bottom_nav/food/components/restaurant_list.dart';
+import 'package:mcs/views/bottom_nav/product/components/variant_card.dart';
 import 'package:mcs/views/bottom_nav/product/search/product_search_screen.dart';
 import 'package:mcs/views/bottom_nav/searchbar_placeholder.dart';
 import 'package:mcs/widgets/custom_error_widget.dart';

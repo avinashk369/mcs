@@ -15,9 +15,11 @@ class FoodProductList implements ProductListInterface {
         itemBuilder: (_, index) => FoodCard(
               productModel: products[index],
               addToCart: (product) => addToCart(product),
+              deleteFromCart: (product) => removeFromCart(product),
+              showAddOn: (product, state) => showAddOn!(product, state),
             ),
         separatorBuilder: (_, __) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const EdgeInsets.symmetric(vertical: 16),
               child: DashedSeparator(color: greyColor),
             ),
         itemCount: products.length);

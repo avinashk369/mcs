@@ -2,14 +2,21 @@ part of food_screen;
 
 class FoodCard extends StatelessWidget {
   const FoodCard(
-      {Key? key, required this.productModel, required this.addToCart})
+      {Key? key,
+      required this.productModel,
+      required this.addToCart,
+      this.showAddOn,
+      required this.deleteFromCart})
       : super(key: key);
   final ProductModel productModel;
+  final Function(ProductModel product) deleteFromCart;
   final Function(ProductModel product) addToCart;
+  final Function(ProductModel product, ProductState state)? showAddOn;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final state = context.watch<ProductBloc>().state;
     return SizedBox(
       height: size.height * .18,
       child: Row(
@@ -45,10 +52,19 @@ class FoodCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "2 serving ",
+                    productModel.addOnStatus ?? "",
                     style: kLabelStyle.copyWith(
                         // fontSize: 16,
                         ),
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    height: 25,
+                    child: VariantCard(
+                      isShow: productModel.variant!.length > 1,
+                      variant: productModel.variant![productModel.index],
+                      onTap: () => showAddOn!(productModel, state),
+                    ),
                   ),
                   const Spacer(),
                   Row(
@@ -117,7 +133,7 @@ class FoodCard extends StatelessWidget {
                   height: size.height * .15,
                   margin: const EdgeInsets.only(right: 8),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(5),
                     color: Colors.grey[850],
                     image: DecorationImage(
                       image: CachedNetworkImageProvider(
@@ -128,16 +144,30 @@ class FoodCard extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  bottom: 3,
+                  bottom: 4,
                   left: size.width * .1,
                   child: ElevatedButton(
-                    onPressed: () => addToCart(productModel),
+                    onPressed: () => (state is ProductLoaded) &&
+                            state.addedProducts!.contains(productModel)
+                        ? deleteFromCart(productModel)
+                        : addToCart(productModel),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: (state is ProductLoaded) &&
+                                state.addedProducts!.contains(productModel)
+                            ? redColor
+                            : primaryLight),
                     child: Row(
                       children: [
-                        const Icon(Icons.add),
+                        Icon((state is ProductLoaded) &&
+                                state.addedProducts!.contains(productModel)
+                            ? Icons.remove
+                            : Icons.add),
                         const SizedBox(width: 10),
                         Text(
-                          'ADD',
+                          (state is ProductLoaded) &&
+                                  state.addedProducts!.contains(productModel)
+                              ? 'REMOVE'
+                              : 'ADD',
                           style: kLabelStyleBold.copyWith(
                             color: secondaryLight,
                             fontSize: 12,

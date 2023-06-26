@@ -1,4 +1,7 @@
 //app constants
+import 'package:flutter/material.dart';
+import 'package:mcs/utils/theme_constants.dart';
+
 const String mobileNumber = "mobile_number";
 const String accessToken = "access_token";
 const String userName = "user_name";
@@ -89,3 +92,21 @@ const List<String> searchHintFood = [
   'Chicken Curry',
   'Thali'
 ];
+const Map<String, dynamic> foodFilters = {
+  "Veg": Icon(
+    Icons.circle,
+    color: primaryLight,
+  ),
+  "Non-Veg": Icon(
+    Icons.circle,
+    color: redColor,
+  ),
+  "Price-Low": Icon(
+    Icons.trending_down,
+    color: redColor,
+  ),
+  "Price-High": Icon(
+    Icons.trending_up,
+    color: primaryLight,
+  ),
+};

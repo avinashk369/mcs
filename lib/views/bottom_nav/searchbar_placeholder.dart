@@ -45,7 +45,7 @@ class _SearchbarPlaceholderState extends State<SearchbarPlaceholder> {
                     height: 46,
                     viewportFraction: 1,
                     initialPage: 0,
-                    enableInfiniteScroll: true,
+                    enableInfiniteScroll: widget.hintList.length > 1,
                     reverse: false,
                     autoPlay: true,
                     onPageChanged: (index, reason) {
@@ -71,6 +71,8 @@ class _SearchbarPlaceholderState extends State<SearchbarPlaceholder> {
                       padding: const EdgeInsets.only(top: 4),
                       child: Text(
                         widget.hintList[itemIndex],
+                        maxLines: 1,
+                        //overflow: TextOverflow.ellipsis,
                         style: kLabelStyleBold.copyWith(
                             color: greyColor, fontSize: 14),
                       ),

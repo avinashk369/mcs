@@ -73,9 +73,9 @@ class ProductCard extends StatelessWidget {
                         const SizedBox(height: 8),
                         SizedBox(
                           height: 25,
-                          child: variantCard(
-                            productModel.variant!.length > 1,
-                            productModel.variant![productModel.index],
+                          child: VariantCard(
+                            isShow: productModel.variant!.length > 1,
+                            variant: productModel.variant![productModel.index],
                             onTap: () => showAddOn!(productModel, state),
                           ),
                         ),
@@ -171,40 +171,4 @@ class ProductCard extends StatelessWidget {
       );
     });
   }
-
-  Widget variantCard(bool isShow, Variant variant,
-          {required Function() onTap}) =>
-      InkWell(
-        onTap: isShow ? onTap : null,
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border.all(color: greyColor.withOpacity(.4)),
-              borderRadius: BorderRadius.circular(2)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                "${variant.unitName}-${variant.unit}",
-                style: kLabelStyleBold.copyWith(),
-              ).horizontalPadding(5),
-              const SizedBox(width: 10),
-              isShow
-                  ? Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          left: BorderSide(color: greyColor.withOpacity(.4)),
-                        ),
-                        color: greyColor.withOpacity(.2),
-                      ),
-                      child: const Icon(
-                        Icons.arrow_drop_down,
-                        color: primaryLight,
-                      ),
-                    )
-                  : const SizedBox.shrink()
-            ],
-          ),
-        ),
-      );
 }

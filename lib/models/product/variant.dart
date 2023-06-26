@@ -23,6 +23,9 @@ class Variant with _$Variant {
     String? updatedAt,
     String? maxQty,
     String? unitName,
+    String? type,
+
+    /// add_on, variant
   }) = _Variant;
   factory Variant.fromJson(Map<String, dynamic> json) =>
       _$VariantFromJson(json);

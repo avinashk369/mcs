@@ -19,6 +19,8 @@ mixin _$ProductEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -36,6 +38,7 @@ mixin _$ProductEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -51,6 +54,7 @@ mixin _$ProductEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -67,6 +71,8 @@ mixin _$ProductEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(RemoveProduct value) removeProduct,
     required TResult Function(DeleteProduct value) deleteProduct,
@@ -81,6 +87,7 @@ mixin _$ProductEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(RemoveProduct value)? removeProduct,
     TResult? Function(DeleteProduct value)? deleteProduct,
@@ -95,6 +102,7 @@ mixin _$ProductEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(RemoveProduct value)? removeProduct,
     TResult Function(DeleteProduct value)? deleteProduct,
@@ -210,6 +218,8 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -230,6 +240,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -248,6 +259,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -270,6 +282,8 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(RemoveProduct value) removeProduct,
     required TResult Function(DeleteProduct value) deleteProduct,
@@ -287,6 +301,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(RemoveProduct value)? removeProduct,
     TResult? Function(DeleteProduct value)? deleteProduct,
@@ -304,6 +319,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(RemoveProduct value)? removeProduct,
     TResult Function(DeleteProduct value)? deleteProduct,
@@ -331,6 +347,225 @@ abstract class LoadPrdoucts implements ProductEvent {
   String get cityId;
   @JsonKey(ignore: true)
   _$$LoadPrdouctsCopyWith<_$LoadPrdoucts> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadRestaurantProductsCopyWith<$Res> {
+  factory _$$LoadRestaurantProductsCopyWith(_$LoadRestaurantProducts value,
+          $Res Function(_$LoadRestaurantProducts) then) =
+      __$$LoadRestaurantProductsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String categoryId, String cityId});
+}
+
+/// @nodoc
+class __$$LoadRestaurantProductsCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$LoadRestaurantProducts>
+    implements _$$LoadRestaurantProductsCopyWith<$Res> {
+  __$$LoadRestaurantProductsCopyWithImpl(_$LoadRestaurantProducts _value,
+      $Res Function(_$LoadRestaurantProducts) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? categoryId = null,
+    Object? cityId = null,
+  }) {
+    return _then(_$LoadRestaurantProducts(
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
+      cityId: null == cityId
+          ? _value.cityId
+          : cityId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadRestaurantProducts
+    with DiagnosticableTreeMixin
+    implements LoadRestaurantProducts {
+  const _$LoadRestaurantProducts(
+      {required this.categoryId, required this.cityId});
+
+  @override
+  final String categoryId;
+  @override
+  final String cityId;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ProductEvent.loadRestaurantProducts(categoryId: $categoryId, cityId: $cityId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ProductEvent.loadRestaurantProducts'))
+      ..add(DiagnosticsProperty('categoryId', categoryId))
+      ..add(DiagnosticsProperty('cityId', cityId));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadRestaurantProducts &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId) &&
+            (identical(other.cityId, cityId) || other.cityId == cityId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, categoryId, cityId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadRestaurantProductsCopyWith<_$LoadRestaurantProducts> get copyWith =>
+      __$$LoadRestaurantProductsCopyWithImpl<_$LoadRestaurantProducts>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
+    required TResult Function(ProductModel productModel, bool isCart)
+        addProduct,
+    required TResult Function(ProductModel productModel) removeProduct,
+    required TResult Function(ProductModel productModel) deleteProduct,
+    required TResult Function(String catId) loadProductByCatId,
+    required TResult Function(String keyword, String cityId) search,
+    required TResult Function(ProductModel productModel) updatePrice,
+    required TResult Function() startSearch,
+    required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
+  }) {
+    return loadRestaurantProducts(categoryId, cityId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
+    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel)? removeProduct,
+    TResult? Function(ProductModel productModel)? deleteProduct,
+    TResult? Function(String catId)? loadProductByCatId,
+    TResult? Function(String keyword, String cityId)? search,
+    TResult? Function(ProductModel productModel)? updatePrice,
+    TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
+  }) {
+    return loadRestaurantProducts?.call(categoryId, cityId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
+    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel)? removeProduct,
+    TResult Function(ProductModel productModel)? deleteProduct,
+    TResult Function(String catId)? loadProductByCatId,
+    TResult Function(String keyword, String cityId)? search,
+    TResult Function(ProductModel productModel)? updatePrice,
+    TResult Function()? startSearch,
+    TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
+    required TResult orElse(),
+  }) {
+    if (loadRestaurantProducts != null) {
+      return loadRestaurantProducts(categoryId, cityId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
+    required TResult Function(AddProduct value) addProduct,
+    required TResult Function(RemoveProduct value) removeProduct,
+    required TResult Function(DeleteProduct value) deleteProduct,
+    required TResult Function(LoadProductByCatId value) loadProductByCatId,
+    required TResult Function(SearchProduct value) search,
+    required TResult Function(UpdatePrice value) updatePrice,
+    required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
+  }) {
+    return loadRestaurantProducts(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
+    TResult? Function(AddProduct value)? addProduct,
+    TResult? Function(RemoveProduct value)? removeProduct,
+    TResult? Function(DeleteProduct value)? deleteProduct,
+    TResult? Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult? Function(SearchProduct value)? search,
+    TResult? Function(UpdatePrice value)? updatePrice,
+    TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
+  }) {
+    return loadRestaurantProducts?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
+    TResult Function(AddProduct value)? addProduct,
+    TResult Function(RemoveProduct value)? removeProduct,
+    TResult Function(DeleteProduct value)? deleteProduct,
+    TResult Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult Function(SearchProduct value)? search,
+    TResult Function(UpdatePrice value)? updatePrice,
+    TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
+    required TResult orElse(),
+  }) {
+    if (loadRestaurantProducts != null) {
+      return loadRestaurantProducts(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadRestaurantProducts implements ProductEvent {
+  const factory LoadRestaurantProducts(
+      {required final String categoryId,
+      required final String cityId}) = _$LoadRestaurantProducts;
+
+  String get categoryId;
+  String get cityId;
+  @JsonKey(ignore: true)
+  _$$LoadRestaurantProductsCopyWith<_$LoadRestaurantProducts> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -427,6 +662,8 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -447,6 +684,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -465,6 +703,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -487,6 +726,8 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(RemoveProduct value) removeProduct,
     required TResult Function(DeleteProduct value) deleteProduct,
@@ -504,6 +745,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(RemoveProduct value)? removeProduct,
     TResult? Function(DeleteProduct value)? deleteProduct,
@@ -521,6 +763,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(RemoveProduct value)? removeProduct,
     TResult Function(DeleteProduct value)? deleteProduct,
@@ -635,6 +878,8 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -655,6 +900,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -673,6 +919,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -695,6 +942,8 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(RemoveProduct value) removeProduct,
     required TResult Function(DeleteProduct value) deleteProduct,
@@ -712,6 +961,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(RemoveProduct value)? removeProduct,
     TResult? Function(DeleteProduct value)? deleteProduct,
@@ -729,6 +979,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(RemoveProduct value)? removeProduct,
     TResult Function(DeleteProduct value)? deleteProduct,
@@ -841,6 +1092,8 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -861,6 +1114,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -879,6 +1133,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -901,6 +1156,8 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(RemoveProduct value) removeProduct,
     required TResult Function(DeleteProduct value) deleteProduct,
@@ -918,6 +1175,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(RemoveProduct value)? removeProduct,
     TResult? Function(DeleteProduct value)? deleteProduct,
@@ -935,6 +1193,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(RemoveProduct value)? removeProduct,
     TResult Function(DeleteProduct value)? deleteProduct,
@@ -1039,6 +1298,8 @@ class _$LoadProductByCatId
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -1059,6 +1320,7 @@ class _$LoadProductByCatId
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -1077,6 +1339,7 @@ class _$LoadProductByCatId
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -1099,6 +1362,8 @@ class _$LoadProductByCatId
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(RemoveProduct value) removeProduct,
     required TResult Function(DeleteProduct value) deleteProduct,
@@ -1116,6 +1381,7 @@ class _$LoadProductByCatId
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(RemoveProduct value)? removeProduct,
     TResult? Function(DeleteProduct value)? deleteProduct,
@@ -1133,6 +1399,7 @@ class _$LoadProductByCatId
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(RemoveProduct value)? removeProduct,
     TResult Function(DeleteProduct value)? deleteProduct,
@@ -1243,6 +1510,8 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -1263,6 +1532,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -1281,6 +1551,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -1303,6 +1574,8 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(RemoveProduct value) removeProduct,
     required TResult Function(DeleteProduct value) deleteProduct,
@@ -1320,6 +1593,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(RemoveProduct value)? removeProduct,
     TResult? Function(DeleteProduct value)? deleteProduct,
@@ -1337,6 +1611,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(RemoveProduct value)? removeProduct,
     TResult Function(DeleteProduct value)? deleteProduct,
@@ -1451,6 +1726,8 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -1471,6 +1748,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -1489,6 +1767,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -1511,6 +1790,8 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(RemoveProduct value) removeProduct,
     required TResult Function(DeleteProduct value) deleteProduct,
@@ -1528,6 +1809,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(RemoveProduct value)? removeProduct,
     TResult? Function(DeleteProduct value)? deleteProduct,
@@ -1545,6 +1827,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(RemoveProduct value)? removeProduct,
     TResult Function(DeleteProduct value)? deleteProduct,
@@ -1618,6 +1901,8 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -1638,6 +1923,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -1656,6 +1942,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -1678,6 +1965,8 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(RemoveProduct value) removeProduct,
     required TResult Function(DeleteProduct value) deleteProduct,
@@ -1695,6 +1984,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(RemoveProduct value)? removeProduct,
     TResult? Function(DeleteProduct value)? deleteProduct,
@@ -1712,6 +2002,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(RemoveProduct value)? removeProduct,
     TResult Function(DeleteProduct value)? deleteProduct,
@@ -1779,6 +2070,8 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -1799,6 +2092,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -1817,6 +2111,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -1839,6 +2134,8 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(RemoveProduct value) removeProduct,
     required TResult Function(DeleteProduct value) deleteProduct,
@@ -1856,6 +2153,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(RemoveProduct value)? removeProduct,
     TResult? Function(DeleteProduct value)? deleteProduct,
@@ -1873,6 +2171,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(RemoveProduct value)? removeProduct,
     TResult Function(DeleteProduct value)? deleteProduct,
@@ -1988,6 +2287,8 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
@@ -2008,6 +2309,7 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
@@ -2026,6 +2328,7 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
@@ -2048,6 +2351,8 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
     required TResult Function(AddProduct value) addProduct,
     required TResult Function(RemoveProduct value) removeProduct,
     required TResult Function(DeleteProduct value) deleteProduct,
@@ -2065,6 +2370,7 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult? Function(AddProduct value)? addProduct,
     TResult? Function(RemoveProduct value)? removeProduct,
     TResult? Function(DeleteProduct value)? deleteProduct,
@@ -2082,6 +2388,7 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
     TResult Function(AddProduct value)? addProduct,
     TResult Function(RemoveProduct value)? removeProduct,
     TResult Function(DeleteProduct value)? deleteProduct,

@@ -49,6 +49,7 @@ mixin _$ProductModel {
   String? get originalPrice => throw _privateConstructorUsedError;
   String? get unit => throw _privateConstructorUsedError;
   int? get total => throw _privateConstructorUsedError;
+  String? get addOnStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -88,7 +89,8 @@ abstract class $ProductModelCopyWith<$Res> {
       String? itemId,
       String? originalPrice,
       String? unit,
-      int? total});
+      int? total,
+      String? addOnStatus});
 }
 
 /// @nodoc
@@ -130,6 +132,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? originalPrice = freezed,
     Object? unit = freezed,
     Object? total = freezed,
+    Object? addOnStatus = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -236,6 +239,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int?,
+      addOnStatus: freezed == addOnStatus
+          ? _value.addOnStatus
+          : addOnStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -274,7 +281,8 @@ abstract class _$$_ProductModelCopyWith<$Res>
       String? itemId,
       String? originalPrice,
       String? unit,
-      int? total});
+      int? total,
+      String? addOnStatus});
 }
 
 /// @nodoc
@@ -314,6 +322,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? originalPrice = freezed,
     Object? unit = freezed,
     Object? total = freezed,
+    Object? addOnStatus = freezed,
   }) {
     return _then(_$_ProductModel(
       id: freezed == id
@@ -420,6 +429,10 @@ class __$$_ProductModelCopyWithImpl<$Res>
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int?,
+      addOnStatus: freezed == addOnStatus
+          ? _value.addOnStatus
+          : addOnStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -455,7 +468,8 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       this.itemId,
       this.originalPrice,
       this.unit,
-      this.total})
+      this.total,
+      this.addOnStatus})
       : _variant = variant;
 
   factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -524,10 +538,12 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
   final String? unit;
   @override
   final int? total;
+  @override
+  final String? addOnStatus;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProductModel(id: $id, productId: $productId, name: $name, description: $description, productImage: $productImage, stockStatus: $stockStatus, categoryId: $categoryId, cityId: $cityId, couponCode: $couponCode, createdAt: $createdAt, updatedAt: $updatedAt, productGroup: $productGroup, variant: $variant, count: $count, index: $index, rating: $rating, orderId: $orderId, priceUnitId: $priceUnitId, quantity: $quantity, purchasePrice: $purchasePrice, price: $price, discount: $discount, itemId: $itemId, originalPrice: $originalPrice, unit: $unit, total: $total)';
+    return 'ProductModel(id: $id, productId: $productId, name: $name, description: $description, productImage: $productImage, stockStatus: $stockStatus, categoryId: $categoryId, cityId: $cityId, couponCode: $couponCode, createdAt: $createdAt, updatedAt: $updatedAt, productGroup: $productGroup, variant: $variant, count: $count, index: $index, rating: $rating, orderId: $orderId, priceUnitId: $priceUnitId, quantity: $quantity, purchasePrice: $purchasePrice, price: $price, discount: $discount, itemId: $itemId, originalPrice: $originalPrice, unit: $unit, total: $total, addOnStatus: $addOnStatus)';
   }
 
   @override
@@ -560,7 +576,8 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       ..add(DiagnosticsProperty('itemId', itemId))
       ..add(DiagnosticsProperty('originalPrice', originalPrice))
       ..add(DiagnosticsProperty('unit', unit))
-      ..add(DiagnosticsProperty('total', total));
+      ..add(DiagnosticsProperty('total', total))
+      ..add(DiagnosticsProperty('addOnStatus', addOnStatus));
   }
 
   @override
@@ -607,7 +624,9 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
             (identical(other.originalPrice, originalPrice) ||
                 other.originalPrice == originalPrice) &&
             (identical(other.unit, unit) || other.unit == unit) &&
-            (identical(other.total, total) || other.total == total));
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.addOnStatus, addOnStatus) ||
+                other.addOnStatus == addOnStatus));
   }
 
   @JsonKey(ignore: true)
@@ -639,7 +658,8 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
         itemId,
         originalPrice,
         unit,
-        total
+        total,
+        addOnStatus
       ]);
 
   @JsonKey(ignore: true)
@@ -683,7 +703,8 @@ abstract class _ProductModel implements ProductModel {
       final String? itemId,
       final String? originalPrice,
       final String? unit,
-      final int? total}) = _$_ProductModel;
+      final int? total,
+      final String? addOnStatus}) = _$_ProductModel;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$_ProductModel.fromJson;
@@ -742,6 +763,8 @@ abstract class _ProductModel implements ProductModel {
   String? get unit;
   @override
   int? get total;
+  @override
+  String? get addOnStatus;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>

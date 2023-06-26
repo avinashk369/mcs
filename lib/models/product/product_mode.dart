@@ -42,6 +42,9 @@ class ProductModel with _$ProductModel {
     String? originalPrice,
     String? unit,
     int? total,
+    String? addOnStatus,
+
+    /// 1 is true 0 is false
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>

@@ -4,6 +4,9 @@ part of 'product_bloc.dart';
 class ProductEvent with _$ProductEvent {
   const factory ProductEvent.loadProduct(
       {String? categoryId, required String cityId}) = LoadPrdoucts;
+  const factory ProductEvent.loadRestaurantProducts(
+      {required String categoryId,
+      required String cityId}) = LoadRestaurantProducts;
   const factory ProductEvent.addProduct(
       {required ProductModel productModel, required bool isCart}) = AddProduct;
   const factory ProductEvent.removeProduct(ProductModel productModel) =
