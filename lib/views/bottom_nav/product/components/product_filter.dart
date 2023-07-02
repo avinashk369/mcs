@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/category/category_bloc.dart';
+import 'package:mcs/blocs/product/productbloc.dart';
 import 'package:mcs/blocs/subcat/subcat_bloc.dart';
 import 'package:mcs/models/category/category_model.dart';
 import 'package:mcs/utils/utils.dart';
@@ -35,7 +36,7 @@ class ProductFilter extends StatelessWidget implements PreferredSizeWidget {
             builder: (context, state) {
               return state.maybeMap(
                 initial: (_) => const ProductHolder(),
-                loaded: (res) => CatList(
+                swaped: (res) => CatList(
                   categoryModel: categoryModel,
                   categories: res.categories,
                   onTap: (category, index) => onTap(category, index),
@@ -45,7 +46,14 @@ class ProductFilter extends StatelessWidget implements PreferredSizeWidget {
               );
             },
           ),
-          BlocBuilder<SubcatBloc, SubcatState>(
+          BlocConsumer<SubcatBloc, SubcatState>(
+            listener: (context, state) {
+              if (state is SubcatLoaded) {
+                context.read<ProductBloc>().add(ProductEvent.loadProduct(
+                    cityId: PreferenceUtils.getString(currentCityId),
+                    categoryId: state.subcats[0].id));
+              }
+            },
             builder: (context, state) {
               return state.maybeMap(
                 initial: (_) => const ProductHolder(),
