@@ -96,17 +96,21 @@ const Map<String, dynamic> foodFilters = {
   "Veg": Icon(
     Icons.circle,
     color: primaryLight,
+    size: 16,
   ),
   "Non-Veg": Icon(
     Icons.circle,
     color: redColor,
+    size: 16,
   ),
   "Price-Low": Icon(
     Icons.trending_down,
     color: redColor,
+    size: 16,
   ),
   "Price-High": Icon(
     Icons.trending_up,
     color: primaryLight,
+    size: 16,
   ),
 };

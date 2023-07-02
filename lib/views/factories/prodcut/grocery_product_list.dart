@@ -13,7 +13,7 @@ class GroceryProductList implements ProductListInterface {
         (context, index) {
           return ProductCard(
             productModel: products[index],
-            height: 225,
+            height: MediaQuery.of(context).size.height * .26,
             addToCart: (product) => addToCart(product),
             deleteFromCart: (product) => removeFromCart(product),
             offer: "",
@@ -27,7 +27,7 @@ class GroceryProductList implements ProductListInterface {
         crossAxisCount: 2,
         mainAxisSpacing: 5,
         crossAxisSpacing: 1,
-        childAspectRatio: .7,
+        childAspectRatio: .65,
       ),
     );
   }

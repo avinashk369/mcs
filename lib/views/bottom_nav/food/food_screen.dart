@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mcs/blocs/product/product_bloc.dart';
 import 'package:mcs/blocs/restaurant/restaurant_bloc.dart';
+import 'package:mcs/blocs/toggle/index_toggled.dart';
+import 'package:mcs/blocs/toggle/toggle_index_bloc.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/resources/restaurant/restaurant_repositoryImpl.dart';
 import 'package:mcs/utils/utils.dart';

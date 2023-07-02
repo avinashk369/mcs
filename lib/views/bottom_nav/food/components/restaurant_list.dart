@@ -33,6 +33,7 @@ class RestaurantList extends StatelessWidget {
                   LoadPrdoucts(
                     cityId: PreferenceUtils.getString(currentCityId),
                     categoryId: restaurants[index].id,
+                    isFood: true,
                   ),
                 );
             Navigator.of(context).pushNamed(RestaurantProductScreen.tag,

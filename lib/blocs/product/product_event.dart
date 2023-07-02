@@ -3,7 +3,9 @@ part of 'product_bloc.dart';
 @freezed
 class ProductEvent with _$ProductEvent {
   const factory ProductEvent.loadProduct(
-      {String? categoryId, required String cityId}) = LoadPrdoucts;
+      {String? categoryId,
+      required String cityId,
+      @Default(false) bool isFood}) = LoadPrdoucts;
   const factory ProductEvent.loadRestaurantProducts(
       {required String categoryId,
       required String cityId}) = LoadRestaurantProducts;
@@ -25,4 +27,6 @@ class ProductEvent with _$ProductEvent {
   const factory ProductEvent.repeatOrder(
       {required List<ProductModel> products,
       required double shippingCharge}) = RepeatOrder;
+  const factory ProductEvent.sortAndFilter(
+      {required Map<String, dynamic> filterMap}) = SortAndFilter;
 }

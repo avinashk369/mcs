@@ -18,7 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ProductEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
@@ -33,11 +34,13 @@ mixin _$ProductEvent {
     required TResult Function(
             List<ProductModel> products, double shippingCharge)
         repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
@@ -49,11 +52,13 @@ mixin _$ProductEvent {
     TResult? Function()? clearKart,
     TResult? Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
@@ -65,6 +70,7 @@ mixin _$ProductEvent {
     TResult Function()? clearKart,
     TResult Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,6 +88,7 @@ mixin _$ProductEvent {
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
     required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -97,6 +104,7 @@ mixin _$ProductEvent {
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
     TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -112,6 +120,7 @@ mixin _$ProductEvent {
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
     TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,7 +150,7 @@ abstract class _$$LoadPrdouctsCopyWith<$Res> {
           _$LoadPrdoucts value, $Res Function(_$LoadPrdoucts) then) =
       __$$LoadPrdouctsCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? categoryId, String cityId});
+  $Res call({String? categoryId, String cityId, bool isFood});
 }
 
 /// @nodoc
@@ -157,6 +166,7 @@ class __$$LoadPrdouctsCopyWithImpl<$Res>
   $Res call({
     Object? categoryId = freezed,
     Object? cityId = null,
+    Object? isFood = null,
   }) {
     return _then(_$LoadPrdoucts(
       categoryId: freezed == categoryId
@@ -167,6 +177,10 @@ class __$$LoadPrdouctsCopyWithImpl<$Res>
           ? _value.cityId
           : cityId // ignore: cast_nullable_to_non_nullable
               as String,
+      isFood: null == isFood
+          ? _value.isFood
+          : isFood // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -174,16 +188,20 @@ class __$$LoadPrdouctsCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
-  const _$LoadPrdoucts({this.categoryId, required this.cityId});
+  const _$LoadPrdoucts(
+      {this.categoryId, required this.cityId, this.isFood = false});
 
   @override
   final String? categoryId;
   @override
   final String cityId;
+  @override
+  @JsonKey()
+  final bool isFood;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProductEvent.loadProduct(categoryId: $categoryId, cityId: $cityId)';
+    return 'ProductEvent.loadProduct(categoryId: $categoryId, cityId: $cityId, isFood: $isFood)';
   }
 
   @override
@@ -192,7 +210,8 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     properties
       ..add(DiagnosticsProperty('type', 'ProductEvent.loadProduct'))
       ..add(DiagnosticsProperty('categoryId', categoryId))
-      ..add(DiagnosticsProperty('cityId', cityId));
+      ..add(DiagnosticsProperty('cityId', cityId))
+      ..add(DiagnosticsProperty('isFood', isFood));
   }
 
   @override
@@ -202,11 +221,12 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
             other is _$LoadPrdoucts &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
-            (identical(other.cityId, cityId) || other.cityId == cityId));
+            (identical(other.cityId, cityId) || other.cityId == cityId) &&
+            (identical(other.isFood, isFood) || other.isFood == isFood));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, categoryId, cityId);
+  int get hashCode => Object.hash(runtimeType, categoryId, cityId, isFood);
 
   @JsonKey(ignore: true)
   @override
@@ -217,7 +237,8 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
@@ -232,14 +253,16 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     required TResult Function(
             List<ProductModel> products, double shippingCharge)
         repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) {
-    return loadProduct(categoryId, cityId);
+    return loadProduct(categoryId, cityId, isFood);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
@@ -251,14 +274,16 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult? Function()? clearKart,
     TResult? Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) {
-    return loadProduct?.call(categoryId, cityId);
+    return loadProduct?.call(categoryId, cityId, isFood);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
@@ -270,10 +295,11 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult Function()? clearKart,
     TResult Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (loadProduct != null) {
-      return loadProduct(categoryId, cityId);
+      return loadProduct(categoryId, cityId, isFood);
     }
     return orElse();
   }
@@ -293,6 +319,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
     required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
   }) {
     return loadProduct(this);
   }
@@ -311,6 +338,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
     TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
   }) {
     return loadProduct?.call(this);
   }
@@ -329,6 +357,7 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
     TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (loadProduct != null) {
@@ -341,10 +370,12 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
 abstract class LoadPrdoucts implements ProductEvent {
   const factory LoadPrdoucts(
       {final String? categoryId,
-      required final String cityId}) = _$LoadPrdoucts;
+      required final String cityId,
+      final bool isFood}) = _$LoadPrdoucts;
 
   String? get categoryId;
   String get cityId;
+  bool get isFood;
   @JsonKey(ignore: true)
   _$$LoadPrdouctsCopyWith<_$LoadPrdoucts> get copyWith =>
       throw _privateConstructorUsedError;
@@ -436,7 +467,8 @@ class _$LoadRestaurantProducts
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
@@ -451,6 +483,7 @@ class _$LoadRestaurantProducts
     required TResult Function(
             List<ProductModel> products, double shippingCharge)
         repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) {
     return loadRestaurantProducts(categoryId, cityId);
   }
@@ -458,7 +491,8 @@ class _$LoadRestaurantProducts
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
@@ -470,6 +504,7 @@ class _$LoadRestaurantProducts
     TResult? Function()? clearKart,
     TResult? Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) {
     return loadRestaurantProducts?.call(categoryId, cityId);
   }
@@ -477,7 +512,8 @@ class _$LoadRestaurantProducts
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
@@ -489,6 +525,7 @@ class _$LoadRestaurantProducts
     TResult Function()? clearKart,
     TResult Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (loadRestaurantProducts != null) {
@@ -512,6 +549,7 @@ class _$LoadRestaurantProducts
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
     required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
   }) {
     return loadRestaurantProducts(this);
   }
@@ -530,6 +568,7 @@ class _$LoadRestaurantProducts
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
     TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
   }) {
     return loadRestaurantProducts?.call(this);
   }
@@ -548,6 +587,7 @@ class _$LoadRestaurantProducts
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
     TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (loadRestaurantProducts != null) {
@@ -661,7 +701,8 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
@@ -676,6 +717,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     required TResult Function(
             List<ProductModel> products, double shippingCharge)
         repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) {
     return addProduct(productModel, isCart);
   }
@@ -683,7 +725,8 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
@@ -695,6 +738,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult? Function()? clearKart,
     TResult? Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) {
     return addProduct?.call(productModel, isCart);
   }
@@ -702,7 +746,8 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
@@ -714,6 +759,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult Function()? clearKart,
     TResult Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (addProduct != null) {
@@ -737,6 +783,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
     required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
   }) {
     return addProduct(this);
   }
@@ -755,6 +802,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
     TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
   }) {
     return addProduct?.call(this);
   }
@@ -773,6 +821,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
     TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (addProduct != null) {
@@ -877,7 +926,8 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
@@ -892,6 +942,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     required TResult Function(
             List<ProductModel> products, double shippingCharge)
         repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) {
     return removeProduct(productModel);
   }
@@ -899,7 +950,8 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
@@ -911,6 +963,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult? Function()? clearKart,
     TResult? Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) {
     return removeProduct?.call(productModel);
   }
@@ -918,7 +971,8 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
@@ -930,6 +984,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult Function()? clearKart,
     TResult Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (removeProduct != null) {
@@ -953,6 +1008,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
     required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
   }) {
     return removeProduct(this);
   }
@@ -971,6 +1027,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
     TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
   }) {
     return removeProduct?.call(this);
   }
@@ -989,6 +1046,7 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
     TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (removeProduct != null) {
@@ -1091,7 +1149,8 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
@@ -1106,6 +1165,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     required TResult Function(
             List<ProductModel> products, double shippingCharge)
         repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) {
     return deleteProduct(productModel);
   }
@@ -1113,7 +1173,8 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
@@ -1125,6 +1186,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult? Function()? clearKart,
     TResult? Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) {
     return deleteProduct?.call(productModel);
   }
@@ -1132,7 +1194,8 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
@@ -1144,6 +1207,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult Function()? clearKart,
     TResult Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (deleteProduct != null) {
@@ -1167,6 +1231,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
     required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
   }) {
     return deleteProduct(this);
   }
@@ -1185,6 +1250,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
     TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
   }) {
     return deleteProduct?.call(this);
   }
@@ -1203,6 +1269,7 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
     TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (deleteProduct != null) {
@@ -1297,7 +1364,8 @@ class _$LoadProductByCatId
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
@@ -1312,6 +1380,7 @@ class _$LoadProductByCatId
     required TResult Function(
             List<ProductModel> products, double shippingCharge)
         repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) {
     return loadProductByCatId(catId);
   }
@@ -1319,7 +1388,8 @@ class _$LoadProductByCatId
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
@@ -1331,6 +1401,7 @@ class _$LoadProductByCatId
     TResult? Function()? clearKart,
     TResult? Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) {
     return loadProductByCatId?.call(catId);
   }
@@ -1338,7 +1409,8 @@ class _$LoadProductByCatId
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
@@ -1350,6 +1422,7 @@ class _$LoadProductByCatId
     TResult Function()? clearKart,
     TResult Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (loadProductByCatId != null) {
@@ -1373,6 +1446,7 @@ class _$LoadProductByCatId
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
     required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
   }) {
     return loadProductByCatId(this);
   }
@@ -1391,6 +1465,7 @@ class _$LoadProductByCatId
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
     TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
   }) {
     return loadProductByCatId?.call(this);
   }
@@ -1409,6 +1484,7 @@ class _$LoadProductByCatId
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
     TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (loadProductByCatId != null) {
@@ -1509,7 +1585,8 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
@@ -1524,6 +1601,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     required TResult Function(
             List<ProductModel> products, double shippingCharge)
         repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) {
     return search(keyword, cityId);
   }
@@ -1531,7 +1609,8 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
@@ -1543,6 +1622,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult? Function()? clearKart,
     TResult? Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) {
     return search?.call(keyword, cityId);
   }
@@ -1550,7 +1630,8 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
@@ -1562,6 +1643,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult Function()? clearKart,
     TResult Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -1585,6 +1667,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
     required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
   }) {
     return search(this);
   }
@@ -1603,6 +1686,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
     TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
   }) {
     return search?.call(this);
   }
@@ -1621,6 +1705,7 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
     TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -1725,7 +1810,8 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
@@ -1740,6 +1826,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     required TResult Function(
             List<ProductModel> products, double shippingCharge)
         repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) {
     return updatePrice(productModel);
   }
@@ -1747,7 +1834,8 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
@@ -1759,6 +1847,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult? Function()? clearKart,
     TResult? Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) {
     return updatePrice?.call(productModel);
   }
@@ -1766,7 +1855,8 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
@@ -1778,6 +1868,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult Function()? clearKart,
     TResult Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (updatePrice != null) {
@@ -1801,6 +1892,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
     required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
   }) {
     return updatePrice(this);
   }
@@ -1819,6 +1911,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
     TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
   }) {
     return updatePrice?.call(this);
   }
@@ -1837,6 +1930,7 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
     TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (updatePrice != null) {
@@ -1900,7 +1994,8 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
@@ -1915,6 +2010,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     required TResult Function(
             List<ProductModel> products, double shippingCharge)
         repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) {
     return startSearch();
   }
@@ -1922,7 +2018,8 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
@@ -1934,6 +2031,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult? Function()? clearKart,
     TResult? Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) {
     return startSearch?.call();
   }
@@ -1941,7 +2039,8 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
@@ -1953,6 +2052,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult Function()? clearKart,
     TResult Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (startSearch != null) {
@@ -1976,6 +2076,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
     required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
   }) {
     return startSearch(this);
   }
@@ -1994,6 +2095,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
     TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
   }) {
     return startSearch?.call(this);
   }
@@ -2012,6 +2114,7 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
     TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (startSearch != null) {
@@ -2069,7 +2172,8 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
@@ -2084,6 +2188,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     required TResult Function(
             List<ProductModel> products, double shippingCharge)
         repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) {
     return clearKart();
   }
@@ -2091,7 +2196,8 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
@@ -2103,6 +2209,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     TResult? Function()? clearKart,
     TResult? Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) {
     return clearKart?.call();
   }
@@ -2110,7 +2217,8 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
@@ -2122,6 +2230,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     TResult Function()? clearKart,
     TResult Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (clearKart != null) {
@@ -2145,6 +2254,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
     required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
   }) {
     return clearKart(this);
   }
@@ -2163,6 +2273,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
     TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
   }) {
     return clearKart?.call(this);
   }
@@ -2181,6 +2292,7 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
     TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (clearKart != null) {
@@ -2286,7 +2398,8 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? categoryId, String cityId) loadProduct,
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
     required TResult Function(ProductModel productModel, bool isCart)
@@ -2301,6 +2414,7 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
     required TResult Function(
             List<ProductModel> products, double shippingCharge)
         repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) {
     return repeatOrder(products, shippingCharge);
   }
@@ -2308,7 +2422,8 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? categoryId, String cityId)? loadProduct,
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult? Function(ProductModel productModel, bool isCart)? addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
@@ -2320,6 +2435,7 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
     TResult? Function()? clearKart,
     TResult? Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) {
     return repeatOrder?.call(products, shippingCharge);
   }
@@ -2327,7 +2443,8 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? categoryId, String cityId)? loadProduct,
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
     TResult Function(ProductModel productModel, bool isCart)? addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
@@ -2339,6 +2456,7 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
     TResult Function()? clearKart,
     TResult Function(List<ProductModel> products, double shippingCharge)?
         repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (repeatOrder != null) {
@@ -2362,6 +2480,7 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
     required TResult Function(StartSearch value) startSearch,
     required TResult Function(ClearKart value) clearKart,
     required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
   }) {
     return repeatOrder(this);
   }
@@ -2380,6 +2499,7 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
     TResult? Function(StartSearch value)? startSearch,
     TResult? Function(ClearKart value)? clearKart,
     TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
   }) {
     return repeatOrder?.call(this);
   }
@@ -2398,6 +2518,7 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
     TResult Function(StartSearch value)? startSearch,
     TResult Function(ClearKart value)? clearKart,
     TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
     required TResult orElse(),
   }) {
     if (repeatOrder != null) {
@@ -2416,6 +2537,226 @@ abstract class RepeatOrder implements ProductEvent {
   double get shippingCharge;
   @JsonKey(ignore: true)
   _$$RepeatOrderCopyWith<_$RepeatOrder> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SortAndFilterCopyWith<$Res> {
+  factory _$$SortAndFilterCopyWith(
+          _$SortAndFilter value, $Res Function(_$SortAndFilter) then) =
+      __$$SortAndFilterCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic> filterMap});
+}
+
+/// @nodoc
+class __$$SortAndFilterCopyWithImpl<$Res>
+    extends _$ProductEventCopyWithImpl<$Res, _$SortAndFilter>
+    implements _$$SortAndFilterCopyWith<$Res> {
+  __$$SortAndFilterCopyWithImpl(
+      _$SortAndFilter _value, $Res Function(_$SortAndFilter) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filterMap = null,
+  }) {
+    return _then(_$SortAndFilter(
+      filterMap: null == filterMap
+          ? _value._filterMap
+          : filterMap // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SortAndFilter with DiagnosticableTreeMixin implements SortAndFilter {
+  const _$SortAndFilter({required final Map<String, dynamic> filterMap})
+      : _filterMap = filterMap;
+
+  final Map<String, dynamic> _filterMap;
+  @override
+  Map<String, dynamic> get filterMap {
+    if (_filterMap is EqualUnmodifiableMapView) return _filterMap;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_filterMap);
+  }
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ProductEvent.sortAndFilter(filterMap: $filterMap)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ProductEvent.sortAndFilter'))
+      ..add(DiagnosticsProperty('filterMap', filterMap));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SortAndFilter &&
+            const DeepCollectionEquality()
+                .equals(other._filterMap, _filterMap));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_filterMap));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SortAndFilterCopyWith<_$SortAndFilter> get copyWith =>
+      __$$SortAndFilterCopyWithImpl<_$SortAndFilter>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? categoryId, String cityId, bool isFood)
+        loadProduct,
+    required TResult Function(String categoryId, String cityId)
+        loadRestaurantProducts,
+    required TResult Function(ProductModel productModel, bool isCart)
+        addProduct,
+    required TResult Function(ProductModel productModel) removeProduct,
+    required TResult Function(ProductModel productModel) deleteProduct,
+    required TResult Function(String catId) loadProductByCatId,
+    required TResult Function(String keyword, String cityId) search,
+    required TResult Function(ProductModel productModel) updatePrice,
+    required TResult Function() startSearch,
+    required TResult Function() clearKart,
+    required TResult Function(
+            List<ProductModel> products, double shippingCharge)
+        repeatOrder,
+    required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
+  }) {
+    return sortAndFilter(filterMap);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
+    TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
+    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel)? removeProduct,
+    TResult? Function(ProductModel productModel)? deleteProduct,
+    TResult? Function(String catId)? loadProductByCatId,
+    TResult? Function(String keyword, String cityId)? search,
+    TResult? Function(ProductModel productModel)? updatePrice,
+    TResult? Function()? startSearch,
+    TResult? Function()? clearKart,
+    TResult? Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
+    TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
+  }) {
+    return sortAndFilter?.call(filterMap);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? categoryId, String cityId, bool isFood)?
+        loadProduct,
+    TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
+    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel)? removeProduct,
+    TResult Function(ProductModel productModel)? deleteProduct,
+    TResult Function(String catId)? loadProductByCatId,
+    TResult Function(String keyword, String cityId)? search,
+    TResult Function(ProductModel productModel)? updatePrice,
+    TResult Function()? startSearch,
+    TResult Function()? clearKart,
+    TResult Function(List<ProductModel> products, double shippingCharge)?
+        repeatOrder,
+    TResult Function(Map<String, dynamic> filterMap)? sortAndFilter,
+    required TResult orElse(),
+  }) {
+    if (sortAndFilter != null) {
+      return sortAndFilter(filterMap);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadPrdoucts value) loadProduct,
+    required TResult Function(LoadRestaurantProducts value)
+        loadRestaurantProducts,
+    required TResult Function(AddProduct value) addProduct,
+    required TResult Function(RemoveProduct value) removeProduct,
+    required TResult Function(DeleteProduct value) deleteProduct,
+    required TResult Function(LoadProductByCatId value) loadProductByCatId,
+    required TResult Function(SearchProduct value) search,
+    required TResult Function(UpdatePrice value) updatePrice,
+    required TResult Function(StartSearch value) startSearch,
+    required TResult Function(ClearKart value) clearKart,
+    required TResult Function(RepeatOrder value) repeatOrder,
+    required TResult Function(SortAndFilter value) sortAndFilter,
+  }) {
+    return sortAndFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadPrdoucts value)? loadProduct,
+    TResult? Function(LoadRestaurantProducts value)? loadRestaurantProducts,
+    TResult? Function(AddProduct value)? addProduct,
+    TResult? Function(RemoveProduct value)? removeProduct,
+    TResult? Function(DeleteProduct value)? deleteProduct,
+    TResult? Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult? Function(SearchProduct value)? search,
+    TResult? Function(UpdatePrice value)? updatePrice,
+    TResult? Function(StartSearch value)? startSearch,
+    TResult? Function(ClearKart value)? clearKart,
+    TResult? Function(RepeatOrder value)? repeatOrder,
+    TResult? Function(SortAndFilter value)? sortAndFilter,
+  }) {
+    return sortAndFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadPrdoucts value)? loadProduct,
+    TResult Function(LoadRestaurantProducts value)? loadRestaurantProducts,
+    TResult Function(AddProduct value)? addProduct,
+    TResult Function(RemoveProduct value)? removeProduct,
+    TResult Function(DeleteProduct value)? deleteProduct,
+    TResult Function(LoadProductByCatId value)? loadProductByCatId,
+    TResult Function(SearchProduct value)? search,
+    TResult Function(UpdatePrice value)? updatePrice,
+    TResult Function(StartSearch value)? startSearch,
+    TResult Function(ClearKart value)? clearKart,
+    TResult Function(RepeatOrder value)? repeatOrder,
+    TResult Function(SortAndFilter value)? sortAndFilter,
+    required TResult orElse(),
+  }) {
+    if (sortAndFilter != null) {
+      return sortAndFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SortAndFilter implements ProductEvent {
+  const factory SortAndFilter({required final Map<String, dynamic> filterMap}) =
+      _$SortAndFilter;
+
+  Map<String, dynamic> get filterMap;
+  @JsonKey(ignore: true)
+  _$$SortAndFilterCopyWith<_$SortAndFilter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

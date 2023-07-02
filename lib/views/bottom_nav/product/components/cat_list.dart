@@ -33,12 +33,16 @@ class _CatListState extends State<CatList> {
 
   @override
   void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
     /// swaping the list item and making them visible
     final int index = widget.categories.indexOf(widget.categoryModel);
     context.read<CategoryBloc>().add(SwapIndex(current: 0, last: index));
     context.read<ToggleIndexBloc>().toggleState(0, false);
-
-    super.initState();
+    super.didChangeDependencies();
   }
 
   void scrollToMaxExtent() {

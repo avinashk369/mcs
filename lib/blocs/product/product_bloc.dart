@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mcs/models/server_error.dart';
 import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/resources/product/product_repository.dart';
+import 'package:mcs/utils/product_filter_enums.dart';
 
 import '../../models/product/variant.dart';
 part 'product_bloc.freezed.dart';
@@ -33,6 +34,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
           startSearch: (event) async => await _startSearch(event, emit),
           clearKart: (event) async => await _clearKart(event, emit),
           repeatOrder: (event) async => await _repeatOrder(event, emit),
+          sortAndFilter: (event) async => await _sortAndFilter(event, emit),
         );
       },
     );
@@ -206,7 +208,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         emit(ProductLoaded(
           products: state.products,
           addedProducts: cartProducts,
-          personalCare: state.personalCare,
           dailyNeeds: state.dailyNeeds,
           dairyProducts: state.dairyProducts,
         ));
@@ -218,14 +219,30 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
   Future _loadProducts(LoadPrdoucts event, Emitter<ProductState> emit) async {
     List<ProductModel> addedProducts = [];
+    Set<ProductModel> loadedProducts = {};
     try {
       final state = this.state;
 
       if (state is ProductLoaded) {
-        addedProducts = state.addedProducts!;
+        int existingCat = state.addedProducts!
+            .indexWhere((element) => element.categoryId == event.categoryId);
+        addedProducts = (event.isFood)
+            ? existingCat != -1
+                ? state.addedProducts!
+                : []
+            : state.addedProducts!;
+        loadedProducts = (event.isFood)
+            ? existingCat != -1
+                ? state.products.toSet()
+                : {}
+            : state.products.toSet();
+        //emit(state);
       }
       if (state is ProductError) {
-        addedProducts = state.addedProducts!;
+        int existingCat = state.addedProducts!
+            .indexWhere((element) => element.categoryId == event.categoryId);
+        addedProducts = existingCat != -1 ? state.addedProducts! : [];
+        //emit(state);
       }
       emit(const ProductLoading());
       //await Future.delayed(const Duration(seconds: 3), () {});
@@ -238,8 +255,44 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
       /// ! REMOVE THIS LINE WHEN ADD_ON TESTING ARE DONE
       productList.sort((a, b) => b.addOnStatus!.compareTo(a.addOnStatus!));
+      loadedProducts.addAll(productList.toSet());
 
-      emit(ProductLoaded(products: productList, addedProducts: addedProducts));
+      emit(ProductLoaded(
+        products: loadedProducts.toList(),
+        addedProducts: addedProducts,
+      ));
+    } on ServerError catch (e) {
+      emit(ProductError(message: e.errorMessage, addedProducts: addedProducts));
+    } catch (e) {
+      emit(ProductError(message: e.toString(), addedProducts: addedProducts));
+    }
+  }
+
+  Future _sortAndFilter(SortAndFilter event, Emitter<ProductState> emit) async {
+    List<ProductModel> addedProducts = [];
+    try {
+      final state = this.state;
+
+      if (state is ProductLoaded) {
+        addedProducts = state.addedProducts!;
+        List<ProductModel> productList =
+            List<ProductModel>.from(state.products);
+
+        /// veg non-veg
+        (event.filterMap['sort'] == ProductFilterType.veg.filterName)
+            ? productList.sort(((a, b) => a.name!.compareTo(b.name!)))
+            : productList.sort(((a, b) => b.name!.compareTo(a.name!)));
+
+        /// price high-low
+        (event.filterMap['sort'] == ProductFilterType.priceToLow.filterName)
+            ? productList.sort(((a, b) =>
+                a.variant![0].price!.compareTo(b.variant![0].price!)))
+            : productList.sort(((a, b) =>
+                b.variant![0].price!.compareTo(a.variant![0].price!)));
+
+        emit(state.copyWith(
+            products: productList, addedProducts: addedProducts));
+      }
     } on ServerError catch (e) {
       emit(ProductError(message: e.errorMessage, addedProducts: addedProducts));
     } catch (e) {
