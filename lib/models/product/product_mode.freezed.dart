@@ -49,6 +49,7 @@ mixin _$ProductModel {
   String? get originalPrice => throw _privateConstructorUsedError;
   String? get unit => throw _privateConstructorUsedError;
   int? get total => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: "0")
   String? get addOnStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -90,7 +91,7 @@ abstract class $ProductModelCopyWith<$Res> {
       String? originalPrice,
       String? unit,
       int? total,
-      String? addOnStatus});
+      @JsonKey(defaultValue: "0") String? addOnStatus});
 }
 
 /// @nodoc
@@ -282,7 +283,7 @@ abstract class _$$_ProductModelCopyWith<$Res>
       String? originalPrice,
       String? unit,
       int? total,
-      String? addOnStatus});
+      @JsonKey(defaultValue: "0") String? addOnStatus});
 }
 
 /// @nodoc
@@ -469,7 +470,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
       this.originalPrice,
       this.unit,
       this.total,
-      this.addOnStatus})
+      @JsonKey(defaultValue: "0") this.addOnStatus})
       : _variant = variant;
 
   factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -539,6 +540,7 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
   @override
   final int? total;
   @override
+  @JsonKey(defaultValue: "0")
   final String? addOnStatus;
 
   @override
@@ -704,7 +706,7 @@ abstract class _ProductModel implements ProductModel {
       final String? originalPrice,
       final String? unit,
       final int? total,
-      final String? addOnStatus}) = _$_ProductModel;
+      @JsonKey(defaultValue: "0") final String? addOnStatus}) = _$_ProductModel;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$_ProductModel.fromJson;
@@ -764,6 +766,7 @@ abstract class _ProductModel implements ProductModel {
   @override
   int? get total;
   @override
+  @JsonKey(defaultValue: "0")
   String? get addOnStatus;
   @override
   @JsonKey(ignore: true)

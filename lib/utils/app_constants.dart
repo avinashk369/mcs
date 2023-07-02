@@ -78,6 +78,9 @@ const String bookingStatusConfirmed = "confirmed";
 const String bookingStatusCancelled = "cancelled";
 const String bookingStatusCompleted = "completed";
 
+const int cartIndex = 2;
+const int homeIndex = 0;
+
 const List<String> searchHintDashboard = [
   'Groceries',
   'Bakery',

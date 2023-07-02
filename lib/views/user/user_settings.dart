@@ -89,7 +89,7 @@ class UserSettings extends StatelessWidget {
                   'Log out',
                   onTap: () async {
                     final navigator = Navigator.of(context);
-                    context.read<NavigationBloc>().changeNavigation(0);
+                    context.read<NavigationBloc>().changeNavigation(homeIndex);
 
                     await PreferenceUtils.clear();
 

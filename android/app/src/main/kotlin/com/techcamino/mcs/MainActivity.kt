@@ -1,4 +1,4 @@
-package com.tech.online_canteen
+package com.techcamino.mcs
 
 import io.flutter.embedding.android.FlutterActivity
 

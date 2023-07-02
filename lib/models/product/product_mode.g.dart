@@ -36,7 +36,7 @@ _$_ProductModel _$$_ProductModelFromJson(Map<String, dynamic> json) =>
       originalPrice: json['original_price'] as String?,
       unit: json['unit'] as String?,
       total: json['total'] as int?,
-      addOnStatus: json['add_on_status'] as String?,
+      addOnStatus: json['add_on_status'] as String? ?? '0',
     );
 
 Map<String, dynamic> _$$_ProductModelToJson(_$_ProductModel instance) {

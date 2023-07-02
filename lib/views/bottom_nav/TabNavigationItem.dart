@@ -31,18 +31,18 @@ class TabNavigationItem {
             color: secondaryLight,
           ),
         ),
-        TabNavigationItem(
-          page: const FoodScreen(),
-          icon: const Icon(
-            Icons.food_bank_outlined,
-            color: Colors.grey,
-          ),
-          title: food,
-          selectedIcon: const Icon(
-            Icons.food_bank,
-            color: secondaryLight,
-          ),
-        ),
+        // TabNavigationItem(
+        //   page: const FoodScreen(),
+        //   icon: const Icon(
+        //     Icons.food_bank_outlined,
+        //     color: Colors.grey,
+        //   ),
+        //   title: food,
+        //   selectedIcon: const Icon(
+        //     Icons.food_bank,
+        //     color: secondaryLight,
+        //   ),
+        // ),
         TabNavigationItem(
           page: const UserSettings(),
           icon: const Icon(

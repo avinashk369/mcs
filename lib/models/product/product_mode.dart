@@ -42,7 +42,7 @@ class ProductModel with _$ProductModel {
     String? originalPrice,
     String? unit,
     int? total,
-    String? addOnStatus,
+    @JsonKey(defaultValue: "0") String? addOnStatus,
 
     /// 1 is true 0 is false
   }) = _ProductModel;

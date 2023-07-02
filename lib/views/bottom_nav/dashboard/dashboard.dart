@@ -43,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
 // navigate to login screen if user taps on index where authentication is required
   Future<void> checkCredsAndNavigate(int index, BuildContext context,
       {bool isCart = false}) async {
-    isCart || (index != 3)
+    isCart || (index != cartIndex)
         ? context.read<NavigationBloc>().changeNavigation(index)
         : Fluttertoast.showToast(msg: 'Your cart is empty');
   }

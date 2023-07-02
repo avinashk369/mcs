@@ -157,15 +157,18 @@ class _ShoppingCartState extends State<ShoppingCart> {
                     return current is ProductLoaded;
                   },
                   listener: (context, state) => state.mapOrNull(
-                    loaded: (value) => (ProductUtility.calculatePrice(
-                                value.addedProducts!) >
-                            0)
-                        ? context.read<CartBloc>().add(
-                                LoadShippingCharge(data: {
-                              "user_id": PreferenceUtils.getString(user_uid),
-                              "amount": total
-                            }))
-                        : context.read<NavigationBloc>().changeNavigation(0),
+                    loaded: (value) =>
+                        (ProductUtility.calculatePrice(value.addedProducts!) >
+                                0)
+                            ? context.read<CartBloc>().add(LoadShippingCharge(
+                                    data: {
+                                      "user_id":
+                                          PreferenceUtils.getString(user_uid),
+                                      "amount": total
+                                    }))
+                            : context
+                                .read<NavigationBloc>()
+                                .changeNavigation(homeIndex),
                   ),
                   child: const SizedBox.shrink(),
                 ),
