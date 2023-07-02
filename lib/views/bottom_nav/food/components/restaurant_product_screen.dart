@@ -70,6 +70,10 @@ class RestaurantProductScreen extends StatelessWidget {
                       loaded: (value) => ProductFactory.buildList(
                         productType: ProductType.food,
                         addToCart: (product) {
+                          /// check for addons product
+                          print(
+                              "${product.addOnStatus} addon ${product.variant!.where((element) => element.type == 'add_on')}");
+
                           /// add products into pref for local storage
                           PreferenceUtils.clearCart(cartItems)!
                               .then((value) => {
@@ -83,9 +87,11 @@ class RestaurantProductScreen extends StatelessWidget {
 
                           context.read<ProductBloc>().add(AddProduct(
                               productModel: product.copyWith(count: 1),
-                              isCart: false));
+                              isCart: false,
+                              isFood: true));
                         },
                         removeFromCart: (product) {
+                          /// remove addons product
                           /// remove product from pref
                           PreferenceUtils.clearCart(cartItems);
                           context
@@ -106,9 +112,11 @@ class RestaurantProductScreen extends StatelessWidget {
                                     productModel.copyWith(index: index)));
                             if (state is ProductLoaded) {
                               context.read<ProductBloc>().add(AddProduct(
-                                  productModel: productModel.copyWith(
-                                      index: index, count: 1),
-                                  isCart: false));
+                                    productModel: productModel.copyWith(
+                                        index: index, count: 1),
+                                    isCart: false,
+                                    isFood: true,
+                                  ));
                             }
                             Navigator.of(context).pop();
                           },
@@ -116,7 +124,8 @@ class RestaurantProductScreen extends StatelessWidget {
                         products: value.products,
                       ),
                     ),
-                  )
+                  ),
+                  const SizedBox(height: kToolbarHeight + 20),
                 ],
               ),
             ),

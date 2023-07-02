@@ -22,7 +22,8 @@ mixin _$ProductEvent {
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -42,7 +43,8 @@ mixin _$ProductEvent {
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -60,7 +62,8 @@ mixin _$ProductEvent {
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,
@@ -241,7 +244,8 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -264,7 +268,8 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -285,7 +290,8 @@ class _$LoadPrdoucts with DiagnosticableTreeMixin implements LoadPrdoucts {
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,
@@ -471,7 +477,8 @@ class _$LoadRestaurantProducts
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -494,7 +501,8 @@ class _$LoadRestaurantProducts
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -515,7 +523,8 @@ class _$LoadRestaurantProducts
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,
@@ -615,7 +624,7 @@ abstract class _$$AddProductCopyWith<$Res> {
           _$AddProduct value, $Res Function(_$AddProduct) then) =
       __$$AddProductCopyWithImpl<$Res>;
   @useResult
-  $Res call({ProductModel productModel, bool isCart});
+  $Res call({ProductModel productModel, bool isCart, bool isFood});
 
   $ProductModelCopyWith<$Res> get productModel;
 }
@@ -633,6 +642,7 @@ class __$$AddProductCopyWithImpl<$Res>
   $Res call({
     Object? productModel = null,
     Object? isCart = null,
+    Object? isFood = null,
   }) {
     return _then(_$AddProduct(
       productModel: null == productModel
@@ -642,6 +652,10 @@ class __$$AddProductCopyWithImpl<$Res>
       isCart: null == isCart
           ? _value.isCart
           : isCart // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isFood: null == isFood
+          ? _value.isFood
+          : isFood // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -658,16 +672,20 @@ class __$$AddProductCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
-  const _$AddProduct({required this.productModel, required this.isCart});
+  const _$AddProduct(
+      {required this.productModel, required this.isCart, this.isFood = false});
 
   @override
   final ProductModel productModel;
   @override
   final bool isCart;
+  @override
+  @JsonKey()
+  final bool isFood;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProductEvent.addProduct(productModel: $productModel, isCart: $isCart)';
+    return 'ProductEvent.addProduct(productModel: $productModel, isCart: $isCart, isFood: $isFood)';
   }
 
   @override
@@ -676,7 +694,8 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     properties
       ..add(DiagnosticsProperty('type', 'ProductEvent.addProduct'))
       ..add(DiagnosticsProperty('productModel', productModel))
-      ..add(DiagnosticsProperty('isCart', isCart));
+      ..add(DiagnosticsProperty('isCart', isCart))
+      ..add(DiagnosticsProperty('isFood', isFood));
   }
 
   @override
@@ -686,11 +705,12 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
             other is _$AddProduct &&
             (identical(other.productModel, productModel) ||
                 other.productModel == productModel) &&
-            (identical(other.isCart, isCart) || other.isCart == isCart));
+            (identical(other.isCart, isCart) || other.isCart == isCart) &&
+            (identical(other.isFood, isFood) || other.isFood == isFood));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, productModel, isCart);
+  int get hashCode => Object.hash(runtimeType, productModel, isCart, isFood);
 
   @JsonKey(ignore: true)
   @override
@@ -705,7 +725,8 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -719,7 +740,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
         repeatOrder,
     required TResult Function(Map<String, dynamic> filterMap) sortAndFilter,
   }) {
-    return addProduct(productModel, isCart);
+    return addProduct(productModel, isCart, isFood);
   }
 
   @override
@@ -728,7 +749,8 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -740,7 +762,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
         repeatOrder,
     TResult? Function(Map<String, dynamic> filterMap)? sortAndFilter,
   }) {
-    return addProduct?.call(productModel, isCart);
+    return addProduct?.call(productModel, isCart, isFood);
   }
 
   @override
@@ -749,7 +771,8 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,
@@ -763,7 +786,7 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
     required TResult orElse(),
   }) {
     if (addProduct != null) {
-      return addProduct(productModel, isCart);
+      return addProduct(productModel, isCart, isFood);
     }
     return orElse();
   }
@@ -834,10 +857,12 @@ class _$AddProduct with DiagnosticableTreeMixin implements AddProduct {
 abstract class AddProduct implements ProductEvent {
   const factory AddProduct(
       {required final ProductModel productModel,
-      required final bool isCart}) = _$AddProduct;
+      required final bool isCart,
+      final bool isFood}) = _$AddProduct;
 
   ProductModel get productModel;
   bool get isCart;
+  bool get isFood;
   @JsonKey(ignore: true)
   _$$AddProductCopyWith<_$AddProduct> get copyWith =>
       throw _privateConstructorUsedError;
@@ -930,7 +955,8 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -953,7 +979,8 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -974,7 +1001,8 @@ class _$RemoveProduct with DiagnosticableTreeMixin implements RemoveProduct {
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,
@@ -1153,7 +1181,8 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -1176,7 +1205,8 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -1197,7 +1227,8 @@ class _$DeleteProduct with DiagnosticableTreeMixin implements DeleteProduct {
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,
@@ -1368,7 +1399,8 @@ class _$LoadProductByCatId
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -1391,7 +1423,8 @@ class _$LoadProductByCatId
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -1412,7 +1445,8 @@ class _$LoadProductByCatId
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,
@@ -1589,7 +1623,8 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -1612,7 +1647,8 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -1633,7 +1669,8 @@ class _$SearchProduct with DiagnosticableTreeMixin implements SearchProduct {
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,
@@ -1814,7 +1851,8 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -1837,7 +1875,8 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -1858,7 +1897,8 @@ class _$UpdatePrice with DiagnosticableTreeMixin implements UpdatePrice {
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,
@@ -1998,7 +2038,8 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -2021,7 +2062,8 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -2042,7 +2084,8 @@ class _$StartSearch with DiagnosticableTreeMixin implements StartSearch {
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,
@@ -2176,7 +2219,8 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -2199,7 +2243,8 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -2220,7 +2265,8 @@ class _$ClearKart with DiagnosticableTreeMixin implements ClearKart {
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,
@@ -2402,7 +2448,8 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -2425,7 +2472,8 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -2446,7 +2494,8 @@ class _$RepeatOrder with DiagnosticableTreeMixin implements RepeatOrder {
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,
@@ -2624,7 +2673,8 @@ class _$SortAndFilter with DiagnosticableTreeMixin implements SortAndFilter {
         loadProduct,
     required TResult Function(String categoryId, String cityId)
         loadRestaurantProducts,
-    required TResult Function(ProductModel productModel, bool isCart)
+    required TResult Function(
+            ProductModel productModel, bool isCart, bool isFood)
         addProduct,
     required TResult Function(ProductModel productModel) removeProduct,
     required TResult Function(ProductModel productModel) deleteProduct,
@@ -2647,7 +2697,8 @@ class _$SortAndFilter with DiagnosticableTreeMixin implements SortAndFilter {
     TResult? Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult? Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult? Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult? Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult? Function(ProductModel productModel)? removeProduct,
     TResult? Function(ProductModel productModel)? deleteProduct,
     TResult? Function(String catId)? loadProductByCatId,
@@ -2668,7 +2719,8 @@ class _$SortAndFilter with DiagnosticableTreeMixin implements SortAndFilter {
     TResult Function(String? categoryId, String cityId, bool isFood)?
         loadProduct,
     TResult Function(String categoryId, String cityId)? loadRestaurantProducts,
-    TResult Function(ProductModel productModel, bool isCart)? addProduct,
+    TResult Function(ProductModel productModel, bool isCart, bool isFood)?
+        addProduct,
     TResult Function(ProductModel productModel)? removeProduct,
     TResult Function(ProductModel productModel)? deleteProduct,
     TResult Function(String catId)? loadProductByCatId,

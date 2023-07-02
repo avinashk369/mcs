@@ -134,17 +134,31 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       final state = this.state;
       List<ProductModel> cartProducts = [];
       if (state is ProductLoaded) {
+        int existingCat = state.addedProducts!.indexWhere(
+            (element) => element.categoryId == event.productModel.categoryId);
+
         if (event.isCart) {
           cartProducts = state.addedProducts!
               .map(
                   (e) => e.id == event.productModel.id ? event.productModel : e)
               .toList();
+          cartProducts = (event.isFood)
+              ? existingCat != -1
+                  ? cartProducts
+                  : []
+              : cartProducts;
         } else {
           cartProducts = state.addedProducts!
               .where((element) => element.id != event.productModel.id)
               .toList();
+          cartProducts = (event.isFood)
+              ? existingCat != -1
+                  ? cartProducts
+                  : []
+              : cartProducts;
           cartProducts.add(event.productModel);
         }
+
         List<ProductModel> products = state.products
             .map((e) => e.id == event.productModel.id ? event.productModel : e)
             .toList();
@@ -224,18 +238,11 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       final state = this.state;
 
       if (state is ProductLoaded) {
+        /// here i am checking if added products has product from different restaurant
         int existingCat = state.addedProducts!
             .indexWhere((element) => element.categoryId == event.categoryId);
-        addedProducts = (event.isFood)
-            ? existingCat != -1
-                ? state.addedProducts!
-                : []
-            : state.addedProducts!;
-        loadedProducts = (event.isFood)
-            ? existingCat != -1
-                ? state.products.toSet()
-                : {}
-            : state.products.toSet();
+        addedProducts = state.addedProducts!;
+        loadedProducts = existingCat != -1 ? state.products.toSet() : {};
         //emit(state);
       }
       if (state is ProductError) {

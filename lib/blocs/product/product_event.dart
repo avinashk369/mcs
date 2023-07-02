@@ -10,7 +10,9 @@ class ProductEvent with _$ProductEvent {
       {required String categoryId,
       required String cityId}) = LoadRestaurantProducts;
   const factory ProductEvent.addProduct(
-      {required ProductModel productModel, required bool isCart}) = AddProduct;
+      {required ProductModel productModel,
+      required bool isCart,
+      @Default(false) bool isFood}) = AddProduct;
   const factory ProductEvent.removeProduct(ProductModel productModel) =
       RemoveProduct;
   const factory ProductEvent.deleteProduct(ProductModel productModel) =
