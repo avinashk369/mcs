@@ -7,12 +7,14 @@ import 'package:mcs/blocs/cart/cart_bloc.dart';
 import 'package:mcs/blocs/category/categorybloc.dart';
 import 'package:mcs/blocs/data/data_bloc.dart';
 import 'package:mcs/blocs/navigation/navigationbloc.dart';
+import 'package:mcs/models/product/product_mode.dart';
 import 'package:mcs/resources/data/data_repositoryImpl.dart';
 import 'package:mcs/resources/location/location_repositoryImpl.dart';
 import 'package:mcs/resources/product/product_repositoryImpl.dart';
 import 'package:mcs/resources/repository.dart';
 import 'package:mcs/resources/restaurant/restaurant_repositoryImpl.dart';
 import 'package:mcs/routes/routes_generator.dart';
+import 'package:mcs/storage/hive_service.dart';
 import 'package:mcs/utils/utils.dart';
 import 'package:mcs/views/welcome.dart';
 
@@ -31,6 +33,10 @@ import 'widgets/themes/custom_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await PreferenceUtils.getInstance();
+  await HiveService.getInstance();
+  // ProductModel productModel = const ProductModel(productId: "A35AA4D0");
+  // HiveService.getCartItems(PreferenceUtils.getString(user_uid));
+
   Paint.enableDithering = true;
   //await Firebase.initializeApp();
   await dotenv.load(fileName: '.env');

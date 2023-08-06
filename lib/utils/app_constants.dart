@@ -78,6 +78,8 @@ const String bookingStatusConfirmed = "confirmed";
 const String bookingStatusCancelled = "cancelled";
 const String bookingStatusCompleted = "completed";
 
+const String hiveUserCart = 'user_cart';
+
 const List<String> searchHintDashboard = [
   'Groceries',
   'Bakery',

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mcs/blocs/product/productbloc.dart';
 import 'package:mcs/models/product/product_mode.dart';
+import 'package:mcs/storage/hive_service.dart';
 import 'package:mcs/utils/product_dialog_util.dart';
 import 'package:mcs/views/bottom_nav/dashboard/pages/mobile/home_screen.dart';
 import 'package:mcs/views/factories/prodcut/product_list_interface.dart';
@@ -25,7 +26,8 @@ class ProductGrid extends StatelessWidget {
               PreferenceUtils.putString(
                   cartItems, product.copyWith(count: 1).toJson().toString())
             });
-
+        HiveService.addToCart(
+            product.copyWith(count: 1), PreferenceUtils.getString(user_uid));
         context.read<ProductBloc>().add(AddProduct(
             productModel: product.copyWith(count: 1), isCart: false));
       },

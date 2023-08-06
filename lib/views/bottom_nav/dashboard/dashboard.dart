@@ -16,6 +16,8 @@ import 'package:mcs/widgets/loading_ui.dart';
 import '../../../models/banner/banner_model.dart';
 import '../../../routes/route_constants.dart';
 import '../TabNavigationItem.dart';
+import 'package:mcs/storage/cart_item.dart';
+import 'package:mcs/storage/hive_service.dart';
 part 'components/promotional_banner.dart';
 part 'components/subjects_list.dart';
 
@@ -33,10 +35,14 @@ class _DashboardState extends State<Dashboard> {
   bool hasSeen = false;
   late String userId;
   late String token;
+  List<CartItem> cartItems = [];
   @override
   void initState() {
     userId = PreferenceUtils.getString(user_uid);
     token = PreferenceUtils.getString(accessToken);
+
+    cartItems = HiveService.getCartItems(userId);
+
     super.initState();
   }
 
@@ -61,7 +67,7 @@ class _DashboardState extends State<Dashboard> {
       bottomNavigationBar: BlocBuilder<NavigationBloc, int>(
         builder: (context, state) {
           final prodState = context.watch<ProductBloc>().state;
-          bool isCart = false;
+          bool isCart = cartItems.isNotEmpty;
           if (prodState is ProductLoaded) {
             isCart = prodState.addedProducts!.isNotEmpty;
           }
@@ -91,6 +97,10 @@ class _DashboardState extends State<Dashboard> {
                                 //     const Duration(milliseconds: 300),
                                 // animationType: BadgeAnimationType.slide,
                                 badgeContent: prodState.maybeMap(
+                                  initial: (_) => Text(
+                                      cartItems.length.toString(),
+                                      style: kLabelStyle.copyWith(
+                                          color: secondaryLight)),
                                   loaded: (res) => Text(
                                     res.addedProducts!.length.toString(),
                                     style: kLabelStyle.copyWith(
@@ -109,6 +119,10 @@ class _DashboardState extends State<Dashboard> {
                                 position: badge.BadgePosition.topEnd(
                                     end: -5, top: -5),
                                 badgeContent: prodState.maybeMap(
+                                  initial: (_) => Text(
+                                      cartItems.length.toString(),
+                                      style: kLabelStyle.copyWith(
+                                          color: secondaryLight)),
                                   loaded: (res) => Text(
                                     res.addedProducts!.length.toString(),
                                     style: kLabelStyle.copyWith(
